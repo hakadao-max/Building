@@ -1,0 +1,259 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100001}
+  - component: {fileID: 100002}
+  - component: {fileID: 100003}
+  - component: {fileID: 100004}
+  - component: {fileID: 100005}
+  - component: {fileID: 100006}
+  - component: {fileID: 100007}
+  - component: {fileID: 100008}
+  - component: {fileID: 100009}
+  m_Layer: 0
+  m_Name: First Third Person Controller
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &100001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &100002
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.8
+  m_Radius: 0.35
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &100003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bcaf4c8d1264c7ba46be4f91047bc32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startViewMode: 0
+  firstPersonKey: 49
+  thirdPersonKey: 50
+  fixedRouteRoamKey: 51
+  fixedCameraSelectionKey: 52
+  minimapTeleportKey: 53
+  detailInspectKey: 54
+  firstPersonView: {fileID: 100004}
+  thirdPersonView: {fileID: 100005}
+  fixedRouteRoamView: {fileID: 100006}
+  fixedCameraView: {fileID: 100007}
+  minimapTeleportView: {fileID: 100008}
+  detailInspectView: {fileID: 100009}
+  runKey: 304
+  walkSpeed: 3.5
+  runSpeed: 6.5
+  gravity: -24
+  lockCursorOnStart: 1
+  interactKey: 101
+  interactRadius: 2.3
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  revealInteractablesKey: 114
+  revealInteractablesRadius: 8
+  revealHintDuration: 3
+  flashlightKey: 102
+  flashlightLight: {fileID: 0}
+  createFlashlightWhenMissing: 1
+  flashlightStartsOn: 0
+  flashlightLocalPosition: {x: 0.25, y: -0.2, z: 0.35}
+  thirdPersonFlashlightLocalPosition: {x: 0.25, y: 1.35, z: 0.85}
+  thirdPersonFlashlightLocalEulerAngles: {x: 0, y: 0, z: 0}
+  flashlightIntensity: 2
+  flashlightRange: 18
+  flashlightSpotAngle: 55
+--- !u!114 &100004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41f9d83e6144bf4aa4580f72b5a3301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  cameraLocalPosition: {x: 0, y: 1.65, z: 0}
+  mouseSensitivity: 2.2
+  minPitch: -55
+  maxPitch: 70
+--- !u!114 &100005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d6cefb64f143d389cc2edbba5f6b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  pivotLocalPosition: {x: 0, y: 1.45, z: 0}
+  cameraDistance: 4.5
+  mouseSensitivity: 2.2
+  minPitch: -55
+  maxPitch: 70
+  visualRoot: {fileID: 0}
+  visualPrefab: {fileID: 100100000, guid: 1b59c1a1f17a7314cb891970f2b43741, type: 3}
+  idleStateName: idle1
+  walkStateName: walk
+  runStateName: run
+  crossFadeDuration: 0.15
+  moveThreshold: 0.05
+  faceMoveDirection: 1
+  rotationSpeed: 12
+  modelForwardYawOffset: 0
+--- !u!114 &100006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5d0f2ff5b94d6fa5e1a91d4e8cf321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  controlPoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 4}
+  - {x: 3, y: 0, z: 8}
+  - {x: 0, y: 0, z: 12}
+  roamSpeed: 2
+  loop: 0
+  connectLastToFirst: 1
+  snapToStart: 1
+  rotateAlongPath: 1
+  mouseSensitivity: 2.2
+  minPitch: -55
+  maxPitch: 70
+  cameraLocalPosition: {x: 0, y: 1.65, z: 0}
+  returnToFirstPersonWhenFinished: 1
+  showPreview: 1
+  previewSampleCount: 48
+  lengthSampleCount: 128
+  previewColor: {r: 1, g: 0.68, b: 0.1, a: 1}
+  previewLineWidth: 4
+  controlPointRadius: 0.2
+--- !u!114 &100007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b13fc1e50874a42b51e4d46632b4c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  cameraPoints: []
+  mouseSensitivity: 1.2
+  maxYawOffset: 20
+  maxPitchOffset: 12
+  selectionCanvas: {fileID: 0}
+  buttonContainer: {fileID: 0}
+  buttonSize: {x: 84, y: 84}
+  buttonSpacing: 16
+  bottomMargin: 42
+  panelBackgroundColor: {r: 0, g: 0, b: 0, a: 0.45}
+  buttonColor: {r: 1, g: 1, b: 1, a: 0.9}
+  selectedButtonColor: {r: 0.35, g: 0.75, b: 1, a: 1}
+--- !u!114 &100008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a0f317d07049c5a4ba8c862c85a701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  minimapTexture: {fileID: 0}
+  mapWorldCenter: {x: 0, y: 0, z: 0}
+  mapWorldSize: {x: 50, y: 50}
+  exitAfterTeleport: 1
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  groundProbeHeight: 60
+  groundProbeDistance: 140
+  groundOffset: 0.05
+  minimapCanvas: {fileID: 0}
+  minimapImage: {fileID: 0}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.72}
+  mapPadding: {x: 80, y: 80}
+--- !u!114 &100009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e2a1f04b3d4e5f9a6b7c8d9e0f1a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  inspectDistance: 12
+  inspectLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  crosshairArmLength: 18
+  crosshairThickness: 2
+  crosshairColor: {r: 1, g: 1, b: 1, a: 0.92}
+  inspectCanvas: {fileID: 0}
+  crosshairRoot: {fileID: 0}

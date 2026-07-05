@@ -660,9 +660,9 @@ MonoBehaviour:
       x: 0
       y: 21
       width: 591
-      height: 726
+      height: 717
     m_Scale: {x: 0.3078125, y: 0.3078125}
-    m_Translation: {x: 295.49997, y: 363}
+    m_Translation: {x: 295.49997, y: 358.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -670,12 +670,12 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -959.9999
-      y: -1179.2893
+      y: -1164.67
       width: 1919.9999
-      height: 2358.5786
+      height: 2329.34
     m_MinimalGUI: 1
   m_defaultScale: 0.3078125
-  m_LastWindowPixelSize: {x: 591, y: 747}
+  m_LastWindowPixelSize: {x: 591, y: 738}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -1394,9 +1394,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 0, y: 0, z: 0}
+    m_Target: {x: -5.5464783, y: 0.53719157, z: 0.362637}
     speed: 2
-    m_Value: {x: 10.362792, y: 1.548591, z: -4.154703}
+    m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1442,13 +1442,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+    m_Target: {x: 0.0230954, y: -0.8210528, z: 0.03253357, w: 0.56968963}
     speed: 2
-    m_Value: {x: -0.08495037, y: 0.46682435, z: -0.045080777, w: -0.87923175}
+    m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_Size:
-    m_Target: 10
+    m_Target: 3.821959
     speed: 2
-    m_Value: 0.8083643
+    m_Value: 10
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -8138,7 +8138,11 @@ MonoBehaviour:
     m_SelectedIDs: []
     m_LastClickedID:
       m_Data: 0
-    m_ExpandedIDs: []
+    m_ExpandedIDs:
+    - m_Data: 0
+    - m_Data: 46626
+    - m_Data: 46628
+    - m_Data: 46630
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -8169,7 +8173,11 @@ MonoBehaviour:
     m_SelectedIDs: []
     m_LastClickedID:
       m_Data: 0
-    m_ExpandedIDs: []
+    m_ExpandedIDs:
+    - m_Data: 0
+    - m_Data: 46626
+    - m_Data: 46628
+    - m_Data: 46630
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
