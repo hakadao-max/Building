@@ -25,6 +25,9 @@ public sealed class SimplePlayerController : MonoBehaviour
     [LabelText("详情查看按键")]
     [SerializeField] private KeyCode detailInspectKey = KeyCode.Alpha6;
 
+    [LabelText("透视拾取按键")]
+    [SerializeField] private KeyCode perspectivePickupKey = KeyCode.Alpha7;
+
     [LabelText("第一人称组件")]
     [SerializeField] private PlayerFirstPersonView firstPersonView;
 
@@ -42,6 +45,12 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     [LabelText("详情查看组件")]
     [SerializeField] private PlayerDetailInspectView detailInspectView;
+
+    [LabelText("模式提示组件")]
+    [SerializeField] private PlayerModeDisplay modeDisplay;
+
+    [LabelText("交互提示组件")]
+    [SerializeField] private PlayerInteractionPromptDisplay interactionPromptDisplay;
 
     [LabelText("奔跑按键")]
     [SerializeField] private KeyCode runKey = KeyCode.LeftShift;
@@ -117,6 +126,8 @@ public sealed class SimplePlayerController : MonoBehaviour
     private float pitch;
     private bool externalInputLocked;
     private bool hasAppliedViewMode;
+    private PerspectivePickupObject heldPerspectiveObject;
+    private PlayerInteractionPromptDisplay activeInteractionPromptDisplay;
 
     public PlayerViewMode CurrentViewMode => currentViewMode;
 
@@ -128,6 +139,8 @@ public sealed class SimplePlayerController : MonoBehaviour
         yaw = transform.eulerAngles.y;
 
         EnsureViewComponents();
+        EnsureModeDisplay();
+        EnsureInteractionPromptDisplay();
         EnsureFlashlight();
         ApplyViewMode(startViewMode);
     }
@@ -145,15 +158,23 @@ public sealed class SimplePlayerController : MonoBehaviour
         if (externalInputLocked)
         {
             ResetViewMovementState();
+            HideInteractionPrompt();
             return;
         }
 
         HandleViewModeInput();
         HandleDetailInspectInput();
+        RefreshInteractionPrompt();
 
         if (fixedCameraView != null && fixedCameraView.IsSelectionPanelVisible)
         {
             ResetViewMovementState();
+
+            if (currentViewMode == PlayerViewMode.FixedCamera)
+            {
+                UpdateFixedCameraView();
+            }
+
             return;
         }
 
@@ -185,6 +206,17 @@ public sealed class SimplePlayerController : MonoBehaviour
     private void LateUpdate()
     {
         RefreshActiveView();
+
+        if (heldPerspectiveObject != null)
+        {
+            heldPerspectiveObject.TickHeldObject();
+        }
+    }
+
+    private void OnDisable()
+    {
+        ReleasePerspectiveObject();
+        HideInteractionPrompt();
     }
 
     private void OnValidate()
@@ -240,6 +272,7 @@ public sealed class SimplePlayerController : MonoBehaviour
         switch (currentViewMode)
         {
             case PlayerViewMode.FirstPerson:
+            case PlayerViewMode.PerspectivePickup:
                 firstPersonView.Enter(ref yaw, ref pitch);
                 break;
             case PlayerViewMode.ThirdPerson:
@@ -258,6 +291,7 @@ public sealed class SimplePlayerController : MonoBehaviour
 
         AttachFlashlightToActiveView();
         RefreshActiveView();
+        RefreshModeDisplay();
 
         if (currentViewMode == PlayerViewMode.MinimapTeleport)
         {
@@ -335,6 +369,10 @@ public sealed class SimplePlayerController : MonoBehaviour
                 ApplyViewMode(PlayerViewMode.MinimapTeleport);
             }
         }
+        else if (perspectivePickupKey != KeyCode.None && RuntimeInput.GetKeyDown(perspectivePickupKey))
+        {
+            ApplyViewMode(PlayerViewMode.PerspectivePickup);
+        }
     }
 
     private void HandleDetailInspectInput()
@@ -352,6 +390,7 @@ public sealed class SimplePlayerController : MonoBehaviour
 
         EnsureViewComponents();
         detailInspectView.Toggle();
+        RefreshModeDisplay();
     }
 
     private void UpdateFixedRouteRoam()
@@ -433,6 +472,16 @@ public sealed class SimplePlayerController : MonoBehaviour
 
         bool panelVisible = fixedCameraView.ToggleSelectionPanel(ApplyFixedCameraView);
         SetCursorLocked(!panelVisible && lockCursorOnStart);
+
+        if (panelVisible)
+        {
+            EnsureModeDisplay();
+            modeDisplay.Refresh(PlayerViewMode.FixedCamera, false);
+        }
+        else
+        {
+            RefreshModeDisplay();
+        }
     }
 
     private void ApplyFixedCameraView(int pointIndex)
@@ -465,7 +514,8 @@ public sealed class SimplePlayerController : MonoBehaviour
         verticalVelocity = Vector3.zero;
         ResetViewMovementState();
         AttachFlashlightToActiveView();
-        SetCursorLocked(lockCursorOnStart);
+        RefreshModeDisplay();
+        SetCursorLocked(!fixedCameraView.IsSelectionPanelVisible && lockCursorOnStart);
     }
 
     private void UpdateFixedCameraView()
@@ -473,6 +523,17 @@ public sealed class SimplePlayerController : MonoBehaviour
         if (fixedCameraView == null || !fixedCameraView.IsActive)
         {
             ApplyViewMode(PlayerViewMode.FirstPerson);
+            return;
+        }
+
+        if (fixedCameraView.IsSelectionPanelVisible)
+        {
+            if (RuntimeInput.GetMouseButton(1))
+            {
+                fixedCameraView.HandleLookInput();
+                fixedCameraView.RefreshCamera();
+            }
+
             return;
         }
 
@@ -505,6 +566,7 @@ public sealed class SimplePlayerController : MonoBehaviour
         switch (currentViewMode)
         {
             case PlayerViewMode.FirstPerson:
+            case PlayerViewMode.PerspectivePickup:
                 firstPersonView.HandleLookInput(ref yaw, ref pitch);
                 break;
             case PlayerViewMode.ThirdPerson:
@@ -552,11 +614,66 @@ public sealed class SimplePlayerController : MonoBehaviour
             return;
         }
 
+        if (heldPerspectiveObject != null)
+        {
+            ReleasePerspectiveObject();
+            return;
+        }
+
+        if (currentViewMode == PlayerViewMode.PerspectivePickup)
+        {
+            PerspectivePickupObject pickupObject = FindPerspectivePickupObject();
+            Camera activeCamera = ResolveActiveCamera();
+            Collider[] playerColliders = GetComponentsInChildren<Collider>(true);
+            if (pickupObject != null && pickupObject.TryPickup(activeCamera, playerColliders))
+            {
+                heldPerspectiveObject = pickupObject;
+                return;
+            }
+        }
+
         InteractableArea nearestArea = FindNearestInteractableArea();
         if (nearestArea != null)
         {
             nearestArea.Interact(gameObject);
         }
+    }
+
+    private PerspectivePickupObject FindPerspectivePickupObject()
+    {
+        Camera activeCamera = ResolveActiveCamera();
+        if (activeCamera == null)
+        {
+            return null;
+        }
+
+        Ray ray = new Ray(activeCamera.transform.position, activeCamera.transform.forward);
+        RaycastHit[] hits = Physics.RaycastAll(ray, interactRadius, interactableLayerMask, QueryTriggerInteraction.Ignore);
+        PerspectivePickupObject nearestObject = null;
+        float nearestDistance = float.PositiveInfinity;
+
+        foreach (RaycastHit hit in hits)
+        {
+            PerspectivePickupObject candidate = hit.collider.GetComponentInParent<PerspectivePickupObject>();
+            if (candidate != null && !candidate.IsHeld && hit.distance < nearestDistance)
+            {
+                nearestDistance = hit.distance;
+                nearestObject = candidate;
+            }
+        }
+
+        return nearestObject;
+    }
+
+    private void ReleasePerspectiveObject()
+    {
+        if (heldPerspectiveObject == null)
+        {
+            return;
+        }
+
+        heldPerspectiveObject.Release();
+        heldPerspectiveObject = null;
     }
 
     private void HandleFlashlightInput()
@@ -600,6 +717,7 @@ public sealed class SimplePlayerController : MonoBehaviour
             case PlayerViewMode.ThirdPerson:
                 return thirdPersonView.GetMoveDirection(input, yaw);
             case PlayerViewMode.FirstPerson:
+            case PlayerViewMode.PerspectivePickup:
                 return firstPersonView.GetMoveDirection(input);
             default:
                 return Vector3.zero;
@@ -757,9 +875,15 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     private void ExitCurrentViewMode()
     {
+        if (currentViewMode == PlayerViewMode.PerspectivePickup)
+        {
+            ReleasePerspectiveObject();
+        }
+
         switch (currentViewMode)
         {
             case PlayerViewMode.FirstPerson:
+            case PlayerViewMode.PerspectivePickup:
                 firstPersonView.Exit();
                 break;
             case PlayerViewMode.ThirdPerson:
@@ -796,6 +920,7 @@ public sealed class SimplePlayerController : MonoBehaviour
         switch (currentViewMode)
         {
             case PlayerViewMode.FirstPerson:
+            case PlayerViewMode.PerspectivePickup:
                 firstPersonView.RefreshCamera(yaw, pitch);
                 break;
             case PlayerViewMode.ThirdPerson:
@@ -812,6 +937,97 @@ public sealed class SimplePlayerController : MonoBehaviour
         if (thirdPersonView != null)
         {
             thirdPersonView.ResetMovementState();
+        }
+    }
+
+    private void EnsureModeDisplay()
+    {
+        if (modeDisplay == null)
+        {
+            modeDisplay = GetComponent<PlayerModeDisplay>();
+        }
+
+        if (modeDisplay == null)
+        {
+            modeDisplay = gameObject.AddComponent<PlayerModeDisplay>();
+        }
+
+        modeDisplay.Initialize();
+    }
+
+    private void RefreshModeDisplay()
+    {
+        if (modeDisplay == null)
+        {
+            EnsureModeDisplay();
+        }
+
+        bool detailInspectActive = detailInspectView != null && detailInspectView.IsActive;
+        modeDisplay.Refresh(currentViewMode, detailInspectActive);
+    }
+
+    private void EnsureInteractionPromptDisplay()
+    {
+        if (interactionPromptDisplay == null)
+        {
+            interactionPromptDisplay = GetComponent<PlayerInteractionPromptDisplay>();
+        }
+
+        if (interactionPromptDisplay == null)
+        {
+            interactionPromptDisplay = gameObject.AddComponent<PlayerInteractionPromptDisplay>();
+        }
+
+        interactionPromptDisplay.Initialize();
+    }
+
+    private void RefreshInteractionPrompt()
+    {
+        if (!AllowsNearbyInteraction())
+        {
+            HideInteractionPrompt();
+            return;
+        }
+
+        InteractableArea nearestArea = FindNearestInteractableArea();
+        if (nearestArea == null || string.IsNullOrWhiteSpace(nearestArea.PromptText))
+        {
+            HideInteractionPrompt();
+            return;
+        }
+
+        EnsureInteractionPromptDisplay();
+        PlayerInteractionPromptDisplay targetDisplay = nearestArea.PromptDisplay != null
+            ? nearestArea.PromptDisplay
+            : interactionPromptDisplay;
+
+        if (activeInteractionPromptDisplay != null && activeInteractionPromptDisplay != targetDisplay)
+        {
+            activeInteractionPromptDisplay.Hide();
+        }
+
+        activeInteractionPromptDisplay = targetDisplay;
+        activeInteractionPromptDisplay.Show(nearestArea.PromptText);
+    }
+
+    private bool AllowsNearbyInteraction()
+    {
+        return currentViewMode == PlayerViewMode.FirstPerson
+            || currentViewMode == PlayerViewMode.ThirdPerson
+            || currentViewMode == PlayerViewMode.PerspectivePickup;
+    }
+
+    private void HideInteractionPrompt()
+    {
+        if (activeInteractionPromptDisplay != null)
+        {
+            activeInteractionPromptDisplay.Hide();
+            activeInteractionPromptDisplay = null;
+        }
+
+        if (interactionPromptDisplay != null)
+        {
+            interactionPromptDisplay.Hide();
         }
     }
 

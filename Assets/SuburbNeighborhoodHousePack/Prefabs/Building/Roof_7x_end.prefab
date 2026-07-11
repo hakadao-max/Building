@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7553556822588279822}
-  - component: {fileID: 2052191089964095379}
   - component: {fileID: 6880449637180064683}
   - component: {fileID: 8689892518223263585}
   - component: {fileID: 6844632826030114382}
@@ -34,41 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2052191089964095379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7176573161766000308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1920c326c54c46bdba951557dffb3f98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placed: 1
-  category: Roofs
-  prefab: Roof_7x_end
-  additionals:
-  - Drainpipe_1story
-  - Drainpipe_1story
-  - Drainpipe_2story
-  - Drainpipe_2story
-  additionalsBtns:
-  - Drainpipe 1story L
-  - Drainpipe 1story R
-  - Drainpipe 2story L
-  - Drainpipe 2story R
-  additionalsPos:
-  - {x: 0, y: 0, z: -0.5}
-  - {x: -7, y: 0, z: 0}
-  - {x: 0, y: 0, z: -0.5}
-  - {x: -7, y: 0, z: 0}
-  additionalsRot:
-  - {x: 0, y: 90, z: 0}
-  - {x: 0, y: -90, z: 0}
-  - {x: 0, y: 90, z: 0}
-  - {x: 0, y: -90, z: 0}
 --- !u!33 &6880449637180064683
 MeshFilter:
   m_ObjectHideFlags: 0

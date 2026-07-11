@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 #endif
 using UnityEngine.UI;
+using TMPro;
 
 [DisallowMultipleComponent]
 public sealed class PlayerFixedCameraView : MonoBehaviour
@@ -51,6 +52,9 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
     [LabelText("选中按钮颜色")]
     [SerializeField] private Color selectedButtonColor = new Color(0.35f, 0.75f, 1f, 1f);
 
+    [LabelText("选择后隐藏面板")]
+    [SerializeField] private bool hidePanelAfterSelection;
+
     private readonly List<Button> runtimeButtons = new List<Button>();
     private Action<int> onPointSelected;
     private PlayerFixedCameraPoint activePoint;
@@ -60,6 +64,7 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
     private int activePointIndex = -1;
     private bool isActive;
     private bool isSelectionPanelVisible;
+    private bool initialized;
 
     public Camera PlayerCamera => playerCamera;
     public bool IsActive => isActive;
@@ -88,6 +93,13 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
     {
         EnsureCamera();
         EnsureSelectionCanvas();
+
+        if (initialized)
+        {
+            return;
+        }
+
+        initialized = true;
         HideSelectionPanel();
     }
 
@@ -136,7 +148,10 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
         }
 
         EnsureCamera();
-        HideSelectionPanel();
+        if (hidePanelAfterSelection)
+        {
+            HideSelectionPanel();
+        }
 
         activePoint = point;
         activePointIndex = pointIndex;
@@ -343,7 +358,7 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
 
     private void CreateLabel(RectTransform parent, string text)
     {
-        GameObject labelObject = new GameObject("Label", typeof(RectTransform), typeof(Text));
+        GameObject labelObject = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
         RectTransform labelRect = labelObject.GetComponent<RectTransform>();
         labelRect.SetParent(parent, false);
         labelRect.anchorMin = Vector2.zero;
@@ -351,36 +366,38 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
         labelRect.offsetMin = new Vector2(6f, 4f);
         labelRect.offsetMax = new Vector2(-6f, -4f);
 
-        Text label = labelObject.GetComponent<Text>();
+        TMP_Text label = labelObject.GetComponent<TextMeshProUGUI>();
         label.text = text;
-        label.alignment = TextAnchor.MiddleCenter;
+        label.alignment = TextAlignmentOptions.Center;
         label.color = Color.black;
-        label.font = GetBuiltInFont();
-        label.resizeTextForBestFit = true;
-        label.resizeTextMinSize = 12;
-        label.resizeTextMaxSize = 22;
+        label.enableAutoSizing = true;
+        label.fontSizeMin = 12;
+        label.fontSizeMax = 22;
     }
 
     private void CreateMessageItem(string message)
     {
-        GameObject itemObject = new GameObject("Fixed Camera Message", typeof(RectTransform), typeof(Text));
+        GameObject itemObject = new GameObject("Fixed Camera Message", typeof(RectTransform), typeof(TextMeshProUGUI));
         RectTransform itemRect = itemObject.GetComponent<RectTransform>();
         itemRect.SetParent(buttonContainer, false);
         itemRect.sizeDelta = new Vector2(buttonSize.x * 2f, buttonSize.y * 0.55f);
 
-        Text label = itemObject.GetComponent<Text>();
+        TMP_Text label = itemObject.GetComponent<TextMeshProUGUI>();
         label.text = message;
-        label.alignment = TextAnchor.MiddleCenter;
+        label.alignment = TextAlignmentOptions.Center;
         label.color = Color.white;
-        label.font = GetBuiltInFont();
-        label.resizeTextForBestFit = true;
-        label.resizeTextMinSize = 12;
-        label.resizeTextMaxSize = 22;
+        label.enableAutoSizing = true;
+        label.fontSizeMin = 12;
+        label.fontSizeMax = 22;
     }
 
     private void SelectPoint(int pointIndex)
     {
-        HideSelectionPanel();
+        if (hidePanelAfterSelection)
+        {
+            HideSelectionPanel();
+        }
+
         onPointSelected?.Invoke(pointIndex);
     }
 
@@ -436,9 +453,4 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
 #endif
     }
 
-    private static Font GetBuiltInFont()
-    {
-        Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        return font != null ? font : Resources.GetBuiltinResource<Font>("Arial.ttf");
-    }
 }

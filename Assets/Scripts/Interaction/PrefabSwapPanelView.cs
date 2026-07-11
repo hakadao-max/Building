@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public sealed class PrefabSwapPanelView : MonoBehaviour
@@ -16,7 +17,7 @@ public sealed class PrefabSwapPanelView : MonoBehaviour
     [SerializeField] private Button[] optionButtons;
 
     [LabelText("选择按钮文字")]
-    [SerializeField] private Text[] optionLabels;
+    [SerializeField] private TMP_Text[] optionLabels;
 
     public GameObject PromptRoot => promptRoot;
     public GameObject PanelRoot => panelRoot;

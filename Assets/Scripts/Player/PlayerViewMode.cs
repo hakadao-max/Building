@@ -4,5 +4,6 @@ public enum PlayerViewMode
     ThirdPerson = 1,
     FixedRouteRoam = 2,
     FixedCamera = 3,
-    MinimapTeleport = 4
+    MinimapTeleport = 4,
+    PerspectivePickup = 5
 }

@@ -1,23 +1,5 @@
 # 设置面板
 
-## 目标
+`SettingsPanelController` 管理设置面板显隐、返回出生点、退出游戏、分辨率和全屏状态。`ResolutionDropdown` 提供 1280×720、1920×1080、2560×1440（2K）三档；`FullscreenToggle` 控制窗口模式与无边框全屏模式。两项修改都会通过 `Screen.SetResolution` 立即应用。`CloseGameButton` 调用 `CloseGame`：在 Unity Editor 中停止 Play Mode，在构建后的程序中调用 `Application.Quit` 关闭程序。
 
-提供一个完全由 Prefab 预先搭建的独立设置面板。面板仅包含“回到出生点”和“退出”两个操作，运行时不加载或生成 Canvas、按钮和 EventSystem。
-
-## 使用
-
-1. 在 Unity 菜单执行 `工具/创建设置面板 Prefab`。
-2. 将生成的 `Assets/Prefab/UI/Settings Panel.prefab` 拖入场景。
-3. Prefab 已绑定面板根节点、回出生点按钮和退出按钮。玩家控制器留空时会在启动时查找。
-4. `出生点` 留空时返回玩家控制器记录的初始点；指定 Transform 时使用该位置和旋转。
-5. 默认用 `Escape` 打开或关闭面板。
-
-## 验证
-
-- 按 `Escape` 确认面板显示、玩家输入锁定且鼠标释放。
-- 点击“回到出生点”，确认玩家传送并关闭面板。
-- 点击“退出”，确认面板关闭并恢复玩家输入。
-
-## 限制
-
-一个场景应只放置一个设置面板 Prefab，避免出现多个 EventSystem。
+正式 UI 直接维护在 `Assets/Scenes/Prefab/UI/Settings Panel.prefab`。设置面板不会再由编辑器脚本重新生成，也不会在运行时创建缺失控件；修改布局时直接编辑该 Prefab，并保持控制器上的分辨率下拉框与全屏开关引用有效。

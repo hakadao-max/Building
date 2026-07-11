@@ -2,16 +2,17 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public static class PrefabSwapPanelPrefabCreator
 {
-    private const string PrefabPath = "Assets/Prefab/UI/Prefab Swap Panel.prefab";
+    private const string PrefabPath = "Assets/Scenes/Prefab/UI/Prefab Swap Panel.prefab";
     private const int OptionSlotCount = 6;
 
     [MenuItem("工具/创建预制体交换面板 Prefab")]
     [MenuItem("测试/创建预制体交换面板 Prefab")]
-    private static void CreatePanelPrefab()
+    public static void CreatePanelPrefab()
     {
         EnsureFolder("Assets/Prefab");
         EnsureFolder("Assets/Prefab/UI");
@@ -57,10 +58,10 @@ public static class PrefabSwapPanelPrefabCreator
         layout.childForceExpandHeight = false;
 
         List<Button> optionButtons = new List<Button>();
-        List<Text> optionLabels = new List<Text>();
+        List<TMP_Text> optionLabels = new List<TMP_Text>();
         for (int i = 0; i < OptionSlotCount; i++)
         {
-            Button button = CreateButton($"预制体选项 {i + 1}", content.transform, $"预制体 {i + 1}", out Text label);
+            Button button = CreateButton($"预制体选项 {i + 1}", content.transform, $"预制体 {i + 1}", out TMP_Text label);
             optionButtons.Add(button);
             optionLabels.Add(label);
         }
@@ -90,7 +91,7 @@ public static class PrefabSwapPanelPrefabCreator
         Debug.Log($"已创建固定 UI Prefab：{PrefabPath}");
     }
 
-    private static Button CreateButton(string objectName, Transform parent, string labelText, out Text label)
+    private static Button CreateButton(string objectName, Transform parent, string labelText, out TMP_Text label)
     {
         GameObject buttonObject = CreateUiObject(objectName, parent);
         Image image = buttonObject.AddComponent<Image>();
@@ -104,18 +105,24 @@ public static class PrefabSwapPanelPrefabCreator
         return button;
     }
 
-    private static Text CreateText(string objectName, Transform parent, string value, int fontSize, TextAnchor alignment)
+    private static TMP_Text CreateText(string objectName, Transform parent, string value, int fontSize, TextAnchor alignment)
     {
         GameObject textObject = CreateUiObject(objectName, parent);
         Stretch(textObject.GetComponent<RectTransform>());
-        Text text = textObject.AddComponent<Text>();
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        TMP_Text text = textObject.AddComponent<TextMeshProUGUI>();
         text.text = value;
         text.fontSize = fontSize;
-        text.alignment = alignment;
+        text.alignment = ConvertAlignment(alignment);
         text.color = Color.white;
         text.raycastTarget = false;
         return text;
+    }
+
+    private static TextAlignmentOptions ConvertAlignment(TextAnchor alignment)
+    {
+        return alignment == TextAnchor.MiddleCenter
+            ? TextAlignmentOptions.Center
+            : TextAlignmentOptions.TopLeft;
     }
 
     private static GameObject CreateUiObject(string objectName, Transform parent)

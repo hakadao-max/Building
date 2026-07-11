@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public sealed class SettingsPanelController : MonoBehaviour
@@ -26,6 +27,15 @@ public sealed class SettingsPanelController : MonoBehaviour
 
     [LabelText("退出按钮")]
     [SerializeField] private Button closeButton;
+
+    [LabelText("退出游戏按钮")]
+    [SerializeField] private Button closeGameButton;
+
+    [LabelText("分辨率下拉框")]
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+
+    [LabelText("全屏开关")]
+    [SerializeField] private Toggle fullscreenToggle;
 
     private float previousTimeScale = 1f;
     private bool isOpen;
@@ -68,6 +78,15 @@ public sealed class SettingsPanelController : MonoBehaviour
         SetPanelVisible(false);
     }
 
+    public void CloseGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
     public void ReturnPlayerToSpawn()
     {
         EnsurePlayerController();
@@ -87,6 +106,28 @@ public sealed class SettingsPanelController : MonoBehaviour
         }
 
         SetPanelVisible(false);
+    }
+
+    public void ApplyResolution(int resolutionIndex)
+    {
+        Vector2Int resolution = GetResolution(resolutionIndex);
+        bool isFullscreen = fullscreenToggle == null
+            ? Screen.fullScreenMode != FullScreenMode.Windowed
+            : fullscreenToggle.isOn;
+        Screen.SetResolution(
+            resolution.x,
+            resolution.y,
+            isFullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed);
+    }
+
+    public void ApplyFullscreen(bool isFullscreen)
+    {
+        int resolutionIndex = resolutionDropdown == null ? GetCurrentResolutionIndex() : resolutionDropdown.value;
+        Vector2Int resolution = GetResolution(resolutionIndex);
+        Screen.SetResolution(
+            resolution.x,
+            resolution.y,
+            isFullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed);
     }
 
     public void SetPanelVisible(bool visible)
@@ -119,6 +160,7 @@ public sealed class SettingsPanelController : MonoBehaviour
 
         if (isOpen)
         {
+            RefreshDisplayControls();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -152,6 +194,20 @@ public sealed class SettingsPanelController : MonoBehaviour
             closeButton.onClick.RemoveListener(ClosePanel);
             closeButton.onClick.AddListener(ClosePanel);
         }
+
+        BindButton(closeGameButton, CloseGame);
+
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.onValueChanged.RemoveListener(ApplyResolution);
+            resolutionDropdown.onValueChanged.AddListener(ApplyResolution);
+        }
+
+        if (fullscreenToggle != null)
+        {
+            fullscreenToggle.onValueChanged.RemoveListener(ApplyFullscreen);
+            fullscreenToggle.onValueChanged.AddListener(ApplyFullscreen);
+        }
     }
 
     private void UnbindButtons()
@@ -165,6 +221,51 @@ public sealed class SettingsPanelController : MonoBehaviour
         {
             closeButton.onClick.RemoveListener(ClosePanel);
         }
+
+        UnbindButton(closeGameButton, CloseGame);
+
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.onValueChanged.RemoveListener(ApplyResolution);
+        }
+
+        if (fullscreenToggle != null)
+        {
+            fullscreenToggle.onValueChanged.RemoveListener(ApplyFullscreen);
+        }
+    }
+
+    private static void BindButton(Button button, UnityEngine.Events.UnityAction action)
+    {
+        if (button == null)
+        {
+            return;
+        }
+
+        button.onClick.RemoveListener(action);
+        button.onClick.AddListener(action);
+    }
+
+    private static void UnbindButton(Button button, UnityEngine.Events.UnityAction action)
+    {
+        if (button != null)
+        {
+            button.onClick.RemoveListener(action);
+        }
+    }
+
+    private void RefreshDisplayControls()
+    {
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.SetValueWithoutNotify(GetCurrentResolutionIndex());
+            resolutionDropdown.RefreshShownValue();
+        }
+
+        if (fullscreenToggle != null)
+        {
+            fullscreenToggle.SetIsOnWithoutNotify(Screen.fullScreenMode != FullScreenMode.Windowed);
+        }
     }
 
     private void EnsurePlayerController()
@@ -173,5 +274,35 @@ public sealed class SettingsPanelController : MonoBehaviour
         {
             playerController = FindObjectOfType<SimplePlayerController>();
         }
+    }
+
+    private static int GetCurrentResolutionIndex()
+    {
+        int bestIndex = 0;
+        long bestDifference = long.MaxValue;
+        for (int index = 0; index < 3; index++)
+        {
+            Vector2Int resolution = GetResolution(index);
+            long widthDifference = resolution.x - Screen.width;
+            long heightDifference = resolution.y - Screen.height;
+            long difference = widthDifference * widthDifference + heightDifference * heightDifference;
+            if (difference < bestDifference)
+            {
+                bestDifference = difference;
+                bestIndex = index;
+            }
+        }
+
+        return bestIndex;
+    }
+
+    private static Vector2Int GetResolution(int resolutionIndex)
+    {
+        return resolutionIndex switch
+        {
+            0 => new Vector2Int(1280, 720),
+            1 => new Vector2Int(1920, 1080),
+            _ => new Vector2Int(2560, 1440)
+        };
     }
 }

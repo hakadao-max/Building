@@ -73,6 +73,30 @@ public static class RuntimeInput
 #endif
     }
 
+    public static bool GetMouseButton(int button)
+    {
+#if ENABLE_INPUT_SYSTEM
+        if (Mouse.current != null)
+        {
+            switch (button)
+            {
+                case 0:
+                    return Mouse.current.leftButton.isPressed;
+                case 1:
+                    return Mouse.current.rightButton.isPressed;
+                case 2:
+                    return Mouse.current.middleButton.isPressed;
+            }
+        }
+#endif
+
+#if ENABLE_LEGACY_INPUT_MANAGER
+        return Input.GetMouseButton(button);
+#else
+        return false;
+#endif
+    }
+
     public static Vector2 GetMouseDelta()
     {
 #if ENABLE_INPUT_SYSTEM

@@ -1,10 +1,9 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public sealed class WorldDescriptionUI : MonoBehaviour
 {
-    private const string BuiltInFontPath = "LegacyRuntime.ttf";
-
     [LabelText("标题")]
     [SerializeField] private string title = "场景元素";
 
@@ -52,10 +51,10 @@ public sealed class WorldDescriptionUI : MonoBehaviour
     [SerializeField] private Canvas worldCanvas;
 
     [LabelText("标题文本")]
-    [SerializeField] private Text titleText;
+    [SerializeField] private TMP_Text titleText;
 
     [LabelText("说明文本")]
-    [SerializeField] private Text descriptionText;
+    [SerializeField] private TMP_Text descriptionText;
 
     private Transform cachedPlayerTransform;
     private bool isDetailInspectHighlighted;
@@ -181,14 +180,14 @@ public sealed class WorldDescriptionUI : MonoBehaviour
         Image background = backgroundObject.GetComponent<Image>();
         background.color = new Color(0.05f, 0.05f, 0.05f, 0.78f);
 
-        titleText = CreateText(canvasObject.transform, "Title", titleFontSize, FontStyle.Bold, TextAnchor.MiddleCenter);
+        titleText = CreateText(canvasObject.transform, "Title", titleFontSize, FontStyles.Bold, TextAlignmentOptions.Center);
         RectTransform titleRect = titleText.GetComponent<RectTransform>();
         titleRect.anchorMin = new Vector2(0f, 0.68f);
         titleRect.anchorMax = new Vector2(1f, 1f);
         titleRect.offsetMin = new Vector2(18f, 0f);
         titleRect.offsetMax = new Vector2(-18f, -8f);
 
-        descriptionText = CreateText(canvasObject.transform, "Description", descriptionFontSize, FontStyle.Normal, TextAnchor.UpperCenter);
+        descriptionText = CreateText(canvasObject.transform, "Description", descriptionFontSize, FontStyles.Normal, TextAlignmentOptions.Top);
         RectTransform descriptionRect = descriptionText.GetComponent<RectTransform>();
         descriptionRect.anchorMin = new Vector2(0f, 0f);
         descriptionRect.anchorMax = new Vector2(1f, 0.68f);
@@ -219,15 +218,15 @@ public sealed class WorldDescriptionUI : MonoBehaviour
         }
     }
 
-    private Text FindChildText(string childName)
+    private TMP_Text FindChildText(string childName)
     {
         Transform textTransform = worldCanvas.transform.Find(childName);
-        if (textTransform != null && textTransform.TryGetComponent(out Text foundText))
+        if (textTransform != null && textTransform.TryGetComponent(out TMP_Text foundText))
         {
             return foundText;
         }
 
-        foreach (Text candidate in worldCanvas.GetComponentsInChildren<Text>(true))
+        foreach (TMP_Text candidate in worldCanvas.GetComponentsInChildren<TMP_Text>(true))
         {
             if (candidate.name == childName)
             {
@@ -238,19 +237,18 @@ public sealed class WorldDescriptionUI : MonoBehaviour
         return null;
     }
 
-    private Text CreateText(Transform parent, string objectName, int fontSize, FontStyle fontStyle, TextAnchor alignment)
+    private TMP_Text CreateText(Transform parent, string objectName, int fontSize, FontStyles fontStyle, TextAlignmentOptions alignment)
     {
-        GameObject textObject = new GameObject(objectName, typeof(RectTransform), typeof(Text));
+        GameObject textObject = new GameObject(objectName, typeof(RectTransform), typeof(TextMeshProUGUI));
         textObject.transform.SetParent(parent, false);
 
-        Text uiText = textObject.GetComponent<Text>();
-        uiText.font = Resources.GetBuiltinResource<Font>(BuiltInFontPath);
+        TMP_Text uiText = textObject.GetComponent<TextMeshProUGUI>();
         uiText.fontSize = fontSize;
         uiText.fontStyle = fontStyle;
         uiText.alignment = alignment;
         uiText.color = Color.white;
-        uiText.horizontalOverflow = HorizontalWrapMode.Wrap;
-        uiText.verticalOverflow = VerticalWrapMode.Truncate;
+        uiText.textWrappingMode = TextWrappingModes.Normal;
+        uiText.overflowMode = TextOverflowModes.Truncate;
         uiText.raycastTarget = false;
 
         return uiText;
@@ -263,25 +261,23 @@ public sealed class WorldDescriptionUI : MonoBehaviour
         if (titleText != null)
         {
             titleText.text = title;
-            titleText.font = Resources.GetBuiltinResource<Font>(BuiltInFontPath);
             titleText.fontSize = titleFontSize;
-            titleText.fontStyle = FontStyle.Bold;
-            titleText.alignment = TextAnchor.MiddleCenter;
+            titleText.fontStyle = FontStyles.Bold;
+            titleText.alignment = TextAlignmentOptions.Center;
             titleText.color = Color.white;
-            titleText.horizontalOverflow = HorizontalWrapMode.Wrap;
-            titleText.verticalOverflow = VerticalWrapMode.Truncate;
+            titleText.textWrappingMode = TextWrappingModes.Normal;
+            titleText.overflowMode = TextOverflowModes.Truncate;
         }
 
         if (descriptionText != null)
         {
             descriptionText.text = description;
-            descriptionText.font = Resources.GetBuiltinResource<Font>(BuiltInFontPath);
             descriptionText.fontSize = descriptionFontSize;
-            descriptionText.fontStyle = FontStyle.Normal;
-            descriptionText.alignment = TextAnchor.UpperCenter;
+            descriptionText.fontStyle = FontStyles.Normal;
+            descriptionText.alignment = TextAlignmentOptions.Top;
             descriptionText.color = Color.white;
-            descriptionText.horizontalOverflow = HorizontalWrapMode.Wrap;
-            descriptionText.verticalOverflow = VerticalWrapMode.Truncate;
+            descriptionText.textWrappingMode = TextWrappingModes.Normal;
+            descriptionText.overflowMode = TextOverflowModes.Truncate;
         }
 
         if (worldCanvas != null)

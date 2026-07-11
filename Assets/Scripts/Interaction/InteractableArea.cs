@@ -15,6 +15,9 @@ public sealed class InteractableArea : MonoBehaviour
     [LabelText("提示文本")]
     [SerializeField] private string promptText = "按 E 互动";
 
+    [LabelText("专用提示组件")]
+    [SerializeField] private PlayerInteractionPromptDisplay promptDisplay;
+
     [LabelText("提示目标")]
     [SerializeField] private Transform hintTarget;
 
@@ -25,10 +28,14 @@ public sealed class InteractableArea : MonoBehaviour
     [SerializeField] private bool useParentWhenTargetEmpty = true;
 
     public string PromptText => promptText;
+    public PlayerInteractionPromptDisplay PromptDisplay => promptDisplay != null
+        ? promptDisplay
+        : GetComponent<PlayerInteractionPromptDisplay>();
 
     private void Reset()
     {
         EnsureTriggerCollider();
+        promptDisplay = GetComponent<PlayerInteractionPromptDisplay>();
 
         if (transform.parent != null)
         {
@@ -87,7 +94,7 @@ public sealed class InteractableArea : MonoBehaviour
 
     private void EnsureTriggerCollider()
     {
-        Collider areaCollider = GetComponent<Collider>();
+        Collider areaCollider = GetComponent<SphereCollider>();
         if (areaCollider == null)
         {
             return;

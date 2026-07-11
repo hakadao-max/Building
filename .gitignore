@@ -4,3 +4,7 @@ Logs
 UnityEngine.TestRunner.csproj
 *.csproj
 Building.sln
+.idea
+tmp
+projects
+output
