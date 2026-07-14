@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.ContainerWindow
   m_PixelRect:
     serializedVersion: 2
-    x: -983
+    x: 1
     y: 790
     width: 641
     height: 503
@@ -67,8 +67,8 @@ MonoBehaviour:
     y: 0
     width: 641
     height: 503
-  m_MinSize: {x: 310, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 310, y: 226}
+  m_MaxSize: {x: 4000, y: 4026}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -268,8 +268,8 @@ MonoBehaviour:
     y: 0
     width: 277
     height: 758
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -295,8 +295,8 @@ MonoBehaviour:
     y: 0
     width: 672
     height: 758
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 126}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -322,8 +322,8 @@ MonoBehaviour:
     y: 0
     width: 782
     height: 758
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -406,8 +406,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Preferences\u200B"
   m_Pos:
     serializedVersion: 2
-    x: -983
-    y: 790
+    x: 0
+    y: 26
     width: 641
     height: 477
   m_SerializedDataModeController:
@@ -472,8 +472,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "UnityEditor.MainToolbarWindow\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 9
-    y: 51
+    x: 0
+    y: 0
     width: 2542
     height: 36
   m_SerializedDataModeController:
@@ -738,8 +738,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 958
-    y: 87
+    x: 950
+    y: 24
     width: 780
     height: 732
   m_SerializedDataModeController:
@@ -843,8 +843,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 9
-    y: 87
+    x: 0
+    y: 24
     width: 276
     height: 732
   m_SerializedDataModeController:
@@ -976,8 +976,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 286
-    y: 87
+    x: 278
+    y: 24
     width: 670
     height: 732
   m_SerializedDataModeController:
@@ -1586,7 +1586,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.018923225, y: -0.024758752, z: -0.00059838383, w: 0.9996205}
     speed: 2
-    m_Value: {x: 0.018921215, y: -0.024756122, z: -0.0005983203, w: 0.99951434}
+    m_Value: {x: -0.018923225, y: 0.024758752, z: 0.00059838383, w: -0.9996205}
   m_Size:
     m_Target: 592.8958
     speed: 2
@@ -1837,16 +1837,12 @@ MonoBehaviour:
       m_Data: 68046
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 67252
+    - m_Data: 67254
+    - m_Data: 67256
+    - m_Data: 67258
+    - m_Data: 67260
     - m_Data: 67262
-    - m_Data: 67264
-    - m_Data: 67266
-    - m_Data: 67268
-    - m_Data: 67270
-    - m_Data: 67272
-    - m_Data: 67998
-    - m_Data: 68048
-    - m_Data: 1000000000
-    - m_Data: 2147483647
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1879,12 +1875,12 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 67252
+    - m_Data: 67254
+    - m_Data: 67256
+    - m_Data: 67258
+    - m_Data: 67260
     - m_Data: 67262
-    - m_Data: 67264
-    - m_Data: 67266
-    - m_Data: 67268
-    - m_Data: 67270
-    - m_Data: 67272
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2157,8 +2153,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Console\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 9
-    y: 845
+    x: 0
+    y: 782
     width: 1730
     height: 500
   m_SerializedDataModeController:
@@ -2195,8 +2191,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1740
-    y: 87
+    x: 1732
+    y: 24
     width: 810
     height: 1258
   m_SerializedDataModeController:
