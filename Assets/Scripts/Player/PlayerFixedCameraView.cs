@@ -1,12 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem.UI;
-#endif
-using UnityEngine.UI;
-using TMPro;
 
 [DisallowMultipleComponent]
 public sealed class PlayerFixedCameraView : MonoBehaviour
@@ -27,35 +21,9 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
     [LabelText("最大垂直旋转")]
     [SerializeField] private float maxPitchOffset = 12f;
 
-    [Header("底部UI参数")]
-    [LabelText("UI画布")]
-    [SerializeField] private Canvas selectionCanvas;
-
-    [LabelText("按钮根节点")]
-    [SerializeField] private RectTransform buttonContainer;
-
-    [LabelText("按钮尺寸")]
-    [SerializeField] private Vector2 buttonSize = new Vector2(84f, 84f);
-
-    [LabelText("按钮间距")]
-    [SerializeField] private float buttonSpacing = 16f;
-
-    [LabelText("底部边距")]
-    [SerializeField] private float bottomMargin = 42f;
-
-    [LabelText("背景颜色")]
-    [SerializeField] private Color panelBackgroundColor = new Color(0f, 0f, 0f, 0.45f);
-
-    [LabelText("按钮颜色")]
-    [SerializeField] private Color buttonColor = new Color(1f, 1f, 1f, 0.9f);
-
-    [LabelText("选中按钮颜色")]
-    [SerializeField] private Color selectedButtonColor = new Color(0.35f, 0.75f, 1f, 1f);
-
     [LabelText("选择后隐藏面板")]
     [SerializeField] private bool hidePanelAfterSelection;
 
-    private readonly List<Button> runtimeButtons = new List<Button>();
     private Action<int> onPointSelected;
     private PlayerFixedCameraPoint activePoint;
     private Quaternion baseRotation = Quaternion.identity;
@@ -75,10 +43,6 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
         mouseSensitivity = Mathf.Max(0f, mouseSensitivity);
         maxYawOffset = Mathf.Max(0f, maxYawOffset);
         maxPitchOffset = Mathf.Max(0f, maxPitchOffset);
-        buttonSize.x = Mathf.Max(32f, buttonSize.x);
-        buttonSize.y = Mathf.Max(32f, buttonSize.y);
-        buttonSpacing = Mathf.Max(0f, buttonSpacing);
-        bottomMargin = Mathf.Max(0f, bottomMargin);
     }
 
     public void SetPlayerCamera(Camera camera)
@@ -92,7 +56,6 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
     public void Initialize()
     {
         EnsureCamera();
-        EnsureSelectionCanvas();
 
         if (initialized)
         {
@@ -118,23 +81,22 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
     public void ShowSelectionPanel(Action<int> selectCallback)
     {
         onPointSelected = selectCallback;
-        EnsureSelectionCanvas();
-        RebuildButtons();
-
-        if (selectionCanvas != null)
+        FixedCameraPanel panel = UIManager.GetPanel<FixedCameraPanel>(UIPanelNames.FixedCamera);
+        if (panel == null)
         {
-            selectionCanvas.gameObject.SetActive(true);
+            isSelectionPanelVisible = false;
+            return;
         }
 
-        isSelectionPanelVisible = true;
-        EnsureEventSystem();
+        panel.Configure(cameraPoints, activePointIndex, SelectPoint);
+        isSelectionPanelVisible = UIManager.ShowPanel(UIPanelNames.FixedCamera);
     }
 
     public void HideSelectionPanel()
     {
-        if (selectionCanvas != null)
+        if (UIManager.GetPanel<FixedCameraPanel>(UIPanelNames.FixedCamera) != null)
         {
-            selectionCanvas.gameObject.SetActive(false);
+            UIManager.HidePanel(UIPanelNames.FixedCamera);
         }
 
         isSelectionPanelVisible = false;
@@ -237,160 +199,6 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
         }
     }
 
-    private void EnsureSelectionCanvas()
-    {
-        if (selectionCanvas != null && buttonContainer != null)
-        {
-            return;
-        }
-
-        if (selectionCanvas == null)
-        {
-            GameObject canvasObject = new GameObject("Fixed Camera Selection Canvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
-            canvasObject.transform.SetParent(transform, false);
-            selectionCanvas = canvasObject.GetComponent<Canvas>();
-            selectionCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            selectionCanvas.sortingOrder = 950;
-
-            CanvasScaler scaler = canvasObject.GetComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920f, 1080f);
-            scaler.matchWidthOrHeight = 0.5f;
-        }
-
-        if (buttonContainer == null)
-        {
-            GameObject panelObject = new GameObject("Fixed Camera Button Row", typeof(RectTransform), typeof(Image), typeof(HorizontalLayoutGroup));
-            buttonContainer = panelObject.GetComponent<RectTransform>();
-            buttonContainer.SetParent(selectionCanvas.transform, false);
-            buttonContainer.anchorMin = new Vector2(0.5f, 0f);
-            buttonContainer.anchorMax = new Vector2(0.5f, 0f);
-            buttonContainer.pivot = new Vector2(0.5f, 0f);
-            buttonContainer.anchoredPosition = new Vector2(0f, bottomMargin);
-
-            Image panelImage = panelObject.GetComponent<Image>();
-            panelImage.color = panelBackgroundColor;
-
-            HorizontalLayoutGroup layoutGroup = panelObject.GetComponent<HorizontalLayoutGroup>();
-            layoutGroup.childAlignment = TextAnchor.MiddleCenter;
-            layoutGroup.spacing = buttonSpacing;
-            layoutGroup.padding = new RectOffset(20, 20, 12, 12);
-            layoutGroup.childControlWidth = false;
-            layoutGroup.childControlHeight = false;
-            layoutGroup.childForceExpandWidth = false;
-            layoutGroup.childForceExpandHeight = false;
-        }
-    }
-
-    private void RebuildButtons()
-    {
-        if (buttonContainer == null)
-        {
-            return;
-        }
-
-        foreach (Transform child in buttonContainer)
-        {
-            Destroy(child.gameObject);
-        }
-
-        runtimeButtons.Clear();
-
-        int pointCount = cameraPoints != null ? cameraPoints.Count : 0;
-        if (pointCount <= 0)
-        {
-            CreateMessageItem("未配置固定视角");
-            ResizePanel(1);
-            return;
-        }
-
-        for (int i = 0; i < pointCount; i++)
-        {
-            CreateButton(i);
-        }
-
-        ResizePanel(pointCount);
-        RefreshButtonSelection();
-    }
-
-    private void CreateButton(int pointIndex)
-    {
-        PlayerFixedCameraPoint point = cameraPoints[pointIndex];
-        GameObject buttonObject = new GameObject($"Fixed Camera {pointIndex + 1:00}", typeof(RectTransform), typeof(Image), typeof(Button));
-        RectTransform buttonRect = buttonObject.GetComponent<RectTransform>();
-        buttonRect.SetParent(buttonContainer, false);
-        buttonRect.sizeDelta = buttonSize;
-
-        Image buttonImage = buttonObject.GetComponent<Image>();
-        buttonImage.color = buttonColor;
-
-        Button button = buttonObject.GetComponent<Button>();
-        button.interactable = point != null && point.HasViewPoint;
-
-        int capturedIndex = pointIndex;
-        button.onClick.AddListener(() => SelectPoint(capturedIndex));
-        runtimeButtons.Add(button);
-
-        if (point != null && point.Icon != null)
-        {
-            CreateIcon(buttonRect, point.Icon);
-        }
-        else
-        {
-            CreateLabel(buttonRect, point != null ? point.DisplayName : $"视角 {pointIndex + 1}");
-        }
-    }
-
-    private void CreateIcon(RectTransform parent, Sprite icon)
-    {
-        GameObject iconObject = new GameObject("Icon", typeof(RectTransform), typeof(Image));
-        RectTransform iconRect = iconObject.GetComponent<RectTransform>();
-        iconRect.SetParent(parent, false);
-        iconRect.anchorMin = new Vector2(0.12f, 0.12f);
-        iconRect.anchorMax = new Vector2(0.88f, 0.88f);
-        iconRect.offsetMin = Vector2.zero;
-        iconRect.offsetMax = Vector2.zero;
-
-        Image iconImage = iconObject.GetComponent<Image>();
-        iconImage.sprite = icon;
-        iconImage.preserveAspect = true;
-    }
-
-    private void CreateLabel(RectTransform parent, string text)
-    {
-        GameObject labelObject = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
-        RectTransform labelRect = labelObject.GetComponent<RectTransform>();
-        labelRect.SetParent(parent, false);
-        labelRect.anchorMin = Vector2.zero;
-        labelRect.anchorMax = Vector2.one;
-        labelRect.offsetMin = new Vector2(6f, 4f);
-        labelRect.offsetMax = new Vector2(-6f, -4f);
-
-        TMP_Text label = labelObject.GetComponent<TextMeshProUGUI>();
-        label.text = text;
-        label.alignment = TextAlignmentOptions.Center;
-        label.color = Color.black;
-        label.enableAutoSizing = true;
-        label.fontSizeMin = 12;
-        label.fontSizeMax = 22;
-    }
-
-    private void CreateMessageItem(string message)
-    {
-        GameObject itemObject = new GameObject("Fixed Camera Message", typeof(RectTransform), typeof(TextMeshProUGUI));
-        RectTransform itemRect = itemObject.GetComponent<RectTransform>();
-        itemRect.SetParent(buttonContainer, false);
-        itemRect.sizeDelta = new Vector2(buttonSize.x * 2f, buttonSize.y * 0.55f);
-
-        TMP_Text label = itemObject.GetComponent<TextMeshProUGUI>();
-        label.text = message;
-        label.alignment = TextAlignmentOptions.Center;
-        label.color = Color.white;
-        label.enableAutoSizing = true;
-        label.fontSizeMin = 12;
-        label.fontSizeMax = 22;
-    }
-
     private void SelectPoint(int pointIndex)
     {
         if (hidePanelAfterSelection)
@@ -403,54 +211,11 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
 
     private void RefreshButtonSelection()
     {
-        for (int i = 0; i < runtimeButtons.Count; i++)
+        FixedCameraPanel panel = UIManager.GetPanel<FixedCameraPanel>(UIPanelNames.FixedCamera);
+        if (panel != null)
         {
-            Image image = runtimeButtons[i].GetComponent<Image>();
-            if (image != null)
-            {
-                image.color = i == activePointIndex ? selectedButtonColor : buttonColor;
-            }
+            panel.RefreshSelection(activePointIndex);
         }
-    }
-
-    private void ResizePanel(int itemCount)
-    {
-        if (buttonContainer == null)
-        {
-            return;
-        }
-
-        float width = itemCount * buttonSize.x + Mathf.Max(0, itemCount - 1) * buttonSpacing + 40f;
-        float height = buttonSize.y + 24f;
-        buttonContainer.sizeDelta = new Vector2(width, height);
-    }
-
-    private static void EnsureEventSystem()
-    {
-        EventSystem eventSystem = EventSystem.current != null ? EventSystem.current : FindObjectOfType<EventSystem>();
-        if (eventSystem == null)
-        {
-            GameObject eventSystemObject = new GameObject("EventSystem", typeof(EventSystem));
-            eventSystem = eventSystemObject.GetComponent<EventSystem>();
-            DontDestroyOnLoad(eventSystemObject);
-        }
-
-#if ENABLE_INPUT_SYSTEM
-        if (eventSystem.GetComponent<InputSystemUIInputModule>() == null)
-        {
-            eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
-        }
-
-        foreach (StandaloneInputModule legacyModule in eventSystem.GetComponents<StandaloneInputModule>())
-        {
-            legacyModule.enabled = false;
-        }
-#else
-        if (eventSystem.GetComponent<StandaloneInputModule>() == null)
-        {
-            eventSystem.gameObject.AddComponent<StandaloneInputModule>();
-        }
-#endif
     }
 
 }

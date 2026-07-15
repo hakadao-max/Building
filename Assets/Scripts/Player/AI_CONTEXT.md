@@ -4,17 +4,19 @@
 
 ## 关键类
 
-- `SimplePlayerController`：只负责调度输入、公共移动、交互、手电筒、出生点传送。不要把第一/第三人称相机细节再塞回这里。
+- `SimplePlayerController`：只负责调度输入、公共移动、交互、手电筒、出生点传送。交互相关只配置 E/R 输入键；距离、提示时长等规则属于交互物。不要把第一/第三人称相机细节再塞回这里。
 - `PlayerFirstPersonView`：第一人称相机 rig、鼠标 yaw/pitch、第一人称移动方向。
 - `PlayerThirdPersonView`：第三人称相机 rig、模型显示隐藏、第三人称移动方向和动画同步；动画参数与视角/模型参数用 Header 分区，`Animator` 直接从生成出的模型实例中查找。
 - `PlayerFixedRouteRoamView`：Catmull-Rom 曲线漫游、世界坐标控制点预览、按曲线采样长度和 `漫游速度` 推进的运行时路径播放；`首尾相连` 控制曲线是否闭合，`循环播放` 只控制到终点后的播放行为。
 - `PlayerFixedCameraView`：固定视角选择和播放组件，按 `4` 立即刷新模式提示并显示屏幕底部图标栏，点击图标后把玩家相机切到配置的固定视角点；初始化是幂等的，重复确保组件不会隐藏已打开的面板。面板显示时按住右键拖动小范围观察，左键操作 UI；面板隐藏时锁定鼠标直接观察。
 - `PlayerFixedCameraPoint`：固定视角配置项，保存显示名称、视角 Transform 和图标 Sprite。
 - `PlayerMinimapTeleportView`：小地图传送组件，按 `5` 显示小地图图片，点击图片后按配置的世界中心和尺寸映射成世界坐标，并通过射线贴地后传送。
-- `PlayerDetailInspectView`：详情查看组件，仅在第一人称下响应 `6` 并开关屏幕十字标；离开第一人称会自动关闭。从相机中心射线检测 `检测距离` 内的 `WorldDescriptionUI`，只在开启时高亮显示说明牌。
-- `PerspectivePickupObject`：中心 Raycast 决定基础距离，随后执行有限次数 `OverlapBoxNonAlloc`。若重叠则按固定步长向相机前移；每次检查必须先按新的候选距离重算 scaleMultiplier、Box 中心偏移和 halfExtents，保证检测尺寸始终与“近小远大”的最终缩放一致。位置平滑完成后，最终缩放必须直接按物体与相机的实际距离计算，不能再对缩放做独立插值，否则视觉尺寸会滞后于相机移动。
-- `PlayerModeDisplay`：左上角模式提示；各模式文字和显示样式均可在 Inspector 配置，也可绑定已有 TMP_Text。
-- `PlayerInteractionPromptDisplay`：屏幕下方普通交互提示，消费最近 `InteractableArea.PromptText`，支持自动创建或绑定已有 TMP_Text；挂在玩家上作为共享回退，挂在 `InteractableArea` 同对象上时作为该区域优先使用的专用显示。
+- `PlayerDetailInspectView`：详情查看组件，仅在第一人称下响应 `6` 并开关屏幕十字标；离开第一人称会自动关闭。从相机中心射线检测 `检测距离` 内的 `WorldDescriptionUI`，后者通过 `UIManager` 添加/移除 `UIRoot/WorldCanvas/TipUI` 实例。
+- `PerspectivePickupObject`：自身配置“可拾取距离”。中心 Raycast 决定基础距离，随后执行有限次数 `OverlapBoxNonAlloc`。若重叠则按固定步长向相机前移；每次检查必须先按新的候选距离重算 scaleMultiplier、Box 中心偏移和 halfExtents，保证检测尺寸始终与“近小远大”的最终缩放一致。位置平滑完成后，最终缩放必须直接按物体与相机的实际距离计算，不能再对缩放做独立插值，否则视觉尺寸会滞后于相机移动。
+- `PlayerModeDisplay`：`UIRoot/Canvas/PlayerModePanel` 上的 `UIPanel`；保存各模式文字并更新已有 TMP_Text，不创建 UI。
+- `PlayerInteractionPromptDisplay`：`UIRoot/Canvas/InteractionPromptPanel` 上的 `UIPanel`；消费最近 `InteractableArea.PromptText`，不再支持玩家或交互物专用 Canvas。
+- `DetailInspectPanel`：`UIRoot/Canvas` 下预制的详情十字标面板；`PlayerDetailInspectView` 只控制显隐和射线检测。
+- `FixedCameraPanel`：`UIRoot/Canvas` 下预制的固定视角面板；使用预先配置的按钮槽位，不动态创建按钮。
 - TMP 默认字体由 `Assets/TextMesh Pro/Resources/TMP Settings.asset` 直接引用 `Assets/SourceHanSansSC-Medium SDF.asset`，运行时动态创建文本不要再用 `Resources.Load` 加载字体。
 - `MinimapGeneratorWindow`：菜单 `工具/小地图生成工具`，支持在 Scene 视图框选区域、从上向下生成小地图 PNG，并把图片与世界范围写回 `PlayerMinimapTeleportView`。
 - `PlayerFixedRouteRoamViewEditor`：自定义 Inspector 和 SceneView 控制点拖拽。
@@ -34,7 +36,8 @@
 9. 离开 `PerspectivePickup` 时自动释放当前物体；每次模式变化或详情查看开关时刷新 `PlayerModeDisplay`。
 10. 漫游结束时，如果 `结束后回到第一人称` 为 true，控制器切回 `PlayerViewMode.FirstPerson`。
 11. 所有玩家和设置面板按键都通过 `RuntimeInput` 读取，避免项目只启用 Input System 时触发 `UnityEngine.Input` 异常。
-12. 玩家每帧在允许普通交互的模式中查找交互半径内最近的 `InteractableArea`，把非空 `PromptText` 交给 `PlayerInteractionPromptDisplay`；无可用目标或交互受限时隐藏。
+12. `InteractableArea` 在启用时登记自身；玩家每帧在允许普通交互的模式中，从球形触发器包含玩家位置的区域中选择最近项，把非空 `PromptText` 交给 `PlayerInteractionPromptDisplay`；无可用目标或交互受限时隐藏。
+13. 按 R 时，控制器只负责广播一次提示请求；每个 `InteractableArea` 和 `WorldDescriptionUI` 用自身配置的提示距离、持续时间与目标决定是否显示。
 
 ## 扩展点
 
@@ -44,4 +47,6 @@
 - 需要改变地图点击到世界坐标的映射时，优先扩展 `PlayerMinimapTeleportView`；需要改变图片生成方式时，扩展 `MinimapGeneratorWindow`。
 - 需要扩展详情查看命中规则或屏幕 UI 时，优先扩展 `PlayerDetailInspectView`；需要改变说明牌内容或布局时，扩展 `WorldDescriptionUI`。
 - 需要严格防止透视拾取物体穿模时，把中心射线升级为依据模型包围体的 SphereCast 或多点检测。
+- 调整普通交互范围时修改 `InteractableArea` 的 `SphereCollider`；调整 R 键提示范围或时长时修改对应交互物/世界说明组件，不要把参数加回玩家控制器。
 - 固定路线编辑器只依赖 UnityEditor `Handles`，没有 Odin 依赖。
+- 玩家 UI 和 EventSystem 必须预置；不要在玩家运行时代码中恢复 Canvas、TMP、Image、Button、十字标或 EventSystem 创建逻辑。

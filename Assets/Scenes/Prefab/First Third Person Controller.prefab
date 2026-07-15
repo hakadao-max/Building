@@ -200,14 +200,6 @@ MonoBehaviour:
   mouseSensitivity: 1.2
   maxYawOffset: 20
   maxPitchOffset: 12
-  selectionCanvas: {fileID: 0}
-  buttonContainer: {fileID: 0}
-  buttonSize: {x: 84, y: 84}
-  buttonSpacing: 16
-  bottomMargin: 42
-  panelBackgroundColor: {r: 0, g: 0, b: 0, a: 0.45}
-  buttonColor: {r: 1, g: 1, b: 1, a: 0.9}
-  selectedButtonColor: {r: 0.35, g: 0.75, b: 1, a: 1}
 --- !u!114 &100008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,10 +223,6 @@ MonoBehaviour:
   groundProbeHeight: 60
   groundProbeDistance: 140
   groundOffset: 0.05
-  minimapCanvas: {fileID: 0}
-  minimapImage: {fileID: 0}
-  backgroundColor: {r: 0, g: 0, b: 0, a: 0.72}
-  mapPadding: {x: 80, y: 80}
 --- !u!114 &100009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,8 +240,3 @@ MonoBehaviour:
   inspectLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  crosshairArmLength: 18
-  crosshairThickness: 2
-  crosshairColor: {r: 1, g: 1, b: 1, a: 0.92}
-  inspectCanvas: {fileID: 0}
-  crosshairRoot: {fileID: 0}

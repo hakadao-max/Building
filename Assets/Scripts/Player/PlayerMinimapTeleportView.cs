@@ -1,8 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem.UI;
-#endif
 
 [DisallowMultipleComponent]
 public sealed class PlayerMinimapTeleportView : MonoBehaviour
@@ -77,7 +73,6 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
     {
         ApplyTexture();
         isActive = UIManager.ShowPanel(UIPanelNames.Minimap);
-        EnsureEventSystem();
     }
 
     public void Exit()
@@ -157,31 +152,4 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
         }
     }
 
-    private static void EnsureEventSystem()
-    {
-        EventSystem eventSystem = EventSystem.current != null ? EventSystem.current : FindObjectOfType<EventSystem>();
-        if (eventSystem == null)
-        {
-            GameObject eventSystemObject = new GameObject("EventSystem", typeof(EventSystem));
-            eventSystem = eventSystemObject.GetComponent<EventSystem>();
-            DontDestroyOnLoad(eventSystemObject);
-        }
-
-#if ENABLE_INPUT_SYSTEM
-        if (eventSystem.GetComponent<InputSystemUIInputModule>() == null)
-        {
-            eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
-        }
-
-        foreach (StandaloneInputModule legacyModule in eventSystem.GetComponents<StandaloneInputModule>())
-        {
-            legacyModule.enabled = false;
-        }
-#else
-        if (eventSystem.GetComponent<StandaloneInputModule>() == null)
-        {
-            eventSystem.gameObject.AddComponent<StandaloneInputModule>();
-        }
-#endif
-    }
 }

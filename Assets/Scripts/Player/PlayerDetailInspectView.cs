@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 public sealed class PlayerDetailInspectView : MonoBehaviour
@@ -14,23 +13,6 @@ public sealed class PlayerDetailInspectView : MonoBehaviour
     [LabelText("检测层")]
     [SerializeField] private LayerMask inspectLayerMask = ~0;
 
-    [Header("十字标参数")]
-    [LabelText("十字标长度")]
-    [SerializeField] private float crosshairArmLength = 18f;
-
-    [LabelText("十字标粗细")]
-    [SerializeField] private float crosshairThickness = 2f;
-
-    [LabelText("十字标颜色")]
-    [SerializeField] private Color crosshairColor = new Color(1f, 1f, 1f, 0.92f);
-
-    [Header("UI参数")]
-    [LabelText("UI画布")]
-    [SerializeField] private Canvas inspectCanvas;
-
-    [LabelText("十字标根节点")]
-    [SerializeField] private RectTransform crosshairRoot;
-
     private WorldDescriptionUI currentTarget;
     private bool isActive;
     private bool initialized;
@@ -40,8 +22,6 @@ public sealed class PlayerDetailInspectView : MonoBehaviour
     private void OnValidate()
     {
         inspectDistance = Mathf.Max(0.1f, inspectDistance);
-        crosshairArmLength = Mathf.Max(4f, crosshairArmLength);
-        crosshairThickness = Mathf.Max(1f, crosshairThickness);
     }
 
     public void SetPlayerCamera(Camera camera)
@@ -55,7 +35,6 @@ public sealed class PlayerDetailInspectView : MonoBehaviour
     public void Initialize()
     {
         EnsureCamera();
-        EnsureInspectCanvas();
 
         if (initialized)
         {
@@ -75,9 +54,9 @@ public sealed class PlayerDetailInspectView : MonoBehaviour
     {
         isActive = active;
 
-        if (inspectCanvas != null)
+        if (UIManager.GetPanel<DetailInspectPanel>(UIPanelNames.DetailInspect) != null)
         {
-            inspectCanvas.gameObject.SetActive(active);
+            UIManager.SetPanelVisible(UIPanelNames.DetailInspect, active);
         }
 
         if (!active)
@@ -153,58 +132,4 @@ public sealed class PlayerDetailInspectView : MonoBehaviour
         }
     }
 
-    private void EnsureInspectCanvas()
-    {
-        if (inspectCanvas != null && crosshairRoot != null)
-        {
-            return;
-        }
-
-        if (inspectCanvas == null)
-        {
-            GameObject canvasObject = new GameObject("Detail Inspect Canvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler));
-            canvasObject.transform.SetParent(transform, false);
-            inspectCanvas = canvasObject.GetComponent<Canvas>();
-            inspectCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            inspectCanvas.sortingOrder = 960;
-
-            CanvasScaler scaler = canvasObject.GetComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920f, 1080f);
-            scaler.matchWidthOrHeight = 0.5f;
-        }
-
-        if (crosshairRoot == null)
-        {
-            GameObject crosshairObject = new GameObject("Crosshair", typeof(RectTransform));
-            crosshairRoot = crosshairObject.GetComponent<RectTransform>();
-            crosshairRoot.SetParent(inspectCanvas.transform, false);
-            crosshairRoot.anchorMin = new Vector2(0.5f, 0.5f);
-            crosshairRoot.anchorMax = new Vector2(0.5f, 0.5f);
-            crosshairRoot.pivot = new Vector2(0.5f, 0.5f);
-            crosshairRoot.anchoredPosition = Vector2.zero;
-            crosshairRoot.sizeDelta = new Vector2(crosshairArmLength * 2f, crosshairArmLength * 2f);
-
-            CreateCrosshairArm(crosshairRoot, "Horizontal", true);
-            CreateCrosshairArm(crosshairRoot, "Vertical", false);
-        }
-    }
-
-    private void CreateCrosshairArm(RectTransform parent, string objectName, bool horizontal)
-    {
-        GameObject armObject = new GameObject(objectName, typeof(RectTransform), typeof(Image));
-        RectTransform armRect = armObject.GetComponent<RectTransform>();
-        armRect.SetParent(parent, false);
-        armRect.anchorMin = new Vector2(0.5f, 0.5f);
-        armRect.anchorMax = new Vector2(0.5f, 0.5f);
-        armRect.pivot = new Vector2(0.5f, 0.5f);
-        armRect.anchoredPosition = Vector2.zero;
-        armRect.sizeDelta = horizontal
-            ? new Vector2(crosshairArmLength * 2f, crosshairThickness)
-            : new Vector2(crosshairThickness, crosshairArmLength * 2f);
-
-        Image armImage = armObject.GetComponent<Image>();
-        armImage.color = crosshairColor;
-        armImage.raycastTarget = false;
-    }
 }

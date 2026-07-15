@@ -1,9 +1,13 @@
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 
 public sealed class WorldDescriptionUI : MonoBehaviour
 {
+    private const string TipUITemplateName = "TipUI";
+    private const string TitleTextName = "Title";
+    private const string DescriptionTextName = "Description";
+
+    [Header("内容配置")]
     [LabelText("标题")]
     [SerializeField] private string title = "场景元素";
 
@@ -11,20 +15,9 @@ public sealed class WorldDescriptionUI : MonoBehaviour
     [TextArea(2, 6)]
     [SerializeField] private string description = "在这里填写场景元素说明。";
 
+    [Header("显示配置")]
     [LabelText("显示偏移")]
     [SerializeField] private Vector3 worldOffset = new Vector3(0f, 2f, 0f);
-
-    [LabelText("画布缩放")]
-    [SerializeField] private float canvasScale = 0.01f;
-
-    [LabelText("面板尺寸")]
-    [SerializeField] private Vector2 panelSize = new Vector2(320f, 160f);
-
-    [LabelText("标题字号")]
-    [SerializeField] private int titleFontSize = 28;
-
-    [LabelText("正文字号")]
-    [SerializeField] private int descriptionFontSize = 20;
 
     [LabelText("始终面向相机")]
     [SerializeField] private bool faceCamera = true;
@@ -36,197 +29,161 @@ public sealed class WorldDescriptionUI : MonoBehaviour
     [SerializeField] private bool onlyShowInDetailInspect = true;
 
     [LabelText("最大显示距离")]
-    [SerializeField] private float maxVisibleDistance = 0f;
+    [SerializeField] private float maxVisibleDistance;
 
     [LabelText("距离检测目标")]
     [SerializeField] private Transform distanceTarget;
 
+    [Header("提示配置")]
     [LabelText("提示目标")]
     [SerializeField] private Transform hintTarget;
 
     [LabelText("提示颜色")]
     [SerializeField] private Color hintColor = Color.green;
 
-    [LabelText("世界画布")]
-    [SerializeField] private Canvas worldCanvas;
+    [LabelText("提示显示距离")]
+    [SerializeField] private float hintRevealDistance = 8f;
 
-    [LabelText("标题文本")]
-    [SerializeField] private TMP_Text titleText;
-
-    [LabelText("说明文本")]
-    [SerializeField] private TMP_Text descriptionText;
+    [LabelText("提示持续时间")]
+    [SerializeField] private float hintDuration = 3f;
 
     private Transform cachedPlayerTransform;
+    private GameObject worldUIInstance;
+    private RectTransform tipUI;
+    private TMP_Text titleText;
+    private TMP_Text descriptionText;
     private bool isDetailInspectHighlighted;
 
     public bool RequiresDetailInspect => onlyShowInDetailInspect;
-
-    private void Awake()
-    {
-        EnsureCanvas();
-        BindTextReferences();
-        RefreshText();
-
-        if (onlyShowInDetailInspect && worldCanvas != null)
-        {
-            worldCanvas.gameObject.SetActive(false);
-        }
-    }
+    public bool ShouldShowHint => worldUIInstance == null;
 
     private void LateUpdate()
     {
-        if (worldCanvas == null)
-        {
-            return;
-        }
-
-        Transform canvasTransform = worldCanvas.transform;
-        canvasTransform.position = transform.TransformPoint(worldOffset);
-        canvasTransform.localScale = Vector3.one * canvasScale;
-
         Camera targetCamera = Camera.main;
-        if (targetCamera == null)
+        if (targetCamera == null || !ShouldDisplay(targetCamera))
+        {
+            RemoveWorldUI();
+            return;
+        }
+
+        if (!EnsureWorldUI())
         {
             return;
         }
 
-        if (onlyShowInDetailInspect)
-        {
-            worldCanvas.gameObject.SetActive(isDetailInspectHighlighted);
-        }
-        else if (maxVisibleDistance > 0f)
-        {
-            Transform targetTransform = ResolveDistanceTarget(targetCamera);
-            float distance = Vector3.Distance(targetTransform.position, canvasTransform.position);
-            worldCanvas.gameObject.SetActive(distance <= maxVisibleDistance);
-        }
-        else if (!worldCanvas.gameObject.activeSelf)
-        {
-            worldCanvas.gameObject.SetActive(true);
-        }
+        ApplyParameters(targetCamera.transform);
+    }
 
-        if (faceCamera)
-        {
-            RotateTowardsCamera(canvasTransform, targetCamera.transform);
-        }
+    private void OnDisable()
+    {
+        RemoveWorldUI();
     }
 
     private void OnValidate()
     {
-        canvasScale = Mathf.Max(0.001f, canvasScale);
-        panelSize.x = Mathf.Max(80f, panelSize.x);
-        panelSize.y = Mathf.Max(50f, panelSize.y);
-        titleFontSize = Mathf.Max(1, titleFontSize);
-        descriptionFontSize = Mathf.Max(1, descriptionFontSize);
         maxVisibleDistance = Mathf.Max(0f, maxVisibleDistance);
-        BindTextReferences();
-        RefreshText();
+        hintRevealDistance = Mathf.Max(0f, hintRevealDistance);
+        hintDuration = Mathf.Max(0.1f, hintDuration);
+        ApplyTextParameters();
     }
 
     public void SetDescription(string newTitle, string newDescription)
     {
         title = newTitle;
         description = newDescription;
-        RefreshText();
+        ApplyTextParameters();
     }
 
-    public Transform HintTarget => ResolveHintTarget();
-
-    public bool ShouldShowHint => worldCanvas == null || !worldCanvas.gameObject.activeSelf;
-
-    public void ShowHint(float duration)
+    public void TryShowHint(Vector3 observerPosition)
     {
-        TemporaryColorHint.Show(ResolveHintTarget(), duration, hintColor);
+        Transform target = ResolveHintTarget();
+        float sqrRevealDistance = hintRevealDistance * hintRevealDistance;
+        if ((target.position - observerPosition).sqrMagnitude <= sqrRevealDistance)
+        {
+            TemporaryColorHint.Show(target, hintDuration, hintColor);
+        }
     }
 
     public void SetDetailInspectHighlighted(bool highlighted)
     {
         isDetailInspectHighlighted = highlighted;
-        if (worldCanvas != null)
+        if (!highlighted)
         {
-            worldCanvas.gameObject.SetActive(!onlyShowInDetailInspect || highlighted);
+            RemoveWorldUI();
         }
     }
 
-    private void EnsureCanvas()
+    private bool EnsureWorldUI()
     {
-        BindTextReferences();
-
-        if (worldCanvas != null)
+        if (worldUIInstance != null)
         {
-            ApplyCanvasLayout();
-            return;
+            return true;
         }
 
-        GameObject canvasObject = new GameObject("World Description Canvas", typeof(RectTransform), typeof(Canvas), typeof(GraphicRaycaster));
-        canvasObject.transform.SetParent(transform, false);
-        canvasObject.transform.localPosition = worldOffset;
-        canvasObject.transform.localScale = Vector3.one * canvasScale;
+        worldUIInstance = UIManager.AddWorldUI(TipUITemplateName);
+        if (worldUIInstance == null)
+        {
+            return false;
+        }
 
-        worldCanvas = canvasObject.GetComponent<Canvas>();
-        worldCanvas.renderMode = RenderMode.WorldSpace;
-        worldCanvas.sortingOrder = 50;
+        tipUI = worldUIInstance.GetComponent<RectTransform>();
+        if (tipUI == null)
+        {
+            RemoveWorldUI();
+            return false;
+        }
 
-        ApplyCanvasLayout();
-
-        GameObject backgroundObject = new GameObject("Background", typeof(RectTransform), typeof(Image));
-        backgroundObject.transform.SetParent(canvasObject.transform, false);
-        RectTransform backgroundRect = backgroundObject.GetComponent<RectTransform>();
-        backgroundRect.anchorMin = Vector2.zero;
-        backgroundRect.anchorMax = Vector2.one;
-        backgroundRect.offsetMin = Vector2.zero;
-        backgroundRect.offsetMax = Vector2.zero;
-
-        Image background = backgroundObject.GetComponent<Image>();
-        background.color = new Color(0.05f, 0.05f, 0.05f, 0.78f);
-
-        titleText = CreateText(canvasObject.transform, "Title", titleFontSize, FontStyles.Bold, TextAlignmentOptions.Center);
-        RectTransform titleRect = titleText.GetComponent<RectTransform>();
-        titleRect.anchorMin = new Vector2(0f, 0.68f);
-        titleRect.anchorMax = new Vector2(1f, 1f);
-        titleRect.offsetMin = new Vector2(18f, 0f);
-        titleRect.offsetMax = new Vector2(-18f, -8f);
-
-        descriptionText = CreateText(canvasObject.transform, "Description", descriptionFontSize, FontStyles.Normal, TextAlignmentOptions.Top);
-        RectTransform descriptionRect = descriptionText.GetComponent<RectTransform>();
-        descriptionRect.anchorMin = new Vector2(0f, 0f);
-        descriptionRect.anchorMax = new Vector2(1f, 0.68f);
-        descriptionRect.offsetMin = new Vector2(22f, 16f);
-        descriptionRect.offsetMax = new Vector2(-22f, -4f);
+        titleText = FindChildText(TitleTextName);
+        descriptionText = FindChildText(DescriptionTextName);
+        ApplyTextParameters();
+        return true;
     }
 
-    private void BindTextReferences()
+    private void RemoveWorldUI()
     {
-        if (worldCanvas == null)
+        if (worldUIInstance != null)
         {
-            worldCanvas = GetComponentInChildren<Canvas>(true);
+            UIManager.RemoveWorldUI(worldUIInstance);
         }
 
-        if (worldCanvas == null)
+        worldUIInstance = null;
+        tipUI = null;
+        titleText = null;
+        descriptionText = null;
+    }
+
+    private void ApplyParameters(Transform cameraTransform)
+    {
+        tipUI.position = ResolveTipPosition();
+        ApplyTextParameters();
+
+        if (faceCamera)
         {
-            return;
+            RotateTowardsCamera(tipUI, cameraTransform);
+        }
+    }
+
+    private void ApplyTextParameters()
+    {
+        if (titleText != null)
+        {
+            titleText.text = title;
         }
 
-        if (titleText == null)
+        if (descriptionText != null)
         {
-            titleText = FindChildText("Title");
-        }
-
-        if (descriptionText == null)
-        {
-            descriptionText = FindChildText("Description");
+            descriptionText.text = description;
         }
     }
 
     private TMP_Text FindChildText(string childName)
     {
-        Transform textTransform = worldCanvas.transform.Find(childName);
-        if (textTransform != null && textTransform.TryGetComponent(out TMP_Text foundText))
+        if (worldUIInstance == null)
         {
-            return foundText;
+            return null;
         }
 
-        foreach (TMP_Text candidate in worldCanvas.GetComponentsInChildren<TMP_Text>(true))
+        foreach (TMP_Text candidate in worldUIInstance.GetComponentsInChildren<TMP_Text>(true))
         {
             if (candidate.name == childName)
             {
@@ -237,72 +194,31 @@ public sealed class WorldDescriptionUI : MonoBehaviour
         return null;
     }
 
-    private TMP_Text CreateText(Transform parent, string objectName, int fontSize, FontStyles fontStyle, TextAlignmentOptions alignment)
+    private bool ShouldDisplay(Camera targetCamera)
     {
-        GameObject textObject = new GameObject(objectName, typeof(RectTransform), typeof(TextMeshProUGUI));
-        textObject.transform.SetParent(parent, false);
+        if (onlyShowInDetailInspect)
+        {
+            return isDetailInspectHighlighted;
+        }
 
-        TMP_Text uiText = textObject.GetComponent<TextMeshProUGUI>();
-        uiText.fontSize = fontSize;
-        uiText.fontStyle = fontStyle;
-        uiText.alignment = alignment;
-        uiText.color = Color.white;
-        uiText.textWrappingMode = TextWrappingModes.Normal;
-        uiText.overflowMode = TextOverflowModes.Truncate;
-        uiText.raycastTarget = false;
+        if (maxVisibleDistance <= 0f)
+        {
+            return true;
+        }
 
-        return uiText;
+        Transform targetTransform = ResolveDistanceTarget(targetCamera);
+        float distance = Vector3.Distance(targetTransform.position, ResolveTipPosition());
+        return distance <= maxVisibleDistance;
     }
 
-    private void RefreshText()
+    private Vector3 ResolveTipPosition()
     {
-        BindTextReferences();
-
-        if (titleText != null)
-        {
-            titleText.text = title;
-            titleText.fontSize = titleFontSize;
-            titleText.fontStyle = FontStyles.Bold;
-            titleText.alignment = TextAlignmentOptions.Center;
-            titleText.color = Color.white;
-            titleText.textWrappingMode = TextWrappingModes.Normal;
-            titleText.overflowMode = TextOverflowModes.Truncate;
-        }
-
-        if (descriptionText != null)
-        {
-            descriptionText.text = description;
-            descriptionText.fontSize = descriptionFontSize;
-            descriptionText.fontStyle = FontStyles.Normal;
-            descriptionText.alignment = TextAlignmentOptions.Top;
-            descriptionText.color = Color.white;
-            descriptionText.textWrappingMode = TextWrappingModes.Normal;
-            descriptionText.overflowMode = TextOverflowModes.Truncate;
-        }
-
-        if (worldCanvas != null)
-        {
-            ApplyCanvasLayout();
-        }
+        return transform.TransformPoint(worldOffset);
     }
 
-    private void ApplyCanvasLayout()
+    private void RotateTowardsCamera(Transform target, Transform cameraTransform)
     {
-        if (worldCanvas == null)
-        {
-            return;
-        }
-
-        worldCanvas.renderMode = RenderMode.WorldSpace;
-        worldCanvas.sortingOrder = 50;
-
-        RectTransform canvasRect = worldCanvas.GetComponent<RectTransform>();
-        canvasRect.sizeDelta = panelSize;
-    }
-
-    private void RotateTowardsCamera(Transform canvasTransform, Transform cameraTransform)
-    {
-        Vector3 lookDirection = canvasTransform.position - cameraTransform.position;
+        Vector3 lookDirection = target.position - cameraTransform.position;
         if (rotateOnlyYAxis)
         {
             lookDirection.y = 0f;
@@ -317,11 +233,11 @@ public sealed class WorldDescriptionUI : MonoBehaviour
         if (rotateOnlyYAxis)
         {
             Vector3 eulerAngles = targetRotation.eulerAngles;
-            canvasTransform.rotation = Quaternion.Euler(0f, eulerAngles.y, 0f);
+            target.rotation = Quaternion.Euler(0f, eulerAngles.y, 0f);
             return;
         }
 
-        canvasTransform.rotation = targetRotation;
+        target.rotation = targetRotation;
     }
 
     private Transform ResolveDistanceTarget(Camera targetCamera)
@@ -355,12 +271,7 @@ public sealed class WorldDescriptionUI : MonoBehaviour
             return transform;
         }
 
-        if (transform.parent != null)
-        {
-            return transform.parent;
-        }
-
-        return transform;
+        return transform.parent != null ? transform.parent : transform;
     }
 
     private static bool HasRenderableMesh(Transform target)

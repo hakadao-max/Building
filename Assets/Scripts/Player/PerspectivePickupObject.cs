@@ -4,6 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public sealed class PerspectivePickupObject : MonoBehaviour
 {
+    [Header("拾取配置")]
+    [LabelText("可拾取距离")]
+    [SerializeField] private float interactionDistance = 2.3f;
+
     [LabelText("最小缩放倍率")]
     [SerializeField] private float minimumScaleMultiplier = 0.15f;
 
@@ -58,6 +62,7 @@ public sealed class PerspectivePickupObject : MonoBehaviour
 
     private void OnValidate()
     {
+        interactionDistance = Mathf.Max(0.1f, interactionDistance);
         minimumScaleMultiplier = Mathf.Max(0.01f, minimumScaleMultiplier);
         maximumScaleMultiplier = Mathf.Max(minimumScaleMultiplier, maximumScaleMultiplier);
         minimumHoldDistance = Mathf.Max(0.05f, minimumHoldDistance);
@@ -115,6 +120,11 @@ public sealed class PerspectivePickupObject : MonoBehaviour
         SetHolderCollisionsIgnored(true);
         isHeld = true;
         return true;
+    }
+
+    public bool IsWithinPickupDistance(float hitDistance)
+    {
+        return hitDistance <= interactionDistance;
     }
 
     public void TickHeldObject()

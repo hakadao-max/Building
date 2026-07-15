@@ -1,8 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
 public sealed class InteractableArea : MonoBehaviour
 {
+    private static readonly HashSet<InteractableArea> ActiveAreas = new HashSet<InteractableArea>();
+
+    [Header("交互配置")]
     [LabelText("交互目标")]
     [SerializeField] private GameObject interactionTarget;
 
@@ -15,27 +19,35 @@ public sealed class InteractableArea : MonoBehaviour
     [LabelText("提示文本")]
     [SerializeField] private string promptText = "按 E 互动";
 
-    [LabelText("专用提示组件")]
-    [SerializeField] private PlayerInteractionPromptDisplay promptDisplay;
-
+    [Header("提示配置")]
     [LabelText("提示目标")]
     [SerializeField] private Transform hintTarget;
 
     [LabelText("提示颜色")]
     [SerializeField] private Color hintColor = Color.green;
 
+    [LabelText("提示显示距离")]
+    [SerializeField] private float hintRevealDistance = 8f;
+
+    [LabelText("提示持续时间")]
+    [SerializeField] private float hintDuration = 3f;
+
+    [Header("自动配置")]
     [LabelText("自动使用父物体")]
     [SerializeField] private bool useParentWhenTargetEmpty = true;
 
+    public static IEnumerable<InteractableArea> ActiveInstances => ActiveAreas;
     public string PromptText => promptText;
-    public PlayerInteractionPromptDisplay PromptDisplay => promptDisplay != null
-        ? promptDisplay
-        : GetComponent<PlayerInteractionPromptDisplay>();
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ClearActiveAreas()
+    {
+        ActiveAreas.Clear();
+    }
 
     private void Reset()
     {
         EnsureTriggerCollider();
-        promptDisplay = GetComponent<PlayerInteractionPromptDisplay>();
 
         if (transform.parent != null)
         {
@@ -43,8 +55,20 @@ public sealed class InteractableArea : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        ActiveAreas.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        ActiveAreas.Remove(this);
+    }
+
     private void OnValidate()
     {
+        hintRevealDistance = Mathf.Max(0f, hintRevealDistance);
+        hintDuration = Mathf.Max(0.1f, hintDuration);
         EnsureTriggerCollider();
     }
 
@@ -67,9 +91,29 @@ public sealed class InteractableArea : MonoBehaviour
         }
     }
 
-    public void ShowHint(float duration)
+    public bool TryGetInteractionDistance(Vector3 interactorPosition, out float sqrDistance)
     {
-        TemporaryColorHint.Show(ResolveHintTarget(), duration, hintColor);
+        SphereCollider areaCollider = GetComponent<SphereCollider>();
+        if (!isActiveAndEnabled || areaCollider == null || !areaCollider.enabled)
+        {
+            sqrDistance = float.PositiveInfinity;
+            return false;
+        }
+
+        Vector3 closestPoint = areaCollider.ClosestPoint(interactorPosition);
+        bool isInsideArea = (closestPoint - interactorPosition).sqrMagnitude <= 0.0001f;
+        sqrDistance = (transform.position - interactorPosition).sqrMagnitude;
+        return isInsideArea;
+    }
+
+    public void TryShowHint(Vector3 observerPosition)
+    {
+        Transform target = ResolveHintTarget();
+        float sqrRevealDistance = hintRevealDistance * hintRevealDistance;
+        if ((target.position - observerPosition).sqrMagnitude <= sqrRevealDistance)
+        {
+            TemporaryColorHint.Show(target, hintDuration, hintColor);
+        }
     }
 
     private GameObject ResolveTarget()

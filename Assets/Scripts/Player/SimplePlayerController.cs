@@ -1,12 +1,13 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public sealed class SimplePlayerController : MonoBehaviour
 {
+    [Header("视角模式")]
     [LabelText("起始视角")]
     [SerializeField] private PlayerViewMode startViewMode = PlayerViewMode.FirstPerson;
 
+    [Header("按键配置")]
     [LabelText("第一人称按键")]
     [SerializeField] private KeyCode firstPersonKey = KeyCode.Alpha1;
 
@@ -28,33 +29,19 @@ public sealed class SimplePlayerController : MonoBehaviour
     [LabelText("透视拾取按键")]
     [SerializeField] private KeyCode perspectivePickupKey = KeyCode.Alpha7;
 
-    [LabelText("第一人称组件")]
-    [SerializeField] private PlayerFirstPersonView firstPersonView;
-
-    [LabelText("第三人称组件")]
-    [SerializeField] private PlayerThirdPersonView thirdPersonView;
-
-    [LabelText("固定路线漫游组件")]
-    [SerializeField] private PlayerFixedRouteRoamView fixedRouteRoamView;
-
-    [LabelText("固定视角组件")]
-    [SerializeField] private PlayerFixedCameraView fixedCameraView;
-
-    [LabelText("小地图传送组件")]
-    [SerializeField] private PlayerMinimapTeleportView minimapTeleportView;
-
-    [LabelText("详情查看组件")]
-    [SerializeField] private PlayerDetailInspectView detailInspectView;
-
-    [LabelText("模式提示组件")]
-    [SerializeField] private PlayerModeDisplay modeDisplay;
-
-    [LabelText("交互提示组件")]
-    [SerializeField] private PlayerInteractionPromptDisplay interactionPromptDisplay;
-
     [LabelText("奔跑按键")]
     [SerializeField] private KeyCode runKey = KeyCode.LeftShift;
 
+    [LabelText("交互按键")]
+    [SerializeField] private KeyCode interactKey = KeyCode.E;
+
+    [LabelText("显示交互提示按键")]
+    [SerializeField] private KeyCode revealInteractablesKey = KeyCode.R;
+
+    [LabelText("手电筒按键")]
+    [SerializeField] private KeyCode flashlightKey = KeyCode.F;
+
+    [Header("移动配置")]
     [LabelText("行走速度")]
     [SerializeField] private float walkSpeed = 3.5f;
 
@@ -67,27 +54,7 @@ public sealed class SimplePlayerController : MonoBehaviour
     [LabelText("启动时锁定鼠标")]
     [SerializeField] private bool lockCursorOnStart = true;
 
-    [LabelText("交互按键")]
-    [SerializeField] private KeyCode interactKey = KeyCode.E;
-
-    [LabelText("交互半径")]
-    [SerializeField] private float interactRadius = 2.3f;
-
-    [LabelText("交互检测层")]
-    [SerializeField] private LayerMask interactableLayerMask = ~0;
-
-    [LabelText("显示交互提示按键")]
-    [SerializeField] private KeyCode revealInteractablesKey = KeyCode.R;
-
-    [LabelText("显示交互提示半径")]
-    [SerializeField] private float revealInteractablesRadius = 8f;
-
-    [LabelText("交互提示持续时间")]
-    [SerializeField] private float revealHintDuration = 3f;
-
-    [LabelText("手电筒按键")]
-    [SerializeField] private KeyCode flashlightKey = KeyCode.F;
-
+    [Header("手电筒配置")]
     [LabelText("手电筒灯光")]
     [SerializeField] private Light flashlightLight;
 
@@ -115,9 +82,36 @@ public sealed class SimplePlayerController : MonoBehaviour
     [LabelText("手电筒角度")]
     [SerializeField] private float flashlightSpotAngle = 55f;
 
+    [Header("自动组件引用（只读）")]
+    [ReadOnly]
+    [LabelText("第一人称组件")]
+    [SerializeField] private PlayerFirstPersonView firstPersonView;
+
+    [ReadOnly]
+    [LabelText("第三人称组件")]
+    [SerializeField] private PlayerThirdPersonView thirdPersonView;
+
+    [ReadOnly]
+    [LabelText("固定路线漫游组件")]
+    [SerializeField] private PlayerFixedRouteRoamView fixedRouteRoamView;
+
+    [ReadOnly]
+    [LabelText("固定视角组件")]
+    [SerializeField] private PlayerFixedCameraView fixedCameraView;
+
+    [ReadOnly]
+    [LabelText("小地图传送组件")]
+    [SerializeField] private PlayerMinimapTeleportView minimapTeleportView;
+
+    [ReadOnly]
+    [LabelText("详情查看组件")]
+    [SerializeField] private PlayerDetailInspectView detailInspectView;
+
     private const float GroundedStickForce = -2f;
 
     private CharacterController controller;
+    private PerspectivePickupObject heldPerspectiveObject;
+
     private PlayerViewMode currentViewMode;
     private Vector3 verticalVelocity;
     private Vector3 spawnPosition;
@@ -125,8 +119,6 @@ public sealed class SimplePlayerController : MonoBehaviour
     private float yaw;
     private float pitch;
     private bool hasAppliedViewMode;
-    private PerspectivePickupObject heldPerspectiveObject;
-    private PlayerInteractionPromptDisplay activeInteractionPromptDisplay;
 
     public PlayerViewMode CurrentViewMode => currentViewMode;
 
@@ -138,8 +130,6 @@ public sealed class SimplePlayerController : MonoBehaviour
         yaw = transform.eulerAngles.y;
 
         EnsureViewComponents();
-        EnsureModeDisplay();
-        EnsureInteractionPromptDisplay();
         EnsureFlashlight();
         ApplyViewMode(startViewMode);
     }
@@ -223,9 +213,6 @@ public sealed class SimplePlayerController : MonoBehaviour
         walkSpeed = Mathf.Max(0f, walkSpeed);
         runSpeed = Mathf.Max(walkSpeed, runSpeed);
         gravity = Mathf.Approximately(gravity, 0f) ? -24f : -Mathf.Abs(gravity);
-        interactRadius = Mathf.Max(0.1f, interactRadius);
-        revealInteractablesRadius = Mathf.Max(0.1f, revealInteractablesRadius);
-        revealHintDuration = Mathf.Max(0.1f, revealHintDuration);
         flashlightIntensity = Mathf.Max(0f, flashlightIntensity);
         flashlightRange = Mathf.Max(0.1f, flashlightRange);
         flashlightSpotAngle = Mathf.Clamp(flashlightSpotAngle, 1f, 179f);
@@ -479,8 +466,7 @@ public sealed class SimplePlayerController : MonoBehaviour
 
         if (panelVisible)
         {
-            EnsureModeDisplay();
-            modeDisplay.Refresh(PlayerViewMode.FixedCamera, false);
+            RefreshModeDisplay(PlayerViewMode.FixedCamera, false);
         }
         else
         {
@@ -652,14 +638,21 @@ public sealed class SimplePlayerController : MonoBehaviour
         }
 
         Ray ray = new Ray(activeCamera.transform.position, activeCamera.transform.forward);
-        RaycastHit[] hits = Physics.RaycastAll(ray, interactRadius, interactableLayerMask, QueryTriggerInteraction.Ignore);
+        RaycastHit[] hits = Physics.RaycastAll(
+            ray,
+            Mathf.Infinity,
+            Physics.DefaultRaycastLayers,
+            QueryTriggerInteraction.Ignore);
         PerspectivePickupObject nearestObject = null;
         float nearestDistance = float.PositiveInfinity;
 
         foreach (RaycastHit hit in hits)
         {
             PerspectivePickupObject candidate = hit.collider.GetComponentInParent<PerspectivePickupObject>();
-            if (candidate != null && !candidate.IsHeld && hit.distance < nearestDistance)
+            if (candidate != null
+                && !candidate.IsHeld
+                && candidate.IsWithinPickupDistance(hit.distance)
+                && hit.distance < nearestDistance)
             {
                 nearestDistance = hit.distance;
                 nearestObject = candidate;
@@ -730,20 +723,17 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     private InteractableArea FindNearestInteractableArea()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, interactRadius, interactableLayerMask, QueryTriggerInteraction.Collide);
         InteractableArea nearestArea = null;
         float nearestSqrDistance = float.PositiveInfinity;
 
-        foreach (Collider hit in hits)
+        foreach (InteractableArea area in InteractableArea.ActiveInstances)
         {
-            InteractableArea area = hit.GetComponentInParent<InteractableArea>();
-            if (area == null)
+            if (area == null
+                || !area.TryGetInteractionDistance(transform.position, out float sqrDistance))
             {
                 continue;
             }
 
-            Vector3 closestPoint = hit.ClosestPoint(transform.position);
-            float sqrDistance = (closestPoint - transform.position).sqrMagnitude;
             if (sqrDistance < nearestSqrDistance)
             {
                 nearestSqrDistance = sqrDistance;
@@ -756,15 +746,11 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     private void ShowNearbyInteractableHints()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, revealInteractablesRadius, interactableLayerMask, QueryTriggerInteraction.Collide);
-        HashSet<InteractableArea> shownAreas = new HashSet<InteractableArea>();
-
-        foreach (Collider hit in hits)
+        foreach (InteractableArea area in InteractableArea.ActiveInstances)
         {
-            InteractableArea area = hit.GetComponentInParent<InteractableArea>();
-            if (area != null && shownAreas.Add(area))
+            if (area != null)
             {
-                area.ShowHint(revealHintDuration);
+                area.TryShowHint(transform.position);
             }
         }
 
@@ -773,26 +759,16 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     private void ShowNearbyWorldDescriptionHints()
     {
-        float sqrRevealRadius = revealInteractablesRadius * revealInteractablesRadius;
-
-        foreach (WorldDescriptionUI descriptionUI in FindObjectsOfType<WorldDescriptionUI>(true))
+        foreach (WorldDescriptionUI descriptionUI in FindObjectsByType<WorldDescriptionUI>(
+                     FindObjectsInactive.Include,
+                     FindObjectsSortMode.None))
         {
             if (!descriptionUI.ShouldShowHint)
             {
                 continue;
             }
 
-            Transform hintTarget = descriptionUI.HintTarget;
-            if (hintTarget == null)
-            {
-                continue;
-            }
-
-            float sqrDistance = (hintTarget.position - transform.position).sqrMagnitude;
-            if (sqrDistance <= sqrRevealRadius)
-            {
-                descriptionUI.ShowHint(revealHintDuration);
-            }
+            descriptionUI.TryShowHint(transform.position);
         }
     }
 
@@ -944,45 +920,22 @@ public sealed class SimplePlayerController : MonoBehaviour
         }
     }
 
-    private void EnsureModeDisplay()
-    {
-        if (modeDisplay == null)
-        {
-            modeDisplay = GetComponent<PlayerModeDisplay>();
-        }
-
-        if (modeDisplay == null)
-        {
-            modeDisplay = gameObject.AddComponent<PlayerModeDisplay>();
-        }
-
-        modeDisplay.Initialize();
-    }
-
     private void RefreshModeDisplay()
     {
-        if (modeDisplay == null)
-        {
-            EnsureModeDisplay();
-        }
-
         bool detailInspectActive = detailInspectView != null && detailInspectView.IsActive;
-        modeDisplay.Refresh(currentViewMode, detailInspectActive);
+        RefreshModeDisplay(currentViewMode, detailInspectActive);
     }
 
-    private void EnsureInteractionPromptDisplay()
+    private static void RefreshModeDisplay(PlayerViewMode viewMode, bool detailInspectActive)
     {
-        if (interactionPromptDisplay == null)
+        PlayerModeDisplay panel = UIManager.GetPanel<PlayerModeDisplay>(UIPanelNames.PlayerMode);
+        if (panel == null)
         {
-            interactionPromptDisplay = GetComponent<PlayerInteractionPromptDisplay>();
+            return;
         }
 
-        if (interactionPromptDisplay == null)
-        {
-            interactionPromptDisplay = gameObject.AddComponent<PlayerInteractionPromptDisplay>();
-        }
-
-        interactionPromptDisplay.Initialize();
+        panel.Refresh(viewMode, detailInspectActive);
+        UIManager.ShowPanel(UIPanelNames.PlayerMode);
     }
 
     private void RefreshInteractionPrompt()
@@ -1000,18 +953,15 @@ public sealed class SimplePlayerController : MonoBehaviour
             return;
         }
 
-        EnsureInteractionPromptDisplay();
-        PlayerInteractionPromptDisplay targetDisplay = nearestArea.PromptDisplay != null
-            ? nearestArea.PromptDisplay
-            : interactionPromptDisplay;
-
-        if (activeInteractionPromptDisplay != null && activeInteractionPromptDisplay != targetDisplay)
+        PlayerInteractionPromptDisplay panel = UIManager.GetPanel<PlayerInteractionPromptDisplay>(
+            UIPanelNames.InteractionPrompt);
+        if (panel == null)
         {
-            activeInteractionPromptDisplay.Hide();
+            return;
         }
 
-        activeInteractionPromptDisplay = targetDisplay;
-        activeInteractionPromptDisplay.Show(nearestArea.PromptText);
+        panel.SetMessage(nearestArea.PromptText);
+        UIManager.ShowPanel(UIPanelNames.InteractionPrompt);
     }
 
     private bool AllowsNearbyInteraction()
@@ -1023,15 +973,9 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     private void HideInteractionPrompt()
     {
-        if (activeInteractionPromptDisplay != null)
+        if (UIManager.GetPanel<PlayerInteractionPromptDisplay>(UIPanelNames.InteractionPrompt) != null)
         {
-            activeInteractionPromptDisplay.Hide();
-            activeInteractionPromptDisplay = null;
-        }
-
-        if (interactionPromptDisplay != null)
-        {
-            interactionPromptDisplay.Hide();
+            UIManager.HidePanel(UIPanelNames.InteractionPrompt);
         }
     }
 

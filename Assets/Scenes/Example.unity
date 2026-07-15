@@ -944,7 +944,6 @@ MonoBehaviour:
   broadcastToChildren: 1
   interactionMessage: ObjectClicked
   promptText: "\u6309 E \u4E92\u52A811"
-  promptDisplay: {fileID: 0}
   hintTarget: {fileID: 0}
   hintColor: {r: 0, g: 1, b: 0, a: 1}
   useParentWhenTargetEmpty: 1
@@ -1235,30 +1234,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 100001, guid: 0493118a11a548129c56754c7eca9c67, type: 3}
   m_PrefabInstance: {fileID: 567894843}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &148098337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 24944658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fc0144b29c2457493a229ae57a6e485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerModeDisplay
-  modeText: {fileID: 0}
-  firstPersonText: "\u6A21\u5F0F 1\uFF1A\u7B2C\u4E00\u4EBA\u79F0"
-  thirdPersonText: "\u6A21\u5F0F 2\uFF1A\u7B2C\u4E09\u4EBA\u79F0"
-  fixedRouteText: "\u6A21\u5F0F 3\uFF1A\u56FA\u5B9A\u8DEF\u7EBF\u6F2B\u6E38"
-  fixedCameraText: "\u6A21\u5F0F 4\uFF1A\u56FA\u5B9A\u89C6\u89D2"
-  minimapText: "\u6A21\u5F0F 5\uFF1A\u5C0F\u5730\u56FE\u4F20\u9001"
-  detailInspectText: "\u6A21\u5F0F 6\uFF1A\u8BE6\u60C5\u67E5\u770B"
-  perspectivePickupText: "\u6A21\u5F0F 7\uFF1A\u900F\u89C6\u62FE\u53D6"
-  textColor: {r: 1, g: 1, b: 1, a: 1}
-  fontSize: 24
-  topLeftOffset: {x: 24, y: -24}
-  displaySize: {x: 520, y: 60}
 --- !u!1001 &154929466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5082,10 +5057,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100001, guid: 0493118a11a548129c56754c7eca9c67, type: 3}
       insertIndex: -1
       addedObject: {fileID: 255754960}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 0493118a11a548129c56754c7eca9c67, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 148098337}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0493118a11a548129c56754c7eca9c67, type: 3}
 --- !u!1001 &568706041
 PrefabInstance:
@@ -5755,24 +5727,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8288081724429642578, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
   m_PrefabInstance: {fileID: 2835099562394469157}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &622836398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 622836389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bdf59965584470384ebf333a9e77b70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractionPromptDisplay
-  promptText: {fileID: 0}
-  textColor: {r: 1, g: 1, b: 1, a: 1}
-  fontSize: 28
-  bottomOffset: 120
-  displaySize: {x: 720, y: 80}
-  useShadow: 1
 --- !u!1001 &657658556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16570,9 +16524,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8288081724429642578, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 622836398}
     - targetCorrespondingSourceObject: {fileID: 5257501928023200667, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2100691444}

@@ -12,8 +12,8 @@
 - `PlayerMinimapTeleportView`：处理小地图覆盖显示、点击位置到世界坐标的映射和传送点计算。
 - `PlayerDetailInspectView`：处理详情查看开关、屏幕十字标和准星射线检测，驱动 `WorldDescriptionUI` 在开启时显示说明。
 - `PerspectivePickupObject`：处理刚体拾取、中心视线跟随、透视缩放和释放。
-- `PlayerModeDisplay`：在左上角显示当前模式，提供各模式文字与样式配置。
-- `PlayerInteractionPromptDisplay`：显示最近 `InteractableArea` 的提示文本。
+- `PlayerModeDisplay`：`UIRoot/Canvas` 下的模式 `UIPanel`，显示当前模式文字。
+- `PlayerInteractionPromptDisplay`：`UIRoot/Canvas` 下的交互提示 `UIPanel`，显示最近 `InteractableArea` 的提示文本。
 
 ## 使用方式
 
@@ -25,21 +25,29 @@
 
 小地图传送在 `PlayerMinimapTeleportView` 上配置。`小地图图片` 是显示在屏幕上的地图，`地图世界中心` 和 `地图世界尺寸` 决定图片坐标到世界 XZ 坐标的映射。运行后按 `5` 打开小地图，点击图片后会把玩家传送到对应世界位置，并按 `贴地检测层` 尝试修正到地面。
 
-详情查看在 `PlayerDetailInspectView` 上配置。第一人称下按 `6` 开关详情查看，屏幕中央会出现或隐藏十字标；切换到其他视角时会自动关闭，其他视角按 `6` 无响应。十字标射线在 `检测距离` 内命中带 `WorldDescriptionUI` 的物体时，会显示该物体的标题和说明。场景物体上的 `WorldDescriptionUI` 默认勾选 `仅详情查看时显示`，平时不会自动弹出。
+详情查看在 `PlayerDetailInspectView` 上配置。第一人称下按 `6` 开关详情查看，屏幕中央会出现或隐藏十字标；切换到其他视角时会自动关闭，其他视角按 `6` 无响应。十字标射线在 `检测距离` 内命中带 `WorldDescriptionUI` 的物体时，会通过 `UIManager` 从 `UIRoot/WorldCanvas/TipUI` 复制显示实例并应用该物体的标题和说明。场景物体上的 `WorldDescriptionUI` 默认勾选 `仅详情查看时显示`，平时不会自动弹出。
+
+### 交互配置归属
+
+`SimplePlayerController` 只保存交互输入键，不再保存交互半径、交互检测层、提示显示半径或提示持续时间。普通交互物的有效范围由该物体 `InteractableArea` 同对象上的 `SphereCollider` 决定；调整球形触发器的半径即可调整玩家靠近后可交互和显示按键提示的范围。
+
+按 R 显示提示时，每个 `InteractableArea` 分别使用自己的“提示显示距离”和“提示持续时间”。`WorldDescriptionUI` 也保存自己的同名提示配置，因此不同物体可以使用不同范围和时长。交互物是否参与物理射线仍由物体自身的 Layer 和 Collider 决定。
+
+`SimplePlayerController` Inspector 已按视角模式、按键、移动、手电筒和自动组件引用分区。视角与提示组件会自动查找或补齐，“自动组件引用（只读）”仅用于确认运行时绑定，无需手动拖拽。
 
 ### 透视拾取
 
-给目标物体添加 Collider、Rigidbody 和 `PerspectivePickupObject`，并确保目标 Layer 被玩家的“交互检测层”包含。先按 `7` 进入透视拾取模式，再对准物体且处于“交互半径”内按 E 拾取，再按 E 释放。模式 1 等其他模式不会拾取透视物体；切离模式 7 时会自动释放当前物体。物体沿当前相机中心视线移动：视线没有命中障碍时位于“最大跟随距离”，命中时位于最近障碍之前；同时按 `拾取时缩放 × 当前相机距离 ÷ 拾取时相机距离` 等比缩放，使屏幕视觉尺寸近似不变。释放后恢复非运动学刚体和重力，并限制最大下落速度。
+给目标物体添加 Collider、Rigidbody 和 `PerspectivePickupObject`，在该拾取物上配置“可拾取距离”。先按 `7` 进入透视拾取模式，再对准距离内的物体按 E 拾取，再按 E 释放。模式 1 等其他模式不会拾取透视物体；切离模式 7 时会自动释放当前物体。物体沿当前相机中心视线移动：视线没有命中障碍时位于“最大跟随距离”，命中时位于最近障碍之前；同时按 `拾取时缩放 × 当前相机距离 ÷ 拾取时相机距离` 等比缩放，使屏幕视觉尺寸近似不变。释放后恢复非运动学刚体和重力，并限制最大下落速度。
 
 组件以中心射线为主：先从相机中心沿 forward 发射 Raycast，得到最近命中距离或最大跟随距离；随后在该候选位置执行多次 `OverlapBoxNonAlloc`。每一次 Box 检测都会根据候选距离重新计算 `拾取时缩放 × 当前距离 ÷ 拾取时距离`，因此检测盒与最终物体一样近处小、远处大。发生场景重叠时，候选位置按“Box前移步长”沿视线向相机方向移动，再用缩小后的新 Box 复检。玩家与物体自身 Collider 会被过滤。物体位置仍使用指数平滑跟随；位置更新后，缩放直接按物体与相机的实际距离计算，不再独立插值，避免缩放比相机移动慢一拍。
 
-`SimplePlayerController` 会自动补充 `PlayerModeDisplay` 并在左上角创建模式文字。可以在该组件中分别修改模式 1 至模式 7 的显示信息、颜色、字号、偏移与区域大小；也可以把“模式文字组件”绑定到场景里已有的 `TMP_Text`，使用自己的 Canvas、TMP 字体和布局。
+`SimplePlayerController` 通过 `UIManager` 获取 `PlayerModePanel`，不会在玩家对象上补组件或创建模式文字。模式 1 至模式 7 的显示信息配置在 `PlayerModeDisplay`；颜色、字号、偏移和布局直接维护在面板的 TMP 与 RectTransform 上。
 
 ### 普通交互提示
 
-`InteractableArea` 的“提示文本”会在玩家进入交互半径时显示在屏幕下方，多个区域重叠时显示距离玩家最近的一项。离开范围、文本为空、输入被锁定或进入固定路线、固定视角、小地图模式时自动隐藏。`PlayerInteractionPromptDisplay` 专门负责把控制器选出的提示内容渲染到 UI。推荐把它放在玩家上作为所有交互物体共享的提示；如果把它与某个 `InteractableArea` 挂在同一对象上，该区域会优先使用自己的专用提示样式。没有专用组件时回退到玩家共享 UI。组件可绑定现有 `TMP_Text`，并配置颜色、字号、底部偏移、区域大小和描边阴影。
+`InteractableArea` 的“提示文本”会在玩家进入交互范围时显示在屏幕下方，多个区域重叠时显示距离玩家最近的一项。离开范围、文本为空、输入被锁定或进入固定路线、固定视角、小地图模式时自动隐藏。控制器统一把内容交给 `UIRoot/Canvas` 下的 `InteractionPromptPanel`；交互物和玩家对象不再挂专用提示 Canvas。
 
-项目运行时创建的模式提示、交互提示、固定视角按钮、世界说明牌，以及设置面板和预制体交换面板生成器均使用 TextMeshPro。旧 Prefab 会由一次性迁移自动重建，也可通过 `工具/UI/迁移所有旧 Text 到 TMP` 手动执行。
+模式提示、交互提示、详情十字标、固定视角按钮和 EventSystem 都必须预置在 `UIRoot/Canvas` 或场景中。玩家代码不会运行时创建任何 UI 层级。世界说明牌统一通过 `UIManager` 复制 `UIRoot/WorldCanvas/TipUI` 下预制的 TMP 模板。
 
 项目 TMP 默认字体统一设置为 `Assets/SourceHanSansSC-Medium SDF.asset`。运行时创建的 TMP 文本通过 `TMP Settings` 的直接资产引用获得该字体，不使用 `Resources.Load` 重复加载；没有单独指定字体的 TMP 组件都会继承此默认字体。
 

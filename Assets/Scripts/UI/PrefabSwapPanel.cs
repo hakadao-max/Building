@@ -17,8 +17,7 @@ public class PrefabSwapPanel : UIPanel
     [LabelText("选项模板按钮")]
     [SerializeField] private Button templateButton;
 
-    private readonly List<Button> generatedButtons = new List<Button>();
-    private bool legacyButtonsHidden;
+    private readonly List<Button> optionButtons = new List<Button>();
 
     public GameObject PanelRoot => panelRoot;
     public Button CloseButton => closeButton;
@@ -34,13 +33,12 @@ public class PrefabSwapPanel : UIPanel
             return;
         }
 
-        HideLegacyOptionButtons();
+        CacheOptionButtons();
         int optionCount = options != null ? options.Count : 0;
-        EnsureGeneratedButtonCount(optionCount);
 
-        for (int index = 0; index < generatedButtons.Count; index++)
+        for (int index = 0; index < optionButtons.Count; index++)
         {
-            Button button = generatedButtons[index];
+            Button button = optionButtons[index];
             button.onClick.RemoveAllListeners();
 
             bool hasOption = index < optionCount;
@@ -61,12 +59,18 @@ public class PrefabSwapPanel : UIPanel
             }
         }
 
-        templateButton.gameObject.SetActive(false);
+        if (optionCount > optionButtons.Count)
+        {
+            Debug.LogWarning(
+                $"预制体交换面板只有 {optionButtons.Count} 个预制按钮，无法显示全部 {optionCount} 个选项。",
+                this);
+        }
     }
 
     public void ClearOptions()
     {
-        foreach (Button button in generatedButtons)
+        CacheOptionButtons();
+        foreach (Button button in optionButtons)
         {
             if (button == null)
             {
@@ -105,32 +109,25 @@ public class PrefabSwapPanel : UIPanel
         }
     }
 
-    private void HideLegacyOptionButtons()
+    private void CacheOptionButtons()
     {
-        if (legacyButtonsHidden || templateButton == null)
+        if (optionButtons.Count > 0)
         {
             return;
         }
 
-        legacyButtonsHidden = true;
-        Transform container = templateButton.transform.parent;
-        foreach (Button button in container.GetComponentsInChildren<Button>(true))
+        if (templateButton != null)
         {
-            if (button != closeButton)
-            {
-                button.gameObject.SetActive(false);
-            }
+            optionButtons.Add(templateButton);
         }
-    }
 
-    private void EnsureGeneratedButtonCount(int count)
-    {
-        while (generatedButtons.Count < count)
+        GameObject searchRoot = panelRoot != null ? panelRoot : gameObject;
+        foreach (Button button in searchRoot.GetComponentsInChildren<Button>(true))
         {
-            Button button = Instantiate(templateButton, templateButton.transform.parent);
-            button.name = $"Option {generatedButtons.Count + 1}";
-            button.onClick = new Button.ButtonClickedEvent();
-            generatedButtons.Add(button);
+            if (button != closeButton && !optionButtons.Contains(button))
+            {
+                optionButtons.Add(button);
+            }
         }
     }
 }

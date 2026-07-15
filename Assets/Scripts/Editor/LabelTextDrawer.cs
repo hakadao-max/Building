@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,7 +12,14 @@ public sealed class LabelTextDrawer : PropertyDrawer
             label.text = labelTextAttribute.Text;
         }
 
+        bool wasEnabled = GUI.enabled;
+        if (fieldInfo != null && fieldInfo.GetCustomAttribute<ReadOnlyAttribute>() != null)
+        {
+            GUI.enabled = false;
+        }
+
         EditorGUI.PropertyField(position, property, label, true);
+        GUI.enabled = wasEnabled;
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
