@@ -253,23 +253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259226a145f8a3f4da3622b23af4eff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PrefabSwapPanelView
-  promptRoot: {fileID: 3929598638522480022}
   panelRoot: {fileID: 3422576720553462632}
   closeButton: {fileID: 8564343033592573382}
-  optionButtons:
-  - {fileID: 4432661867760223016}
-  - {fileID: 1727351232862307878}
-  - {fileID: 4650734961654669138}
-  - {fileID: 638621037719023804}
-  - {fileID: 5305878224819922735}
-  - {fileID: 3150318910520286446}
-  optionLabels:
-  - {fileID: 1272361318912259029}
-  - {fileID: 5580087642618407079}
-  - {fileID: 2527448615923901902}
-  - {fileID: 8606420083417335957}
-  - {fileID: 637525981550706451}
-  - {fileID: 6467456278077900434}
+  templateButton: {fileID: 4432661867760223016}
 --- !u!1 &1213243407337027569
 GameObject:
   m_ObjectHideFlags: 0

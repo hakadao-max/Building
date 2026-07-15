@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: e5bfdb288ed17d942a0e577d654d67ff, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 01975dd5082614f43814b999da7b809a, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 12e010fe23799314c9fa97d5f7590ad3, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -16514,8 +16514,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4256385899772770425, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256385899772770425, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4775556963124367833, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852814568257088577, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866651601576373302, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
@@ -16534,6 +16546,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6606430755097727450, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6839416836222041746, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -16543,6 +16559,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8429967673925044459, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178360148691177635, guid: 8c35a8935c2e54343a0ae0a312667056, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

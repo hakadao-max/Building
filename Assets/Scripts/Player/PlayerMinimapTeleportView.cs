@@ -3,7 +3,6 @@ using UnityEngine.EventSystems;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem.UI;
 #endif
-using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 public sealed class PlayerMinimapTeleportView : MonoBehaviour
@@ -37,24 +36,10 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
     [LabelText("贴地高度偏移")]
     [SerializeField] private float groundOffset = 0.05f;
 
-    [Header("UI参数")]
-    [LabelText("UI画布")]
-    [SerializeField] private Canvas minimapCanvas;
-
-    [LabelText("地图显示区域")]
-    [SerializeField] private RawImage minimapImage;
-
-    [LabelText("背景颜色")]
-    [SerializeField] private Color backgroundColor = new Color(0f, 0f, 0f, 0.72f);
-
-    [LabelText("地图边距")]
-    [SerializeField] private Vector2 mapPadding = new Vector2(80f, 80f);
-
-    private RectTransform minimapRect;
     private bool isActive;
 
     public Camera PlayerCamera => playerCamera;
-    public bool IsActive => isActive;
+    public bool IsActive => isActive && UIManager.IsPanelVisible(UIPanelNames.Minimap);
     public bool ExitAfterTeleport => exitAfterTeleport;
 
     private void OnValidate()
@@ -63,8 +48,6 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
         mapWorldSize.y = Mathf.Max(0.1f, mapWorldSize.y);
         groundProbeHeight = Mathf.Max(0.1f, groundProbeHeight);
         groundProbeDistance = Mathf.Max(0.1f, groundProbeDistance);
-        mapPadding.x = Mathf.Max(0f, mapPadding.x);
-        mapPadding.y = Mathf.Max(0f, mapPadding.y);
     }
 
     public void SetPlayerCamera(Camera camera)
@@ -78,9 +61,8 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
     public void Initialize()
     {
         EnsureCamera();
-        EnsureMinimapCanvas();
         ApplyTexture();
-        Hide();
+        UIManager.HidePanel(UIPanelNames.Minimap);
     }
 
     public void SetMap(Texture2D texture, Vector3 worldCenter, Vector2 worldSize)
@@ -93,15 +75,8 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
 
     public void Enter()
     {
-        EnsureMinimapCanvas();
         ApplyTexture();
-
-        if (minimapCanvas != null)
-        {
-            minimapCanvas.gameObject.SetActive(true);
-        }
-
-        isActive = true;
+        isActive = UIManager.ShowPanel(UIPanelNames.Minimap);
         EnsureEventSystem();
     }
 
@@ -114,7 +89,8 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
     {
         teleportPosition = Vector3.zero;
 
-        if (!isActive || minimapRect == null || minimapTexture == null)
+        MinimapPanel panel = UIManager.GetPanel<MinimapPanel>(UIPanelNames.Minimap);
+        if (!IsActive || panel == null || minimapTexture == null)
         {
             return false;
         }
@@ -124,21 +100,12 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
             return false;
         }
 
-        Vector2 pointerPosition = RuntimeInput.GetPointerPosition();
-        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(minimapRect, pointerPosition, null, out Vector2 localPoint))
+        if (!panel.TryGetPointerNormalizedPosition(RuntimeInput.GetPointerPosition(), out Vector2 normalizedPosition))
         {
             return false;
         }
 
-        Rect rect = minimapRect.rect;
-        float normalizedX = Mathf.InverseLerp(rect.xMin, rect.xMax, localPoint.x);
-        float normalizedY = Mathf.InverseLerp(rect.yMin, rect.yMax, localPoint.y);
-        if (normalizedX < 0f || normalizedX > 1f || normalizedY < 0f || normalizedY > 1f)
-        {
-            return false;
-        }
-
-        Vector3 target = MapNormalizedPointToWorld(normalizedX, normalizedY);
+        Vector3 target = MapNormalizedPointToWorld(normalizedPosition.x, normalizedPosition.y);
         teleportPosition = ResolveGroundedPosition(target);
         return true;
     }
@@ -164,11 +131,7 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
 
     private void Hide()
     {
-        if (minimapCanvas != null)
-        {
-            minimapCanvas.gameObject.SetActive(false);
-        }
-
+        UIManager.HidePanel(UIPanelNames.Minimap);
         isActive = false;
     }
 
@@ -185,52 +148,12 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
         }
     }
 
-    private void EnsureMinimapCanvas()
-    {
-        if (minimapCanvas == null)
-        {
-            GameObject canvasObject = new GameObject("Minimap Teleport Canvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
-            canvasObject.transform.SetParent(transform, false);
-            minimapCanvas = canvasObject.GetComponent<Canvas>();
-            minimapCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            minimapCanvas.sortingOrder = 980;
-
-            CanvasScaler scaler = canvasObject.GetComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920f, 1080f);
-            scaler.matchWidthOrHeight = 0.5f;
-        }
-
-        if (minimapCanvas.GetComponent<Image>() == null)
-        {
-            Image background = minimapCanvas.gameObject.AddComponent<Image>();
-            background.color = backgroundColor;
-        }
-        else
-        {
-            minimapCanvas.GetComponent<Image>().color = backgroundColor;
-        }
-
-        if (minimapImage == null)
-        {
-            GameObject imageObject = new GameObject("Minimap Image", typeof(RectTransform), typeof(RawImage));
-            minimapImage = imageObject.GetComponent<RawImage>();
-            minimapImage.transform.SetParent(minimapCanvas.transform, false);
-        }
-
-        minimapRect = minimapImage.rectTransform;
-        minimapRect.anchorMin = Vector2.zero;
-        minimapRect.anchorMax = Vector2.one;
-        minimapRect.offsetMin = mapPadding;
-        minimapRect.offsetMax = -mapPadding;
-    }
-
     private void ApplyTexture()
     {
-        if (minimapImage != null)
+        MinimapPanel panel = UIManager.GetPanel<MinimapPanel>(UIPanelNames.Minimap);
+        if (panel != null)
         {
-            minimapImage.texture = minimapTexture;
-            minimapImage.color = Color.white;
+            panel.SetTexture(minimapTexture);
         }
     }
 

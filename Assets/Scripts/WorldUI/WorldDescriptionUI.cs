@@ -333,7 +333,7 @@ public sealed class WorldDescriptionUI : MonoBehaviour
 
         if (cachedPlayerTransform == null)
         {
-            SimplePlayerController playerController = FindObjectOfType<SimplePlayerController>();
+            SimplePlayerController playerController = GameController.PlayerController;
             if (playerController != null)
             {
                 cachedPlayerTransform = playerController.transform;

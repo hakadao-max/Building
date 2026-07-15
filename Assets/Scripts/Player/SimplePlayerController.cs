@@ -124,7 +124,6 @@ public sealed class SimplePlayerController : MonoBehaviour
     private Quaternion spawnRotation;
     private float yaw;
     private float pitch;
-    private bool externalInputLocked;
     private bool hasAppliedViewMode;
     private PerspectivePickupObject heldPerspectiveObject;
     private PlayerInteractionPromptDisplay activeInteractionPromptDisplay;
@@ -147,7 +146,7 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     private void Start()
     {
-        if (!externalInputLocked)
+        if (GameController.PlayerControlEnabled)
         {
             SetCursorLocked(lockCursorOnStart);
         }
@@ -155,7 +154,7 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (externalInputLocked)
+        if (!GameController.PlayerControlEnabled)
         {
             ResetViewMovementState();
             HideInteractionPrompt();
@@ -297,16 +296,21 @@ public sealed class SimplePlayerController : MonoBehaviour
         {
             SetCursorLocked(false);
         }
-        else if (shouldRestoreCursorAfterModeSwitch && !externalInputLocked)
+        else if (shouldRestoreCursorAfterModeSwitch && GameController.PlayerControlEnabled)
         {
             SetCursorLocked(lockCursorOnStart);
         }
     }
 
-    public void SetExternalInputLocked(bool locked)
+    internal void ApplyControlPermission(bool enabled)
     {
-        externalInputLocked = locked;
-        SetCursorLocked(!locked && lockCursorOnStart);
+        if (!enabled)
+        {
+            ResetViewMovementState();
+            HideInteractionPrompt();
+        }
+
+        SetCursorLocked(enabled && lockCursorOnStart);
     }
 
     public void ReturnToSpawn()
@@ -1099,7 +1103,6 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     private static void SetCursorLocked(bool locked)
     {
-        UnityEngine.Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
-        UnityEngine.Cursor.visible = !locked;
+        GameController.SetCursorLocked(locked);
     }
 }
