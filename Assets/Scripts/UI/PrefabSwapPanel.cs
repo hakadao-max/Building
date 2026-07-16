@@ -35,6 +35,7 @@ public class PrefabSwapPanel : UIPanel
 
         CacheOptionButtons();
         int optionCount = options != null ? options.Count : 0;
+        EnsureOptionButtonCount(optionCount);
 
         for (int index = 0; index < optionButtons.Count; index++)
         {
@@ -57,13 +58,6 @@ public class PrefabSwapPanel : UIPanel
                 int capturedIndex = index;
                 button.onClick.AddListener(() => onSelected(capturedIndex));
             }
-        }
-
-        if (optionCount > optionButtons.Count)
-        {
-            Debug.LogWarning(
-                $"预制体交换面板只有 {optionButtons.Count} 个预制按钮，无法显示全部 {optionCount} 个选项。",
-                this);
         }
     }
 
@@ -120,14 +114,33 @@ public class PrefabSwapPanel : UIPanel
         {
             optionButtons.Add(templateButton);
         }
+    }
 
-        GameObject searchRoot = panelRoot != null ? panelRoot : gameObject;
-        foreach (Button button in searchRoot.GetComponentsInChildren<Button>(true))
+    private void EnsureOptionButtonCount(int optionCount)
+    {
+        int requiredCount = Mathf.Max(1, optionCount);
+        Transform buttonParent = templateButton.transform.parent;
+
+        while (optionButtons.Count < requiredCount)
         {
-            if (button != closeButton && !optionButtons.Contains(button))
-            {
-                optionButtons.Add(button);
-            }
+            Button clonedButton = Instantiate(templateButton, buttonParent, false);
+            clonedButton.name = $"{templateButton.name} {optionButtons.Count + 1}";
+            clonedButton.onClick.RemoveAllListeners();
+            optionButtons.Add(clonedButton);
+        }
+
+        while (optionButtons.Count > requiredCount)
+        {
+            int lastIndex = optionButtons.Count - 1;
+            Button button = optionButtons[lastIndex];
+            optionButtons.RemoveAt(lastIndex);
+            button.gameObject.SetActive(false);
+            Destroy(button.gameObject);
+        }
+
+        for (int index = 0; index < optionButtons.Count; index++)
+        {
+            optionButtons[index].transform.SetSiblingIndex(templateButton.transform.GetSiblingIndex() + index);
         }
     }
 }

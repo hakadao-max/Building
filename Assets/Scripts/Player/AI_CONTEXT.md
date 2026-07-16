@@ -4,7 +4,7 @@
 
 ## 关键类
 
-- `SimplePlayerController`：只负责调度输入、公共移动、交互、手电筒、出生点传送。交互相关只配置 E/R 输入键；距离、提示时长等规则属于交互物。不要把第一/第三人称相机细节再塞回这里。
+- `SimplePlayerController`：只负责模式调度、公共移动、手电筒和出生点传送。这里只保留透视拾取 E 键和 R 高亮键；普通交互的按键、范围和提示属于 `InteractableArea`。
 - `PlayerFirstPersonView`：第一人称相机 rig、鼠标 yaw/pitch、第一人称移动方向。
 - `PlayerThirdPersonView`：第三人称相机 rig、模型显示隐藏、第三人称移动方向和动画同步；动画参数与视角/模型参数用 Header 分区，`Animator` 直接从生成出的模型实例中查找。
 - `PlayerFixedRouteRoamView`：Catmull-Rom 曲线漫游、世界坐标控制点预览、按曲线采样长度和 `漫游速度` 推进的运行时路径播放；`首尾相连` 控制曲线是否闭合，`循环播放` 只控制到终点后的播放行为。
@@ -12,9 +12,10 @@
 - `PlayerFixedCameraPoint`：固定视角配置项，保存显示名称、视角 Transform 和图标 Sprite。
 - `PlayerMinimapTeleportView`：小地图传送组件，按 `5` 显示小地图图片，点击图片后按配置的世界中心和尺寸映射成世界坐标，并通过射线贴地后传送。
 - `PlayerDetailInspectView`：详情查看组件，仅在第一人称下响应 `6` 并开关屏幕十字标；离开第一人称会自动关闭。从相机中心射线检测 `检测距离` 内的 `WorldDescriptionUI`，后者通过 `UIManager` 添加/移除 `UIRoot/WorldCanvas/TipUI` 实例。
+- `PlayerPerspectivePickupView`：透视拾取模式的输入与生命周期；负责中心射线查找、持有引用、逐帧跟随和退出模式时释放。
 - `PerspectivePickupObject`：自身配置“可拾取距离”。中心 Raycast 决定基础距离，随后执行有限次数 `OverlapBoxNonAlloc`。若重叠则按固定步长向相机前移；每次检查必须先按新的候选距离重算 scaleMultiplier、Box 中心偏移和 halfExtents，保证检测尺寸始终与“近小远大”的最终缩放一致。位置平滑完成后，最终缩放必须直接按物体与相机的实际距离计算，不能再对缩放做独立插值，否则视觉尺寸会滞后于相机移动。
 - `PlayerModeDisplay`：`UIRoot/Canvas/PlayerModePanel` 上的 `UIPanel`；保存各模式文字并更新已有 TMP_Text，不创建 UI。
-- `PlayerInteractionPromptDisplay`：`UIRoot/Canvas/InteractionPromptPanel` 上的 `UIPanel`；消费最近 `InteractableArea.PromptText`，不再支持玩家或交互物专用 Canvas。
+- `PlayerInteractionPromptDisplay`：`UIRoot/Canvas/InteractionPromptPanel` 上的 `UIPanel`；由当前触发中的 `InteractableArea` 直接设置内容和显隐。
 - `DetailInspectPanel`：`UIRoot/Canvas` 下预制的详情十字标面板；`PlayerDetailInspectView` 只控制显隐和射线检测。
 - `FixedCameraPanel`：`UIRoot/Canvas` 下预制的固定视角面板；使用预先配置的按钮槽位，不动态创建按钮。
 - TMP 默认字体由 `Assets/TextMesh Pro/Resources/TMP Settings.asset` 直接引用 `Assets/SourceHanSansSC-Medium SDF.asset`，运行时动态创建文本不要再用 `Resources.Load` 加载字体。
@@ -31,12 +32,12 @@
 4. 固定视角选择栏显示期间，控制器释放鼠标并暂停移动；点击图标后进入 `FixedCamera`，只调用 `PlayerFixedCameraView.HandleLookInput()` 和 `RefreshCamera()`。
 5. 小地图传送模式下，控制器释放鼠标并停止移动；点击地图后 `PlayerMinimapTeleportView.TryHandleTeleportClick()` 输出世界坐标，控制器调用 `TeleportTo()` 执行传送。
 6. 第一人称详情查看开启时，`PlayerDetailInspectView.LateUpdate()` 从相机中心发射射线，命中带 `WorldDescriptionUI` 且勾选 `仅详情查看时显示` 的物体时调用 `SetDetailInspectHighlighted(true)` 显示说明牌；再次按 `6`、离开第一人称或切换目标时会关闭或清除高亮，其他视角不响应 `6`。
-7. 数字键 7 进入 `PerspectivePickup`，它复用第一人称相机和移动；只有该模式下 E 才会从相机中心 Raycast 查找 `PerspectivePickupObject`，其他模式的 E 只保留原有 `InteractableArea` 行为。
+7. 数字键 7 进入 `PerspectivePickup`，它复用第一人称相机和移动；`PlayerPerspectivePickupView` 独占该模式下 E 的拾取/释放，普通触发交互只在第一、第三人称启用，避免同一次按键触发两套行为。
 8. 拾取时物体记录初始缩放和相机距离、关闭重力、设为运动学并忽略玩家 Collider；`LateUpdate` 在相机刷新后平滑移动物体，再用移动后的实际相机距离立即更新比例缩放；再次 E 或控制器禁用时恢复碰撞和重力，物理帧限制最大下落速度。
 9. 离开 `PerspectivePickup` 时自动释放当前物体；每次模式变化或详情查看开关时刷新 `PlayerModeDisplay`。
 10. 漫游结束时，如果 `结束后回到第一人称` 为 true，控制器切回 `PlayerViewMode.FirstPerson`。
 11. 所有玩家和设置面板按键都通过 `RuntimeInput` 读取，避免项目只启用 Input System 时触发 `UnityEngine.Input` 异常。
-12. `InteractableArea` 在启用时登记自身；玩家每帧在允许普通交互的模式中，从球形触发器包含玩家位置的区域中选择最近项，把非空 `PromptText` 交给 `PlayerInteractionPromptDisplay`；无可用目标或交互受限时隐藏。
+12. `InteractableArea.OnTriggerEnter/Exit` 维护范围内玩家；进入时取得提示焦点并打开 `InteractionPromptPanel`，停留期间由交互区自身读取 E 并调用交互方法，退出时隐藏或把焦点交给仍覆盖玩家的其他区域。玩家的多个 Collider 使用重叠计数，避免单个 Collider 退出就提前关闭。
 13. 按 R 时，控制器只负责广播一次提示请求；每个 `InteractableArea` 和 `WorldDescriptionUI` 用自身配置的提示距离、持续时间与目标决定是否显示。
 
 ## 扩展点

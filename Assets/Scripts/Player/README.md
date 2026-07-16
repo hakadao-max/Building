@@ -11,6 +11,7 @@
 - `PlayerFixedCameraView`：处理底部固定视角图标栏、点击进入固定视角和小范围视角旋转。
 - `PlayerMinimapTeleportView`：处理小地图覆盖显示、点击位置到世界坐标的映射和传送点计算。
 - `PlayerDetailInspectView`：处理详情查看开关、屏幕十字标和准星射线检测，驱动 `WorldDescriptionUI` 在开启时显示说明。
+- `PlayerPerspectivePickupView`：处理透视拾取模式的输入、目标查找、持有更新与退出释放。
 - `PerspectivePickupObject`：处理刚体拾取、中心视线跟随、透视缩放和释放。
 - `PlayerModeDisplay`：`UIRoot/Canvas` 下的模式 `UIPanel`，显示当前模式文字。
 - `PlayerInteractionPromptDisplay`：`UIRoot/Canvas` 下的交互提示 `UIPanel`，显示最近 `InteractableArea` 的提示文本。
@@ -29,7 +30,7 @@
 
 ### 交互配置归属
 
-`SimplePlayerController` 只保存交互输入键，不再保存交互半径、交互检测层、提示显示半径或提示持续时间。普通交互物的有效范围由该物体 `InteractableArea` 同对象上的 `SphereCollider` 决定；调整球形触发器的半径即可调整玩家靠近后可交互和显示按键提示的范围。
+`SimplePlayerController` 只保存透视拾取输入键和 R 高亮键，不再保存普通交互键、交互半径、检测层或提示距离。普通交互物的按键配置在 `InteractableArea`，有效范围由同对象上的 `SphereCollider` 决定；调整球形触发器的半径即可调整进入和离开交互范围的位置。
 
 按 R 显示提示时，每个 `InteractableArea` 分别使用自己的“提示显示距离”和“提示持续时间”。`WorldDescriptionUI` 也保存自己的同名提示配置，因此不同物体可以使用不同范围和时长。交互物是否参与物理射线仍由物体自身的 Layer 和 Collider 决定。
 
@@ -45,7 +46,7 @@
 
 ### 普通交互提示
 
-`InteractableArea` 的“提示文本”会在玩家进入交互范围时显示在屏幕下方，多个区域重叠时显示距离玩家最近的一项。离开范围、文本为空、输入被锁定或进入固定路线、固定视角、小地图模式时自动隐藏。控制器统一把内容交给 `UIRoot/Canvas` 下的 `InteractionPromptPanel`；交互物和玩家对象不再挂专用提示 Canvas。
+`InteractableArea` 通过 `OnTriggerEnter/Exit` 维护范围状态。玩家进入后，触发器直接把“提示文本”显示到 `UIRoot/Canvas/InteractionPromptPanel`；停留期间触发器自己读取“交互按键”并发送配置的交互消息；退出后隐藏提示。多个区域重叠时由最近进入的区域取得焦点，退出该区域后会切换到仍覆盖玩家的区域。普通触发交互仅在第一、第三人称启用。
 
 模式提示、交互提示、详情十字标、固定视角按钮和 EventSystem 都必须预置在 `UIRoot/Canvas` 或场景中。玩家代码不会运行时创建任何 UI 层级。世界说明牌统一通过 `UIManager` 复制 `UIRoot/WorldCanvas/TipUI` 下预制的 TMP 模板。
 

@@ -160,6 +160,27 @@ public sealed class PlayerFixedRouteRoamView : MonoBehaviour
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
     }
 
+    public bool Tick(ref float yaw, ref float pitch, bool lockCursorOnClick)
+    {
+        if (UsesFreeLook)
+        {
+            if (Cursor.lockState != CursorLockMode.Locked)
+            {
+                if (lockCursorOnClick && RuntimeInput.GetMouseButtonDown(0))
+                {
+                    GameController.SetCursorLocked(true);
+                }
+            }
+            else
+            {
+                HandleLookInput(ref yaw, ref pitch);
+            }
+        }
+
+        bool moved = TickRoam(yaw, pitch, out bool finished);
+        return (!moved || finished) && returnToFirstPersonWhenFinished;
+    }
+
     public bool TickRoam(float yaw, float pitch, out bool finished)
     {
         finished = false;

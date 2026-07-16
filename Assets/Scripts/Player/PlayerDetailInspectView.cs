@@ -50,6 +50,17 @@ public sealed class PlayerDetailInspectView : MonoBehaviour
         SetActive(!isActive);
     }
 
+    public bool TryHandleToggleInput(KeyCode toggleKey, bool inputAllowed)
+    {
+        if (!inputAllowed || toggleKey == KeyCode.None || !RuntimeInput.GetKeyDown(toggleKey))
+        {
+            return false;
+        }
+
+        Toggle();
+        return true;
+    }
+
     public void SetActive(bool active)
     {
         isActive = active;

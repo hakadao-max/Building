@@ -5,6 +5,12 @@ using UnityEngine;
 public sealed class InteractableArea : MonoBehaviour
 {
     private static readonly HashSet<InteractableArea> ActiveAreas = new HashSet<InteractableArea>();
+    private static readonly Dictionary<SimplePlayerController, InteractableArea> FocusedAreas =
+        new Dictionary<SimplePlayerController, InteractableArea>();
+    private static InteractableArea promptOwner;
+
+    private readonly Dictionary<SimplePlayerController, int> overlappingPlayers =
+        new Dictionary<SimplePlayerController, int>();
 
     [Header("交互配置")]
     [LabelText("交互目标")]
@@ -15,6 +21,9 @@ public sealed class InteractableArea : MonoBehaviour
 
     [LabelText("交互方法名")]
     [SerializeField] private string interactionMessage = "ObjectClicked";
+
+    [LabelText("交互按键")]
+    [SerializeField] private KeyCode interactionKey = KeyCode.E;
 
     [LabelText("提示文本")]
     [SerializeField] private string promptText = "按 E 互动";
@@ -37,12 +46,13 @@ public sealed class InteractableArea : MonoBehaviour
     [SerializeField] private bool useParentWhenTargetEmpty = true;
 
     public static IEnumerable<InteractableArea> ActiveInstances => ActiveAreas;
-    public string PromptText => promptText;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ClearActiveAreas()
     {
         ActiveAreas.Clear();
+        FocusedAreas.Clear();
+        promptOwner = null;
     }
 
     private void Reset()
@@ -63,6 +73,74 @@ public sealed class InteractableArea : MonoBehaviour
     private void OnDisable()
     {
         ActiveAreas.Remove(this);
+
+        foreach (SimplePlayerController player in new List<SimplePlayerController>(overlappingPlayers.Keys))
+        {
+            if (FocusedAreas.TryGetValue(player, out InteractableArea focusedArea) && focusedArea == this)
+            {
+                SetFocusedArea(player, FindNearestOverlappingArea(player));
+            }
+        }
+
+        overlappingPlayers.Clear();
+        HidePromptIfOwned();
+    }
+
+    private void Update()
+    {
+        foreach (SimplePlayerController player in overlappingPlayers.Keys)
+        {
+            if (!FocusedAreas.TryGetValue(player, out InteractableArea focusedArea) || focusedArea != this)
+            {
+                continue;
+            }
+
+            if (!CanInteract(player))
+            {
+                HidePromptIfOwned();
+                continue;
+            }
+
+            ShowPrompt();
+            if (interactionKey != KeyCode.None && RuntimeInput.GetKeyDown(interactionKey))
+            {
+                Interact(player.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SimplePlayerController player = other.GetComponentInParent<SimplePlayerController>();
+        if (player == null)
+        {
+            return;
+        }
+
+        overlappingPlayers.TryGetValue(player, out int overlapCount);
+        overlappingPlayers[player] = overlapCount + 1;
+        SetFocusedArea(player, this);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        SimplePlayerController player = other.GetComponentInParent<SimplePlayerController>();
+        if (player == null || !overlappingPlayers.TryGetValue(player, out int overlapCount))
+        {
+            return;
+        }
+
+        if (overlapCount > 1)
+        {
+            overlappingPlayers[player] = overlapCount - 1;
+            return;
+        }
+
+        overlappingPlayers.Remove(player);
+        if (FocusedAreas.TryGetValue(player, out InteractableArea focusedArea) && focusedArea == this)
+        {
+            SetFocusedArea(player, FindNearestOverlappingArea(player));
+        }
     }
 
     private void OnValidate()
@@ -89,21 +167,6 @@ public sealed class InteractableArea : MonoBehaviour
         {
             target.SendMessage(interactionMessage, options);
         }
-    }
-
-    public bool TryGetInteractionDistance(Vector3 interactorPosition, out float sqrDistance)
-    {
-        SphereCollider areaCollider = GetComponent<SphereCollider>();
-        if (!isActiveAndEnabled || areaCollider == null || !areaCollider.enabled)
-        {
-            sqrDistance = float.PositiveInfinity;
-            return false;
-        }
-
-        Vector3 closestPoint = areaCollider.ClosestPoint(interactorPosition);
-        bool isInsideArea = (closestPoint - interactorPosition).sqrMagnitude <= 0.0001f;
-        sqrDistance = (transform.position - interactorPosition).sqrMagnitude;
-        return isInsideArea;
     }
 
     public void TryShowHint(Vector3 observerPosition)
@@ -134,6 +197,98 @@ public sealed class InteractableArea : MonoBehaviour
     private Transform ResolveHintTarget()
     {
         return hintTarget != null ? hintTarget : transform;
+    }
+
+    private bool ContainsPlayer(SimplePlayerController player)
+    {
+        return player != null && overlappingPlayers.ContainsKey(player);
+    }
+
+    private static bool CanInteract(SimplePlayerController player)
+    {
+        return player != null
+            && player.isActiveAndEnabled
+            && GameController.PlayerControlEnabled
+            && player.AllowsTriggerInteraction;
+    }
+
+    private void ShowPrompt()
+    {
+        if (string.IsNullOrWhiteSpace(promptText))
+        {
+            HidePromptIfOwned();
+            return;
+        }
+
+        PlayerInteractionPromptDisplay panel = UIManager.GetPanel<PlayerInteractionPromptDisplay>(
+            UIPanelNames.InteractionPrompt);
+        if (panel == null)
+        {
+            return;
+        }
+
+        promptOwner = this;
+        panel.SetMessage(promptText);
+        UIManager.ShowPanel(UIPanelNames.InteractionPrompt);
+    }
+
+    private void HidePromptIfOwned()
+    {
+        if (promptOwner != this)
+        {
+            return;
+        }
+
+        UIManager.HidePanel(UIPanelNames.InteractionPrompt);
+        promptOwner = null;
+    }
+
+    private static void SetFocusedArea(SimplePlayerController player, InteractableArea area)
+    {
+        if (player == null)
+        {
+            return;
+        }
+
+        if (FocusedAreas.TryGetValue(player, out InteractableArea previousArea) && previousArea != area)
+        {
+            previousArea.HidePromptIfOwned();
+        }
+
+        if (area == null)
+        {
+            FocusedAreas.Remove(player);
+            return;
+        }
+
+        FocusedAreas[player] = area;
+        if (CanInteract(player))
+        {
+            area.ShowPrompt();
+        }
+    }
+
+    private static InteractableArea FindNearestOverlappingArea(SimplePlayerController player)
+    {
+        InteractableArea nearestArea = null;
+        float nearestSqrDistance = float.PositiveInfinity;
+
+        foreach (InteractableArea area in ActiveAreas)
+        {
+            if (area == null || !area.ContainsPlayer(player))
+            {
+                continue;
+            }
+
+            float sqrDistance = (area.transform.position - player.transform.position).sqrMagnitude;
+            if (sqrDistance < nearestSqrDistance)
+            {
+                nearestSqrDistance = sqrDistance;
+                nearestArea = area;
+            }
+        }
+
+        return nearestArea;
     }
 
     private void EnsureTriggerCollider()

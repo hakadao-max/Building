@@ -112,6 +112,21 @@ public sealed class PlayerThirdPersonView : MonoBehaviour
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
     }
 
+    public void TickLook(ref float yaw, ref float pitch, bool lockCursorOnClick)
+    {
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            if (lockCursorOnClick && RuntimeInput.GetMouseButtonDown(0))
+            {
+                GameController.SetCursorLocked(true);
+            }
+
+            return;
+        }
+
+        HandleLookInput(ref yaw, ref pitch);
+    }
+
     public Vector3 GetMoveDirection(Vector3 input, float yaw)
     {
         if (input.sqrMagnitude <= 0.0001f)

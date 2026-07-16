@@ -105,6 +105,11 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
         return true;
     }
 
+    public bool Tick(out Vector3 teleportPosition)
+    {
+        return TryHandleTeleportClick(out teleportPosition);
+    }
+
     private Vector3 MapNormalizedPointToWorld(float normalizedX, float normalizedY)
     {
         float worldX = mapWorldCenter.x + (normalizedX - 0.5f) * mapWorldSize.x;

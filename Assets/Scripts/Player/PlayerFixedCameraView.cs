@@ -152,6 +152,39 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
         pitchOffset = Mathf.Clamp(pitchOffset - mouseDelta.y * mouseSensitivity, -maxPitchOffset, maxPitchOffset);
     }
 
+    public bool Tick(bool lockCursorOnClick)
+    {
+        if (!isActive)
+        {
+            return false;
+        }
+
+        if (isSelectionPanelVisible)
+        {
+            if (RuntimeInput.GetMouseButton(1))
+            {
+                HandleLookInput();
+                RefreshCamera();
+            }
+
+            return true;
+        }
+
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            if (lockCursorOnClick && RuntimeInput.GetMouseButtonDown(0))
+            {
+                GameController.SetCursorLocked(true);
+            }
+
+            return true;
+        }
+
+        HandleLookInput();
+        RefreshCamera();
+        return true;
+    }
+
     public void RefreshCamera()
     {
         if (!isActive || activePoint == null || !activePoint.TryGetPose(out Vector3 position, out Quaternion rotation))

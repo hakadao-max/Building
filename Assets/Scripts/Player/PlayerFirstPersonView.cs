@@ -63,6 +63,21 @@ public sealed class PlayerFirstPersonView : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, yaw, 0f);
     }
 
+    public void TickLook(ref float yaw, ref float pitch, bool lockCursorOnClick)
+    {
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            if (lockCursorOnClick && RuntimeInput.GetMouseButtonDown(0))
+            {
+                GameController.SetCursorLocked(true);
+            }
+
+            return;
+        }
+
+        HandleLookInput(ref yaw, ref pitch);
+    }
+
     public Vector3 GetMoveDirection(Vector3 input)
     {
         if (input.sqrMagnitude <= 0.0001f)
