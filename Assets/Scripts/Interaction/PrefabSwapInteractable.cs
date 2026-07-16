@@ -4,7 +4,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 [RequireComponent(typeof(InteractableArea))]
 [DefaultExecutionOrder(1000)]
-public sealed class PrefabSwapInteractable : MonoBehaviour
+public sealed class PrefabSwapInteractable : InteractableObj
 {
     [LabelText("替换目标父物体")]
     [SerializeField] private Transform targetParent;
@@ -15,11 +15,8 @@ public sealed class PrefabSwapInteractable : MonoBehaviour
     [LabelText("预览相机")]
     [SerializeField] private Camera previewCamera;
 
-    [LabelText("预览相机世界位置")]
-    [SerializeField] private Vector3 previewCameraPosition;
-
-    [LabelText("预览相机世界旋转")]
-    [SerializeField] private Vector3 previewCameraEulerAngles;
+    [LabelText("预览机位物体")]
+    [SerializeField] private GameObject previewPoseObject;
 
     private bool isPanelOpen;
     private bool hasSavedCameraPose;
@@ -56,7 +53,7 @@ public sealed class PrefabSwapInteractable : MonoBehaviour
         }
     }
 
-    public void ObjectClicked()
+    public override void ObjectClicked()
     {
         OpenPanel();
     }
@@ -173,6 +170,12 @@ public sealed class PrefabSwapInteractable : MonoBehaviour
             return;
         }
 
+        if (previewPoseObject == null)
+        {
+            Debug.LogWarning("预制体交换器未指定预览机位物体。", this);
+            return;
+        }
+
         savedCameraPosition = previewCamera.transform.position;
         savedCameraRotation = previewCamera.transform.rotation;
         hasSavedCameraPose = true;
@@ -182,11 +185,10 @@ public sealed class PrefabSwapInteractable : MonoBehaviour
     private void ApplyPreviewCameraPose()
     {
         ResolvePreviewCamera();
-        if (previewCamera != null)
+        if (previewCamera != null && previewPoseObject != null)
         {
-            previewCamera.transform.SetPositionAndRotation(
-                previewCameraPosition,
-                Quaternion.Euler(previewCameraEulerAngles));
+            Transform previewPose = previewPoseObject.transform;
+            previewCamera.transform.SetPositionAndRotation(previewPose.position, previewPose.rotation);
         }
     }
 

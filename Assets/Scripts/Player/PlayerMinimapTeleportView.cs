@@ -3,6 +3,9 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public sealed class PlayerMinimapTeleportView : MonoBehaviour
 {
+    [LabelText("小地图传送按键")]
+    [SerializeField] private KeyCode activationKey = KeyCode.Alpha5;
+
     [Header("地图参数")]
     [LabelText("玩家相机")]
     [SerializeField] private Camera playerCamera;
@@ -33,8 +36,10 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
     [SerializeField] private float groundOffset = 0.05f;
 
     private bool isActive;
+    private SimplePlayerController controller;
 
     public Camera PlayerCamera => playerCamera;
+    public bool IsActivationRequested => activationKey != KeyCode.None && RuntimeInput.GetKeyDown(activationKey);
     public bool IsActive => isActive && UIManager.IsPanelVisible(UIPanelNames.Minimap);
     public bool ExitAfterTeleport => exitAfterTeleport;
 
@@ -44,6 +49,31 @@ public sealed class PlayerMinimapTeleportView : MonoBehaviour
         mapWorldSize.y = Mathf.Max(0.1f, mapWorldSize.y);
         groundProbeHeight = Mathf.Max(0.1f, groundProbeHeight);
         groundProbeDistance = Mathf.Max(0.1f, groundProbeDistance);
+    }
+
+    private void Update()
+    {
+        if (controller == null || !GameController.PlayerControlEnabled)
+        {
+            return;
+        }
+
+        if (IsActivationRequested)
+        {
+            controller.ApplyViewMode(controller.CurrentViewMode == PlayerViewMode.MinimapTeleport
+                ? PlayerViewMode.FirstPerson
+                : PlayerViewMode.MinimapTeleport);
+        }
+
+        if (controller.CurrentViewMode == PlayerViewMode.MinimapTeleport)
+        {
+            controller.TickMinimapTeleportView(this);
+        }
+    }
+
+    public void Bind(SimplePlayerController owner)
+    {
+        controller = owner;
     }
 
     public void SetPlayerCamera(Camera camera)

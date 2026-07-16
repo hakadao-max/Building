@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3524878656045693685}
   - component: {fileID: 2822481359385601652}
   - component: {fileID: 8649713034406866390}
+  - component: {fileID: 305485167894276841}
   m_Layer: 0
   m_Name: Trashbin
   m_TagString: Untagged
@@ -129,20 +130,34 @@ MonoBehaviour:
   title: "\u5783\u573E\u6876"
   description: "\u8FD9\u91CC\u53EF\u4EE5\u4E22\u5783\u573E"
   worldOffset: {x: 0, y: 2, z: 0}
-  canvasScale: 0.01
-  panelSize: {x: 320, y: 160}
-  titleFontSize: 28
-  descriptionFontSize: 20
   faceCamera: 1
   rotateOnlyYAxis: 1
   onlyShowInDetailInspect: 0
-  maxVisibleDistance: 5
-  distanceTarget: {fileID: 0}
   hintTarget: {fileID: 0}
   hintColor: {r: 0, g: 1, b: 0, a: 1}
-  worldCanvas: {fileID: 0}
-  titleText: {fileID: 0}
-  descriptionText: {fileID: 0}
+  hintRevealDistance: 8
+  hintDuration: 3
+--- !u!135 &305485167894276841
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164374701436443424}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 4.22
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4248529517264904525
 GameObject:
   m_ObjectHideFlags: 0

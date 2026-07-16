@@ -5,6 +5,9 @@ public sealed class PlayerThirdPersonView : MonoBehaviour
 {
     private const string CameraPitchPivotName = "Camera Pitch Pivot";
 
+    [LabelText("第三人称按键")]
+    [SerializeField] private KeyCode activationKey = KeyCode.Alpha2;
+
     [Header("视角参数")]
     [LabelText("玩家相机")]
     [SerializeField] private Camera playerCamera;
@@ -62,8 +65,11 @@ public sealed class PlayerThirdPersonView : MonoBehaviour
     private int walkStateHash;
     private int runStateHash;
     private int currentStateHash;
+    private SimplePlayerController controller;
+    private PlayerLocomotion locomotion;
 
     public Camera PlayerCamera => playerCamera;
+    public bool IsActivationRequested => activationKey != KeyCode.None && RuntimeInput.GetKeyDown(activationKey);
 
     private void OnValidate()
     {
@@ -125,6 +131,42 @@ public sealed class PlayerThirdPersonView : MonoBehaviour
         }
 
         HandleLookInput(ref yaw, ref pitch);
+    }
+
+    private void Update()
+    {
+        if (controller == null || !GameController.PlayerControlEnabled)
+        {
+            return;
+        }
+
+        if (IsActivationRequested)
+        {
+            controller.ApplyViewMode(PlayerViewMode.ThirdPerson);
+        }
+
+        if (!controller.IsViewInputBlocked && controller.CurrentViewMode == PlayerViewMode.ThirdPerson)
+        {
+            controller.TickThirdPersonView(this, locomotion);
+        }
+    }
+
+    public void Bind(SimplePlayerController owner, PlayerLocomotion playerLocomotion)
+    {
+        controller = owner;
+        locomotion = playerLocomotion;
+    }
+
+    public void Tick(ref float yaw, ref float pitch, bool lockCursorOnClick, PlayerLocomotion locomotion)
+    {
+        TickLook(ref yaw, ref pitch, lockCursorOnClick);
+        if (locomotion != null)
+        {
+            Vector3 input = locomotion.ReadMoveInput();
+            locomotion.Tick(GetMoveDirection(input, yaw), this);
+        }
+
+        RefreshCamera(yaw, pitch);
     }
 
     public Vector3 GetMoveDirection(Vector3 input, float yaw)

@@ -11,6 +11,9 @@ public sealed class PlayerFixedRouteRoamView : MonoBehaviour
     private const float TangentSampleOffset = 0.0025f;
     private const float MinimumRouteLength = 0.001f;
 
+    [LabelText("固定路线漫游按键")]
+    [SerializeField] private KeyCode activationKey = KeyCode.Alpha3;
+
     [LabelText("玩家相机")]
     [SerializeField] private Camera playerCamera;
 
@@ -76,8 +79,10 @@ public sealed class PlayerFixedRouteRoamView : MonoBehaviour
     private float routeLength;
     private float traveledDistance;
     private bool isRoaming;
+    private SimplePlayerController controller;
 
     public Camera PlayerCamera => playerCamera;
+    public bool IsActivationRequested => activationKey != KeyCode.None && RuntimeInput.GetKeyDown(activationKey);
     public bool ReturnToFirstPersonWhenFinished => returnToFirstPersonWhenFinished;
     public bool UsesFreeLook => !rotateAlongPath;
     public int ControlPointCount => controlPoints != null ? controlPoints.Count : 0;
@@ -95,6 +100,29 @@ public sealed class PlayerFixedRouteRoamView : MonoBehaviour
         {
             controlPoints = new List<Vector3>();
         }
+    }
+
+    private void Update()
+    {
+        if (controller == null || !GameController.PlayerControlEnabled)
+        {
+            return;
+        }
+
+        if (IsActivationRequested)
+        {
+            controller.ApplyViewMode(PlayerViewMode.FixedRouteRoam);
+        }
+
+        if (controller.CurrentViewMode == PlayerViewMode.FixedRouteRoam)
+        {
+            controller.TickFixedRouteRoamView(this);
+        }
+    }
+
+    public void Bind(SimplePlayerController owner)
+    {
+        controller = owner;
     }
 
     private void OnDrawGizmos()

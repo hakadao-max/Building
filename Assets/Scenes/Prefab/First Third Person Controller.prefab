@@ -17,6 +17,10 @@ GameObject:
   - component: {fileID: 100007}
   - component: {fileID: 100008}
   - component: {fileID: 100009}
+  - component: {fileID: 100010}
+  - component: {fileID: 100011}
+  - component: {fileID: 100012}
+  - component: {fileID: 100013}
   m_Layer: 0
   m_Name: First Third Person Controller
   m_TagString: Player
@@ -69,41 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startViewMode: 0
-  firstPersonKey: 49
-  thirdPersonKey: 50
-  fixedRouteRoamKey: 51
-  fixedCameraSelectionKey: 52
-  minimapTeleportKey: 53
-  detailInspectKey: 54
-  firstPersonView: {fileID: 100004}
-  thirdPersonView: {fileID: 100005}
-  fixedRouteRoamView: {fileID: 100006}
-  fixedCameraView: {fileID: 100007}
-  minimapTeleportView: {fileID: 100008}
-  detailInspectView: {fileID: 100009}
-  runKey: 304
-  walkSpeed: 3.5
-  runSpeed: 6.5
-  gravity: -24
   lockCursorOnStart: 1
-  interactKey: 101
-  interactRadius: 2.3
-  interactableLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  revealInteractablesKey: 114
-  revealInteractablesRadius: 8
-  revealHintDuration: 3
-  flashlightKey: 102
-  flashlightLight: {fileID: 0}
-  createFlashlightWhenMissing: 1
-  flashlightStartsOn: 0
-  flashlightLocalPosition: {x: 0.25, y: -0.2, z: 0.35}
-  thirdPersonFlashlightLocalPosition: {x: 0.25, y: 1.35, z: 0.85}
-  thirdPersonFlashlightLocalEulerAngles: {x: 0, y: 0, z: 0}
-  flashlightIntensity: 2
-  flashlightRange: 18
-  flashlightSpotAngle: 55
 --- !u!114 &100004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41f9d83e6144bf4aa4580f72b5a3301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activationKey: 49
   playerCamera: {fileID: 0}
   cameraLocalPosition: {x: 0, y: 1.65, z: 0}
   mouseSensitivity: 2.2
@@ -133,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d6cefb64f143d389cc2edbba5f6b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activationKey: 50
   playerCamera: {fileID: 0}
   pivotLocalPosition: {x: 0, y: 1.45, z: 0}
   cameraDistance: 4.5
@@ -161,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5d0f2ff5b94d6fa5e1a91d4e8cf321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activationKey: 51
   playerCamera: {fileID: 0}
   controlPoints:
   - {x: 0, y: 0, z: 0}
@@ -195,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b13fc1e50874a42b51e4d46632b4c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activationKey: 52
   playerCamera: {fileID: 0}
   cameraPoints: []
   mouseSensitivity: 1.2
@@ -212,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a0f317d07049c5a4ba8c862c85a701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activationKey: 53
   playerCamera: {fileID: 0}
   minimapTexture: {fileID: 0}
   mapWorldCenter: {x: 0, y: 0, z: 0}
@@ -235,8 +210,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e2a1f04b3d4e5f9a6b7c8d9e0f1a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toggleKey: 54
   playerCamera: {fileID: 0}
   inspectDistance: 12
   inspectLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &100010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24d59c50a924665b238e4e5882a5ad4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  runKey: 304
+  walkSpeed: 3.5
+  runSpeed: 6.5
+  gravity: -24
+--- !u!114 &100011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f3cab2461445ec898b49b61e0d8f35, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  toggleKey: 102
+  flashlightLight: {fileID: 0}
+  startsOn: 0
+  cameraLocalPosition: {x: 0.25, y: -0.2, z: 0.35}
+  cameraLocalEulerAngles: {x: 0, y: 0, z: 0}
+  thirdPersonLocalPosition: {x: 0.25, y: 1.35, z: 0.85}
+  thirdPersonLocalEulerAngles: {x: 0, y: 0, z: 0}
+  intensity: 2
+  range: 18
+  spotAngle: 55
+--- !u!114 &100012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550e5618a6e64918a5c32cb1bb01fb44, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  revealKey: 114
+--- !u!114 &100013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e24eb329b94779bc75502aa62b747a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  activationKey: 55
+  interactKey: 101

@@ -1,121 +1,27 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerLocomotion))]
 public sealed class SimplePlayerController : MonoBehaviour
 {
-    [Header("视角模式")]
     [LabelText("起始视角")]
     [SerializeField] private PlayerViewMode startViewMode = PlayerViewMode.FirstPerson;
-
-    [Header("按键配置")]
-    [LabelText("第一人称按键")]
-    [SerializeField] private KeyCode firstPersonKey = KeyCode.Alpha1;
-
-    [LabelText("第三人称按键")]
-    [SerializeField] private KeyCode thirdPersonKey = KeyCode.Alpha2;
-
-    [LabelText("固定路线漫游按键")]
-    [SerializeField] private KeyCode fixedRouteRoamKey = KeyCode.Alpha3;
-
-    [LabelText("固定视角选择按键")]
-    [SerializeField] private KeyCode fixedCameraSelectionKey = KeyCode.Alpha4;
-
-    [LabelText("小地图传送按键")]
-    [SerializeField] private KeyCode minimapTeleportKey = KeyCode.Alpha5;
-
-    [LabelText("详情查看按键")]
-    [SerializeField] private KeyCode detailInspectKey = KeyCode.Alpha6;
-
-    [LabelText("透视拾取按键")]
-    [SerializeField] private KeyCode perspectivePickupKey = KeyCode.Alpha7;
-
-    [LabelText("奔跑按键")]
-    [SerializeField] private KeyCode runKey = KeyCode.LeftShift;
-
-    [LabelText("透视拾取交互按键")]
-    [SerializeField] private KeyCode interactKey = KeyCode.E;
-
-    [LabelText("显示交互提示按键")]
-    [SerializeField] private KeyCode revealInteractablesKey = KeyCode.R;
-
-    [LabelText("手电筒按键")]
-    [SerializeField] private KeyCode flashlightKey = KeyCode.F;
-
-    [Header("移动配置")]
-    [LabelText("行走速度")]
-    [SerializeField] private float walkSpeed = 3.5f;
-
-    [LabelText("奔跑速度")]
-    [SerializeField] private float runSpeed = 6.5f;
-
-    [LabelText("重力")]
-    [SerializeField] private float gravity = -24f;
 
     [LabelText("启动时锁定鼠标")]
     [SerializeField] private bool lockCursorOnStart = true;
 
-    [Header("手电筒配置")]
-    [LabelText("手电筒灯光")]
-    [SerializeField] private Light flashlightLight;
+    private CharacterController characterController;
+    private PlayerLocomotion locomotion;
+    private PlayerFirstPersonView firstPersonView;
+    private PlayerThirdPersonView thirdPersonView;
+    private PlayerFixedRouteRoamView fixedRouteRoamView;
+    private PlayerFixedCameraView fixedCameraView;
+    private PlayerMinimapTeleportView minimapTeleportView;
+    private PlayerDetailInspectView detailInspectView;
+    private PlayerPerspectivePickupView perspectivePickupView;
+    private PlayerFlashlight flashlight;
 
-    [LabelText("手电筒默认开启")]
-    [SerializeField] private bool flashlightStartsOn;
-
-    [LabelText("第一人称手电筒局部位置")]
-    [SerializeField] private Vector3 flashlightLocalPosition = new Vector3(0.25f, -0.2f, 0.35f);
-
-    [LabelText("第一人称手电筒局部角度")]
-    [SerializeField] private Vector3 flashlightLocalEulerAngles;
-
-    [LabelText("第三人称手电筒局部位置")]
-    [SerializeField] private Vector3 thirdPersonFlashlightLocalPosition = new Vector3(0.25f, 1.35f, 0.85f);
-
-    [LabelText("第三人称手电筒局部角度")]
-    [SerializeField] private Vector3 thirdPersonFlashlightLocalEulerAngles;
-
-    [LabelText("手电筒强度")]
-    [SerializeField] private float flashlightIntensity = 2f;
-
-    [LabelText("手电筒范围")]
-    [SerializeField] private float flashlightRange = 18f;
-
-    [LabelText("手电筒角度")]
-    [SerializeField] private float flashlightSpotAngle = 55f;
-
-    [Header("自动组件引用（只读）")]
-    [ReadOnly]
-    [LabelText("第一人称组件")]
-    [SerializeField] private PlayerFirstPersonView firstPersonView;
-
-    [ReadOnly]
-    [LabelText("第三人称组件")]
-    [SerializeField] private PlayerThirdPersonView thirdPersonView;
-
-    [ReadOnly]
-    [LabelText("固定路线漫游组件")]
-    [SerializeField] private PlayerFixedRouteRoamView fixedRouteRoamView;
-
-    [ReadOnly]
-    [LabelText("固定视角组件")]
-    [SerializeField] private PlayerFixedCameraView fixedCameraView;
-
-    [ReadOnly]
-    [LabelText("小地图传送组件")]
-    [SerializeField] private PlayerMinimapTeleportView minimapTeleportView;
-
-    [ReadOnly]
-    [LabelText("详情查看组件")]
-    [SerializeField] private PlayerDetailInspectView detailInspectView;
-
-    [ReadOnly]
-    [LabelText("透视拾取组件")]
-    [SerializeField] private PlayerPerspectivePickupView perspectivePickupView;
-
-    private const float GroundedStickForce = -2f;
-
-    private CharacterController controller;
     private PlayerViewMode currentViewMode;
-    private Vector3 verticalVelocity;
     private Vector3 spawnPosition;
     private Quaternion spawnRotation;
     private float yaw;
@@ -123,18 +29,23 @@ public sealed class SimplePlayerController : MonoBehaviour
     private bool hasAppliedViewMode;
 
     public PlayerViewMode CurrentViewMode => currentViewMode;
+    public Camera ActiveCamera => ResolveActiveCamera();
+    public bool IsViewInputBlocked => fixedCameraView != null && fixedCameraView.IsSelectionPanelVisible;
+    public bool AllowsManualAbilities => !IsViewInputBlocked
+        && (currentViewMode == PlayerViewMode.FirstPerson
+            || currentViewMode == PlayerViewMode.ThirdPerson
+            || currentViewMode == PlayerViewMode.PerspectivePickup);
     public bool AllowsTriggerInteraction => currentViewMode == PlayerViewMode.FirstPerson
         || currentViewMode == PlayerViewMode.ThirdPerson;
 
     private void Awake()
     {
-        controller = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();
         spawnPosition = transform.position;
         spawnRotation = transform.rotation;
         yaw = transform.eulerAngles.y;
 
-        EnsureViewComponents();
-        ConfigureFlashlight();
+        EnsureComponents();
         ApplyViewMode(startViewMode);
     }
 
@@ -142,84 +53,13 @@ public sealed class SimplePlayerController : MonoBehaviour
     {
         if (GameController.PlayerControlEnabled)
         {
-            SetCursorLocked(lockCursorOnStart);
-        }
-    }
-
-    private void Update()
-    {
-        if (!GameController.PlayerControlEnabled)
-        {
-            ResetViewMovementState();
-            return;
-        }
-
-        HandleViewModeInput();
-        HandleDetailInspectInput();
-
-        if (fixedCameraView != null && fixedCameraView.IsSelectionPanelVisible)
-        {
-            ResetViewMovementState();
-
-            if (currentViewMode == PlayerViewMode.FixedCamera)
-            {
-                TickFixedCameraView();
-            }
-
-            return;
-        }
-
-        if (currentViewMode == PlayerViewMode.MinimapTeleport)
-        {
-            TickMinimapTeleportView();
-            return;
-        }
-
-        if (currentViewMode == PlayerViewMode.FixedRouteRoam)
-        {
-            TickFixedRouteRoamView();
-            return;
-        }
-
-        if (currentViewMode == PlayerViewMode.FixedCamera)
-        {
-            TickFixedCameraView();
-            return;
-        }
-
-        HandlePerspectivePickupInput();
-        HandleRevealInteractablesInput();
-        HandleFlashlightInput();
-        HandleLookInput();
-        HandleMoveInput();
-    }
-
-    private void LateUpdate()
-    {
-        RefreshActiveView();
-
-        if (currentViewMode == PlayerViewMode.PerspectivePickup && perspectivePickupView != null)
-        {
-            perspectivePickupView.TickHeldObject();
+            GameController.SetCursorLocked(lockCursorOnStart);
         }
     }
 
     private void OnDisable()
     {
-        if (perspectivePickupView != null)
-        {
-            perspectivePickupView.Exit();
-        }
-    }
-
-    private void OnValidate()
-    {
-        walkSpeed = Mathf.Max(0f, walkSpeed);
-        runSpeed = Mathf.Max(walkSpeed, runSpeed);
-        gravity = Mathf.Approximately(gravity, 0f) ? -24f : -Mathf.Abs(gravity);
-        flashlightIntensity = Mathf.Max(0f, flashlightIntensity);
-        flashlightRange = Mathf.Max(0.1f, flashlightRange);
-        flashlightSpotAngle = Mathf.Clamp(flashlightSpotAngle, 1f, 179f);
+        perspectivePickupView?.Exit();
     }
 
     public void ToggleViewMode()
@@ -236,60 +76,41 @@ public sealed class SimplePlayerController : MonoBehaviour
             return;
         }
 
-        EnsureViewComponents();
+        EnsureComponents();
         if (viewMode != PlayerViewMode.FirstPerson && detailInspectView.IsActive)
         {
             detailInspectView.SetActive(false);
         }
 
-        bool wasFixedCameraPanelVisible = fixedCameraView != null && fixedCameraView.IsSelectionPanelVisible;
-        bool shouldRestoreCursorAfterModeSwitch = currentViewMode == PlayerViewMode.MinimapTeleport || wasFixedCameraPanelVisible;
-        if (viewMode != PlayerViewMode.FixedCamera && fixedCameraView != null)
+        bool restoreCursor = currentViewMode == PlayerViewMode.MinimapTeleport
+            || fixedCameraView.IsSelectionPanelVisible;
+        if (viewMode != PlayerViewMode.FixedCamera)
         {
             fixedCameraView.HideSelectionPanel();
         }
 
         if (hasAppliedViewMode)
         {
-            SyncViewAnglesBeforeLeavingCurrentMode(viewMode);
+            SyncAnglesBeforeExit(viewMode);
             ExitCurrentViewMode();
         }
 
         currentViewMode = viewMode;
         hasAppliedViewMode = true;
-        verticalVelocity = Vector3.zero;
+        locomotion.ResetVerticalVelocity();
+        EnterCurrentViewMode();
 
-        switch (currentViewMode)
-        {
-            case PlayerViewMode.FirstPerson:
-            case PlayerViewMode.PerspectivePickup:
-                firstPersonView.Enter(ref yaw, ref pitch);
-                break;
-            case PlayerViewMode.ThirdPerson:
-                thirdPersonView.Enter(yaw, pitch);
-                break;
-            case PlayerViewMode.FixedRouteRoam:
-                fixedRouteRoamView.Enter(yaw, pitch);
-                break;
-            case PlayerViewMode.FixedCamera:
-                fixedCameraView.Enter(0);
-                break;
-            case PlayerViewMode.MinimapTeleport:
-                minimapTeleportView.Enter();
-                break;
-        }
-
-        AttachFlashlightToActiveView();
+        flashlight.OnViewModeChanged(currentViewMode, ActiveCamera);
         RefreshActiveView();
         RefreshModeDisplay();
 
         if (currentViewMode == PlayerViewMode.MinimapTeleport)
         {
-            SetCursorLocked(false);
+            GameController.SetCursorLocked(false);
         }
-        else if (shouldRestoreCursorAfterModeSwitch && GameController.PlayerControlEnabled)
+        else if (restoreCursor && GameController.PlayerControlEnabled)
         {
-            SetCursorLocked(lockCursorOnStart);
+            GameController.SetCursorLocked(lockCursorOnStart);
         }
     }
 
@@ -297,10 +118,10 @@ public sealed class SimplePlayerController : MonoBehaviour
     {
         if (!enabled)
         {
-            ResetViewMovementState();
+            ResetMovementState();
         }
 
-        SetCursorLocked(enabled && lockCursorOnStart);
+        GameController.SetCursorLocked(enabled && lockCursorOnStart);
     }
 
     public void ReturnToSpawn()
@@ -323,72 +144,30 @@ public sealed class SimplePlayerController : MonoBehaviour
             ApplyViewMode(PlayerViewMode.FirstPerson);
         }
 
-        bool wasEnabled = controller.enabled;
-        controller.enabled = false;
+        bool wasEnabled = characterController.enabled;
+        characterController.enabled = false;
         transform.SetPositionAndRotation(position, rotation);
-        controller.enabled = wasEnabled;
+        characterController.enabled = wasEnabled;
 
-        verticalVelocity = Vector3.zero;
+        locomotion.ResetVerticalVelocity();
         yaw = transform.eulerAngles.y;
         pitch = 0f;
         RefreshActiveView();
     }
 
-    private void HandleViewModeInput()
+    public void TickFirstPersonView(PlayerFirstPersonView view, PlayerLocomotion playerLocomotion)
     {
-        if (firstPersonKey != KeyCode.None && RuntimeInput.GetKeyDown(firstPersonKey))
-        {
-            ApplyViewMode(PlayerViewMode.FirstPerson);
-        }
-        else if (thirdPersonKey != KeyCode.None && RuntimeInput.GetKeyDown(thirdPersonKey))
-        {
-            ApplyViewMode(PlayerViewMode.ThirdPerson);
-        }
-        else if (fixedRouteRoamKey != KeyCode.None && RuntimeInput.GetKeyDown(fixedRouteRoamKey))
-        {
-            ApplyViewMode(PlayerViewMode.FixedRouteRoam);
-        }
-        else if (fixedCameraSelectionKey != KeyCode.None && RuntimeInput.GetKeyDown(fixedCameraSelectionKey))
-        {
-            ToggleFixedCameraSelection();
-        }
-        else if (minimapTeleportKey != KeyCode.None && RuntimeInput.GetKeyDown(minimapTeleportKey))
-        {
-            if (currentViewMode == PlayerViewMode.MinimapTeleport)
-            {
-                ApplyViewMode(PlayerViewMode.FirstPerson);
-            }
-            else
-            {
-                ApplyViewMode(PlayerViewMode.MinimapTeleport);
-            }
-        }
-        else if (perspectivePickupKey != KeyCode.None && RuntimeInput.GetKeyDown(perspectivePickupKey))
-        {
-            ApplyViewMode(PlayerViewMode.PerspectivePickup);
-        }
+        view.Tick(ref yaw, ref pitch, lockCursorOnStart, playerLocomotion);
     }
 
-    private void HandleDetailInspectInput()
+    public void TickThirdPersonView(PlayerThirdPersonView view, PlayerLocomotion playerLocomotion)
     {
-        bool inputAllowed = currentViewMode == PlayerViewMode.FirstPerson
-            && (fixedCameraView == null || !fixedCameraView.IsSelectionPanelVisible);
-        if (detailInspectView != null
-            && detailInspectView.TryHandleToggleInput(detailInspectKey, inputAllowed))
-        {
-            RefreshModeDisplay();
-        }
+        view.Tick(ref yaw, ref pitch, lockCursorOnStart, playerLocomotion);
     }
 
-    private void TickFixedRouteRoamView()
+    public void TickFixedRouteRoamView(PlayerFixedRouteRoamView view)
     {
-        if (fixedRouteRoamView == null)
-        {
-            ApplyViewMode(PlayerViewMode.FirstPerson);
-            return;
-        }
-
-        if (fixedRouteRoamView.Tick(ref yaw, ref pitch, lockCursorOnStart))
+        if (view == null || view.Tick(ref yaw, ref pitch, lockCursorOnStart))
         {
             yaw = transform.eulerAngles.y;
             pitch = 0f;
@@ -396,35 +175,39 @@ public sealed class SimplePlayerController : MonoBehaviour
         }
     }
 
-    private void TickMinimapTeleportView()
+    public void TickFixedCameraView(PlayerFixedCameraView view)
     {
-        if (minimapTeleportView == null || !minimapTeleportView.IsActive)
+        if (view == null || !view.Tick(lockCursorOnStart))
+        {
+            ApplyViewMode(PlayerViewMode.FirstPerson);
+        }
+    }
+
+    public void TickMinimapTeleportView(PlayerMinimapTeleportView view)
+    {
+        if (view == null || !view.IsActive)
         {
             ApplyViewMode(PlayerViewMode.FirstPerson);
             return;
         }
 
-        if (!minimapTeleportView.Tick(out Vector3 teleportPosition))
+        if (!view.Tick(out Vector3 teleportPosition))
         {
             return;
         }
 
-        bool exitAfterTeleport = minimapTeleportView.ExitAfterTeleport;
+        bool reopenMinimap = !view.ExitAfterTeleport;
         TeleportTo(teleportPosition, Quaternion.Euler(0f, yaw, 0f));
-
-        if (!exitAfterTeleport)
+        if (reopenMinimap)
         {
             ApplyViewMode(PlayerViewMode.MinimapTeleport);
         }
     }
 
-    private void ToggleFixedCameraSelection()
+    public void ToggleFixedCameraSelection()
     {
-        EnsureViewComponents();
-
-        bool panelVisible = fixedCameraView.ToggleSelectionPanel(ApplyFixedCameraView);
-        SetCursorLocked(!panelVisible && lockCursorOnStart);
-
+        bool panelVisible = fixedCameraView.ToggleSelectionPanel(ApplyFixedCameraPoint);
+        GameController.SetCursorLocked(!panelVisible && lockCursorOnStart);
         if (panelVisible)
         {
             RefreshModeDisplay(PlayerViewMode.FixedCamera, false);
@@ -435,23 +218,17 @@ public sealed class SimplePlayerController : MonoBehaviour
         }
     }
 
-    private void ApplyFixedCameraView(int pointIndex)
+    private void ApplyFixedCameraPoint(int pointIndex)
     {
-        EnsureViewComponents();
-
         if (!fixedCameraView.HasUsablePoint(pointIndex))
         {
             return;
         }
 
-        if (detailInspectView != null && detailInspectView.IsActive)
-        {
-            detailInspectView.SetActive(false);
-        }
-
+        detailInspectView.SetActive(false);
         if (hasAppliedViewMode && currentViewMode != PlayerViewMode.FixedCamera)
         {
-            SyncViewAnglesBeforeLeavingCurrentMode(PlayerViewMode.FixedCamera);
+            SyncAnglesBeforeExit(PlayerViewMode.FixedCamera);
             ExitCurrentViewMode();
         }
 
@@ -462,253 +239,48 @@ public sealed class SimplePlayerController : MonoBehaviour
 
         currentViewMode = PlayerViewMode.FixedCamera;
         hasAppliedViewMode = true;
-        verticalVelocity = Vector3.zero;
-        ResetViewMovementState();
-        AttachFlashlightToActiveView();
+        locomotion.ResetVerticalVelocity();
+        ResetMovementState();
+        flashlight.OnViewModeChanged(currentViewMode, ActiveCamera);
         RefreshModeDisplay();
-        SetCursorLocked(!fixedCameraView.IsSelectionPanelVisible && lockCursorOnStart);
+        GameController.SetCursorLocked(!fixedCameraView.IsSelectionPanelVisible && lockCursorOnStart);
     }
 
-    private void TickFixedCameraView()
-    {
-        if (fixedCameraView == null || !fixedCameraView.Tick(lockCursorOnStart))
-        {
-            ApplyViewMode(PlayerViewMode.FirstPerson);
-        }
-    }
-
-    private void HandleLookInput()
+    private void EnterCurrentViewMode()
     {
         switch (currentViewMode)
         {
             case PlayerViewMode.FirstPerson:
+                firstPersonView.Enter(ref yaw, ref pitch);
+                break;
             case PlayerViewMode.PerspectivePickup:
-                firstPersonView.TickLook(ref yaw, ref pitch, lockCursorOnStart);
+                firstPersonView.Enter(ref yaw, ref pitch);
+                perspectivePickupView.Enter(firstPersonView.PlayerCamera, GetComponentsInChildren<Collider>(true));
                 break;
             case PlayerViewMode.ThirdPerson:
-                thirdPersonView.TickLook(ref yaw, ref pitch, lockCursorOnStart);
+                thirdPersonView.Enter(yaw, pitch);
                 break;
-        }
-    }
-
-    private void HandleMoveInput()
-    {
-        Vector2 moveAxes = RuntimeInput.GetMoveAxesRaw();
-        Vector3 input = new Vector3(moveAxes.x, 0f, moveAxes.y);
-        input = Vector3.ClampMagnitude(input, 1f);
-
-        Vector3 moveDirection = GetMoveDirection(input);
-        bool isRunning = runKey != KeyCode.None && RuntimeInput.GetKey(runKey);
-        float speed = isRunning ? runSpeed : walkSpeed;
-
-        if (controller.isGrounded && verticalVelocity.y < 0f)
-        {
-            verticalVelocity.y = GroundedStickForce;
-        }
-
-        verticalVelocity.y += gravity * Time.deltaTime;
-        Vector3 horizontalVelocity = moveDirection * speed;
-        controller.Move((horizontalVelocity + verticalVelocity) * Time.deltaTime);
-
-        Vector3 actualHorizontalVelocity = controller.velocity;
-        actualHorizontalVelocity.y = 0f;
-
-        if (currentViewMode == PlayerViewMode.ThirdPerson)
-        {
-            thirdPersonView.SetMovementState(moveDirection, actualHorizontalVelocity.magnitude, isRunning, controller.isGrounded);
-        }
-        else
-        {
-            ResetViewMovementState();
-        }
-    }
-
-    private void HandlePerspectivePickupInput()
-    {
-        if (currentViewMode != PlayerViewMode.PerspectivePickup || perspectivePickupView == null)
-        {
-            return;
-        }
-
-        perspectivePickupView.TryHandleInteraction(
-            interactKey,
-            firstPersonView != null ? firstPersonView.PlayerCamera : null,
-            GetComponentsInChildren<Collider>(true));
-    }
-
-    private void HandleFlashlightInput()
-    {
-        if (flashlightKey == KeyCode.None || !RuntimeInput.GetKeyDown(flashlightKey))
-        {
-            return;
-        }
-
-        ToggleFlashlight();
-    }
-
-    private void HandleRevealInteractablesInput()
-    {
-        if (revealInteractablesKey == KeyCode.None || !RuntimeInput.GetKeyDown(revealInteractablesKey))
-        {
-            return;
-        }
-
-        ShowNearbyInteractableHints();
-    }
-
-    public void ToggleFlashlight()
-    {
-        if (flashlightLight != null)
-        {
-            AttachFlashlightToActiveView();
-            flashlightLight.enabled = !flashlightLight.enabled;
-        }
-    }
-
-    private Vector3 GetMoveDirection(Vector3 input)
-    {
-        switch (currentViewMode)
-        {
-            case PlayerViewMode.ThirdPerson:
-                return thirdPersonView.GetMoveDirection(input, yaw);
-            case PlayerViewMode.FirstPerson:
-            case PlayerViewMode.PerspectivePickup:
-                return firstPersonView.GetMoveDirection(input);
-            default:
-                return Vector3.zero;
-        }
-    }
-
-    private void ShowNearbyInteractableHints()
-    {
-        foreach (InteractableArea area in InteractableArea.ActiveInstances)
-        {
-            if (area != null)
-            {
-                area.TryShowHint(transform.position);
-            }
-        }
-
-        ShowNearbyWorldDescriptionHints();
-    }
-
-    private void ShowNearbyWorldDescriptionHints()
-    {
-        foreach (WorldDescriptionUI descriptionUI in FindObjectsByType<WorldDescriptionUI>(
-                     FindObjectsInactive.Include,
-                     FindObjectsSortMode.None))
-        {
-            if (!descriptionUI.ShouldShowHint)
-            {
-                continue;
-            }
-
-            descriptionUI.TryShowHint(transform.position);
-        }
-    }
-
-    private void EnsureViewComponents()
-    {
-        if (firstPersonView == null)
-        {
-            firstPersonView = GetComponent<PlayerFirstPersonView>();
-        }
-
-        if (firstPersonView == null)
-        {
-            firstPersonView = gameObject.AddComponent<PlayerFirstPersonView>();
-        }
-
-        firstPersonView.Initialize();
-        Camera sharedCamera = firstPersonView.PlayerCamera;
-
-        if (thirdPersonView == null)
-        {
-            thirdPersonView = GetComponent<PlayerThirdPersonView>();
-        }
-
-        if (thirdPersonView == null)
-        {
-            thirdPersonView = gameObject.AddComponent<PlayerThirdPersonView>();
-        }
-
-        thirdPersonView.SetPlayerCamera(sharedCamera);
-        thirdPersonView.Initialize();
-
-        if (fixedRouteRoamView == null)
-        {
-            fixedRouteRoamView = GetComponent<PlayerFixedRouteRoamView>();
-        }
-
-        if (fixedRouteRoamView == null)
-        {
-            fixedRouteRoamView = gameObject.AddComponent<PlayerFixedRouteRoamView>();
-        }
-
-        fixedRouteRoamView.SetPlayerCamera(sharedCamera);
-        fixedRouteRoamView.Initialize();
-
-        if (fixedCameraView == null)
-        {
-            fixedCameraView = GetComponent<PlayerFixedCameraView>();
-        }
-
-        if (fixedCameraView == null)
-        {
-            fixedCameraView = gameObject.AddComponent<PlayerFixedCameraView>();
-        }
-
-        fixedCameraView.SetPlayerCamera(sharedCamera);
-        fixedCameraView.Initialize();
-
-        if (minimapTeleportView == null)
-        {
-            minimapTeleportView = GetComponent<PlayerMinimapTeleportView>();
-        }
-
-        if (minimapTeleportView == null)
-        {
-            minimapTeleportView = gameObject.AddComponent<PlayerMinimapTeleportView>();
-        }
-
-        minimapTeleportView.SetPlayerCamera(sharedCamera);
-        minimapTeleportView.Initialize();
-
-        if (detailInspectView == null)
-        {
-            detailInspectView = GetComponent<PlayerDetailInspectView>();
-        }
-
-        if (detailInspectView == null)
-        {
-            detailInspectView = gameObject.AddComponent<PlayerDetailInspectView>();
-        }
-
-        detailInspectView.SetPlayerCamera(sharedCamera);
-        detailInspectView.Initialize();
-
-        if (perspectivePickupView == null)
-        {
-            perspectivePickupView = GetComponent<PlayerPerspectivePickupView>();
-        }
-
-        if (perspectivePickupView == null)
-        {
-            perspectivePickupView = gameObject.AddComponent<PlayerPerspectivePickupView>();
+            case PlayerViewMode.FixedRouteRoam:
+                fixedRouteRoamView.Enter(yaw, pitch);
+                break;
+            case PlayerViewMode.FixedCamera:
+                fixedCameraView.Enter(0);
+                break;
+            case PlayerViewMode.MinimapTeleport:
+                minimapTeleportView.Enter();
+                break;
         }
     }
 
     private void ExitCurrentViewMode()
     {
-        if (currentViewMode == PlayerViewMode.PerspectivePickup)
-        {
-            perspectivePickupView.Exit();
-        }
-
         switch (currentViewMode)
         {
             case PlayerViewMode.FirstPerson:
+                firstPersonView.Exit();
+                break;
             case PlayerViewMode.PerspectivePickup:
+                perspectivePickupView.Exit();
                 firstPersonView.Exit();
                 break;
             case PlayerViewMode.ThirdPerson:
@@ -726,7 +298,7 @@ public sealed class SimplePlayerController : MonoBehaviour
         }
     }
 
-    private void SyncViewAnglesBeforeLeavingCurrentMode(PlayerViewMode nextViewMode)
+    private void SyncAnglesBeforeExit(PlayerViewMode nextViewMode)
     {
         if (currentViewMode != PlayerViewMode.FixedRouteRoam || nextViewMode == PlayerViewMode.FixedRouteRoam)
         {
@@ -734,7 +306,7 @@ public sealed class SimplePlayerController : MonoBehaviour
         }
 
         yaw = transform.eulerAngles.y;
-        if (fixedRouteRoamView != null && !fixedRouteRoamView.UsesFreeLook)
+        if (!fixedRouteRoamView.UsesFreeLook)
         {
             pitch = 0f;
         }
@@ -757,18 +329,19 @@ public sealed class SimplePlayerController : MonoBehaviour
         }
     }
 
-    private void ResetViewMovementState()
+    private void ResetMovementState()
     {
-        if (thirdPersonView != null)
-        {
-            thirdPersonView.ResetMovementState();
-        }
+        thirdPersonView?.ResetMovementState();
     }
 
     private void RefreshModeDisplay()
     {
-        bool detailInspectActive = detailInspectView != null && detailInspectView.IsActive;
-        RefreshModeDisplay(currentViewMode, detailInspectActive);
+        RefreshModeDisplay(currentViewMode, detailInspectView != null && detailInspectView.IsActive);
+    }
+
+    public void RefreshModeDisplayFromView()
+    {
+        RefreshModeDisplay();
     }
 
     private static void RefreshModeDisplay(PlayerViewMode viewMode, bool detailInspectActive)
@@ -783,66 +356,67 @@ public sealed class SimplePlayerController : MonoBehaviour
         UIManager.ShowPanel(UIPanelNames.PlayerMode);
     }
 
-    private void ConfigureFlashlight()
-    {
-        if (flashlightLight == null)
-        {
-            return;
-        }
-
-        AttachFlashlightToActiveView();
-        flashlightLight.type = LightType.Spot;
-        flashlightLight.intensity = flashlightIntensity;
-        flashlightLight.range = flashlightRange;
-        flashlightLight.spotAngle = flashlightSpotAngle;
-        flashlightLight.enabled = flashlightStartsOn;
-    }
-
-    private void AttachFlashlightToActiveView()
-    {
-        if (flashlightLight == null)
-        {
-            return;
-        }
-
-        if (currentViewMode == PlayerViewMode.ThirdPerson)
-        {
-            flashlightLight.transform.SetParent(transform, false);
-            flashlightLight.transform.localPosition = thirdPersonFlashlightLocalPosition;
-            flashlightLight.transform.localRotation = Quaternion.Euler(thirdPersonFlashlightLocalEulerAngles);
-            return;
-        }
-
-        Camera activeCamera = ResolveActiveCamera();
-        if (activeCamera == null)
-        {
-            return;
-        }
-
-        flashlightLight.transform.SetParent(activeCamera.transform, false);
-        flashlightLight.transform.localPosition = flashlightLocalPosition;
-        flashlightLight.transform.localRotation = Quaternion.Euler(flashlightLocalEulerAngles);
-    }
-
     private Camera ResolveActiveCamera()
     {
         switch (currentViewMode)
         {
             case PlayerViewMode.ThirdPerson:
-                return thirdPersonView != null ? thirdPersonView.PlayerCamera : null;
+                return thirdPersonView?.PlayerCamera;
             case PlayerViewMode.FixedRouteRoam:
-                return fixedRouteRoamView != null ? fixedRouteRoamView.PlayerCamera : null;
+                return fixedRouteRoamView?.PlayerCamera;
             case PlayerViewMode.FixedCamera:
-                return fixedCameraView != null ? fixedCameraView.PlayerCamera : null;
+                return fixedCameraView?.PlayerCamera;
             case PlayerViewMode.MinimapTeleport:
-                return minimapTeleportView != null ? minimapTeleportView.PlayerCamera : null;
+                return minimapTeleportView?.PlayerCamera;
             default:
-                return firstPersonView != null ? firstPersonView.PlayerCamera : null;
+                return firstPersonView?.PlayerCamera;
         }
     }
 
-    private static void SetCursorLocked(bool locked)
+    private void EnsureComponents()
     {
-        GameController.SetCursorLocked(locked);
+        locomotion = GetOrAddComponent<PlayerLocomotion>();
+        firstPersonView = GetOrAddComponent<PlayerFirstPersonView>();
+        firstPersonView.Bind(this, locomotion);
+        firstPersonView.Initialize();
+        Camera sharedCamera = firstPersonView.PlayerCamera;
+
+        thirdPersonView = GetOrAddComponent<PlayerThirdPersonView>();
+        thirdPersonView.Bind(this, locomotion);
+        thirdPersonView.SetPlayerCamera(sharedCamera);
+        thirdPersonView.Initialize();
+
+        fixedRouteRoamView = GetOrAddComponent<PlayerFixedRouteRoamView>();
+        fixedRouteRoamView.Bind(this);
+        fixedRouteRoamView.SetPlayerCamera(sharedCamera);
+        fixedRouteRoamView.Initialize();
+
+        fixedCameraView = GetOrAddComponent<PlayerFixedCameraView>();
+        fixedCameraView.Bind(this);
+        fixedCameraView.SetPlayerCamera(sharedCamera);
+        fixedCameraView.Initialize();
+
+        minimapTeleportView = GetOrAddComponent<PlayerMinimapTeleportView>();
+        minimapTeleportView.Bind(this);
+        minimapTeleportView.SetPlayerCamera(sharedCamera);
+        minimapTeleportView.Initialize();
+
+        detailInspectView = GetOrAddComponent<PlayerDetailInspectView>();
+        detailInspectView.Bind(this);
+        detailInspectView.SetPlayerCamera(sharedCamera);
+        detailInspectView.Initialize();
+
+        perspectivePickupView = GetOrAddComponent<PlayerPerspectivePickupView>();
+        perspectivePickupView.Bind(this);
+        flashlight = GetOrAddComponent<PlayerFlashlight>();
+        flashlight.Initialize(this);
+        PlayerInteractionHintInput interactionHintInput = GetOrAddComponent<PlayerInteractionHintInput>();
+        interactionHintInput.Bind(this);
+    }
+
+    private T GetOrAddComponent<T>() where T : Component
+    {
+        T component = GetComponent<T>();
+        return component != null ? component : gameObject.AddComponent<T>();
     }
 }

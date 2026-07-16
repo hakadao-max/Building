@@ -2,11 +2,14 @@
 
 ## 目标
 
-将玩家控制拆成“调度器 + 具体视角实现”：
+将玩家控制拆成“生命周期调度器 + 自运行视角 + 独立能力组件”：
 
-- `SimplePlayerController`：处理数字键切换、公共移动、交互、手电筒和出生点传送。
-- `PlayerFirstPersonView`：处理第一人称相机位置、鼠标视角和第一人称移动方向。
-- `PlayerThirdPersonView`：处理第三人称相机环绕、可视模型、动画同步和第三人称移动方向。
+- `SimplePlayerController`：只处理组件初始化、模式进入/退出、控制权限、出生点与传送等关键生命周期。
+- `PlayerLocomotion`：处理移动输入、行走/奔跑速度、重力和 `CharacterController.Move`。
+- `PlayerFlashlight`：处理手电筒参数、输入和随当前视角重新挂接。
+- `PlayerInteractionHintInput`：处理 R 键并请求交互范围提示。
+- `PlayerFirstPersonView`：保存模式 1 按键，自行处理第一人称相机、鼠标视角和移动 Tick。
+- `PlayerThirdPersonView`：保存模式 2 按键，自行处理第三人称相机、移动 Tick、模型和动画。
 - `PlayerFixedRouteRoamView`：处理按固定曲线自动漫游、路线预览和运行时路径播放。
 - `PlayerFixedCameraView`：处理底部固定视角图标栏、点击进入固定视角和小范围视角旋转。
 - `PlayerMinimapTeleportView`：处理小地图覆盖显示、点击位置到世界坐标的映射和传送点计算。
@@ -30,11 +33,11 @@
 
 ### 交互配置归属
 
-`SimplePlayerController` 只保存透视拾取输入键和 R 高亮键，不再保存普通交互键、交互半径、检测层或提示距离。普通交互物的按键配置在 `InteractableArea`，有效范围由同对象上的 `SphereCollider` 决定；调整球形触发器的半径即可调整进入和离开交互范围的位置。
+透视拾取 E 键由 `PlayerPerspectivePickupView` 保存，R 高亮键由 `PlayerInteractionHintInput` 保存。`SimplePlayerController` 不保存功能输入。普通交互物的按键配置在 `InteractableArea`，有效范围由同对象上的 `SphereCollider` 决定；调整球形触发器的半径即可调整进入和离开交互范围的位置。
 
 按 R 显示提示时，每个 `InteractableArea` 分别使用自己的“提示显示距离”和“提示持续时间”。`WorldDescriptionUI` 也保存自己的同名提示配置，因此不同物体可以使用不同范围和时长。交互物是否参与物理射线仍由物体自身的 Layer 和 Collider 决定。
 
-`SimplePlayerController` Inspector 已按视角模式、按键、移动、手电筒和自动组件引用分区。视角与提示组件会自动查找或补齐，“自动组件引用（只读）”仅用于确认运行时绑定，无需手动拖拽。
+`SimplePlayerController` Inspector 只保留起始视角和启动光标策略。模式按键位于对应 View；移动参数位于 `PlayerLocomotion`；手电筒参数位于 `PlayerFlashlight`；R 键位于 `PlayerInteractionHintInput`。缺少的组件会在生命周期初始化时自动补齐。
 
 ### 透视拾取
 
@@ -42,7 +45,7 @@
 
 组件以中心射线为主：先从相机中心沿 forward 发射 Raycast，得到最近命中距离或最大跟随距离；随后在该候选位置执行多次 `OverlapBoxNonAlloc`。每一次 Box 检测都会根据候选距离重新计算 `拾取时缩放 × 当前距离 ÷ 拾取时距离`，因此检测盒与最终物体一样近处小、远处大。发生场景重叠时，候选位置按“Box前移步长”沿视线向相机方向移动，再用缩小后的新 Box 复检。玩家与物体自身 Collider 会被过滤。物体位置仍使用指数平滑跟随；位置更新后，缩放直接按物体与相机的实际距离计算，不再独立插值，避免缩放比相机移动慢一拍。
 
-`SimplePlayerController` 通过 `UIManager` 获取 `PlayerModePanel`，不会在玩家对象上补组件或创建模式文字。模式 1 至模式 7 的显示信息配置在 `PlayerModeDisplay`；颜色、字号、偏移和布局直接维护在面板的 TMP 与 RectTransform 上。
+模式生命周期变化时由 `SimplePlayerController` 通过 `UIManager` 刷新 `PlayerModePanel`，不会创建模式文字。模式 1 至模式 7 的显示信息配置在 `PlayerModeDisplay`；颜色、字号、偏移和布局直接维护在面板的 TMP 与 RectTransform 上。
 
 ### 普通交互提示
 

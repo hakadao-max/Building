@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Suburb {
 
-public class SimpleOpenClose : MonoBehaviour
+public class SimpleOpenClose : InteractableObj
 {
     private Animator myAnimator;
     private Animator additionalAnimator;
@@ -47,7 +47,7 @@ public class SimpleOpenClose : MonoBehaviour
 
     // Player clicks object. Method called from SimplePlayerUse script.
 
-    void ObjectClicked()
+    public override void ObjectClicked()
     {
 
         myNormalizedTime = myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;

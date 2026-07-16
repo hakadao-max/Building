@@ -3,9 +3,58 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public sealed class PlayerPerspectivePickupView : MonoBehaviour
 {
+    [LabelText("透视拾取模式按键")]
+    [SerializeField] private KeyCode activationKey = KeyCode.Alpha7;
+
+    [LabelText("拾取交互按键")]
+    [SerializeField] private KeyCode interactKey = KeyCode.E;
+
     private PerspectivePickupObject heldObject;
+    private Camera playerCamera;
+    private Collider[] playerColliders;
+    private bool isActive;
+    private SimplePlayerController controller;
 
     public bool HasHeldObject => heldObject != null;
+    public bool IsActivationRequested => activationKey != KeyCode.None && RuntimeInput.GetKeyDown(activationKey);
+
+    private void Update()
+    {
+        if (controller == null || !GameController.PlayerControlEnabled)
+        {
+            return;
+        }
+
+        if (IsActivationRequested)
+        {
+            controller.ApplyViewMode(PlayerViewMode.PerspectivePickup);
+        }
+
+        if (isActive)
+        {
+            TryHandleInteraction(interactKey, playerCamera, playerColliders);
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (isActive)
+        {
+            TickHeldObject();
+        }
+    }
+
+    public void Enter(Camera camera, Collider[] colliders)
+    {
+        playerCamera = camera;
+        playerColliders = colliders;
+        isActive = true;
+    }
+
+    public void Bind(SimplePlayerController owner)
+    {
+        controller = owner;
+    }
 
     public bool TryHandleInteraction(KeyCode interactKey, Camera playerCamera, Collider[] playerColliders)
     {
@@ -40,6 +89,7 @@ public sealed class PlayerPerspectivePickupView : MonoBehaviour
 
     public void Exit()
     {
+        isActive = false;
         ReleaseHeldObject();
     }
 

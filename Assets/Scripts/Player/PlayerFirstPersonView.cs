@@ -5,6 +5,9 @@ public sealed class PlayerFirstPersonView : MonoBehaviour
 {
     private const string CameraPitchPivotName = "Camera Pitch Pivot";
 
+    [LabelText("第一人称按键")]
+    [SerializeField] private KeyCode activationKey = KeyCode.Alpha1;
+
     [LabelText("玩家相机")]
     [SerializeField] private Camera playerCamera;
 
@@ -21,8 +24,11 @@ public sealed class PlayerFirstPersonView : MonoBehaviour
     [SerializeField] private float maxPitch = 70f;
 
     private Transform cameraPitchPivot;
+    private SimplePlayerController controller;
+    private PlayerLocomotion locomotion;
 
     public Camera PlayerCamera => playerCamera;
+    public bool IsActivationRequested => activationKey != KeyCode.None && RuntimeInput.GetKeyDown(activationKey);
 
     private void OnValidate()
     {
@@ -78,6 +84,44 @@ public sealed class PlayerFirstPersonView : MonoBehaviour
         HandleLookInput(ref yaw, ref pitch);
     }
 
+    private void Update()
+    {
+        if (controller == null || !GameController.PlayerControlEnabled)
+        {
+            return;
+        }
+
+        if (IsActivationRequested)
+        {
+            controller.ApplyViewMode(PlayerViewMode.FirstPerson);
+        }
+
+        if (!controller.IsViewInputBlocked
+            && (controller.CurrentViewMode == PlayerViewMode.FirstPerson
+                || controller.CurrentViewMode == PlayerViewMode.PerspectivePickup))
+        {
+            controller.TickFirstPersonView(this, locomotion);
+        }
+    }
+
+    public void Bind(SimplePlayerController owner, PlayerLocomotion playerLocomotion)
+    {
+        controller = owner;
+        locomotion = playerLocomotion;
+    }
+
+    public void Tick(ref float yaw, ref float pitch, bool lockCursorOnClick, PlayerLocomotion locomotion)
+    {
+        TickLook(ref yaw, ref pitch, lockCursorOnClick);
+        if (locomotion != null)
+        {
+            Vector3 input = locomotion.ReadMoveInput();
+            locomotion.Tick(GetMoveDirection(input));
+        }
+
+        RefreshCamera(yaw, pitch);
+    }
+
     public Vector3 GetMoveDirection(Vector3 input)
     {
         if (input.sqrMagnitude <= 0.0001f)
@@ -123,17 +167,12 @@ public sealed class PlayerFirstPersonView : MonoBehaviour
 
         if (playerCamera == null)
         {
-            GameObject cameraObject = new GameObject("Player Camera");
-            playerCamera = cameraObject.AddComponent<Camera>();
+            Debug.LogError("cannot find Main Camera");
         }
 
         playerCamera.transform.SetParent(cameraPitchPivot, false);
         TrySetMainCameraTag(playerCamera.gameObject);
 
-        if (playerCamera.GetComponent<AudioListener>() == null && FindObjectOfType<AudioListener>() == null)
-        {
-            playerCamera.gameObject.AddComponent<AudioListener>();
-        }
     }
 
     private static void TrySetMainCameraTag(GameObject cameraObject)

@@ -11,17 +11,9 @@ public sealed class InteractableArea : MonoBehaviour
 
     private readonly Dictionary<SimplePlayerController, int> overlappingPlayers =
         new Dictionary<SimplePlayerController, int>();
+    private InteractableObj interactableObject;
 
     [Header("交互配置")]
-    [LabelText("交互目标")]
-    [SerializeField] private GameObject interactionTarget;
-
-    [LabelText("广播给子物体")]
-    [SerializeField] private bool broadcastToChildren = true;
-
-    [LabelText("交互方法名")]
-    [SerializeField] private string interactionMessage = "ObjectClicked";
-
     [LabelText("交互按键")]
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
 
@@ -41,10 +33,6 @@ public sealed class InteractableArea : MonoBehaviour
     [LabelText("提示持续时间")]
     [SerializeField] private float hintDuration = 3f;
 
-    [Header("自动配置")]
-    [LabelText("自动使用父物体")]
-    [SerializeField] private bool useParentWhenTargetEmpty = true;
-
     public static IEnumerable<InteractableArea> ActiveInstances => ActiveAreas;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -58,15 +46,11 @@ public sealed class InteractableArea : MonoBehaviour
     private void Reset()
     {
         EnsureTriggerCollider();
-
-        if (transform.parent != null)
-        {
-            interactionTarget = transform.parent.gameObject;
-        }
     }
 
     private void OnEnable()
     {
+        ResolveInteractableObject();
         ActiveAreas.Add(this);
     }
 
@@ -104,7 +88,7 @@ public sealed class InteractableArea : MonoBehaviour
             ShowPrompt();
             if (interactionKey != KeyCode.None && RuntimeInput.GetKeyDown(interactionKey))
             {
-                Interact(player.gameObject);
+                Interact();
             }
         }
     }
@@ -150,23 +134,16 @@ public sealed class InteractableArea : MonoBehaviour
         EnsureTriggerCollider();
     }
 
-    public void Interact(GameObject interactor)
+    public void Interact()
     {
-        GameObject target = ResolveTarget();
-        if (target == null || string.IsNullOrWhiteSpace(interactionMessage))
+        ResolveInteractableObject();
+        if (interactableObject == null)
         {
+            Debug.LogWarning("交互区域所在物体缺少 InteractableObj 交互脚本。", this);
             return;
         }
 
-        SendMessageOptions options = SendMessageOptions.DontRequireReceiver;
-        if (broadcastToChildren)
-        {
-            target.BroadcastMessage(interactionMessage, options);
-        }
-        else
-        {
-            target.SendMessage(interactionMessage, options);
-        }
+        interactableObject.ObjectClicked();
     }
 
     public void TryShowHint(Vector3 observerPosition)
@@ -179,19 +156,12 @@ public sealed class InteractableArea : MonoBehaviour
         }
     }
 
-    private GameObject ResolveTarget()
+    private void ResolveInteractableObject()
     {
-        if (interactionTarget != null)
+        if (interactableObject == null)
         {
-            return interactionTarget;
+            interactableObject = GetComponent<InteractableObj>();
         }
-
-        if (useParentWhenTargetEmpty && transform.parent != null)
-        {
-            return transform.parent.gameObject;
-        }
-
-        return gameObject;
     }
 
     private Transform ResolveHintTarget()

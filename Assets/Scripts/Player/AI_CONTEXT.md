@@ -1,10 +1,13 @@
 # AI Context: 玩家视角与固定路线漫游
 
-一句话接入：场景里放 `First Third Person Controller.prefab`，运行后 `SimplePlayerController` 调度 `1/2/3/4/5/7` 切换模式；仅在第一人称下，`6` 开关详情查看；只有模式 7 才能用 E 拾取和释放 `PerspectivePickupObject`。
+一句话接入：场景里放 `First Third Person Controller.prefab`；各 View 自己读取 `1/2/3/4/5/6/7` 并运行当前模式，`SimplePlayerController` 只协调模式生命周期与传送。
 
 ## 关键类
 
-- `SimplePlayerController`：只负责模式调度、公共移动、手电筒和出生点传送。这里只保留透视拾取 E 键和 R 高亮键；普通交互的按键、范围和提示属于 `InteractableArea`。
+- `SimplePlayerController`：只负责组件初始化、模式进入/退出、控制权限、出生点和传送；Inspector 只保留起始模式与启动光标策略。
+- `PlayerLocomotion`：公共移动、奔跑和重力实现，由第一/第三人称 View 调用。
+- `PlayerFlashlight`：手电筒输入、参数与视角挂点切换。
+- `PlayerInteractionHintInput`：R 键输入与 `InteractableArea` 提示请求。
 - `PlayerFirstPersonView`：第一人称相机 rig、鼠标 yaw/pitch、第一人称移动方向。
 - `PlayerThirdPersonView`：第三人称相机 rig、模型显示隐藏、第三人称移动方向和动画同步；动画参数与视角/模型参数用 Header 分区，`Animator` 直接从生成出的模型实例中查找。
 - `PlayerFixedRouteRoamView`：Catmull-Rom 曲线漫游、世界坐标控制点预览、按曲线采样长度和 `漫游速度` 推进的运行时路径播放；`首尾相连` 控制曲线是否闭合，`循环播放` 只控制到终点后的播放行为。
@@ -26,23 +29,23 @@
 
 ## 数据流
 
-1. `SimplePlayerController.Update()` 先处理 `1/2/3/4/5/6` 视角与详情查看输入。
-2. 第一/第三人称模式下，控制器通过 `RuntimeInput` 读取键鼠输入，再把看向与移动方向计算委托给当前视角组件。
-3. 固定路线漫游模式下，控制器跳过手动移动，调用 `PlayerFixedRouteRoamView.TickRoam()` 按速度自动推进曲线；如果 `沿路线方向旋转` 关闭，控制器仍会把鼠标输入交给漫游组件做自由视角。
+1. 每个 View 的 `Update()` 读取自己的模式按键；命中后请求 `SimplePlayerController.ApplyViewMode()` 完成退出旧模式和进入新模式。
+2. 第一/第三人称 View 在自己激活时读取视角输入，并调用 `PlayerLocomotion` 执行移动；第三人称 View 同时刷新模型动画。
+3. 固定路线漫游 View 在自己激活时调用内部 `Tick()` 推进曲线，完成后请求控制器切回第一人称。
 4. 固定视角选择栏显示期间，控制器释放鼠标并暂停移动；点击图标后进入 `FixedCamera`，只调用 `PlayerFixedCameraView.HandleLookInput()` 和 `RefreshCamera()`。
 5. 小地图传送模式下，控制器释放鼠标并停止移动；点击地图后 `PlayerMinimapTeleportView.TryHandleTeleportClick()` 输出世界坐标，控制器调用 `TeleportTo()` 执行传送。
 6. 第一人称详情查看开启时，`PlayerDetailInspectView.LateUpdate()` 从相机中心发射射线，命中带 `WorldDescriptionUI` 且勾选 `仅详情查看时显示` 的物体时调用 `SetDetailInspectHighlighted(true)` 显示说明牌；再次按 `6`、离开第一人称或切换目标时会关闭或清除高亮，其他视角不响应 `6`。
-7. 数字键 7 进入 `PerspectivePickup`，它复用第一人称相机和移动；`PlayerPerspectivePickupView` 独占该模式下 E 的拾取/释放，普通触发交互只在第一、第三人称启用，避免同一次按键触发两套行为。
+7. `PlayerPerspectivePickupView` 自己读取数字键 7 和 E；进入后复用第一人称 View 与 `PlayerLocomotion`，退出时自行释放物体。
 8. 拾取时物体记录初始缩放和相机距离、关闭重力、设为运动学并忽略玩家 Collider；`LateUpdate` 在相机刷新后平滑移动物体，再用移动后的实际相机距离立即更新比例缩放；再次 E 或控制器禁用时恢复碰撞和重力，物理帧限制最大下落速度。
 9. 离开 `PerspectivePickup` 时自动释放当前物体；每次模式变化或详情查看开关时刷新 `PlayerModeDisplay`。
 10. 漫游结束时，如果 `结束后回到第一人称` 为 true，控制器切回 `PlayerViewMode.FirstPerson`。
 11. 所有玩家和设置面板按键都通过 `RuntimeInput` 读取，避免项目只启用 Input System 时触发 `UnityEngine.Input` 异常。
 12. `InteractableArea.OnTriggerEnter/Exit` 维护范围内玩家；进入时取得提示焦点并打开 `InteractionPromptPanel`，停留期间由交互区自身读取 E 并调用交互方法，退出时隐藏或把焦点交给仍覆盖玩家的其他区域。玩家的多个 Collider 使用重叠计数，避免单个 Collider 退出就提前关闭。
-13. 按 R 时，控制器只负责广播一次提示请求；每个 `InteractableArea` 和 `WorldDescriptionUI` 用自身配置的提示距离、持续时间与目标决定是否显示。
+13. `PlayerInteractionHintInput` 读取 R 并请求 `InteractableArea` 显示提示；Trigger 范围内的 `WorldDescriptionUI` 直接读取同一玩家能力组件暴露的按键，不做全场景查找。
 
 ## 扩展点
 
-- 需要新视角时，新增独立 Mono，并让 `SimplePlayerController` 只调用进入、退出、看向、移动方向或 Tick 接口。
+- 需要新视角时，新增独立 Mono，让它自行读取激活输入和执行 Tick，只向 `SimplePlayerController` 请求模式生命周期切换。
 - 需要更复杂漫游时，优先扩展 `PlayerFixedRouteRoamView` 的曲线评估、速度曲线或结束策略，不要改回控制器内部实现。
 - 需要更多固定视角按钮样式时，优先扩展 `PlayerFixedCameraView` 的 UI 创建逻辑，不要把 UI 细节放回 `SimplePlayerController`。
 - 需要改变地图点击到世界坐标的映射时，优先扩展 `PlayerMinimapTeleportView`；需要改变图片生成方式时，扩展 `MinimapGeneratorWindow`。

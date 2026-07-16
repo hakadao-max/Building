@@ -18,7 +18,7 @@ public sealed class PlayerViewModeTestWindow : EditorWindow
         EditorGUILayout.LabelField("玩家控制器", EditorStyles.boldLabel);
         controller = (SimplePlayerController)EditorGUILayout.ObjectField("控制器", controller, typeof(SimplePlayerController), true);
 
-        EditorGUILayout.HelpBox("可给当前选中对象补齐 SimplePlayerController、第一人称、第三人称、固定路线漫游、固定视角、小地图传送和详情查看组件，并自动写回控制器引用。", MessageType.Info);
+        EditorGUILayout.HelpBox("可给当前选中对象补齐玩家生命周期控制器、各视角组件，以及移动、手电筒和提示能力组件。", MessageType.Info);
 
         if (GUILayout.Button("从当前选择获取控制器", GUILayout.Height(28f)))
         {
@@ -66,15 +66,10 @@ public sealed class PlayerViewModeTestWindow : EditorWindow
         PlayerFixedCameraView fixedCameraView = EnsureComponent<PlayerFixedCameraView>(controllerObject);
         PlayerMinimapTeleportView minimapTeleportView = EnsureComponent<PlayerMinimapTeleportView>(controllerObject);
         PlayerDetailInspectView detailInspectView = EnsureComponent<PlayerDetailInspectView>(controllerObject);
-
-        SerializedObject serializedController = new SerializedObject(controller);
-        serializedController.FindProperty("firstPersonView").objectReferenceValue = firstPersonView;
-        serializedController.FindProperty("thirdPersonView").objectReferenceValue = thirdPersonView;
-        serializedController.FindProperty("fixedRouteRoamView").objectReferenceValue = fixedRouteRoamView;
-        serializedController.FindProperty("fixedCameraView").objectReferenceValue = fixedCameraView;
-        serializedController.FindProperty("minimapTeleportView").objectReferenceValue = minimapTeleportView;
-        serializedController.FindProperty("detailInspectView").objectReferenceValue = detailInspectView;
-        serializedController.ApplyModifiedProperties();
+        PlayerPerspectivePickupView perspectivePickupView = EnsureComponent<PlayerPerspectivePickupView>(controllerObject);
+        PlayerLocomotion locomotion = EnsureComponent<PlayerLocomotion>(controllerObject);
+        PlayerFlashlight flashlight = EnsureComponent<PlayerFlashlight>(controllerObject);
+        PlayerInteractionHintInput hintInput = EnsureComponent<PlayerInteractionHintInput>(controllerObject);
 
         EditorUtility.SetDirty(controller);
         EditorUtility.SetDirty(firstPersonView);
@@ -83,9 +78,13 @@ public sealed class PlayerViewModeTestWindow : EditorWindow
         EditorUtility.SetDirty(fixedCameraView);
         EditorUtility.SetDirty(minimapTeleportView);
         EditorUtility.SetDirty(detailInspectView);
+        EditorUtility.SetDirty(perspectivePickupView);
+        EditorUtility.SetDirty(locomotion);
+        EditorUtility.SetDirty(flashlight);
+        EditorUtility.SetDirty(hintInput);
         EditorSceneManager.MarkSceneDirty(controllerObject.scene);
 
-        lastResult = $"已补齐并绑定 {controllerObject.name} 的玩家视角组件。运行后按 1/2/3/4/5 切换视角，按 6 开关详情查看。";
+        lastResult = $"已补齐 {controllerObject.name} 的玩家视角与能力组件。运行后按 1/2/3/4/5/7 切换模式，按 6 开关详情查看。";
     }
 
     private static T EnsureComponent<T>(GameObject targetObject) where T : Component

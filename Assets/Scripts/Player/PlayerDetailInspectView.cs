@@ -3,6 +3,9 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public sealed class PlayerDetailInspectView : MonoBehaviour
 {
+    [LabelText("详情查看按键")]
+    [SerializeField] private KeyCode toggleKey = KeyCode.Alpha6;
+
     [Header("检测参数")]
     [LabelText("玩家相机")]
     [SerializeField] private Camera playerCamera;
@@ -16,12 +19,33 @@ public sealed class PlayerDetailInspectView : MonoBehaviour
     private WorldDescriptionUI currentTarget;
     private bool isActive;
     private bool initialized;
+    private SimplePlayerController controller;
 
     public bool IsActive => isActive;
 
     private void OnValidate()
     {
         inspectDistance = Mathf.Max(0.1f, inspectDistance);
+    }
+
+    private void Update()
+    {
+        if (controller == null || !GameController.PlayerControlEnabled)
+        {
+            return;
+        }
+
+        bool allowed = controller.CurrentViewMode == PlayerViewMode.FirstPerson
+            && !controller.IsViewInputBlocked;
+        if (TickToggleInput(allowed))
+        {
+            controller.RefreshModeDisplayFromView();
+        }
+    }
+
+    public void Bind(SimplePlayerController owner)
+    {
+        controller = owner;
     }
 
     public void SetPlayerCamera(Camera camera)
@@ -59,6 +83,11 @@ public sealed class PlayerDetailInspectView : MonoBehaviour
 
         Toggle();
         return true;
+    }
+
+    public bool TickToggleInput(bool inputAllowed)
+    {
+        return TryHandleToggleInput(toggleKey, inputAllowed);
     }
 
     public void SetActive(bool active)

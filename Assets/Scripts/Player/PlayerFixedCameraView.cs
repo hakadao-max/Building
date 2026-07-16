@@ -5,6 +5,9 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public sealed class PlayerFixedCameraView : MonoBehaviour
 {
+    [LabelText("固定视角选择按键")]
+    [SerializeField] private KeyCode activationKey = KeyCode.Alpha4;
+
     [Header("视角参数")]
     [LabelText("玩家相机")]
     [SerializeField] private Camera playerCamera;
@@ -33,8 +36,10 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
     private bool isActive;
     private bool isSelectionPanelVisible;
     private bool initialized;
+    private SimplePlayerController controller;
 
     public Camera PlayerCamera => playerCamera;
+    public bool IsActivationRequested => activationKey != KeyCode.None && RuntimeInput.GetKeyDown(activationKey);
     public bool IsActive => isActive;
     public bool IsSelectionPanelVisible => isSelectionPanelVisible;
 
@@ -43,6 +48,29 @@ public sealed class PlayerFixedCameraView : MonoBehaviour
         mouseSensitivity = Mathf.Max(0f, mouseSensitivity);
         maxYawOffset = Mathf.Max(0f, maxYawOffset);
         maxPitchOffset = Mathf.Max(0f, maxPitchOffset);
+    }
+
+    private void Update()
+    {
+        if (controller == null || !GameController.PlayerControlEnabled)
+        {
+            return;
+        }
+
+        if (IsActivationRequested)
+        {
+            controller.ToggleFixedCameraSelection();
+        }
+
+        if (controller.CurrentViewMode == PlayerViewMode.FixedCamera)
+        {
+            controller.TickFixedCameraView(this);
+        }
+    }
+
+    public void Bind(SimplePlayerController owner)
+    {
+        controller = owner;
     }
 
     public void SetPlayerCamera(Camera camera)

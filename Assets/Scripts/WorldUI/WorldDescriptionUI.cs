@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public sealed class WorldDescriptionUI : MonoBehaviour
 {
     private const string TipUITemplateName = "TipUI";
@@ -28,12 +30,6 @@ public sealed class WorldDescriptionUI : MonoBehaviour
     [LabelText("仅详情查看时显示")]
     [SerializeField] private bool onlyShowInDetailInspect = true;
 
-    [LabelText("最大显示距离")]
-    [SerializeField] private float maxVisibleDistance;
-
-    [LabelText("距离检测目标")]
-    [SerializeField] private Transform distanceTarget;
-
     [Header("提示配置")]
     [LabelText("提示目标")]
     [SerializeField] private Transform hintTarget;
@@ -47,7 +43,8 @@ public sealed class WorldDescriptionUI : MonoBehaviour
     [LabelText("提示持续时间")]
     [SerializeField] private float hintDuration = 3f;
 
-    private Transform cachedPlayerTransform;
+    private readonly Dictionary<PlayerInteractionHintInput, int> overlappingPlayers =
+        new Dictionary<PlayerInteractionHintInput, int>();
     private GameObject worldUIInstance;
     private RectTransform tipUI;
     private TMP_Text titleText;
@@ -57,10 +54,20 @@ public sealed class WorldDescriptionUI : MonoBehaviour
     public bool RequiresDetailInspect => onlyShowInDetailInspect;
     public bool ShouldShowHint => worldUIInstance == null;
 
+    private void Reset()
+    {
+        EnsureTriggerCollider();
+    }
+
+    private void Awake()
+    {
+        EnsureTriggerCollider();
+    }
+
     private void LateUpdate()
     {
         Camera targetCamera = Camera.main;
-        if (targetCamera == null || !ShouldDisplay(targetCamera))
+        if (targetCamera == null || !ShouldDisplay())
         {
             RemoveWorldUI();
             return;
@@ -76,12 +83,57 @@ public sealed class WorldDescriptionUI : MonoBehaviour
 
     private void OnDisable()
     {
+        overlappingPlayers.Clear();
         RemoveWorldUI();
+    }
+
+    private void Update()
+    {
+        foreach (PlayerInteractionHintInput hintInput in overlappingPlayers.Keys)
+        {
+            if (hintInput == null
+                || !ShouldShowHint
+                || hintInput.RevealKey == KeyCode.None
+                || !RuntimeInput.GetKeyDown(hintInput.RevealKey))
+            {
+                continue;
+            }
+
+            TryShowHint(hintInput.transform.position);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        PlayerInteractionHintInput hintInput = other.GetComponentInParent<PlayerInteractionHintInput>();
+        if (hintInput == null)
+        {
+            return;
+        }
+
+        overlappingPlayers.TryGetValue(hintInput, out int overlapCount);
+        overlappingPlayers[hintInput] = overlapCount + 1;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        PlayerInteractionHintInput hintInput = other.GetComponentInParent<PlayerInteractionHintInput>();
+        if (hintInput == null || !overlappingPlayers.TryGetValue(hintInput, out int overlapCount))
+        {
+            return;
+        }
+
+        if (overlapCount > 1)
+        {
+            overlappingPlayers[hintInput] = overlapCount - 1;
+            return;
+        }
+
+        overlappingPlayers.Remove(hintInput);
     }
 
     private void OnValidate()
     {
-        maxVisibleDistance = Mathf.Max(0f, maxVisibleDistance);
         hintRevealDistance = Mathf.Max(0f, hintRevealDistance);
         hintDuration = Mathf.Max(0.1f, hintDuration);
         ApplyTextParameters();
@@ -194,21 +246,14 @@ public sealed class WorldDescriptionUI : MonoBehaviour
         return null;
     }
 
-    private bool ShouldDisplay(Camera targetCamera)
+    private bool ShouldDisplay()
     {
-        if (onlyShowInDetailInspect)
+        if (overlappingPlayers.Count == 0)
         {
-            return isDetailInspectHighlighted;
+            return false;
         }
 
-        if (maxVisibleDistance <= 0f)
-        {
-            return true;
-        }
-
-        Transform targetTransform = ResolveDistanceTarget(targetCamera);
-        float distance = Vector3.Distance(targetTransform.position, ResolveTipPosition());
-        return distance <= maxVisibleDistance;
+        return !onlyShowInDetailInspect || isDetailInspectHighlighted;
     }
 
     private Vector3 ResolveTipPosition()
@@ -240,25 +285,6 @@ public sealed class WorldDescriptionUI : MonoBehaviour
         target.rotation = targetRotation;
     }
 
-    private Transform ResolveDistanceTarget(Camera targetCamera)
-    {
-        if (distanceTarget != null)
-        {
-            return distanceTarget;
-        }
-
-        if (cachedPlayerTransform == null)
-        {
-            SimplePlayerController playerController = GameController.PlayerController;
-            if (playerController != null)
-            {
-                cachedPlayerTransform = playerController.transform;
-            }
-        }
-
-        return cachedPlayerTransform != null ? cachedPlayerTransform : targetCamera.transform;
-    }
-
     private Transform ResolveHintTarget()
     {
         if (hintTarget != null)
@@ -279,5 +305,21 @@ public sealed class WorldDescriptionUI : MonoBehaviour
         MeshRenderer meshRenderer = target.GetComponent<MeshRenderer>();
         MeshFilter meshFilter = target.GetComponent<MeshFilter>();
         return meshRenderer != null && meshRenderer.enabled && meshFilter != null && meshFilter.sharedMesh != null;
+    }
+
+    private void EnsureTriggerCollider()
+    {
+        SphereCollider triggerCollider = GetComponent<SphereCollider>();
+        if (triggerCollider == null)
+        {
+            triggerCollider = gameObject.AddComponent<SphereCollider>();
+            triggerCollider.radius = 2f;
+        }
+
+        triggerCollider.isTrigger = true;
+        if (Mathf.Approximately(triggerCollider.radius, 0f))
+        {
+            triggerCollider.radius = 2f;
+        }
     }
 }
