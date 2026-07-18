@@ -1,0 +1,1 @@
+如果学生来自 Godot，不要从零记忆。先做概念映射：Node 对应对象加组件，Signal 对应事件，Container 对应 Layout Group。映射建立后，再学习 Unity 的具体 API。

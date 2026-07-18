@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="toc">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">UGUI 的四层结构：空间、输入、控件、行为</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">把职责分清，UI 问题就更容易定位</text>
+  <g id="layers" transform="translate(120 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="1040" height="92" rx="22" fill="#2457A6"/>
+      <!-- icon: tabler-outline/layout-dashboard -->
+  <g transform="translate(26, 22) scale(2)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" />
+    <path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
+    <path d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" />
+    <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
+  </g>
+      <text x="96" y="43" font-size="32" font-weight="700" fill="#FFFFFF">Canvas：布局与渲染空间</text>
+      <text x="96" y="76" font-size="24" fill="#FFFFFF">决定 UI 在屏幕或 3D 世界中如何存在</text>
+    </g>
+    <g transform="translate(0 112)">
+      <rect x="0" y="0" width="1040" height="92" rx="22" fill="#55A68B"/>
+      <!-- icon: tabler-outline/pointer -->
+  <g transform="translate(26, 22) scale(2)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M7.904 17.563a1.2 1.2 0 0 0 2.228 .308l2.09 -3.093l4.907 4.907a1.067 1.067 0 0 0 1.509 0l1.047 -1.047a1.067 1.067 0 0 0 0 -1.509l-4.907 -4.907l3.113 -2.09a1.2 1.2 0 0 0 -.309 -2.228l-13.582 -3.904l3.904 13.563" />
+  </g>
+      <text x="96" y="43" font-size="32" font-weight="700" fill="#FFFFFF">EventSystem：输入事件调度</text>
+      <text x="96" y="76" font-size="24" fill="#FFFFFF">维护选中对象，并把鼠标、键盘、手柄事件送出去</text>
+    </g>
+    <g transform="translate(0 224)">
+      <rect x="0" y="0" width="1040" height="92" rx="22" fill="#F2A93B"/>
+      <!-- icon: tabler-outline/box -->
+  <g transform="translate(26, 22) scale(2)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+    <path d="M12 12l8 -4.5" />
+    <path d="M12 12l0 9" />
+    <path d="M12 12l-8 -4.5" />
+  </g>
+      <text x="96" y="43" font-size="32" font-weight="700" fill="#FFFFFF">Controls：显示、状态与交互</text>
+      <text x="96" y="76" font-size="24" fill="#FFFFFF">Button、Image、RawImage、Toggle、Dropdown</text>
+    </g>
+    <g transform="translate(0 336)">
+      <rect x="0" y="0" width="1040" height="92" rx="22" fill="#596273"/>
+      <!-- icon: tabler-outline/settings -->
+  <g transform="translate(26, 22) scale(2)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" />
+    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  </g>
+      <text x="96" y="43" font-size="32" font-weight="700" fill="#FFFFFF">Behaviour：真正的游戏行为</text>
+      <text x="96" y="76" font-size="24" fill="#FFFFFF">通过 Inspector 事件或脚本监听执行逻辑</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">UGUI · 四层职责模型</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">02</text>
+  </g>
+</svg>

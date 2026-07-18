@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">EventSystem：输入如何抵达一个控件</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">缺一环，UI 都可能“看得见但点不到”</text>
+  <g id="input-pipeline" transform="translate(70 188)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="230" height="280" rx="28" fill="#EAF0FA" stroke="#2457A6" stroke-width="4"/>
+      <!-- icon: tabler-outline/mouse -->
+  <g transform="translate(75, 34) scale(3.33333)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M6 7a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4l0 -10" />
+    <path d="M12 7l0 4" />
+  </g>
+      <text x="115" y="158" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">输入设备</text>
+      <text x="115" y="204" text-anchor="middle" font-size="24" fill="#596273">鼠标 · 键盘</text>
+      <text x="115" y="240" text-anchor="middle" font-size="24" fill="#596273">手柄 · 触摸</text>
+    </g>
+    <path d="M246 140 H286 V116 L326 140 L286 164 V140" fill="#D8D2C5"/>
+    <g transform="translate(330 0)">
+      <rect x="0" y="0" width="230" height="280" rx="28" fill="#E8F5F0" stroke="#55A68B" stroke-width="4"/>
+      <!-- icon: tabler-outline/settings -->
+  <g transform="translate(75, 34) scale(3.33333)" fill="none" stroke="#55A68B" stroke-width="2">
+    <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" />
+    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  </g>
+      <text x="115" y="158" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">输入模块</text>
+      <text x="115" y="204" text-anchor="middle" font-size="24" fill="#596273">Input System UI</text>
+      <text x="115" y="240" text-anchor="middle" font-size="24" fill="#596273">Input Module</text>
+    </g>
+    <path d="M576 140 H616 V116 L656 140 L616 164 V140" fill="#D8D2C5"/>
+    <g transform="translate(660 0)">
+      <rect x="0" y="0" width="230" height="280" rx="28" fill="#FFF0D1" stroke="#F2A93B" stroke-width="4"/>
+      <!-- icon: tabler-outline/pointer -->
+  <g transform="translate(75, 34) scale(3.33333)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M7.904 17.563a1.2 1.2 0 0 0 2.228 .308l2.09 -3.093l4.907 4.907a1.067 1.067 0 0 0 1.509 0l1.047 -1.047a1.067 1.067 0 0 0 0 -1.509l-4.907 -4.907l3.113 -2.09a1.2 1.2 0 0 0 -.309 -2.228l-13.582 -3.904l3.904 13.563" />
+  </g>
+      <text x="115" y="158" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">EventSystem</text>
+      <text x="115" y="204" text-anchor="middle" font-size="24" fill="#596273">选中与导航</text>
+      <text x="115" y="240" text-anchor="middle" font-size="24" fill="#596273">事件分发</text>
+    </g>
+    <path d="M906 140 H946 V116 L986 140 L946 164 V140" fill="#D8D2C5"/>
+    <g transform="translate(990 0)">
+      <rect x="0" y="0" width="230" height="280" rx="28" fill="#FFFFFF" stroke="#596273" stroke-width="4"/>
+      <!-- icon: tabler-outline/click -->
+  <g transform="translate(75, 34) scale(3.33333)" fill="none" stroke="#596273" stroke-width="2">
+    <path d="M3 12l3 0" />
+    <path d="M12 3l0 3" />
+    <path d="M7.8 7.8l-2.2 -2.2" />
+    <path d="M16.2 7.8l2.2 -2.2" />
+    <path d="M7.8 16.2l-2.2 2.2" />
+    <path d="M12 12l9 3l-4 2l-2 4l-3 -9" />
+  </g>
+      <text x="115" y="158" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">控件</text>
+      <text x="115" y="204" text-anchor="middle" font-size="24" fill="#596273">Graphic Raycaster</text>
+      <text x="115" y="240" text-anchor="middle" font-size="24" fill="#596273">命中并响应</text>
+    </g>
+  </g>
+  <rect x="220" y="520" width="840" height="72" rx="20" fill="#2457A6"/>
+  <text x="640" y="568" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#FFFFFF">一个场景通常只保留一个 EventSystem</text>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">EventSystem · 输入事件管线</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">05</text>
+  </g>
+</svg>

@@ -1,0 +1,1 @@
+CharacterController 提供受碰撞约束的脚本控制移动，但 Move 不会自动施加重力。理解胶囊尺寸、坡度、台阶、贴地状态以及 Move 与 SimpleMove 的参数差异，是稳定移动的前提。

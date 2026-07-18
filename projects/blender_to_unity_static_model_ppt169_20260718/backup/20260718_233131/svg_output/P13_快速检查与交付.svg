@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="ending">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">最终验收：Scale=1、朝向正确、材质正常、碰撞可用</text>
+    <path d="M60 106 C250 98 430 112 650 100" fill="none" stroke="#F2A93B" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g id="ready-banner" transform="translate(190 142)">
+    <rect x="0" y="0" width="900" height="118" rx="28" fill="#E8F5F0" stroke="#55A68B" stroke-width="4"/>
+    <circle cx="76" cy="59" r="42" fill="#55A68B"/>
+    <use data-icon="tabler-outline/checklist" x="49" y="32" width="54" height="54" fill="#FFFFFF" stroke-width="2"/>
+    <text x="144" y="50" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#2F8F6A">资产交付完成，不是“能导入”就结束</text>
+    <text x="144" y="88" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">必须在实际场景中验证尺寸、方向、渲染、碰撞和重导入安全性</text>
+  </g>
+  <g id="delivery-steps" transform="translate(58 326)">
+    <path d="M112 34 H1052" fill="none" stroke="#D8D2C5" stroke-width="5" stroke-linecap="round"/>
+    <g id="delivery-step-1">
+      <circle cx="112" cy="34" r="34" fill="#F2A93B"/>
+      <text x="112" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">1</text>
+      <rect x="10" y="82" width="204" height="214" rx="20" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <use data-icon="tabler-outline/cube" x="78" y="104" width="68" height="68" fill="#F2A93B" stroke-width="2"/>
+      <text x="112" y="202" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#8C5A00">Blender 源头</text>
+      <text x="112" y="240" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">单位 / Scale / Origin</text>
+      <text x="112" y="270" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">轴向和 Mesh 正确</text>
+    </g>
+    <g id="delivery-step-2" transform="translate(234 0)">
+      <circle cx="112" cy="34" r="34" fill="#F2A93B"/>
+      <text x="112" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">2</text>
+      <rect x="10" y="82" width="204" height="214" rx="20" fill="#FFF9E9" stroke="#F2A93B" stroke-width="3"/>
+      <use data-icon="tabler-outline/file-export" x="78" y="104" width="68" height="68" fill="#F2A93B" stroke-width="2"/>
+      <text x="112" y="202" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#8C5A00">FBX 导出</text>
+      <text x="112" y="240" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">选定对象 / 网格</text>
+      <text x="112" y="270" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">-Z / Y · 动画关闭</text>
+    </g>
+    <g id="delivery-step-3" transform="translate(468 0)">
+      <circle cx="112" cy="34" r="34" fill="#2457A6"/>
+      <text x="112" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">3</text>
+      <rect x="10" y="82" width="204" height="214" rx="20" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <use data-icon="tabler-outline/download" x="78" y="104" width="68" height="68" fill="#2457A6" stroke-width="2"/>
+      <text x="112" y="202" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2457A6">Unity 导入</text>
+      <text x="112" y="240" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">Scale 1 / Normals</text>
+      <text x="112" y="270" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">Rig None / 无动画</text>
+    </g>
+    <g id="delivery-step-4" transform="translate(702 0)">
+      <circle cx="112" cy="34" r="34" fill="#2457A6"/>
+      <text x="112" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">4</text>
+      <rect x="10" y="82" width="204" height="214" rx="20" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <use data-icon="tabler-outline/palette" x="78" y="104" width="68" height="68" fill="#2457A6" stroke-width="2"/>
+      <text x="112" y="202" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2457A6">材质与 Prefab</text>
+      <text x="112" y="240" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">贴图类型与 Shader</text>
+      <text x="112" y="270" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">游戏组件放外层</text>
+    </g>
+    <g id="delivery-step-5" transform="translate(936 0)">
+      <circle cx="112" cy="34" r="34" fill="#55A68B"/>
+      <text x="112" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">5</text>
+      <rect x="10" y="82" width="204" height="214" rx="20" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <use data-icon="tabler-outline/package-export" x="78" y="104" width="68" height="68" fill="#55A68B" stroke-width="2"/>
+      <text x="112" y="202" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2F8F6A">场景验收</text>
+      <text x="112" y="240" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">渲染与碰撞正确</text>
+      <text x="112" y="270" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#1F2937">可安全重导入</text>
+    </g>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Blender → Unity · 快速检查与交付</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">13</text>
+</svg>

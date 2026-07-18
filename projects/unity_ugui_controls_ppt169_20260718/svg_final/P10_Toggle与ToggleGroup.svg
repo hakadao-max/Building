@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">Toggle：一个布尔状态，或一组互斥选择</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">开关用 Toggle；多选一可用 ToggleGroup</text>
+  <g id="toggle-pillars" transform="translate(80 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="530" height="438" rx="30" fill="#FFFFFF" stroke="#2457A6" stroke-width="4"/>
+      <rect x="0" y="0" width="530" height="88" rx="30" fill="#2457A6"/>
+      <!-- icon: tabler-outline/toggle-left -->
+  <g transform="translate(28, 20) scale(2)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M6 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M2 12a6 6 0 0 1 6 -6h8a6 6 0 0 1 6 6a6 6 0 0 1 -6 6h-8a6 6 0 0 1 -6 -6" />
+  </g>
+      <text x="96" y="58" font-size="36" font-weight="700" fill="#FFFFFF">单个 Toggle</text>
+      <text x="30" y="140" font-size="32" font-weight="700" fill="#1F2937">音乐：开 / 关</text>
+      <rect x="348" y="112" width="128" height="58" rx="29" fill="#55A68B"/>
+      <circle cx="444" cy="141" r="22" fill="#FFFFFF"/>
+      <text x="30" y="204" font-size="24" fill="#596273">Is On 保存当前状态</text>
+      <text x="30" y="246" font-size="24" fill="#596273">On Value Changed(bool)</text>
+      <rect x="30" y="286" width="470" height="116" rx="18" fill="#EAF0FA"/>
+      <text x="54" y="326" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#2457A6">SetIsOnWithoutNotify(value)</text>
+      <text x="54" y="372" font-size="24" fill="#596273">初始化显示，不误触发监听器</text>
+    </g>
+    <g transform="translate(590 0)">
+      <rect x="0" y="0" width="530" height="438" rx="30" fill="#FFFFFF" stroke="#55A68B" stroke-width="4"/>
+      <rect x="0" y="0" width="530" height="88" rx="30" fill="#55A68B"/>
+      <!-- icon: tabler-outline/list -->
+  <g transform="translate(28, 20) scale(2)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M9 6l11 0" />
+    <path d="M9 12l11 0" />
+    <path d="M9 18l11 0" />
+    <path d="M5 6l0 .01" />
+    <path d="M5 12l0 .01" />
+    <path d="M5 18l0 .01" />
+  </g>
+      <text x="96" y="58" font-size="36" font-weight="700" fill="#FFFFFF">Toggle Group</text>
+      <text x="30" y="140" font-size="32" font-weight="700" fill="#1F2937">难度：多选一</text>
+      <g font-size="24">
+        <circle cx="58" cy="204" r="22" fill="#55A68B"/><circle cx="58" cy="204" r="10" fill="#FFFFFF"/><text x="96" y="213" fill="#1F2937">简单</text>
+        <circle cx="58" cy="260" r="22" fill="#F4F0E8" stroke="#D8D2C5" stroke-width="3"/><text x="96" y="269" fill="#1F2937">普通</text>
+        <circle cx="58" cy="316" r="22" fill="#F4F0E8" stroke="#D8D2C5" stroke-width="3"/><text x="96" y="325" fill="#1F2937">困难</text>
+      </g>
+      <rect x="250" y="184" width="240" height="156" rx="18" fill="#E8F5F0"/>
+      <text x="370" y="226" text-anchor="middle" font-size="24" font-weight="700" fill="#2F8F6A">适合</text>
+      <text x="370" y="270" text-anchor="middle" font-size="24" fill="#596273">难度 / 角色</text>
+      <text x="370" y="310" text-anchor="middle" font-size="24" fill="#596273">互斥模式</text>
+      <text x="30" y="394" font-size="24" fill="#D85C45">选项很多时，改用 Dropdown</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Toggle · 布尔状态与互斥选择</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">10</text>
+  </g>
+</svg>

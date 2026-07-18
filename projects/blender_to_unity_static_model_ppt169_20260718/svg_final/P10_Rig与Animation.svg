@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">静态模型在 Unity 里也应保持“静态”</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">Rig 与 Animation 是最容易暴露 Blender 导出遗漏的两个页签</text>
+  </g>
+  <g id="pillar-rig" transform="translate(60 166)">
+    <rect x="0" y="0" width="360" height="382" rx="26" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <circle cx="180" cy="74" r="54" fill="#2457A6"/>
+    <!-- icon: tabler-outline/settings -->
+  <g transform="translate(146, 40) scale(2.83333)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" />
+    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  </g>
+    <text x="180" y="160" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="34" font-weight="700" fill="#2457A6">Rig</text>
+    <text x="180" y="208" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">Animation Type</text>
+    <rect x="70" y="232" width="220" height="70" rx="18" fill="#FFFFFF" stroke="#2457A6" stroke-width="3"/>
+    <text x="180" y="278" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="36" font-weight="700" fill="#2457A6">None</text>
+    <text x="180" y="340" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">不建立 Avatar</text>
+    <text x="180" y="370" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">不解释为角色骨骼</text>
+  </g>
+  <g id="pillar-animation" transform="translate(460 166)">
+    <rect x="0" y="0" width="360" height="382" rx="26" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <circle cx="180" cy="74" r="54" fill="#55A68B"/>
+    <!-- icon: tabler-outline/checklist -->
+  <g transform="translate(146, 40) scale(2.83333)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" />
+    <path d="M14 19l2 2l4 -4" />
+    <path d="M9 8h4" />
+    <path d="M9 12h2" />
+  </g>
+    <text x="180" y="160" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#2F8F6A">Animation</text>
+    <text x="180" y="208" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">Import Animation</text>
+    <rect x="70" y="232" width="220" height="70" rx="18" fill="#FFFFFF" stroke="#55A68B" stroke-width="3"/>
+    <text x="180" y="278" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="36" font-weight="700" fill="#2F8F6A">OFF</text>
+    <text x="180" y="340" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">不生成无关 Clip</text>
+    <text x="180" y="370" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">减少导入内容与误解</text>
+  </g>
+  <g id="pillar-symptom" transform="translate(860 166)">
+    <rect x="0" y="0" width="360" height="382" rx="26" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+    <circle cx="180" cy="74" r="54" fill="#D85C45"/>
+    <!-- icon: tabler-outline/alert-triangle -->
+  <g transform="translate(146, 40) scale(2.83333)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M12 9v4" />
+    <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0" />
+    <path d="M12 16h.01" />
+  </g>
+    <text x="180" y="160" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#D85C45">仍然出现 Clip？</text>
+    <text x="30" y="214" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" font-weight="700" fill="#1F2937">症状</text>
+    <text x="30" y="248" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">Unity 显示无关动画片段</text>
+    <text x="30" y="294" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" font-weight="700" fill="#D85C45">根因</text>
+    <text x="30" y="328" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">Blender 导出时动画未关闭</text>
+    <rect x="30" y="344" width="300" height="26" rx="13" fill="#FFF0D1"/>
+    <text x="180" y="363" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#D85C45">回 Blender 修导出预设并重导</text>
+  </g>
+  <g id="feedback-arrow">
+    <path d="M1036 574 C914 626 322 626 206 576" fill="none" stroke="#F2A93B" stroke-width="6" stroke-linecap="round"/>
+    <path d="M222 560 L202 576 L226 588" fill="none" stroke="#F2A93B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="620" y="622" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" font-weight="700" fill="#8C5A00">导入异常优先回到源头修正，不在 Unity 里长期打补丁</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Blender → Unity · Rig 与 Animation</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">10</text>
+</svg>

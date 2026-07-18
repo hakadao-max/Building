@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">把正确设置保存成 Unity_静态模型</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">预设减少重复劳动，但每次仍要复核与当前选择有关的选项</text>
+  </g>
+  <g id="preset-hero" transform="translate(226 154)">
+    <rect x="0" y="0" width="828" height="116" rx="26" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+    <use data-icon="tabler-outline/settings" x="30" y="28" width="60" height="60" fill="#F2A93B" stroke-width="2"/>
+    <text x="112" y="48" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="28" font-weight="700" fill="#8C5A00">操作项预设</text>
+    <rect x="304" y="24" width="360" height="68" rx="20" fill="#FFFFFF" stroke="#F2A93B" stroke-width="3"/>
+    <text x="484" y="68" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#1F2937">Unity_静态模型</text>
+    <use data-icon="tabler-outline/checklist" x="720" y="28" width="60" height="60" fill="#55A68B" stroke-width="2"/>
+  </g>
+  <g id="export-steps" transform="translate(60 330)">
+    <path d="M105 34 H1055" fill="none" stroke="#D8D2C5" stroke-width="5" stroke-linecap="round"/>
+    <g id="step-1">
+      <circle cx="105" cy="34" r="34" fill="#F2A93B"/>
+      <text x="105" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">1</text>
+      <rect x="0" y="82" width="210" height="200" rx="20" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <text x="105" y="122" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#8C5A00">选中对象</text>
+      <text x="105" y="162" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">零件全部多选</text>
+      <text x="105" y="195" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">排除无关对象</text>
+      <rect x="24" y="232" width="162" height="28" rx="14" fill="#FFFFFF"/>
+      <text x="105" y="252" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="17" font-weight="700" fill="#8C5A00">Selection ready</text>
+    </g>
+    <g id="step-2" transform="translate(235 0)">
+      <circle cx="105" cy="34" r="34" fill="#F2A93B"/>
+      <text x="105" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">2</text>
+      <rect x="0" y="82" width="210" height="200" rx="20" fill="#FFF9E9" stroke="#F2A93B" stroke-width="3"/>
+      <text x="105" y="122" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#8C5A00">套用预设</text>
+      <text x="105" y="162" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">选择 Unity_静态模型</text>
+      <text x="105" y="195" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">恢复统一基础值</text>
+      <rect x="24" y="232" width="162" height="28" rx="14" fill="#FFF0D1"/>
+      <text x="105" y="252" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="17" font-weight="700" fill="#8C5A00">Preset loaded</text>
+    </g>
+    <g id="step-3" transform="translate(470 0)">
+      <circle cx="105" cy="34" r="34" fill="#2457A6"/>
+      <text x="105" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">3</text>
+      <rect x="0" y="82" width="210" height="200" rx="20" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <text x="105" y="122" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2457A6">复核范围</text>
+      <text x="105" y="162" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">选定物体</text>
+      <text x="105" y="195" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">网格 / 空物体</text>
+      <rect x="24" y="232" width="162" height="28" rx="14" fill="#FFFFFF"/>
+      <text x="105" y="252" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="17" font-weight="700" fill="#2457A6">Scope checked</text>
+    </g>
+    <g id="step-4" transform="translate(705 0)">
+      <circle cx="105" cy="34" r="34" fill="#2457A6"/>
+      <text x="105" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">4</text>
+      <rect x="0" y="82" width="210" height="200" rx="20" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <text x="105" y="122" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2457A6">复核数据</text>
+      <text x="105" y="162" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">变换与几何</text>
+      <text x="105" y="195" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">骨架 / 动画关闭</text>
+      <rect x="24" y="232" width="162" height="28" rx="14" fill="#FFFFFF"/>
+      <text x="105" y="252" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="17" font-weight="700" fill="#2457A6">Data checked</text>
+    </g>
+    <g id="step-5" transform="translate(940 0)">
+      <circle cx="105" cy="34" r="34" fill="#55A68B"/>
+      <text x="105" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">5</text>
+      <rect x="0" y="82" width="210" height="200" rx="20" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <text x="105" y="122" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2F8F6A">导出并测试</text>
+      <text x="105" y="162" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">FBX + 独立贴图</text>
+      <text x="105" y="195" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">在 Unity Apply</text>
+      <rect x="24" y="232" width="162" height="28" rx="14" fill="#FFFFFF"/>
+      <text x="105" y="252" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="17" font-weight="700" fill="#2F8F6A">Verified export</text>
+    </g>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Blender → Unity · 可复用导出动作</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">8</text>
+</svg>

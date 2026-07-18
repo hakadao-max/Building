@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">从贴图到画面：Texture、Material、Shader、Renderer</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">四者不是同义词，而是一条“数据 → 规则 → 绑定 → 输出”的链</text>
+  <g id="render-layers" transform="translate(70 158)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="860" height="88" rx="20" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <rect x="0" y="0" width="112" height="88" rx="20" fill="#2457A6"/>
+      <text x="56" y="57" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">01</text>
+      <use data-icon="tabler-outline/palette" x="140" y="20" width="48" height="48" fill="#2457A6" stroke-width="2"/>
+      <text x="210" y="42" font-size="32" font-weight="700" fill="#1F2937">Texture 贴图</text>
+      <text x="210" y="73" font-size="24" fill="#596273">颜色、法线、粗糙度等表面数据</text>
+    </g>
+    <g transform="translate(0 106)">
+      <rect x="0" y="0" width="860" height="88" rx="20" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <rect x="0" y="0" width="112" height="88" rx="20" fill="#55A68B"/>
+      <text x="56" y="57" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">02</text>
+      <circle cx="164" cy="44" r="25" fill="#F2A93B" stroke="#2F8F6A" stroke-width="5"/>
+      <text x="210" y="42" font-size="32" font-weight="700" fill="#1F2937">Shader 着色器</text>
+      <text x="210" y="73" font-size="24" fill="#596273">规定顶点与像素如何被计算</text>
+    </g>
+    <g transform="translate(0 212)">
+      <rect x="0" y="0" width="860" height="88" rx="20" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <rect x="0" y="0" width="112" height="88" rx="20" fill="#F2A93B"/>
+      <text x="56" y="57" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">03</text>
+      <use data-icon="tabler-outline/palette" x="140" y="20" width="48" height="48" fill="#F2A93B" stroke-width="2"/>
+      <text x="210" y="42" font-size="32" font-weight="700" fill="#1F2937">Material 材质</text>
+      <text x="210" y="73" font-size="24" fill="#596273">选择 Shader，并保存它所需参数</text>
+    </g>
+    <g transform="translate(0 318)">
+      <rect x="0" y="0" width="860" height="88" rx="20" fill="#F4F0E8" stroke="#596273" stroke-width="3"/>
+      <rect x="0" y="0" width="112" height="88" rx="20" fill="#596273"/>
+      <text x="56" y="57" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">04</text>
+      <use data-icon="tabler-outline/cube" x="140" y="20" width="48" height="48" fill="#596273" stroke-width="2"/>
+      <text x="210" y="42" font-size="32" font-weight="700" fill="#1F2937">Renderer 渲染器</text>
+      <text x="210" y="73" font-size="24" fill="#596273">把网格与材质送入渲染管线</text>
+    </g>
+  </g>
+  <g id="skinned-renderer" transform="translate(960 158)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="260" height="406" rx="28" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <use data-icon="tabler-outline/ghost" x="88" y="34" width="84" height="84" fill="#2457A6" stroke-width="2"/>
+    <text x="130" y="160" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">Skinned Mesh</text>
+    <text x="130" y="202" text-anchor="middle" font-size="32" font-weight="700" fill="#2457A6">Renderer</text>
+    <path d="M38 232 C95 214 166 250 222 228" fill="none" stroke="#F2A93B" stroke-width="7" stroke-linecap="round"/>
+    <text x="28" y="284" font-size="24" fill="#596273">骨骼驱动网格变形</text>
+    <text x="28" y="326" font-size="24" fill="#596273">常用于角色与动画</text>
+    <rect x="28" y="350" width="204" height="38" rx="12" fill="#EAF0FA"/>
+    <text x="130" y="377" text-anchor="middle" font-size="24" font-weight="700" fill="#2457A6">网格会“动起来”</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">渲染关系 · 数据、规则、参数与输出</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">08</text>
+  </g>
+</svg>

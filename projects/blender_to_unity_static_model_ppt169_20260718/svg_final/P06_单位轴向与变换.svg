@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">尺寸和朝向，应在 Blender 源头正确</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">不要把 Unity 的 Transform 缩放当作长期补救工具</text>
+  </g>
+  <g id="axis-hero" transform="translate(62 158)">
+    <rect x="0" y="0" width="430" height="414" rx="28" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="215" y="48" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#8C5A00">Blender → Unity 轴向</text>
+    <g id="axis-lines" stroke-width="6" stroke-linecap="round" fill="none">
+      <path d="M214 266 L352 266" stroke="#D85C45"/>
+      <path d="M214 266 L214 118" stroke="#55A68B"/>
+      <path d="M214 266 L118 346" stroke="#2457A6"/>
+      <path d="M336 253 L354 266 L336 279" stroke="#D85C45"/>
+      <path d="M201 136 L214 116 L227 136" stroke="#55A68B"/>
+      <path d="M132 328 L116 348 L141 344" stroke="#2457A6"/>
+    </g>
+    <circle cx="214" cy="266" r="42" fill="#F2A93B" stroke="#1A1A1A" stroke-width="3"/>
+    <!-- icon: tabler-outline/cube -->
+  <g transform="translate(186, 238) scale(2.33333)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M21 16.008v-8.018a1.98 1.98 0 0 0 -1 -1.717l-7 -4.008a2.016 2.016 0 0 0 -2 0l-7 4.008c-.619 .355 -1 1.01 -1 1.718v8.018c0 .709 .381 1.363 1 1.717l7 4.008a2.016 2.016 0 0 0 2 0l7 -4.008c.619 -.355 1 -1.01 1 -1.718" />
+    <path d="M12 22v-10" />
+    <path d="M12 12l8.73 -5.04" />
+    <path d="M3.27 6.96l8.73 5.04" />
+  </g>
+    <text x="365" y="274" font-family="Consolas, 'Courier New', monospace" font-size="23" font-weight="700" fill="#D85C45">X</text>
+    <text x="229" y="120" font-family="Consolas, 'Courier New', monospace" font-size="23" font-weight="700" fill="#2F8F6A">Y UP</text>
+    <text x="52" y="374" font-family="Consolas, 'Courier New', monospace" font-size="23" font-weight="700" fill="#2457A6">-Z FORWARD</text>
+    <rect x="58" y="376" width="314" height="24" rx="12" fill="#FFFFFF"/>
+    <text x="215" y="394" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#596273">使用空间变换：开启</text>
+  </g>
+  <g id="unit-card" transform="translate(528 158)">
+    <rect x="0" y="0" width="692" height="118" rx="22" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+    <!-- icon: tabler-outline/ruler -->
+  <g transform="translate(24, 26) scale(2.25)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M5 4h14a1 1 0 0 1 1 1v5a1 1 0 0 1 -1 1h-7a1 1 0 0 0 -1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1" />
+    <path d="M4 8l2 0" />
+    <path d="M4 12l3 0" />
+    <path d="M4 16l2 0" />
+    <path d="M8 4l0 2" />
+    <path d="M12 4l0 3" />
+    <path d="M16 4l0 2" />
+  </g>
+    <text x="98" y="42" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#8C5A00">1. 单位与真实尺寸</text>
+    <text x="98" y="78" font-family="Consolas, 'Courier New', monospace" font-size="23" fill="#1F2937">Metric · Unit Scale 1.0 · 1 Blender Unit = 1 m</text>
+    <text x="98" y="106" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">导出缩放保持 1.00，并开启“应用单位”</text>
+  </g>
+  <g id="apply-card" transform="translate(528 296)">
+    <rect x="0" y="0" width="692" height="118" rx="22" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <!-- icon: tabler-outline/rotate-3d -->
+  <g transform="translate(24, 26) scale(2.25)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M12 3a7 7 0 0 1 7 7v4l-3 -3" />
+    <path d="M22 11l-3 3" />
+    <path d="M8 15.5l-5 -3l5 -3l5 3v5.5l-5 3l0 -5.5" />
+    <path d="M3 12.5v5.5l5 3" />
+    <path d="M8 15.545l5 -3.03" />
+  </g>
+    <text x="98" y="42" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#2457A6">2. 应用对象变换</text>
+    <text x="98" y="78" font-family="Consolas, 'Courier New', monospace" font-size="23" fill="#1F2937">Ctrl + A &gt; Rotation &amp; Scale → Scale (1,1,1)</text>
+    <text x="98" y="106" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">导出面板里的实验性“应用变换”仍保持关闭</text>
+  </g>
+  <g id="origin-card" transform="translate(528 434)">
+    <rect x="0" y="0" width="692" height="138" rx="22" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <!-- icon: tabler-outline/transform -->
+  <g transform="translate(24, 30) scale(2.25)" fill="none" stroke="#55A68B" stroke-width="2">
+    <path d="M3 6a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+    <path d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3" />
+    <path d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3" />
+    <path d="M15 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  </g>
+    <text x="98" y="42" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#2F8F6A">3. Origin 是游戏行为的支点</text>
+    <text x="98" y="80" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">门的 Origin 放铰链，转动时才符合预期；同类资源保持同一轴心规则</text>
+    <rect x="98" y="100" width="558" height="24" rx="12" fill="#FFFFFF"/>
+    <text x="377" y="118" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#D85C45">如果 Unity 必须 Scale=0.01 才正常，应回 Blender 修单位与尺寸</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Blender → Unity · 单位、轴向与 Origin</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">6</text>
+</svg>

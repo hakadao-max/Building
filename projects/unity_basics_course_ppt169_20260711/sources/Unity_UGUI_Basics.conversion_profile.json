@@ -1,0 +1,28 @@
+{
+  "schema": "ppt-master.source_to_md.profile.v1",
+  "converter": "pdf_to_md.py",
+  "conversion_type": "pdf",
+  "source": {
+    "path": "Unity_UGUI_Basics.pdf",
+    "name": "Unity_UGUI_Basics.pdf",
+    "suffix": ".pdf",
+    "kind": "file",
+    "exists": true,
+    "size_bytes": 193954
+  },
+  "outputs": {
+    "markdown": "Unity_UGUI_Basics.md",
+    "asset_dir": "",
+    "image_manifest": "",
+    "image_count": 0
+  },
+  "markdown": {
+    "line_count": 363,
+    "char_count": 6159,
+    "heading_count": 18,
+    "table_count": 1,
+    "image_ref_count": 0,
+    "link_count": 0
+  },
+  "warnings": []
+}

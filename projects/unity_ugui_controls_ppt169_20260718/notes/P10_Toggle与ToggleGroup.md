@@ -1,0 +1,1 @@
+Toggle 表示开关或是非状态，多个 Toggle 放进 ToggleGroup 后可以形成单选。恢复保存值时使用 SetIsOnWithoutNotify，可以只更新显示而不误触发业务监听器。

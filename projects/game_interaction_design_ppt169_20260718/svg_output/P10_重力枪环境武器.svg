@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">《半衰期 2》：重力枪把环境变成武器库</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">房间里的“装饰”开始拥有战术价值</text>
+  <g id="gravity-gun-modules" transform="translate(60 158)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="1160" height="442" rx="28" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <g transform="translate(26 28)">
+      <rect x="0" y="0" width="340" height="354" rx="22" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <use data-icon="tabler-outline/pointer" x="132" y="32" width="76" height="76" fill="#2457A6" stroke-width="2"/>
+      <text x="170" y="158" text-anchor="middle" font-size="36" font-weight="700" fill="#2457A6">吸取</text>
+      <text x="28" y="214" font-size="24" fill="#596273">射线命中可抓 Rigidbody</text>
+      <text x="28" y="256" font-size="24" fill="#596273">质量与标签限制目标</text>
+      <text x="28" y="298" font-size="24" fill="#596273">建立当前抓取引用</text>
+    </g>
+    <path d="M382 204 H414 V184 L450 204 L414 224 V204" fill="#D8D2C5"/>
+    <g transform="translate(410 28)">
+      <rect x="0" y="0" width="340" height="354" rx="22" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <use data-icon="tabler-outline/package" x="132" y="32" width="76" height="76" fill="#55A68B" stroke-width="2"/>
+      <text x="170" y="158" text-anchor="middle" font-size="36" font-weight="700" fill="#2F8F6A">悬浮持有</text>
+      <text x="28" y="214" font-size="24" fill="#596273">原型：Kinematic 跟随</text>
+      <text x="28" y="256" font-size="24" fill="#596273">进阶：弹簧力 / PD Controller</text>
+      <text x="28" y="298" font-size="24" fill="#596273">限制最大力，避免抖动</text>
+    </g>
+    <path d="M766 204 H798 V184 L834 204 L798 224 V204" fill="#D8D2C5"/>
+    <g transform="translate(794 28)">
+      <rect x="0" y="0" width="340" height="354" rx="22" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <use data-icon="tabler-outline/arrows-exchange" x="132" y="32" width="76" height="76" fill="#F2A93B" stroke-width="2"/>
+      <text x="170" y="158" text-anchor="middle" font-size="36" font-weight="700" fill="#8C5A00">发射</text>
+      <text x="28" y="214" font-size="24" fill="#596273">解除持有状态</text>
+      <text x="28" y="256" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#596273">AddForce(..., Impulse)</text>
+      <text x="28" y="298" font-size="24" fill="#596273">质量影响速度与威力</text>
+    </g>
+    <rect x="160" y="400" width="840" height="42" rx="14" fill="#2457A6"/>
+    <text x="580" y="429" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">锯片切割 · 油桶爆炸 · 箱子掩护 · 轻物快速投掷</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">案例 · 物理抓取与环境战术</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">10</text>
+  </g>
+</svg>

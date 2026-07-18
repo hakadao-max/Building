@@ -1,0 +1,64 @@
+{
+  "canvas": "ppt169",
+  "audience": "正在学习 Unity 或 C# 的零基础到初级开发者",
+  "content_divergence": "",
+  "mode": "instructional",
+  "visual_style": "sketch-notes",
+  "delivery_purpose": "presentation",
+  "page_count": "10",
+  "color": {
+    "name": "",
+    "palette": {
+      "background": "#FFFDF6",
+      "secondary_bg": "#F4F0E8",
+      "primary": "#2457A6",
+      "accent": "#F2A93B",
+      "secondary_accent": "#55A68B",
+      "body_text": "#1F2937"
+    }
+  },
+  "icons": "tabler-outline",
+  "typography": {
+    "name": "",
+    "heading": {
+      "cjk": "KaiTi",
+      "css": "KaiTi, 'Trebuchet MS', serif",
+      "latin": "Trebuchet MS",
+      "sample_cjk": "类是对象的说明书",
+      "sample_latin": "Classes Define Objects"
+    },
+    "body": {
+      "cjk": "Microsoft YaHei",
+      "css": "'Microsoft YaHei', Arial, sans-serif",
+      "latin": "Arial",
+      "sample_cjk": "数据与行为被组织在同一个类型中。",
+      "sample_latin": "Data and behavior live in one type."
+    },
+    "body_size": 32,
+    "sizes": {
+      "annotation": 24,
+      "subtitle": 42,
+      "title": 56
+    },
+    "body_size_unit": "px"
+  },
+  "formula_policy": "text-only",
+  "image_usage": [
+    "ai"
+  ],
+  "image_notes": "封面用一个‘角色说明书变成游戏对象’的 AI 主视觉；正文以同一主题的少量手绘代码、角色、继承箭头和工具箱小插画贯穿，代码与知识点文字始终由可编辑 SVG 承载。",
+  "image_ai_path": "auto",
+  "generation_mode": "continuous",
+  "refine_spec": false,
+  "image_strategy": {
+    "name": "方案 A｜课堂手绘",
+    "rendering": "sketch-notes",
+    "palette": "macaron",
+    "visual": "奶油纸张质感、黑色手绘线、轻微不规则轮廓与柔和粉彩填色",
+    "color": "使用上方已选色彩方案；图像调色只控制用色比例和行为。 纸白 #FFFDF6 约 65% + 开发者蓝 #2457A6 约 20% + 提示橙 #F2A93B 约 8% + 薄荷绿 #55A68B 少量辅助",
+    "mood": "亲切、清晰、有记忆点；像高质量少儿编程课的手绘讲义"
+  },
+  "stage": "final",
+  "status": "confirmed",
+  "confirmed_at": "2026-07-18T17:53:38"
+}

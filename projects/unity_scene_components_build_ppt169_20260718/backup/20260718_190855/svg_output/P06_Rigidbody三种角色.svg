@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">物理对象的三种角色：Static、Dynamic、Kinematic</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">先确定“谁驱动移动”，再配置 Rigidbody 与 Collider</text>
+  <g font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g transform="translate(58 164)">
+      <rect x="0" y="0" width="366" height="438" rx="28" fill="#FFFFFF" stroke="#2457A6" stroke-width="4"/>
+      <rect x="0" y="0" width="366" height="94" rx="28" fill="#2457A6"/>
+      <text x="30" y="61" font-size="36" font-weight="700" fill="#FFFFFF">Static 静态</text>
+      <use data-icon="tabler-outline/box" x="252" y="21" width="52" height="52" fill="#FFFFFF" stroke-width="2"/>
+      <text x="28" y="146" font-size="32" font-weight="700" fill="#1F2937">世界的一部分</text>
+      <text x="28" y="198" font-size="24" fill="#596273">· 不挂 Rigidbody</text>
+      <text x="28" y="240" font-size="24" fill="#596273">· 由 Collider 阻挡</text>
+      <text x="28" y="282" font-size="24" fill="#596273">· 墙、地面、固定建筑</text>
+      <rect x="28" y="326" width="310" height="76" rx="18" fill="#EAF0FA"/>
+      <text x="183" y="358" text-anchor="middle" font-size="24" fill="#2457A6">性能稳定</text>
+      <text x="183" y="389" text-anchor="middle" font-size="24" font-weight="700" fill="#2457A6">不要在运行时移动</text>
+    </g>
+    <g transform="translate(457 164)">
+      <rect x="0" y="0" width="366" height="438" rx="28" fill="#FFFFFF" stroke="#55A68B" stroke-width="4"/>
+      <rect x="0" y="0" width="366" height="94" rx="28" fill="#55A68B"/>
+      <text x="30" y="61" font-size="36" font-weight="700" fill="#FFFFFF">Dynamic 动态</text>
+      <use data-icon="tabler-outline/circle" x="252" y="21" width="52" height="52" fill="#FFFFFF" stroke-width="2"/>
+      <text x="28" y="146" font-size="32" font-weight="700" fill="#1F2937">由物理系统驱动</text>
+      <text x="28" y="198" font-size="24" fill="#596273">· Rigidbody + Collider</text>
+      <text x="28" y="240" font-size="24" fill="#596273">· 受重力、力与碰撞影响</text>
+      <text x="28" y="282" font-size="24" fill="#596273">· 球、箱子、可推动道具</text>
+      <rect x="28" y="326" width="310" height="76" rx="18" fill="#E8F5F0"/>
+      <text x="183" y="358" text-anchor="middle" font-size="24" fill="#2F8F6A">用 AddForce / Velocity</text>
+      <text x="183" y="389" text-anchor="middle" font-size="24" font-weight="700" fill="#2F8F6A">避免直接改 Transform</text>
+    </g>
+    <g transform="translate(856 164)">
+      <rect x="0" y="0" width="366" height="438" rx="28" fill="#FFFFFF" stroke="#F2A93B" stroke-width="4"/>
+      <rect x="0" y="0" width="366" height="94" rx="28" fill="#F2A93B"/>
+      <text x="30" y="61" font-size="36" font-weight="700" fill="#FFFFFF">Kinematic 运动学</text>
+      <use data-icon="tabler-outline/walk" x="272" y="21" width="52" height="52" fill="#FFFFFF" stroke-width="2"/>
+      <text x="28" y="146" font-size="32" font-weight="700" fill="#1F2937">由脚本驱动</text>
+      <text x="28" y="198" font-size="24" fill="#596273">· Rigidbody 勾选 Is Kinematic</text>
+      <text x="28" y="240" font-size="24" fill="#596273">· 不被力推动，但能参与检测</text>
+      <text x="28" y="282" font-size="24" fill="#596273">· 门、移动平台、动画机关</text>
+      <rect x="28" y="326" width="310" height="76" rx="18" fill="#FFF0D1"/>
+      <text x="183" y="358" text-anchor="middle" font-size="24" fill="#8C5A00">用 MovePosition</text>
+      <text x="183" y="389" text-anchor="middle" font-size="24" font-weight="700" fill="#8C5A00">轨迹可控</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Rigidbody · 运动责任划分</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">06</text>
+  </g>
+</svg>

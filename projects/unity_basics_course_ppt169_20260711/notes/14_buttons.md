@@ -1,0 +1,1 @@
+UIManager 集中持有面板和按钮引用。Awake 中绑定监听，方法中切换 SetActive。提醒：Application.Quit 在编辑器播放模式下不会真正关闭编辑器。

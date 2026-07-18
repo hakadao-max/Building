@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">Move 处理碰撞，但不会替你处理重力</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">CharacterController 是脚本直接控制的胶囊角色，不是普通动力学刚体</text>
+  </g>
+  <g id="controller-hero" transform="translate(60 156)">
+    <rect x="0" y="0" width="330" height="406" rx="28" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="165" y="50" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#2457A6">脚本驱动的胶囊</text>
+    <rect x="108" y="92" width="114" height="216" rx="57" fill="#EAF0FA" stroke="#2457A6" stroke-width="5"/>
+    <circle cx="165" cy="149" r="30" fill="#F2A93B"/>
+    <use data-icon="tabler-outline/walk" x="133" y="184" width="64" height="64" fill="#2457A6" stroke-width="2"/>
+    <line x1="80" y1="330" x2="250" y2="330" stroke="#55A68B" stroke-width="6" stroke-linecap="round"/>
+    <text x="165" y="367" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="23" font-weight="700" fill="#2F8F6A">controller.Move(displacement)</text>
+    <text x="165" y="396" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">Collider 会阻挡；重力要自己维护</text>
+  </g>
+  <g id="property-grid" transform="translate(420 156)">
+    <g id="prop-shape">
+      <rect x="0" y="0" width="248" height="118" rx="20" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <text x="20" y="38" font-family="Consolas, 'Courier New', monospace" font-size="23" font-weight="700" fill="#2457A6">height / radius</text>
+      <text x="20" y="72" font-family="Consolas, 'Courier New', monospace" font-size="23" fill="#2457A6">center</text>
+      <text x="20" y="102" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">胶囊形状</text>
+    </g>
+    <g id="prop-slope" transform="translate(272 0)">
+      <rect x="0" y="0" width="248" height="118" rx="20" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <text x="20" y="44" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#8C5A00">slopeLimit</text>
+      <text x="20" y="80" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">可攀爬最大坡度</text>
+    </g>
+    <g id="prop-step" transform="translate(544 0)">
+      <rect x="0" y="0" width="248" height="118" rx="20" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <text x="20" y="44" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#2F8F6A">stepOffset</text>
+      <text x="20" y="80" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">可迈过台阶高度</text>
+    </g>
+    <g id="prop-skin" transform="translate(0 142)">
+      <rect x="0" y="0" width="248" height="118" rx="20" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <text x="20" y="44" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#2457A6">skinWidth</text>
+      <text x="20" y="80" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">碰撞外壳余量</text>
+      <text x="20" y="106" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#D85C45">过小容易抖动</text>
+    </g>
+    <g id="prop-grounded" transform="translate(272 142)">
+      <rect x="0" y="0" width="248" height="118" rx="20" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <text x="20" y="44" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#2457A6">isGrounded</text>
+      <text x="20" y="80" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">上次移动后是否着地</text>
+    </g>
+    <g id="prop-velocity" transform="translate(544 142)">
+      <rect x="0" y="0" width="248" height="118" rx="20" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <text x="20" y="44" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#2457A6">velocity</text>
+      <text x="20" y="80" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">最近一次移动形成的速度</text>
+    </g>
+    <g id="method-compare" transform="translate(0 284)">
+      <rect x="0" y="0" width="792" height="122" rx="22" fill="#1F2937"/>
+      <text x="28" y="42" font-family="Consolas, 'Courier New', monospace" font-size="26" font-weight="700" fill="#F2A93B">Move(motion × deltaTime)</text>
+      <text x="28" y="78" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#FFFFFF">参数是本次位移；可自定义重力与跳跃；返回 CollisionFlags</text>
+      <text x="420" y="42" font-family="Consolas, 'Courier New', monospace" font-size="26" font-weight="700" fill="#55A68B">SimpleMove(velocity)</text>
+      <text x="420" y="78" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#FFFFFF">参数是速度；自动重力；不再乘 deltaTime；不适合自定义跳跃</text>
+      <text x="396" y="108" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" font-weight="700" fill="#D8D2C5">初学跳跃：优先 Move，完整过程更清楚</text>
+    </g>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 语法基础 · CharacterController</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">10</text>
+</svg>

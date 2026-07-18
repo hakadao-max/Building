@@ -1,0 +1,1 @@
+Slider 的 value 是 float，可以直接传给 BallController；Toggle 的值是 bool，可以直接设置全屏。界面值改变后，要让玩家立即看到结果或数值反馈。

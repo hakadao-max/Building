@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">RawImage：直接显示 Texture，而不是 Sprite</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">摄像机画面、视频与运行时纹理，走同一条管线</text>
+  <g id="rawimage-pipeline" transform="translate(80 182)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="300" height="300" rx="28" fill="#EAF0FA" stroke="#2457A6" stroke-width="4"/>
+      <use data-icon="tabler-outline/camera" x="100" y="38" width="100" height="100" fill="#2457A6" stroke-width="2"/>
+      <text x="150" y="190" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">Camera</text>
+      <text x="150" y="236" text-anchor="middle" font-size="24" fill="#596273">Target Texture</text>
+      <text x="150" y="272" text-anchor="middle" font-size="24" fill="#596273">指定输出纹理</text>
+    </g>
+    <path d="M324 150 H396 V124 L446 150 L396 176 V150" fill="#F2A93B"/>
+    <g transform="translate(430 0)">
+      <rect x="0" y="0" width="300" height="300" rx="28" fill="#FFF0D1" stroke="#F2A93B" stroke-width="4"/>
+      <use data-icon="tabler-outline/device-tv" x="100" y="38" width="100" height="100" fill="#F2A93B" stroke-width="2"/>
+      <text x="150" y="190" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">RenderTexture</text>
+      <text x="150" y="236" text-anchor="middle" font-size="24" fill="#596273">保存画面</text>
+      <text x="150" y="272" text-anchor="middle" font-size="24" fill="#596273">注意分辨率与宽高比</text>
+    </g>
+    <path d="M754 150 H826 V124 L876 150 L826 176 V150" fill="#55A68B"/>
+    <g transform="translate(860 0)">
+      <rect x="0" y="0" width="300" height="300" rx="28" fill="#E8F5F0" stroke="#55A68B" stroke-width="4"/>
+      <use data-icon="tabler-outline/layout-dashboard" x="100" y="38" width="100" height="100" fill="#55A68B" stroke-width="2"/>
+      <text x="150" y="190" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">RawImage</text>
+      <text x="150" y="236" text-anchor="middle" font-size="24" fill="#596273">Texture 引用</text>
+      <text x="150" y="272" text-anchor="middle" font-size="24" fill="#596273">Canvas 中显示</text>
+    </g>
+  </g>
+  <g id="image-raw-compare" transform="translate(130 520)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="470" height="72" rx="20" fill="#2457A6"/>
+    <text x="235" y="46" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">Image：Sprite · 九宫格 · Filled</text>
+    <rect x="550" y="0" width="470" height="72" rx="20" fill="#55A68B"/>
+    <text x="785" y="46" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">RawImage：Texture · UV Rect</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">RawImage · Texture 输出管线</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">09</text>
+  </g>
+</svg>

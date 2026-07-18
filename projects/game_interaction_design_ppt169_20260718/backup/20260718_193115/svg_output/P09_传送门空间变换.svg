@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">《传送门》：门没移动，空间关系变了</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">真正精彩的是位置、方向与速度一起转换</text>
+  <g id="portal-flow" transform="translate(70 166)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="1140" height="300" rx="28" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <ellipse cx="190" cy="150" rx="72" ry="120" fill="#EAF0FA" stroke="#2457A6" stroke-width="12"/>
+    <ellipse cx="950" cy="150" rx="72" ry="120" fill="#FFF0D1" stroke="#F2A93B" stroke-width="12"/>
+    <circle cx="70" cy="78" r="30" fill="#D85C45"/>
+    <path d="M70 110 C90 182 120 196 152 172" fill="none" stroke="#D85C45" stroke-width="8" stroke-linecap="round"/>
+    <path d="M132 174 L156 170 L146 148" fill="none" stroke="#D85C45" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M262 150 C470 150 650 150 878 150" fill="none" stroke="#596273" stroke-width="8" stroke-linecap="round" stroke-dasharray="18 12"/>
+    <path d="M846 126 L882 150 L846 174" fill="none" stroke="#596273" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M1020 150 C1060 120 1088 86 1104 48" fill="none" stroke="#55A68B" stroke-width="8" stroke-linecap="round"/>
+    <path d="M1080 66 L1106 44 L1112 76" fill="none" stroke="#55A68B" stroke-width="8" stroke-linejoin="round"/>
+    <text x="190" y="286" text-anchor="middle" font-size="24" font-weight="700" fill="#2457A6">入口 Portal</text>
+    <text x="950" y="286" text-anchor="middle" font-size="24" font-weight="700" fill="#8C5A00">出口 Portal</text>
+    <text x="570" y="116" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">局部坐标变换</text>
+    <text x="570" y="196" text-anchor="middle" font-size="24" fill="#596273">位置 · 旋转 · Rigidbody 速度</text>
+  </g>
+  <g id="portal-steps" transform="translate(100 500)" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24">
+    <rect x="0" y="0" width="1080" height="104" rx="22" fill="#2457A6"/>
+    <text x="30" y="40" fill="#FFFFFF" font-weight="700">实现顺序：</text>
+    <text x="30" y="78" fill="#FFFFFF">入口局部变换 → 出口世界变换 → 速度方向转换 → 传送冷却防回弹</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">案例 · 空间变换与动量保留</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">09</text>
+  </g>
+</svg>

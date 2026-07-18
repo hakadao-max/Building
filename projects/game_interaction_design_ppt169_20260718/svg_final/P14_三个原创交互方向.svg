@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">三个可以快速做成原型的原创方向</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">每个方向都只有一条核心规则，却能自然扩展出关卡</text>
+  <g id="prototype-grid" transform="translate(60 170)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="360" height="404" rx="28" fill="#FFFFFF" stroke="#2457A6" stroke-width="4"/>
+      <circle cx="180" cy="96" r="68" fill="#EAF0FA"/>
+      <!-- icon: tabler-outline/arrows-exchange -->
+  <g transform="translate(138, 54) scale(3.5)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M7 10h14l-4 -4" />
+    <path d="M17 14h-14l4 4" />
+  </g>
+      <text x="180" y="208" text-anchor="middle" font-size="36" font-weight="700" fill="#2457A6">材质转移</text>
+      <text x="28" y="260" font-size="24" fill="#596273">吸取“滑”“弹”“热”</text>
+      <text x="28" y="302" font-size="24" fill="#596273">再贴到另一物体表面</text>
+      <rect x="28" y="334" width="304" height="46" rx="14" fill="#EAF0FA"/>
+      <text x="180" y="366" text-anchor="middle" font-size="24" font-weight="700" fill="#2457A6">属性复制 + 状态反馈</text>
+    </g>
+    <g transform="translate(400 0)">
+      <rect x="0" y="0" width="360" height="404" rx="28" fill="#FFFFFF" stroke="#55A68B" stroke-width="4"/>
+      <circle cx="180" cy="96" r="68" fill="#E8F5F0"/>
+      <!-- icon: tabler-outline/hammer -->
+  <g transform="translate(138, 54) scale(3.5)" fill="none" stroke="#55A68B" stroke-width="2">
+    <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
+    <path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0" />
+  </g>
+      <text x="180" y="208" text-anchor="middle" font-size="36" font-weight="700" fill="#2F8F6A">力量记忆</text>
+      <text x="28" y="260" font-size="24" fill="#596273">记录最近一次冲击</text>
+      <text x="28" y="302" font-size="24" fill="#596273">搬到别处按原方向释放</text>
+      <rect x="28" y="334" width="304" height="46" rx="14" fill="#E8F5F0"/>
+      <text x="180" y="366" text-anchor="middle" font-size="24" font-weight="700" fill="#2F8F6A">向量存储 + 可视化</text>
+    </g>
+    <g transform="translate(800 0)">
+      <rect x="0" y="0" width="360" height="404" rx="28" fill="#FFFFFF" stroke="#F2A93B" stroke-width="4"/>
+      <circle cx="180" cy="96" r="68" fill="#FFF0D1"/>
+      <!-- icon: tabler-outline/eye -->
+  <g transform="translate(138, 54) scale(3.5)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+  </g>
+      <text x="180" y="208" text-anchor="middle" font-size="36" font-weight="700" fill="#8C5A00">视线外行动</text>
+      <text x="28" y="260" font-size="24" fill="#596273">看着它就静止</text>
+      <text x="28" y="302" font-size="24" fill="#596273">不看时移动或改造房间</text>
+      <rect x="28" y="334" width="304" height="46" rx="14" fill="#FFF0D1"/>
+      <text x="180" y="366" text-anchor="middle" font-size="24" font-weight="700" fill="#8C5A00">可见性判定 + 安全移动</text>
+    </g>
+  </g>
+  <text x="640" y="626" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">先做一个房间、一个物体、一条规则</text>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">原创方向 · 小规则，大组合</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">14</text>
+  </g>
+</svg>

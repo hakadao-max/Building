@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">交互深度来自四件事，而不是更多按键</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">简单规则能组合出多种用途，玩家才会把世界当成“真的能玩”</text>
+  <g id="depth-grid" transform="translate(60 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="550" height="190" rx="26" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <!-- icon: tabler-outline/package -->
+  <g transform="translate(28, 28) scale(2.66667)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+    <path d="M12 12l8 -4.5" />
+    <path d="M12 12l0 9" />
+    <path d="M12 12l-8 -4.5" />
+    <path d="M16 5.25l-8 4.5" />
+  </g>
+      <text x="116" y="56" font-size="36" font-weight="700" fill="#2457A6">一个物体，多种用途</text>
+      <text x="28" y="120" font-size="24" fill="#596273">箱子可以堵门、垫脚、压机关、挡激光</text>
+      <text x="28" y="160" font-size="24" font-weight="700" fill="#1F2937">玩家把它当“东西”，不是钥匙</text>
+    </g>
+    <g transform="translate(610 0)">
+      <rect x="0" y="0" width="550" height="190" rx="26" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <!-- icon: tabler-outline/hierarchy-3 -->
+  <g transform="translate(28, 28) scale(2.66667)" fill="none" stroke="#55A68B" stroke-width="2">
+    <path d="M10 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M6 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M10 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M18 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M2 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M14 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M5 17l2 -3" />
+    <path d="M9 10l2 -3" />
+    <path d="M13 7l2 3" />
+    <path d="M17 14l2 3" />
+    <path d="M15 14l-2 3" />
+    <path d="M9 14l2 3" />
+  </g>
+      <text x="116" y="56" font-size="36" font-weight="700" fill="#2F8F6A">规则稳定，结果惊喜</text>
+      <text x="28" y="120" font-size="24" fill="#596273">规则始终成立，惊喜来自更深用途</text>
+      <text x="28" y="160" font-size="24" font-weight="700" fill="#1F2937">惊喜 ≠ 随机或自相矛盾</text>
+    </g>
+    <g transform="translate(0 226)">
+      <rect x="0" y="0" width="550" height="190" rx="26" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <!-- icon: tabler-outline/route -->
+  <g transform="translate(28, 28) scale(2.66667)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M3 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+    <path d="M19 7a2 2 0 1 0 0 -4a2 2 0 0 0 0 4" />
+    <path d="M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5" />
+  </g>
+      <text x="116" y="56" font-size="36" font-weight="700" fill="#8C5A00">交互改变局面</text>
+      <text x="28" y="120" font-size="24" fill="#596273">改变路线、状态、敌人、视角或能力</text>
+      <text x="28" y="160" font-size="24" font-weight="700" fill="#1F2937">动作留下可见结果</text>
+    </g>
+    <g transform="translate(610 226)">
+      <rect x="0" y="0" width="550" height="190" rx="26" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+      <!-- icon: tabler-outline/ghost -->
+  <g transform="translate(28, 28) scale(2.66667)" fill="none" stroke="#D85C45" stroke-width="2">
+    <path d="M5 11a7 7 0 0 1 14 0v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-7" />
+    <path d="M10 10l.01 0" />
+    <path d="M14 10l.01 0" />
+    <path d="M10 14a3.5 3.5 0 0 0 4 0" />
+  </g>
+      <text x="116" y="56" font-size="36" font-weight="700" fill="#D85C45">允许合理地乱玩</text>
+      <text x="28" y="120" font-size="24" fill="#596273">快速开关、堵住 NPC、拿机制去战斗</text>
+      <text x="28" y="160" font-size="24" font-weight="700" fill="#1F2937">不必都有奖励，至少别崩坏</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">交互深度 · 多用途、稳定规则、局面变化、乱玩空间</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">04</text>
+  </g>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">Button：明确状态，执行一次明确操作</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">视觉反馈与事件连接同样重要</text>
+  <g id="button-modules" transform="translate(60 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="1160" height="438" rx="28" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <g transform="translate(24 26)">
+      <rect x="0" y="0" width="350" height="170" rx="22" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <text x="24" y="44" font-size="32" font-weight="700" fill="#2457A6">状态与 Transition</text>
+      <g font-size="24" text-anchor="middle">
+        <rect x="22" y="72" width="70" height="56" rx="14" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="2"/><text x="57" y="108" fill="#1F2937">普通</text>
+        <rect x="98" y="72" width="70" height="56" rx="14" fill="#E8F5F0" stroke="#55A68B" stroke-width="2"/><text x="133" y="108" fill="#2F8F6A">悬停</text>
+        <rect x="174" y="72" width="70" height="56" rx="14" fill="#FFF0D1" stroke="#F2A93B" stroke-width="2"/><text x="209" y="108" fill="#8C5A00">按下</text>
+        <rect x="250" y="72" width="78" height="56" rx="14" fill="#F4F0E8"/><text x="289" y="108" fill="#8A8F98">禁用</text>
+      </g>
+      <text x="22" y="156" font-size="24" fill="#596273">Color Tint / Sprite / Animation</text>
+    </g>
+    <g transform="translate(405 26)">
+      <rect x="0" y="0" width="350" height="170" rx="22" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <text x="24" y="44" font-size="32" font-weight="700" fill="#2F8F6A">Inspector 连接</text>
+      <text x="24" y="88" font-size="24" fill="#596273">On Click() → + → 拖入对象</text>
+      <text x="24" y="126" font-size="24" fill="#596273">选择 public 方法</text>
+      <text x="24" y="156" font-size="24" font-weight="700" fill="#2F8F6A">直观，但关系藏在场景中</text>
+    </g>
+    <g transform="translate(786 26)">
+      <rect x="0" y="0" width="350" height="170" rx="22" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <text x="24" y="44" font-size="32" font-weight="700" fill="#8C5A00">脚本监听</text>
+      <text x="24" y="88" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">OnEnable: AddListener</text>
+      <text x="24" y="126" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">OnDisable: RemoveListener</text>
+      <text x="24" y="156" font-size="24" font-weight="700" fill="#8C5A00">避免重复订阅</text>
+    </g>
+    <g transform="translate(24 224)">
+      <rect x="0" y="0" width="1112" height="180" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <use data-icon="tabler-outline/click" x="32" y="42" width="84" height="84" fill="#2457A6" stroke-width="2"/>
+      <text x="150" y="48" font-size="36" font-weight="700" fill="#1F2937">Button 文案描述结果</text>
+      <text x="150" y="96" font-size="32" fill="#596273">“保存设置” 比 “确定” 更清楚</text>
+      <text x="150" y="140" font-size="24" fill="#596273">点击区域足够大 · 禁用时说明原因 · 破坏性操作可确认或撤销</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Button · 状态与事件生命周期</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">07</text>
+  </g>
+</svg>

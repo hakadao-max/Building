@@ -1,0 +1,1 @@
+Camera 可以把结果写入 RenderTexture，RawImage 再把这张纹理显示在 Canvas 上。小地图、监控屏和角色预览都可以复用这条管线，关键是两端引用同一张纹理资产。

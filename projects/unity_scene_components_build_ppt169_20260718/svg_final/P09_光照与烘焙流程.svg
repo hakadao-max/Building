@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">让场景有氛围：天空盒、灯光与烘焙</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">实时光负责变化，烘焙光负责稳定与性能</text>
+  <g id="lighting-scene" transform="translate(70 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="1140" height="226" rx="30" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <circle cx="154" cy="112" r="64" fill="#F2A93B"/>
+    <g stroke="#F2A93B" stroke-width="10" stroke-linecap="round">
+      <line x1="154" y1="24" x2="154" y2="0"/>
+      <line x1="154" y1="224" x2="154" y2="200"/>
+      <line x1="66" y1="112" x2="42" y2="112"/>
+      <line x1="266" y1="112" x2="242" y2="112"/>
+    </g>
+    <!-- icon: tabler-outline/sun -->
+  <g transform="translate(118, 76) scale(3)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+    <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+  </g>
+    <text x="290" y="78" font-size="42" font-weight="700" fill="#1F2937">Skybox + Directional Light</text>
+    <text x="292" y="126" font-size="32" fill="#596273">先定天空与主光方向，再补局部光源</text>
+    <rect x="292" y="158" width="320" height="42" rx="14" fill="#FFFFFF"/>
+    <text x="452" y="188" text-anchor="middle" font-size="24" font-weight="700" fill="#2457A6">环境色决定整体情绪</text>
+    <!-- icon: tabler-outline/bulb -->
+  <g transform="translate(880, 70) scale(3.5)" fill="none" stroke="#55A68B" stroke-width="2">
+    <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+    <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+    <path d="M9.7 17l4.6 0" />
+  </g>
+    <text x="1010" y="108" text-anchor="middle" font-size="32" font-weight="700" fill="#2F8F6A">补光</text>
+    <text x="1010" y="148" text-anchor="middle" font-size="24" fill="#596273">点光 / 聚光</text>
+  </g>
+  <g id="bake-process" transform="translate(70 426)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <polygon points="0,0 245,0 280,72 245,144 0,144 35,72" fill="#2457A6"/>
+    <text x="140" y="62" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">标记静态物体</text>
+    <text x="140" y="103" text-anchor="middle" font-size="24" fill="#FFFFFF">Static</text>
+    <polygon points="270,0 515,0 550,72 515,144 270,144 305,72" fill="#55A68B"/>
+    <text x="410" y="62" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">配置灯光模式</text>
+    <text x="410" y="103" text-anchor="middle" font-size="24" fill="#FFFFFF">Baked / Mixed</text>
+    <polygon points="540,0 785,0 820,72 785,144 540,144 575,72" fill="#F2A93B"/>
+    <text x="680" y="62" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">生成光照数据</text>
+    <text x="680" y="103" text-anchor="middle" font-size="24" fill="#FFFFFF">Generate Lighting</text>
+    <polygon points="810,0 1085,0 1120,72 1085,144 810,144 845,72" fill="#D85C45"/>
+    <text x="965" y="62" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">验证与优化</text>
+    <text x="965" y="103" text-anchor="middle" font-size="24" fill="#FFFFFF">阴影 · 内存 · 效果</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Lighting · 实时与烘焙的平衡</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">09</text>
+  </g>
+</svg>

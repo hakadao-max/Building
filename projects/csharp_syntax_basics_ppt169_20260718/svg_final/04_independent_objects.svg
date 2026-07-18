@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="background" data-pptx-role="background" x="-48" y="-41" width="1280" height="720" fill="#FFFDF6" />
+  <text x="62" y="70" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#2457A6">同一个类，可以创建</text>
+  <text x="62" y="126" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#2457A6">互不影响的对象</text>
+  <text x="715" y="116" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">同属 Character，数据各存一份。</text>
+  <g id="creation-code">
+    <path d="M58 178 C212 168 401 174 546 181 L553 584 C371 592 208 588 61 578 Z" fill="#F4F0E8" />
+    <path d="M73 190 C218 182 394 187 534 192 L537 566 C379 575 213 572 75 562 Z" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3" />
+    <!-- icon: tabler-outline/box-multiple -->
+  <g transform="translate(94, 211) scale(1.75)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M7 5a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2l0 -10" />
+    <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
+  </g>
+    <text x="151" y="244" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">创建两个实例</text>
+    <path d="M94 269 C211 263 353 272 505 265" fill="none" stroke="#D8D2C5" stroke-width="2" />
+    <text x="96" y="305" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#2457A6">Character player =</text>
+    <text x="128" y="337" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#2457A6">new Character();</text>
+    <text x="96" y="374" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">player.Name = "小明";</text>
+    <text x="96" y="409" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">player.Health = 100;</text>
+    <text x="96" y="454" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#F2A93B">Character enemy =</text>
+    <text x="128" y="486" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#F2A93B">new Character();</text>
+    <text x="96" y="523" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">enemy.Name = "史莱姆";</text>
+    <text x="96" y="558" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">enemy.Health = 30;</text>
+  </g>
+  <g id="player-state">
+    <path d="M620 195 C765 184 904 190 1015 199 L1010 359 C883 369 750 363 620 357 Z" fill="#FFF9E9" stroke="#2457A6" stroke-width="3" />
+    <circle cx="680" cy="245" r="30" fill="#2457A6" />
+    <text x="680" y="255" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFDF6">P</text>
+    <text x="730" y="248" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">player · 小明</text>
+    <text x="650" y="309" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#1F2937">Health</text>
+    <path d="M779 285 C850 280 923 284 982 290 L980 326 C916 332 848 329 779 325 Z" fill="#E9E3D8" />
+    <path d="M779 285 C850 280 923 284 982 290 L980 326 C916 332 848 329 779 325 Z" fill="#55A68B" />
+    <text x="990" y="316" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">100</text>
+  </g>
+  <g id="enemy-state">
+    <path d="M620 400 C765 389 904 395 1015 404 L1010 574 C883 584 750 578 620 572 Z" fill="#FFF9E9" stroke="#F2A93B" stroke-width="3" />
+    <circle cx="680" cy="451" r="30" fill="#F2A93B" />
+    <text x="680" y="461" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">E</text>
+    <text x="730" y="454" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">enemy · 史莱姆</text>
+    <text x="650" y="522" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#1F2937">Health</text>
+    <path d="M779 495 C850 490 923 494 982 500 L980 536 C916 542 848 539 779 535 Z" fill="#E9E3D8" />
+    <path d="M779 495 C827 491 868 494 900 498 L898 536 C858 539 818 538 779 535 Z" fill="#D85C45" />
+    <text x="990" y="526" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">20</text>
+  </g>
+  <g id="damage-callout">
+    <path d="M1048 376 C1094 352 1133 360 1178 388 C1148 413 1114 431 1064 428 Z" fill="#F2A93B" transform="matrix(1,0,0,1,55,34)" />
+    <text x="1163" y="446" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">-10</text>
+    <path d="M1080 430 C1052 445 1037 467 1018 488" fill="none" stroke="#D85C45" stroke-width="5" stroke-linecap="round" transform="matrix(1,0,0,1,6,-1)" />
+    <path d="M1028 472 L1016 490 L1035 484" fill="none" stroke="#D85C45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="952" y="608" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#D85C45">enemy.TakeDamage(10)</text>
+  </g>
+  <text x="1037" y="214" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#2F8F6A">player 不变 ✓</text>
+  <g id="footer" data-pptx-role="footer">
+    <path d="M58 667 C342 662 618 670 906 666 C1036 664 1110 669 1178 666" fill="none" stroke="#D8D2C5" stroke-width="2" />
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">C# 入门 · 类与对象</text>
+  </g>
+  <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">04</text>
+</svg>

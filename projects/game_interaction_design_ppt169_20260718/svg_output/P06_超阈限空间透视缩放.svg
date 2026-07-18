@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">《超阈限空间》：把“近大远小”变成真实尺度</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">视角不再只是观察工具，它直接参与解谜</text>
+  <g id="perspective-pipeline" transform="translate(58 166)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="260" height="250" rx="26" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <use data-icon="tabler-outline/camera" x="84" y="28" width="92" height="92" fill="#2457A6" stroke-width="2"/>
+      <text x="130" y="166" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">摄像机中心射线</text>
+      <text x="130" y="210" text-anchor="middle" font-size="24" fill="#596273">抓住物体</text>
+    </g>
+    <path d="M276 125 H320 V101 L364 125 L320 149 V125" fill="#D8D2C5"/>
+    <g transform="translate(350 0)">
+      <rect x="0" y="0" width="260" height="250" rx="26" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <use data-icon="tabler-outline/dimensions" x="84" y="28" width="92" height="92" fill="#55A68B" stroke-width="2"/>
+      <text x="130" y="166" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">改变深度</text>
+      <text x="130" y="210" text-anchor="middle" font-size="24" fill="#596273">远大 · 近小</text>
+    </g>
+    <path d="M626 125 H670 V101 L714 125 L670 149 V125" fill="#D8D2C5"/>
+    <g transform="translate(700 0)">
+      <rect x="0" y="0" width="260" height="250" rx="26" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <use data-icon="tabler-outline/scale" x="84" y="28" width="92" height="92" fill="#F2A93B" stroke-width="2"/>
+      <text x="130" y="166" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">等比缩放</text>
+      <text x="130" y="210" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#596273">scale × depth ratio</text>
+    </g>
+    <path d="M976 125 H1020 V101 L1064 125 L1020 149 V125" fill="#D8D2C5"/>
+    <g transform="translate(1050 0)">
+      <rect x="0" y="0" width="170" height="250" rx="26" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+      <use data-icon="tabler-outline/box" x="55" y="36" width="60" height="60" fill="#D85C45" stroke-width="2"/>
+      <text x="85" y="146" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">放置</text>
+      <text x="85" y="190" text-anchor="middle" font-size="24" fill="#596273">合法？</text>
+      <text x="85" y="226" text-anchor="middle" font-size="24" fill="#D85C45">否则复位</text>
+    </g>
+  </g>
+  <g id="placement-checks" transform="translate(100 462)" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24">
+    <rect x="0" y="0" width="1080" height="136" rx="24" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="32" y="44" font-size="32" font-weight="700" fill="#2457A6">原型稳定性的五个护栏</text>
+    <text x="32" y="92" fill="#596273">Kinematic 抓取 · 等比缩放 · 沿法线外推 · 体积碰撞检查 · 最小 / 最大尺寸</text>
+    <text x="32" y="124" fill="#D85C45">非法位置显示红色幽灵；不要让物体穿进墙里</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">案例 · 透视缩放与合法放置</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">06</text>
+  </g>
+</svg>

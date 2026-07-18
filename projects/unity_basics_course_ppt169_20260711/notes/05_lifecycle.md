@@ -1,0 +1,1 @@
+Awake 适合缓存组件，Start 适合初始化状态。Update 每帧读取输入，FixedUpdate 按固定时间步处理物理。请学生思考：把键盘输入放在 FixedUpdate 会有什么体验？

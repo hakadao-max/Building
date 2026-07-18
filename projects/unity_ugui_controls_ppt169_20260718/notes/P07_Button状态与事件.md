@@ -1,0 +1,1 @@
+Button 至少要让玩家分辨普通、悬停、按下和禁用状态。事件既可以在 Inspector 中连接，也可以在脚本中监听；如果在 OnEnable 添加监听，就应在 OnDisable 移除。

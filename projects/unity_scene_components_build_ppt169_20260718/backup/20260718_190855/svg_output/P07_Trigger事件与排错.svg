@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">Trigger：不阻挡，但能感知“进入、停留、离开”</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">适合门、任务区、拾取范围、检测区域与剧情触发</text>
+  <g transform="translate(60 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="500" height="438" rx="28" fill="#FFFFFF" stroke="#55A68B" stroke-width="3"/>
+    <text x="30" y="56" font-size="36" font-weight="700" fill="#2F8F6A">事件顺序</text>
+    <g stroke="#55A68B" stroke-width="8" fill="none" stroke-linecap="round">
+      <line x1="84" y1="118" x2="84" y2="350"/>
+    </g>
+    <g>
+      <circle cx="84" cy="130" r="36" fill="#2457A6"/>
+      <text x="84" y="141" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">1</text>
+      <text x="144" y="122" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">OnTriggerEnter</text>
+      <text x="144" y="156" font-size="24" fill="#596273">第一次进入检测区</text>
+      <circle cx="84" cy="244" r="36" fill="#F2A93B"/>
+      <text x="84" y="255" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">2</text>
+      <text x="144" y="236" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">OnTriggerStay</text>
+      <text x="144" y="270" font-size="24" fill="#596273">仍在区域内，每帧调用</text>
+      <circle cx="84" cy="358" r="36" fill="#D85C45"/>
+      <text x="84" y="369" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">3</text>
+      <text x="144" y="350" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">OnTriggerExit</text>
+      <text x="144" y="384" font-size="24" fill="#596273">离开区域，收尾状态</text>
+    </g>
+  </g>
+  <g transform="translate(600 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="620" height="438" rx="28" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <use data-icon="tabler-outline/checklist" x="28" y="22" width="48" height="48" fill="#2457A6" stroke-width="2"/>
+    <text x="94" y="58" font-size="36" font-weight="700" fill="#1F2937">事件没触发？按顺序检查</text>
+    <g font-size="24" fill="#596273">
+      <g transform="translate(28 94)"><circle cx="15" cy="16" r="15" fill="#2457A6"/><text x="15" y="24" text-anchor="middle" fill="#FFFFFF">✓</text><text x="50" y="24">至少一方有 Rigidbody</text></g>
+      <g transform="translate(28 150)"><circle cx="15" cy="16" r="15" fill="#2457A6"/><text x="15" y="24" text-anchor="middle" fill="#FFFFFF">✓</text><text x="50" y="24">检测区勾选 Is Trigger</text></g>
+      <g transform="translate(28 206)"><circle cx="15" cy="16" r="15" fill="#2457A6"/><text x="15" y="24" text-anchor="middle" fill="#FFFFFF">✓</text><text x="50" y="24">两者 Layer 允许相互碰撞</text></g>
+      <g transform="translate(28 262)"><circle cx="15" cy="16" r="15" fill="#2457A6"/><text x="15" y="24" text-anchor="middle" fill="#FFFFFF">✓</text><text x="50" y="24">脚本挂在正确对象上</text></g>
+      <g transform="translate(28 318)"><circle cx="15" cy="16" r="15" fill="#2457A6"/><text x="15" y="24" text-anchor="middle" fill="#FFFFFF">✓</text><text x="50" y="24">方法签名与 2D / 3D API 一致</text></g>
+      <g transform="translate(28 374)"><circle cx="15" cy="16" r="15" fill="#F2A93B"/><text x="15" y="24" text-anchor="middle" fill="#FFFFFF">!</text><text x="50" y="24" fill="#8C5A00">用 Console 日志定位到哪一步</text></g>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Trigger · 事件与排错</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">07</text>
+  </g>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">综合实践：组装一个设置面板</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">每个控件都有明确的数据来源与输出行为</text>
+  <g id="settings-tree" transform="translate(60 156)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="520" height="450" rx="28" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="28" y="54" font-size="36" font-weight="700" fill="#2457A6">目标层级</text>
+    <g stroke="#596273" stroke-width="4" fill="none" stroke-linecap="round">
+      <line x1="260" y1="132" x2="260" y2="184"/>
+      <line x1="94" y1="184" x2="426" y2="184"/>
+      <line x1="94" y1="184" x2="94" y2="230"/>
+      <line x1="205" y1="184" x2="205" y2="230"/>
+      <line x1="316" y1="184" x2="316" y2="230"/>
+      <line x1="426" y1="184" x2="426" y2="230"/>
+    </g>
+    <rect x="120" y="76" width="280" height="58" rx="16" fill="#2457A6"/>
+    <text x="260" y="115" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">SettingsPanel (Image)</text>
+    <g font-size="24" text-anchor="middle">
+      <rect x="28" y="230" width="132" height="94" rx="16" fill="#EAF0FA" stroke="#2457A6" stroke-width="2"/><text x="94" y="270" fill="#2457A6">Preview</text><text x="94" y="302" fill="#596273">RawImage</text>
+      <rect x="139" y="230" width="132" height="94" rx="16" fill="#E8F5F0" stroke="#55A68B" stroke-width="2"/><text x="205" y="270" fill="#2F8F6A">Music</text><text x="205" y="302" fill="#596273">Toggle</text>
+      <rect x="250" y="230" width="132" height="94" rx="16" fill="#FFF0D1" stroke="#F2A93B" stroke-width="2"/><text x="316" y="270" fill="#8C5A00">Quality</text><text x="316" y="302" fill="#596273">Dropdown</text>
+      <rect x="361" y="230" width="132" height="94" rx="16" fill="#F4F0E8" stroke="#596273" stroke-width="2"/><text x="427" y="270" fill="#1F2937">Apply</text><text x="427" y="302" fill="#596273">Button</text>
+    </g>
+    <rect x="56" y="360" width="408" height="58" rx="16" fill="#55A68B"/>
+    <text x="260" y="399" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">EventSystem（场景唯一）</text>
+  </g>
+  <g id="settings-ui" transform="translate(620 156)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="600" height="450" rx="28" fill="#FFFFFF" stroke="#2457A6" stroke-width="4"/>
+    <rect x="0" y="0" width="600" height="66" rx="28" fill="#2457A6"/>
+    <!-- icon: tabler-outline/settings -->
+  <g transform="translate(24, 13) scale(1.66667)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" />
+    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  </g>
+    <text x="82" y="45" font-size="32" font-weight="700" fill="#FFFFFF">设置</text>
+    <rect x="30" y="92" width="220" height="150" rx="20" fill="#EAF0FA"/>
+    <!-- icon: tabler-outline/camera -->
+  <g transform="translate(100, 122) scale(3.33333)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
+    <path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  </g>
+    <text x="285" y="128" font-size="24" fill="#1F2937">音乐</text>
+    <rect x="464" y="100" width="100" height="52" rx="26" fill="#55A68B"/><circle cx="538" cy="126" r="20" fill="#FFFFFF"/>
+    <text x="285" y="198" font-size="24" fill="#1F2937">画质</text>
+    <rect x="430" y="166" width="134" height="50" rx="14" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="448" y="199" font-size="24" fill="#596273">高</text><path d="M520 184 L534 200 L548 184" fill="none" stroke="#596273" stroke-width="4"/>
+    <rect x="62" y="286" width="476" height="68" rx="18" fill="#F2A93B"/>
+    <text x="300" y="331" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">应用设置</text>
+    <text x="300" y="400" text-anchor="middle" font-size="24" fill="#596273">预览 · 状态 · 选择 · 提交</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">综合实践 · Settings Panel</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">12</text>
+  </g>
+</svg>

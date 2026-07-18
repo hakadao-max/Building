@@ -1,0 +1,1 @@
+继承表达的是“Player 是一种 Character”，所以冒号后面写父类 Character。Player 自动获得父类中允许访问的字段和方法，同时还能增加 UseItem() 这样的独有行为。构造器中的 base(health) 表示把初始化生命值的工作继续交给父类处理。

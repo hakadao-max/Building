@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">Image：同一张 Sprite，有四种显示方式</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">Image Type 决定拉伸、切片、平铺或按比例填充</text>
+  <g id="image-types" transform="translate(60 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="270" height="400" rx="26" fill="#FFFFFF" stroke="#2457A6" stroke-width="3"/>
+      <rect x="40" y="38" width="190" height="126" rx="16" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <path d="M70 134 L120 86 L158 119 L190 94 L216 134 Z" fill="#2457A6"/>
+      <text x="135" y="218" text-anchor="middle" font-size="36" font-weight="700" fill="#2457A6">Simple</text>
+      <text x="135" y="266" text-anchor="middle" font-size="24" fill="#596273">整张拉伸</text>
+      <text x="135" y="306" text-anchor="middle" font-size="24" fill="#596273">图标与普通图片</text>
+      <text x="135" y="350" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">可 Preserve Aspect</text>
+    </g>
+    <g transform="translate(296 0)">
+      <rect x="0" y="0" width="270" height="400" rx="26" fill="#FFFFFF" stroke="#55A68B" stroke-width="3"/>
+      <rect x="40" y="38" width="190" height="126" rx="26" fill="#E8F5F0" stroke="#55A68B" stroke-width="6"/>
+      <line x1="74" y1="38" x2="74" y2="164" stroke="#55A68B" stroke-width="3" stroke-dasharray="8 6"/>
+      <line x1="196" y1="38" x2="196" y2="164" stroke="#55A68B" stroke-width="3" stroke-dasharray="8 6"/>
+      <line x1="40" y1="70" x2="230" y2="70" stroke="#55A68B" stroke-width="3" stroke-dasharray="8 6"/>
+      <line x1="40" y1="132" x2="230" y2="132" stroke="#55A68B" stroke-width="3" stroke-dasharray="8 6"/>
+      <text x="135" y="218" text-anchor="middle" font-size="36" font-weight="700" fill="#2F8F6A">Sliced</text>
+      <text x="135" y="266" text-anchor="middle" font-size="24" fill="#596273">九宫格</text>
+      <text x="135" y="306" text-anchor="middle" font-size="24" fill="#596273">按钮与面板</text>
+      <text x="135" y="350" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">四角保持形状</text>
+    </g>
+    <g transform="translate(592 0)">
+      <rect x="0" y="0" width="270" height="400" rx="26" fill="#FFFFFF" stroke="#F2A93B" stroke-width="3"/>
+      <rect x="40" y="38" width="190" height="126" rx="12" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <g fill="#F2A93B"><circle cx="76" cy="72" r="12"/><circle cx="126" cy="72" r="12"/><circle cx="176" cy="72" r="12"/><circle cx="76" cy="122" r="12"/><circle cx="126" cy="122" r="12"/><circle cx="176" cy="122" r="12"/></g>
+      <text x="135" y="218" text-anchor="middle" font-size="36" font-weight="700" fill="#8C5A00">Tiled</text>
+      <text x="135" y="266" text-anchor="middle" font-size="24" fill="#596273">平铺填充</text>
+      <text x="135" y="306" text-anchor="middle" font-size="24" fill="#596273">重复纹理</text>
+      <text x="135" y="350" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">不拉伸图案</text>
+    </g>
+    <g transform="translate(888 0)">
+      <rect x="0" y="0" width="270" height="400" rx="26" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+      <circle cx="135" cy="102" r="64" fill="#F4F0E8"/>
+      <path d="M135 102 L135 38 A64 64 0 1 1 71 102 Z" fill="#D85C45"/>
+      <text x="135" y="218" text-anchor="middle" font-size="36" font-weight="700" fill="#D85C45">Filled</text>
+      <text x="135" y="266" text-anchor="middle" font-size="24" fill="#596273">按比例显示</text>
+      <text x="135" y="306" text-anchor="middle" font-size="24" fill="#596273">血条与冷却</text>
+      <text x="135" y="350" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">fillAmount</text>
+    </g>
+  </g>
+  <rect x="210" y="582" width="860" height="46" rx="14" fill="#EAF0FA"/>
+  <text x="640" y="614" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#2457A6">纯装饰 Image 可关闭 Raycast Target，避免挡住后方按钮</text>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Image · 四种显示模式</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">08</text>
+  </g>
+</svg>

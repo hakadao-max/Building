@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">把被忽略的普通动作，放大成完整玩法</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">整理文件与走路，本来都不是“技能”，却可以承载决策与压力</text>
+  <g id="ordinary-pillars" transform="translate(80 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="530" height="438" rx="30" fill="#FFFFFF" stroke="#2457A6" stroke-width="4"/>
+      <rect x="0" y="0" width="530" height="88" rx="30" fill="#2457A6"/>
+      <use data-icon="tabler-outline/file-text" x="28" y="20" width="48" height="48" fill="#FFFFFF" stroke-width="2"/>
+      <text x="96" y="58" font-size="36" font-weight="700" fill="#FFFFFF">《Papers, Please》</text>
+      <text x="30" y="144" font-size="32" font-weight="700" fill="#1F2937">把办公桌做成世界</text>
+      <text x="30" y="196" font-size="24" fill="#596273">拖动、翻看、对比、盖章</text>
+      <text x="30" y="238" font-size="24" fill="#596273">文件占空间，规则不断增加</text>
+      <text x="30" y="280" font-size="24" fill="#596273">机械操作承担道德后果</text>
+      <rect x="30" y="322" width="470" height="80" rx="18" fill="#EAF0FA"/>
+      <text x="265" y="355" text-anchor="middle" font-size="24" fill="#2457A6">实现重点</text>
+      <text x="265" y="388" text-anchor="middle" font-size="24" font-weight="700" fill="#2457A6">数据比对 + 拖拽层级 + RuleSet</text>
+    </g>
+    <g transform="translate(590 0)">
+      <rect x="0" y="0" width="530" height="438" rx="30" fill="#FFFFFF" stroke="#55A68B" stroke-width="4"/>
+      <rect x="0" y="0" width="530" height="88" rx="30" fill="#55A68B"/>
+      <use data-icon="tabler-outline/walk" x="28" y="20" width="48" height="48" fill="#FFFFFF" stroke-width="2"/>
+      <text x="96" y="58" font-size="36" font-weight="700" fill="#FFFFFF">《死亡搁浅》</text>
+      <text x="30" y="144" font-size="32" font-weight="700" fill="#1F2937">把走路做成操作</text>
+      <text x="30" y="196" font-size="24" fill="#596273">坡度、地面、货物与重心</text>
+      <text x="30" y="238" font-size="24" fill="#596273">观察路线并主动修正平衡</text>
+      <text x="30" y="280" font-size="24" fill="#596273">失衡有预警，玩家能补救</text>
+      <rect x="30" y="322" width="470" height="80" rx="18" fill="#E8F5F0"/>
+      <text x="265" y="355" text-anchor="middle" font-size="24" fill="#2F8F6A">实现重点</text>
+      <text x="265" y="388" text-anchor="middle" font-size="24" font-weight="700" fill="#2F8F6A">地形射线 + 质心 + 失衡累积</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">案例 · 普通动作的决策密度</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">13</text>
+  </g>
+</svg>

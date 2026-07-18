@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">Transform：位置、旋转、缩放，以及父子关系</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">每个 GameObject 都有 Transform；子物体会继承父物体的空间变化</text>
+  <g id="coordinate-system" transform="translate(62 155)">
+    <rect x="0" y="0" width="410" height="432" rx="28" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="30" y="54" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="36" font-weight="700" fill="#2457A6">空间坐标系</text>
+    <g transform="translate(205 214)" stroke-linecap="round">
+      <line x1="0" y1="0" x2="120" y2="0" stroke="#D85C45" stroke-width="8"/>
+      <path d="M104 -12 L124 0 L104 12" fill="none" stroke="#D85C45" stroke-width="8" stroke-linejoin="round"/>
+      <line x1="0" y1="0" x2="0" y2="-120" stroke="#55A68B" stroke-width="8"/>
+      <path d="M-12 -104 L0 -124 L12 -104" fill="none" stroke="#55A68B" stroke-width="8" stroke-linejoin="round"/>
+      <line x1="0" y1="0" x2="-82" y2="78" stroke="#2457A6" stroke-width="8"/>
+      <path d="M-58 72 L-86 82 L-78 54" fill="none" stroke="#2457A6" stroke-width="8" stroke-linejoin="round"/>
+      <circle cx="0" cy="0" r="22" fill="#FFF9E9" stroke="#1F2937" stroke-width="4"/>
+      <text x="145" y="10" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#D85C45">X</text>
+      <text x="-8" y="-145" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#2F8F6A">Y</text>
+      <text x="-114" y="108" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#2457A6">Z</text>
+    </g>
+    <rect x="28" y="348" width="354" height="56" rx="16" fill="#F4F0E8"/>
+    <text x="205" y="385" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">本地坐标 ≠ 世界坐标</text>
+  </g>
+  <g id="transform-properties" transform="translate(500 155)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="218" height="196" rx="24" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <!-- icon: tabler-outline/transform -->
+  <g transform="translate(79, 24) scale(2.5)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M3 6a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+    <path d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3" />
+    <path d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3" />
+    <path d="M15 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  </g>
+      <text x="109" y="122" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">Position</text>
+      <text x="109" y="158" text-anchor="middle" font-size="24" fill="#596273">在哪里</text>
+    </g>
+    <g transform="translate(242 0)">
+      <rect x="0" y="0" width="218" height="196" rx="24" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <path d="M66 66 C74 28 142 22 158 64" fill="none" stroke="#55A68B" stroke-width="8" stroke-linecap="round"/>
+      <path d="M145 45 L160 66 L136 72" fill="none" stroke="#55A68B" stroke-width="8" stroke-linejoin="round"/>
+      <text x="109" y="122" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">Rotation</text>
+      <text x="109" y="158" text-anchor="middle" font-size="24" fill="#596273">朝向哪里</text>
+    </g>
+    <g transform="translate(484 0)">
+      <rect x="0" y="0" width="218" height="196" rx="24" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <rect x="73" y="30" width="72" height="58" rx="8" fill="none" stroke="#F2A93B" stroke-width="7"/>
+      <path d="M62 98 L51 109 M156 98 L167 109 M62 20 L51 9 M156 20 L167 9" stroke="#F2A93B" stroke-width="7" stroke-linecap="round"/>
+      <text x="109" y="122" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">Scale</text>
+      <text x="109" y="158" text-anchor="middle" font-size="24" fill="#596273">有多大</text>
+    </g>
+    <rect x="0" y="224" width="702" height="208" rx="28" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="28" y="270" font-size="36" font-weight="700" fill="#1F2937">父子层级：一起移动，分别控制</text>
+    <g stroke="#596273" stroke-width="4" fill="none" stroke-linecap="round">
+      <line x1="350" y1="314" x2="350" y2="354"/>
+      <line x1="166" y1="354" x2="534" y2="354"/>
+      <line x1="166" y1="354" x2="166" y2="382"/>
+      <line x1="534" y1="354" x2="534" y2="382"/>
+    </g>
+    <rect x="258" y="288" width="184" height="54" rx="16" fill="#2457A6"/>
+    <text x="350" y="325" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">PlayerRoot</text>
+    <rect x="70" y="382" width="192" height="50" rx="14" fill="#E8F5F0" stroke="#55A68B" stroke-width="2"/>
+    <text x="166" y="416" text-anchor="middle" font-size="24" fill="#2F8F6A">Visual</text>
+    <rect x="438" y="382" width="192" height="50" rx="14" fill="#FFF0D1" stroke="#F2A93B" stroke-width="2"/>
+    <text x="534" y="416" text-anchor="middle" font-size="24" fill="#8C5A00">CameraPivot</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Transform · Local / World Space</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">04</text>
+  </g>
+</svg>

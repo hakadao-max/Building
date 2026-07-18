@@ -1,0 +1,17 @@
+{
+  "session_id": "4e1bbe4eed054bbaa00dbd2da6ec76d6",
+  "status": "done",
+  "current_stage": "final",
+  "expected_stage": null,
+  "expected_stage_number": null,
+  "recommendation_stage": "stage3",
+  "recommendation_stage_number": 3,
+  "recommendation_version": 1783752985.4007688,
+  "recommendation_error": null,
+  "result_stage": "final",
+  "result_stage_number": 4,
+  "result_version": 1783753328.5640523,
+  "server_port": 5050,
+  "event": "final-submitted",
+  "updated_at": "2026-07-11T15:02:08"
+}

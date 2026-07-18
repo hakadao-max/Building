@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">把相机画面送进 UI：Camera → RenderTexture → RawImage</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">常见于小地图、监控屏、角色预览与画中画</text>
+  <g transform="translate(70 170)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="310" height="360" rx="30" fill="#EAF0FA" stroke="#2457A6" stroke-width="4"/>
+      <circle cx="155" cy="104" r="72" fill="#2457A6"/>
+      <use data-icon="tabler-outline/camera" x="107" y="56" width="96" height="96" fill="#FFFFFF" stroke-width="2"/>
+      <text x="155" y="218" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">Camera</text>
+      <text x="155" y="264" text-anchor="middle" font-size="24" fill="#596273">选择要渲染的场景</text>
+      <rect x="44" y="294" width="222" height="42" rx="14" fill="#FFFFFF"/>
+      <text x="155" y="324" text-anchor="middle" font-size="24" font-weight="700" fill="#2457A6">Target Texture</text>
+    </g>
+    <path d="M330 180 H405 V154 L455 180 L405 206 V180" fill="#F2A93B"/>
+    <g transform="translate(435 0)">
+      <rect x="0" y="0" width="310" height="360" rx="30" fill="#FFF0D1" stroke="#F2A93B" stroke-width="4"/>
+      <circle cx="155" cy="104" r="72" fill="#F2A93B"/>
+      <use data-icon="tabler-outline/device-tv" x="107" y="56" width="96" height="96" fill="#FFFFFF" stroke-width="2"/>
+      <text x="155" y="218" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">RenderTexture</text>
+      <text x="155" y="264" text-anchor="middle" font-size="24" fill="#596273">接收相机输出的纹理</text>
+      <rect x="44" y="294" width="222" height="42" rx="14" fill="#FFFFFF"/>
+      <text x="155" y="324" text-anchor="middle" font-size="24" font-weight="700" fill="#8C5A00">分辨率影响清晰度</text>
+    </g>
+    <path d="M765 180 H840 V154 L890 180 L840 206 V180" fill="#55A68B"/>
+    <g transform="translate(870 0)">
+      <rect x="0" y="0" width="310" height="360" rx="30" fill="#E8F5F0" stroke="#55A68B" stroke-width="4"/>
+      <rect x="72" y="42" width="166" height="124" rx="18" fill="#55A68B"/>
+      <use data-icon="tabler-outline/device-tv" x="107" y="56" width="96" height="96" fill="#FFFFFF" stroke-width="2"/>
+      <text x="155" y="218" text-anchor="middle" font-size="36" font-weight="700" fill="#1F2937">RawImage</text>
+      <text x="155" y="264" text-anchor="middle" font-size="24" fill="#596273">在 Canvas 上显示纹理</text>
+      <rect x="44" y="294" width="222" height="42" rx="14" fill="#FFFFFF"/>
+      <text x="155" y="324" text-anchor="middle" font-size="24" font-weight="700" fill="#2F8F6A">Texture = 输出纹理</text>
+    </g>
+  </g>
+  <rect x="218" y="560" width="844" height="62" rx="20" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+  <text x="640" y="602" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#1F2937">关键：相机与 UI 共享同一张 RenderTexture 资产</text>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Camera Pipeline · 画面复用</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">10</text>
+  </g>
+</svg>

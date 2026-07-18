@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">先问：这件事何时发生、会发生几次？</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">选择生命周期函数，本质上是在选择责任与次数</text>
+  </g>
+  <g id="decision-list" transform="translate(62 156)">
+    <path d="M34 34 C28 150 40 314 34 430" fill="none" stroke="#D8D2C5" stroke-width="4" stroke-linecap="round"/>
+    <g id="rule-1">
+      <circle cx="34" cy="34" r="27" fill="#2457A6"/>
+      <text x="34" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">1</text>
+      <text x="84" y="28" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="30" font-weight="700" fill="#1F2937">获取自身必要组件 → Awake</text>
+      <text x="84" y="60" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">只依赖当前对象，加载时即可建立引用</text>
+    </g>
+    <g id="rule-2" transform="translate(0 98)">
+      <circle cx="34" cy="34" r="27" fill="#55A68B"/>
+      <text x="34" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">2</text>
+      <text x="84" y="28" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="30" font-weight="700" fill="#1F2937">订阅 / 取消订阅 → OnEnable / OnDisable</text>
+      <text x="84" y="60" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">组件每次开始工作时订阅，停止工作时成对解除</text>
+    </g>
+    <g id="rule-3" transform="translate(0 196)">
+      <circle cx="34" cy="34" r="27" fill="#F2A93B"/>
+      <text x="34" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">3</text>
+      <text x="84" y="28" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="30" font-weight="700" fill="#1F2937">依赖其他对象初始化后的启动 → Start</text>
+      <text x="84" y="60" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">第一次帧更新前建立初始游戏状态</text>
+    </g>
+    <g id="rule-4" transform="translate(0 294)">
+      <circle cx="34" cy="34" r="27" fill="#2457A6"/>
+      <text x="34" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">4</text>
+      <text x="84" y="28" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="30" font-weight="700" fill="#1F2937">持续逻辑 → 对应的更新循环</text>
+      <text x="84" y="60" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">输入、物理和跟随不要挤进同一个函数</text>
+    </g>
+    <g id="rule-5" transform="translate(0 392)">
+      <circle cx="34" cy="34" r="27" fill="#D85C45"/>
+      <text x="34" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">5</text>
+      <text x="84" y="28" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="30" font-weight="700" fill="#1F2937">实例寿命结束 → OnDestroy</text>
+      <text x="84" y="60" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">释放与该实例同寿命的资源</text>
+    </g>
+  </g>
+  <g id="anti-pattern" transform="translate(840 170)">
+    <rect x="0" y="0" width="376" height="408" rx="26" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <!-- icon: tabler-outline/alert-triangle -->
+  <g transform="translate(138, 34) scale(4.16667)" fill="none" stroke="#D85C45" stroke-width="2">
+    <path d="M12 9v4" />
+    <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0" />
+    <path d="M12 16h.01" />
+  </g>
+    <text x="188" y="170" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#D85C45">不要赌 Awake 顺序</text>
+    <text x="188" y="220" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">不同 GameObject 的 Awake</text>
+    <text x="188" y="254" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">谁先执行，不应成为逻辑前提</text>
+    <path d="M58 286 C136 273 240 300 318 284" fill="none" stroke="#F2A93B" stroke-width="6" stroke-linecap="round"/>
+    <text x="188" y="330" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#2457A6">跨对象依赖怎么办？</text>
+    <text x="188" y="368" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">使用明确的启动流程、事件</text>
+    <text x="188" y="398" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">或由上层统一编排</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 语法基础 · 生命周期函数选择</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">5</text>
+</svg>

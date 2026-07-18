@@ -1,0 +1,1 @@
+变量保存状态，Input API 读取玩家意图。演示在 Inspector 中调整 speed，再用 W/S 控制 Paddle。强调 GetKey、GetKeyDown 和 GetAxisRaw 的差异。

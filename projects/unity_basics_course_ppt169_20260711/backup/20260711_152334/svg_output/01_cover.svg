@@ -1,0 +1,15 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="cover">
+  <rect width="1280" height="720" fill="#F7F9FC"/>
+  <circle cx="1030" cy="120" r="220" fill="#EAF0FF"/><circle cx="1110" cy="600" r="180" fill="#EAF0FF"/>
+  <g id="title"><text x="72" y="220" font-family="'Segoe UI','Microsoft YaHei',sans-serif" font-size="88" font-weight="700" fill="#172033">Unity 鍩虹鑴氭湰</text><text x="72" y="320" font-family="'Segoe UI','Microsoft YaHei',sans-serif" font-size="88" font-weight="700" fill="#3157D5">涓?UGUI</text><text x="78" y="382" font-family="'Segoe UI','Microsoft YaHei',sans-serif" font-size="42" fill="#56627A">浠?C# 缁勪欢閫昏緫鍒板彲浜や簰娓告垙鐣岄潰</text></g>
+  <g id="hero">
+    <rect x="770" y="150" width="420" height="400" rx="28" fill="#FFFFFF" stroke="#C9D4F2" stroke-width="3"/>
+    <rect x="812" y="198" width="336" height="202" rx="16" fill="#172033"/>
+    <rect x="832" y="265" width="18" height="74" rx="9" fill="#22A6B3"/><rect x="1110" y="265" width="18" height="74" rx="9" fill="#7C4DFF"/><circle cx="980" cy="300" r="20" fill="#F7F9FC"/><path d="M980 300 L1088 245" stroke="#F7F9FC" stroke-width="4" stroke-dasharray="12 10"/>
+    <rect x="812" y="430" width="154" height="72" rx="16" fill="#EAF0FF"/><rect x="990" y="430" width="158" height="72" rx="16" fill="#EAF0FF"/><circle cx="838" cy="466" r="12" fill="#3157D5"/><rect x="1018" y="452" width="104" height="10" rx="5" fill="#C9D4F2"/><circle cx="1080" cy="457" r="14" fill="#7C4DFF"/>
+    <text x="834" y="575" font-family="Consolas,'Courier New',monospace" font-size="24" fill="#3157D5">GameObject 鈫?Script 鈫?UI</text>
+  </g>
+  <text x="78" y="660" font-family="'Segoe UI','Microsoft YaHei',sans-serif" font-size="18" fill="#8490A8">UNITY BEGINNER COURSE 路 2026</text>
+</svg>
+
+

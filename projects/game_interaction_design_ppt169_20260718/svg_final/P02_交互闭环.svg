@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">输入不等于交互：结果要驱动下一步想法</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">交互是一段持续对话，不是一次按键</text>
+  <g id="interaction-chevron" transform="translate(70 190)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <polygon points="0,0 240,0 282,84 240,168 0,168 42,84" fill="#2457A6"/>
+    <!-- icon: tabler-outline/bulb -->
+  <g transform="translate(100, 24) scale(2.33333)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+    <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+    <path d="M9.7 17l4.6 0" />
+  </g>
+    <text x="141" y="117" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">玩家产生想法</text>
+    <polygon points="266,0 506,0 548,84 506,168 266,168 308,84" fill="#55A68B"/>
+    <!-- icon: tabler-outline/pointer -->
+  <g transform="translate(366, 24) scale(2.33333)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M7.904 17.563a1.2 1.2 0 0 0 2.228 .308l2.09 -3.093l4.907 4.907a1.067 1.067 0 0 0 1.509 0l1.047 -1.047a1.067 1.067 0 0 0 0 -1.509l-4.907 -4.907l3.113 -2.09a1.2 1.2 0 0 0 -.309 -2.228l-13.582 -3.904l3.904 13.563" />
+  </g>
+    <text x="407" y="117" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">做出操作</text>
+    <polygon points="532,0 772,0 814,84 772,168 532,168 574,84" fill="#F2A93B"/>
+    <!-- icon: tabler-outline/arrows-exchange -->
+  <g transform="translate(632, 24) scale(2.33333)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M7 10h14l-4 -4" />
+    <path d="M17 14h-14l4 4" />
+  </g>
+    <text x="673" y="117" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">世界发生变化</text>
+    <polygon points="798,0 1052,0 1094,84 1052,168 798,168 840,84" fill="#D85C45"/>
+    <!-- icon: tabler-outline/eye -->
+  <g transform="translate(905, 24) scale(2.33333)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+  </g>
+    <text x="946" y="117" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">看到结果</text>
+    <path d="M946 200 C946 294 730 328 548 328 C366 328 141 292 141 200" fill="none" stroke="#596273" stroke-width="8" stroke-linecap="round"/>
+    <path d="M124 224 L141 198 L158 224" fill="none" stroke="#596273" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+  <rect x="160" y="530" width="960" height="86" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+  <text x="640" y="566" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">设计问题</text>
+  <text x="640" y="603" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#2457A6">玩家的动作，改变了路线、状态、能力，还是理解？</text>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">交互定义 · 想法—操作—变化—反馈</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">02</text>
+  </g>
+</svg>

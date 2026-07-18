@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">先决定“直接控制”还是“物理响应”</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">选择移动系统，就是选择角色对世界的响应方式</text>
+  </g>
+  <g id="pillar-controller" transform="translate(60 162)">
+    <rect x="0" y="0" width="352" height="410" rx="26" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <circle cx="176" cy="72" r="52" fill="#2457A6"/>
+    <!-- icon: tabler-outline/walk -->
+  <g transform="translate(144, 40) scale(2.66667)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M12 4a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+    <path d="M7 21l3 -4" />
+    <path d="M16 21l-2 -4l-3 -3l1 -6" />
+    <path d="M6 12l2 -3l4 -1l3 3l3 1" />
+  </g>
+    <text x="176" y="156" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="29" font-weight="700" fill="#2457A6">CharacterController</text>
+    <text x="28" y="205" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="25" font-weight="700" fill="#1F2937">脚本直接控制</text>
+    <text x="28" y="244" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 调用 Move 给位移</text>
+    <text x="28" y="280" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 重力与跳跃自己维护</text>
+    <text x="28" y="316" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 坡度、台阶参数友好</text>
+    <text x="28" y="352" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 默认不被刚体随意撞飞</text>
+    <rect x="28" y="372" width="296" height="24" rx="12" fill="#2457A6"/>
+    <text x="176" y="390" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">常见：第一 / 第三人称玩家</text>
+  </g>
+  <g id="pillar-choice" transform="translate(446 162)">
+    <rect x="0" y="0" width="388" height="410" rx="26" fill="#FFF9E9" stroke="#F2A93B" stroke-width="3"/>
+    <circle cx="194" cy="72" r="52" fill="#F2A93B"/>
+    <!-- icon: tabler-outline/check -->
+  <g transform="translate(162, 40) scale(2.66667)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M5 12l5 5l10 -10" />
+  </g>
+    <text x="194" y="156" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#8C5A00">选择规则</text>
+    <rect x="26" y="188" width="336" height="76" rx="18" fill="#EAF0FA"/>
+    <text x="194" y="220" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#2457A6">可控性优先</text>
+    <text x="194" y="250" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">玩家角色、精确移动</text>
+    <text x="194" y="296" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="30" font-weight="700" fill="#8A8F98">OR</text>
+    <rect x="26" y="318" width="336" height="76" rx="18" fill="#E8F5F0"/>
+    <text x="194" y="350" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#2F8F6A">物理响应优先</text>
+    <text x="194" y="380" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">箱子、球、载具、物理角色</text>
+  </g>
+  <g id="pillar-rigidbody" transform="translate(868 162)">
+    <rect x="0" y="0" width="352" height="410" rx="26" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <circle cx="176" cy="72" r="52" fill="#55A68B"/>
+    <!-- icon: tabler-outline/box -->
+  <g transform="translate(144, 40) scale(2.66667)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+    <path d="M12 12l8 -4.5" />
+    <path d="M12 12l0 9" />
+    <path d="M12 12l-8 -4.5" />
+  </g>
+    <text x="176" y="156" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#2F8F6A">Rigidbody</text>
+    <text x="28" y="205" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="25" font-weight="700" fill="#1F2937">动力学响应</text>
+    <text x="28" y="244" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 力、速度或物理移动</text>
+    <text x="28" y="280" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 可使用物理重力</text>
+    <text x="28" y="316" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 会被其他刚体推动</text>
+    <text x="28" y="352" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 坡度台阶需额外处理</text>
+    <rect x="28" y="372" width="296" height="24" rx="12" fill="#55A68B"/>
+    <text x="176" y="390" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">常见：箱子、球、载具</text>
+  </g>
+  <g id="warning-bar" transform="translate(174 592)">
+    <rect x="0" y="0" width="932" height="46" rx="18" fill="#D85C45"/>
+    <!-- icon: tabler-outline/alert-triangle -->
+  <g transform="translate(18, 9) scale(1.16667)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M12 9v4" />
+    <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0" />
+    <path d="M12 16h.01" />
+  </g>
+    <text x="482" y="31" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" font-weight="700" fill="#FFFFFF">不要让 CharacterController 与非运动学 Rigidbody 在同一根节点争夺移动控制权</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 语法基础 · 移动系统选择</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">12</text>
+</svg>

@@ -1,0 +1,1 @@
+RawImage 直接显示 Texture，常与 RenderTexture 和 Camera 组合。Image 更适合 Sprite、九宫格和 Filled，RawImage 更适合摄像机、视频或运行时纹理，不应为了普通图标大量替代 Image。

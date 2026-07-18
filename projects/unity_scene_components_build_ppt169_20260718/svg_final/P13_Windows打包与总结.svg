@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="ending">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">最后一步：把场景交付为 Windows 程序</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">打包不是“另一个世界”，只是把已验证的场景与资产装进运行时</text>
+  <g id="build-steps" transform="translate(76 180)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <circle cx="70" cy="70" r="58" fill="#2457A6"/>
+      <text x="70" y="83" text-anchor="middle" font-size="36" font-weight="700" fill="#FFFFFF">01</text>
+      <text x="70" y="164" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">保存场景</text>
+      <text x="70" y="202" text-anchor="middle" font-size="24" fill="#596273">确认无报错</text>
+    </g>
+    <path d="M148 70 H232 V48 L272 70 L232 92 V70" fill="#D8D2C5"/>
+    <g transform="translate(286 0)">
+      <circle cx="70" cy="70" r="58" fill="#55A68B"/>
+      <text x="70" y="83" text-anchor="middle" font-size="36" font-weight="700" fill="#FFFFFF">02</text>
+      <text x="70" y="164" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">打开 Build Profiles</text>
+      <text x="70" y="202" text-anchor="middle" font-size="24" fill="#596273">选择 Windows</text>
+    </g>
+    <path d="M434 70 H518 V48 L558 70 L518 92 V70" fill="#D8D2C5"/>
+    <g transform="translate(572 0)">
+      <circle cx="70" cy="70" r="58" fill="#F2A93B"/>
+      <text x="70" y="83" text-anchor="middle" font-size="36" font-weight="700" fill="#FFFFFF">03</text>
+      <text x="70" y="164" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">加入场景</text>
+      <text x="70" y="202" text-anchor="middle" font-size="24" fill="#596273">Scenes In Build</text>
+    </g>
+    <path d="M720 70 H804 V48 L844 70 L804 92 V70" fill="#D8D2C5"/>
+    <g transform="translate(858 0)">
+      <circle cx="70" cy="70" r="58" fill="#D85C45"/>
+      <text x="70" y="83" text-anchor="middle" font-size="36" font-weight="700" fill="#FFFFFF">04</text>
+      <text x="70" y="164" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">Build 并运行</text>
+      <text x="70" y="202" text-anchor="middle" font-size="24" fill="#596273">检查完整目录</text>
+    </g>
+  </g>
+  <g id="final-loop" transform="translate(70 430)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="1140" height="170" rx="30" fill="#2457A6"/>
+    <!-- icon: tabler-outline/package-export -->
+  <g transform="translate(48, 43) scale(3.5)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M12 21l-8 -4.5v-9l8 -4.5l8 4.5v4.5" />
+    <path d="M12 12l8 -4.5" />
+    <path d="M12 12v9" />
+    <path d="M12 12l-8 -4.5" />
+    <path d="M15 18h7" />
+    <path d="M19 15l3 3l-3 3" />
+  </g>
+    <text x="170" y="64" font-size="42" font-weight="700" fill="#FFFFFF">最终闭环</text>
+    <text x="170" y="118" font-size="32" fill="#FFFFFF">层级组织 → 组件组合 → 物理交互 → 渲染呈现 → Prefab 复用 → 打包交付</text>
+  </g>
+  <text x="640" y="644" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="42" font-weight="700" fill="#1F2937">会搭、会动、会看、会复用、会交付</text>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 基础 · 从场景到 Build</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">13</text>
+  </g>
+</svg>

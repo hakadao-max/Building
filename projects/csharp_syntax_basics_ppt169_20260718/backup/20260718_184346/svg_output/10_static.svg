@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="ending">
+  <rect id="background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="62" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#2457A6"><tspan font-family="Consolas, 'Courier New', monospace">static</tspan> 属于类型，不是调用捷径</text>
+  <path d="M65 110 C327 99 618 108 850 101" fill="none" stroke="#F2A93B" stroke-width="5" stroke-linecap="round"/>
+  <g id="static-hero">
+    <text x="76" y="246" font-family="Consolas, 'Courier New', monospace" font-size="92" font-weight="700" fill="#2457A6">static</text>
+    <text x="82" y="298" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">一个类型，共享一份</text>
+    <g id="spot-static-vector">
+      <path d="M72 336 C178 311 367 320 495 354 C516 430 494 521 407 562 C292 592 162 568 81 506 C51 448 54 390 72 336 Z" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+      <use data-icon="tabler-outline/world-code" x="184" y="356" width="190" height="190" fill="#2457A6" stroke-width="2"/>
+      <path d="M116 420 C148 363 218 329 287 334 C363 336 429 371 463 427" fill="none" stroke="#F2A93B" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 8"/>
+      <circle cx="125" cy="409" r="14" fill="#55A68B" stroke="#1A1A1A" stroke-width="3"/>
+      <circle cx="448" cy="414" r="14" fill="#F2A93B" stroke="#1A1A1A" stroke-width="3"/>
+      <path d="M110 530 C189 558 374 559 453 522" fill="none" stroke="#55A68B" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g id="suitable-zone">
+    <path d="M560 162 C678 153 791 160 896 168 L893 218 C785 227 675 223 560 215 Z" fill="#55A68B"/>
+    <text x="728" y="199" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#FFFDF6">适合 static</text>
+    <text x="579" y="272" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">✓ 无状态的计算工具</text>
+    <text x="610" y="307" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#2F8F6A">Mathf.Clamp()</text>
+    <text x="579" y="367" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">✓ 全局共享且只应存在一份</text>
+    <text x="610" y="402" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">类型级配置或只读信息</text>
+    <text x="579" y="462" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">✓ 类型级统计</text>
+    <text x="610" y="497" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">例如对象创建数量</text>
+  </g>
+  <path d="M914 160 C903 278 922 427 910 527" fill="none" stroke="#D8D2C5" stroke-width="3" stroke-dasharray="9 7"/>
+  <g id="caution-zone">
+    <path d="M934 162 C1035 153 1134 160 1218 168 L1215 218 C1128 227 1032 223 934 215 Z" fill="#D85C45"/>
+    <text x="1076" y="199" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#FFFDF6">谨慎使用</text>
+    <text x="951" y="272" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">× 场景切换后残留</text>
+    <text x="975" y="307" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">的可变状态</text>
+    <text x="951" y="367" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">× 任意对象都能改写</text>
+    <text x="975" y="402" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">的全局数据</text>
+    <text x="951" y="462" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">× 只为“调用方便”</text>
+    <text x="975" y="497" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">静态化大量逻辑</text>
+  </g>
+  <g id="closing-claim">
+    <path d="M543 548 C722 536 1007 542 1219 552 L1215 624 C997 634 726 631 546 620 Z" fill="#FFF9E9" stroke="#F2A93B" stroke-width="3"/>
+    <text x="578" y="587" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#2457A6">最后判断</text>
+    <text x="741" y="578" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#1F2937">对象状态属于实例；</text>
+    <text x="741" y="616" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#1F2937">真正共享才属于类型。</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <path d="M58 667 C342 662 618 670 906 666 C1036 664 1110 669 1178 666" fill="none" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">C# 入门 · 类型级共享</text>
+  </g>
+  <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">10</text>
+</svg>

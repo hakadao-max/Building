@@ -1,0 +1,1 @@
+void 表示方法只执行行为，不交回计算结果；bool IsAlive() 则会返回一个真假值。Heal(int amount) 先检查参数，如果 amount 小于等于零，就用 return 提前结束。这样可以让无效输入停在入口处，避免继续修改对象状态。

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="toc">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">UGUI 的四层结构：空间、输入、控件、行为</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">把职责分清，UI 问题就更容易定位</text>
+  <g id="layers" transform="translate(120 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="1040" height="92" rx="22" fill="#2457A6"/>
+      <use data-icon="tabler-outline/layout-dashboard" x="26" y="22" width="48" height="48" fill="#FFFFFF" stroke-width="2"/>
+      <text x="96" y="43" font-size="32" font-weight="700" fill="#FFFFFF">Canvas：布局与渲染空间</text>
+      <text x="96" y="76" font-size="24" fill="#FFFFFF">决定 UI 在屏幕或 3D 世界中如何存在</text>
+    </g>
+    <g transform="translate(0 112)">
+      <rect x="0" y="0" width="1040" height="92" rx="22" fill="#55A68B"/>
+      <use data-icon="tabler-outline/pointer" x="26" y="22" width="48" height="48" fill="#FFFFFF" stroke-width="2"/>
+      <text x="96" y="43" font-size="32" font-weight="700" fill="#FFFFFF">EventSystem：输入事件调度</text>
+      <text x="96" y="76" font-size="24" fill="#FFFFFF">维护选中对象，并把鼠标、键盘、手柄事件送出去</text>
+    </g>
+    <g transform="translate(0 224)">
+      <rect x="0" y="0" width="1040" height="92" rx="22" fill="#F2A93B"/>
+      <use data-icon="tabler-outline/box" x="26" y="22" width="48" height="48" fill="#FFFFFF" stroke-width="2"/>
+      <text x="96" y="43" font-size="32" font-weight="700" fill="#FFFFFF">Controls：显示、状态与交互</text>
+      <text x="96" y="76" font-size="24" fill="#FFFFFF">Button、Image、RawImage、Toggle、Dropdown</text>
+    </g>
+    <g transform="translate(0 336)">
+      <rect x="0" y="0" width="1040" height="92" rx="22" fill="#596273"/>
+      <use data-icon="tabler-outline/settings" x="26" y="22" width="48" height="48" fill="#FFFFFF" stroke-width="2"/>
+      <text x="96" y="43" font-size="32" font-weight="700" fill="#FFFFFF">Behaviour：真正的游戏行为</text>
+      <text x="96" y="76" font-size="24" fill="#FFFFFF">通过 Inspector 事件或脚本监听执行逻辑</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">UGUI · 四层职责模型</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">02</text>
+  </g>
+</svg>

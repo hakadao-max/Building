@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">UI 看得见但点不到：按顺序排查</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">从全局基础设施，到控件自身，再到遮挡关系</text>
+  <g id="debug-list" transform="translate(70 154)" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24">
+    <g transform="translate(0 0)"><circle cx="28" cy="28" r="26" fill="#2457A6"/><text x="28" y="37" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">1</text><rect x="72" y="0" width="500" height="56" rx="16" fill="#EAF0FA"/><text x="96" y="37" fill="#1F2937">场景中有启用的 EventSystem</text></g>
+    <g transform="translate(0 64)"><circle cx="28" cy="28" r="26" fill="#2457A6"/><text x="28" y="37" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">2</text><rect x="72" y="0" width="500" height="56" rx="16" fill="#EAF0FA"/><text x="96" y="37" fill="#1F2937">输入模块与项目输入系统匹配</text></g>
+    <g transform="translate(0 128)"><circle cx="28" cy="28" r="26" fill="#55A68B"/><text x="28" y="37" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">3</text><rect x="72" y="0" width="500" height="56" rx="16" fill="#E8F5F0"/><text x="96" y="37" fill="#1F2937">Canvas 上有 Graphic Raycaster</text></g>
+    <g transform="translate(0 192)"><circle cx="28" cy="28" r="26" fill="#55A68B"/><text x="28" y="37" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">4</text><rect x="72" y="0" width="500" height="56" rx="16" fill="#E8F5F0"/><text x="96" y="37" fill="#1F2937">控件 Interactable 已开启</text></g>
+    <g transform="translate(0 256)"><circle cx="28" cy="28" r="26" fill="#F2A93B"/><text x="28" y="37" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">5</text><rect x="72" y="0" width="500" height="56" rx="16" fill="#FFF0D1"/><text x="96" y="37" fill="#1F2937">CanvasGroup 没有阻止交互</text></g>
+    <g transform="translate(620 0)"><circle cx="28" cy="28" r="26" fill="#F2A93B"/><text x="28" y="37" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">6</text><rect x="72" y="0" width="500" height="56" rx="16" fill="#FFF0D1"/><text x="96" y="37" fill="#1F2937">透明 Image 没有误开 Raycast Target</text></g>
+    <g transform="translate(620 64)"><circle cx="28" cy="28" r="26" fill="#D85C45"/><text x="28" y="37" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">7</text><rect x="72" y="0" width="500" height="56" rx="16" fill="#F4F0E8"/><text x="96" y="37" fill="#1F2937">World Space 已设置 Event Camera</text></g>
+    <g transform="translate(620 128)"><circle cx="28" cy="28" r="26" fill="#D85C45"/><text x="28" y="37" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">8</text><rect x="72" y="0" width="500" height="56" rx="16" fill="#F4F0E8"/><text x="96" y="37" fill="#1F2937">摄像机能看到 Canvas 所在 Layer</text></g>
+    <g transform="translate(620 192)"><circle cx="28" cy="28" r="26" fill="#596273"/><text x="28" y="37" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">9</text><rect x="72" y="0" width="500" height="56" rx="16" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/><text x="96" y="37" fill="#1F2937">没有被其他 Canvas 或控件挡住</text></g>
+    <g transform="translate(620 284)">
+      <rect x="0" y="0" width="572" height="92" rx="22" fill="#2457A6"/>
+      <!-- icon: tabler-outline/checklist -->
+  <g transform="translate(24, 22) scale(2)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" />
+    <path d="M14 19l2 2l4 -4" />
+    <path d="M9 8h4" />
+    <path d="M9 12h2" />
+  </g>
+      <text x="92" y="42" font-size="24" font-weight="700" fill="#FFFFFF">排错原则</text>
+      <text x="92" y="74" font-size="24" fill="#FFFFFF">先系统，后控件；先输入，后遮挡</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">UGUI · 点击问题排查</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">06</text>
+  </g>
+</svg>

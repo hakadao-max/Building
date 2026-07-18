@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="background" data-pptx-role="background" x="6" y="2" width="1280" height="720" fill="#FFFDF6" />
+  <text x="62" y="70" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#2457A6">方法重载：同名，</text>
+  <text x="62" y="126" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#2457A6">但参数列表不同</text>
+  <text x="710" y="112" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">编译器根据调用时提供的参数选择版本。</text>
+  <g id="overload-code">
+    <path d="M57 173 C182 163 342 169 459 180 L455 617 C324 628 185 624 59 613 Z" fill="#F4F0E8" />
+    <path d="M78 189 C193 180 328 186 438 194 L436 598 C320 607 192 604 79 595 Z" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3" />
+    <!-- icon: tabler-outline/copy -->
+  <g transform="translate(98, 211) scale(2.08333)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" />
+    <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+  </g>
+    <text x="166" y="247" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">同名的两个版本</text>
+    <path d="M100 273 C205 263 330 271 414 264" fill="none" stroke="#2457A6" stroke-width="3" stroke-linecap="round" />
+    <text x="99" y="306" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#2457A6">public void Attack()</text>
+    <text x="105" y="337" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">{ Console.WriteLine(</text>
+    <text x="131" y="368" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">"普通攻击"); }</text>
+    <path d="M100 391 C205 381 330 389 414 382" fill="none" stroke="#D8D2C5" stroke-width="2" x="61" y="425" />
+    <text x="106" y="430" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#F2A93B">public void Attack</text>
+    <text x="131" y="458" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#F2A93B">(int damage)</text>
+    <text x="99" y="493" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">{ Console.WriteLine(</text>
+    <text x="131" y="525" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">$"造成 {damage}</text>
+    <text x="131" y="557" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">点伤害"); }</text>
+  </g>
+  <g id="overload_table" data-pptx-native="table">
+    <metadata data-pptx-native="table">
+      {
+        "name": "overload_table",
+        "x": 490,
+        "y": 198,
+        "width": 730,
+        "height": 290,
+        "strict_grid": true,
+        "column_widths": [140, 130, 270, 190],
+        "row_heights": [60, 115, 115],
+        "style": {
+          "font_family": "Microsoft YaHei",
+          "font_size": 24,
+          "header_font_size": 24,
+          "header_fill": "#2457A6",
+          "header_text": "#FFFDF6",
+          "body_fill": "#FFFDF6",
+          "body_text": "#1F2937",
+          "band_fill": "#FFF9E9",
+          "border_color": "#D8D2C5",
+          "border_width": 2,
+          "padding": {"left": 10, "right": 10, "top": 6, "bottom": 6},
+          "valign": "middle"
+        },
+        "columns": [
+          {"text": "调用形式", "bold": true},
+          {"text": "参数列表", "bold": true},
+          {"text": "匹配版本", "bold": true},
+          {"text": "输出", "bold": true}
+        ],
+        "rows": [
+          [
+            {"text": "Attack()", "bold": true},
+            {"text": "无参数"},
+            {"text": "Attack()", "bold": true},
+            {"text": "普通攻击"}
+          ],
+          [
+            {"text": "Attack(25)", "bold": true},
+            {"text": "int damage"},
+            {"text": "Attack(int damage)", "bold": true},
+            {"text": "造成 25 点伤害"}
+          ]
+        ]
+      }
+    </metadata>
+    <rect x="490" y="198" width="730" height="290" fill="#FFFDF6" stroke="#D8D2C5" stroke-width="2" />
+    <rect x="490" y="198" width="730" height="60" fill="#2457A6" />
+    <rect x="490" y="373" width="730" height="115" fill="#FFF9E9" />
+    <path d="M630 198 V488 M760 198 V488 M1030 198 V488" fill="none" stroke="#D8D2C5" stroke-width="2" />
+    <path d="M490 258 H1220 M490 373 H1220" fill="none" stroke="#D8D2C5" stroke-width="2" />
+    <text x="560" y="237" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFDF6">调用形式</text>
+    <text x="695" y="237" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFDF6">参数列表</text>
+    <text x="895" y="237" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFDF6">匹配版本</text>
+    <text x="1125" y="237" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFDF6">输出</text>
+    <text x="560" y="323" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#2457A6">Attack()</text>
+    <text x="695" y="323" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">无参数</text>
+    <text x="895" y="323" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#2457A6">Attack()</text>
+    <text x="1125" y="323" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">普通攻击</text>
+    <text x="560" y="438" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#F2A93B">Attack(25)</text>
+    <text x="695" y="438" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">int damage</text>
+    <text x="895" y="438" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#F2A93B">Attack(int damage)</text>
+    <text x="1125" y="438" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">造成 25 点伤害</text>
+  </g>
+  <g id="compiler-rule">
+    <path d="M486 528 C670 515 1025 520 1219 531 L1214 613 C1010 623 680 620 489 610 Z" fill="#FFF9E9" stroke="#F2A93B" stroke-width="3" />
+    <text x="516" y="568" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#F2A93B">匹配规则</text>
+    <text x="676" y="568" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#1F2937">方法名相同 + 参数列表不同</text>
+    <text x="516" y="603" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">参数的数量、类型或顺序，决定调用落到哪个版本。</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <path d="M58 667 C342 662 618 670 906 666 C1036 664 1110 669 1178 666" fill="none" stroke="#D8D2C5" stroke-width="2" />
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">C# 入门 · 方法重载</text>
+  </g>
+  <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">09</text>
+</svg>

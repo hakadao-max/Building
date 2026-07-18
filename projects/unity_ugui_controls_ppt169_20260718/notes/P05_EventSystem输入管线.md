@@ -1,0 +1,1 @@
+输入先由设备产生，再经过与项目匹配的输入模块交给 EventSystem。Graphic Raycaster 判断指针命中哪个 UI Graphic，最后控件接收点击或导航事件；任意一环缺失都可能导致交互失败。

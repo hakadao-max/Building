@@ -1,0 +1,1 @@
+Canvas 是根，Panel 负责语义分组，具体控件负责交互。Canvas Scaler 解决分辨率适配，EventSystem 负责事件分发。先把层级整理好，再写交互。

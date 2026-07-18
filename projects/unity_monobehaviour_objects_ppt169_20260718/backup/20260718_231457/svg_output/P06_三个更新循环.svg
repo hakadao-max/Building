@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">Update、FixedUpdate、LateUpdate 各管一段节奏</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">输入与普通逻辑、物理时间步、跟随收尾应分开放置</text>
+  </g>
+  <g id="pillar-update" transform="translate(60 160)">
+    <rect x="0" y="0" width="360" height="394" rx="26" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <circle cx="180" cy="74" r="52" fill="#2457A6"/>
+    <use data-icon="tabler-outline/clock" x="148" y="42" width="64" height="64" fill="#FFFFFF" stroke-width="2"/>
+    <text x="180" y="157" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="34" font-weight="700" fill="#2457A6">Update</text>
+    <text x="28" y="208" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="26" font-weight="700" fill="#1F2937">适合</text>
+    <text x="28" y="244" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">• 读取玩家输入</text>
+    <text x="28" y="278" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">• 普通游戏逻辑</text>
+    <text x="28" y="312" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">• CharacterController.Move</text>
+    <rect x="24" y="338" width="312" height="38" rx="14" fill="#FFFFFF"/>
+    <text x="180" y="364" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#2457A6">speed × Time.deltaTime</text>
+  </g>
+  <g id="pillar-fixed" transform="translate(460 160)">
+    <rect x="0" y="0" width="360" height="394" rx="26" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+    <circle cx="180" cy="74" r="52" fill="#F2A93B"/>
+    <use data-icon="tabler-outline/repeat" x="148" y="42" width="64" height="64" fill="#FFFFFF" stroke-width="2"/>
+    <text x="180" y="157" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#8C5A00">FixedUpdate</text>
+    <text x="28" y="208" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="26" font-weight="700" fill="#1F2937">适合</text>
+    <text x="28" y="244" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">• Rigidbody 施力</text>
+    <text x="28" y="278" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">• 物理速度与移动</text>
+    <text x="28" y="312" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">• 固定物理时间步</text>
+    <rect x="24" y="338" width="312" height="38" rx="14" fill="#FFFFFF"/>
+    <text x="180" y="364" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#8C5A00">body.AddForce(...)</text>
+  </g>
+  <g id="pillar-late" transform="translate(860 160)">
+    <rect x="0" y="0" width="360" height="394" rx="26" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <circle cx="180" cy="74" r="52" fill="#55A68B"/>
+    <use data-icon="tabler-outline/camera" x="148" y="42" width="64" height="64" fill="#FFFFFF" stroke-width="2"/>
+    <text x="180" y="157" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#2F8F6A">LateUpdate</text>
+    <text x="28" y="208" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="26" font-weight="700" fill="#1F2937">适合</text>
+    <text x="28" y="244" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">• 摄像机跟随</text>
+    <text x="28" y="278" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">• 对齐与收尾</text>
+    <text x="28" y="312" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#1F2937">• 等其他 Update 完成</text>
+    <rect x="24" y="338" width="312" height="38" rx="14" fill="#FFFFFF"/>
+    <text x="180" y="364" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#2F8F6A">Camera follows last</text>
+  </g>
+  <g id="delta-note" transform="translate(198 578)">
+    <rect x="0" y="0" width="884" height="52" rx="18" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="442" y="34" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#D85C45">连续变化要乘 deltaTime；按键触发一次创建对象，不要乘 deltaTime</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 语法基础 · 更新循环</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">6</text>
+</svg>

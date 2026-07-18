@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">MonoBehaviour 让代码进入场景</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">GameObject 是容器；脚本挂载后，才会成为真正参与运行的组件</text>
+  </g>
+  <g id="object-container" transform="translate(62 154)">
+    <rect x="0" y="0" width="690" height="448" rx="26" fill="#F4F0E8" stroke="#2457A6" stroke-width="3" stroke-dasharray="10 7"/>
+    <g id="object-header">
+      <!-- icon: tabler-outline/cube -->
+  <g transform="translate(28, 22) scale(1.91667)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M21 16.008v-8.018a1.98 1.98 0 0 0 -1 -1.717l-7 -4.008a2.016 2.016 0 0 0 -2 0l-7 4.008c-.619 .355 -1 1.01 -1 1.718v8.018c0 .709 .381 1.363 1 1.717l7 4.008a2.016 2.016 0 0 0 2 0l7 -4.008c.619 -.355 1 -1.01 1 -1.718" />
+    <path d="M12 22v-10" />
+    <path d="M12 12l8.73 -5.04" />
+    <path d="M3.27 6.96l8.73 5.04" />
+  </g>
+      <text x="90" y="57" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="36" font-weight="700" fill="#2457A6">GameObject：RotatingCube</text>
+    </g>
+    <g id="component-transform" transform="translate(28 92)">
+      <rect x="0" y="0" width="634" height="82" rx="18" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <!-- icon: tabler-outline/transform -->
+  <g transform="translate(24, 20) scale(1.75)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M3 6a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+    <path d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3" />
+    <path d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3" />
+    <path d="M15 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  </g>
+      <text x="86" y="37" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="30" font-weight="700" fill="#1F2937">Transform</text>
+      <text x="86" y="66" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">每个对象必备：位置、旋转、缩放、父子层级</text>
+    </g>
+    <g id="component-renderer" transform="translate(28 188)">
+      <rect x="0" y="0" width="634" height="82" rx="18" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <!-- icon: tabler-outline/components -->
+  <g transform="translate(24, 20) scale(1.75)" fill="none" stroke="#55A68B" stroke-width="2">
+    <path d="M3 12l3 3l3 -3l-3 -3l-3 3" />
+    <path d="M15 12l3 3l3 -3l-3 -3l-3 3" />
+    <path d="M9 6l3 3l3 -3l-3 -3l-3 3" />
+    <path d="M9 18l3 3l3 -3l-3 -3l-3 3" />
+  </g>
+      <text x="86" y="37" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="30" font-weight="700" fill="#1F2937">MeshRenderer / Collider</text>
+      <text x="86" y="66" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">显示与碰撞能力来自不同组件</text>
+    </g>
+    <g id="component-script" transform="translate(28 284)">
+      <rect x="0" y="0" width="634" height="126" rx="18" fill="#FFF0D1" stroke="#F2A93B" stroke-width="4"/>
+      <!-- icon: tabler-outline/code -->
+  <g transform="translate(24, 24) scale(1.91667)" fill="none" stroke="#8C5A00" stroke-width="2">
+    <path d="M7 8l-4 4l4 4" />
+    <path d="M17 8l4 4l-4 4" />
+    <path d="M14 4l-4 16" />
+  </g>
+      <text x="90" y="43" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="30" font-weight="700" fill="#8C5A00">Rotator.cs</text>
+      <text x="90" y="75" font-family="Consolas, 'Courier New', monospace" font-size="22" font-weight="700" fill="#1F2937">public class Rotator : MonoBehaviour</text>
+      <text x="90" y="106" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">文件名必须与可挂载类名完全一致</text>
+    </g>
+  </g>
+  <g id="entry-card" transform="translate(790 154)">
+    <rect x="0" y="0" width="430" height="292" rx="24" fill="#1F2937"/>
+    <text x="26" y="42" font-family="Consolas, 'Courier New', monospace" font-size="22" fill="#F2A93B">THREE ENTRY POINTS</text>
+    <text x="28" y="98" font-family="Consolas, 'Courier New', monospace" font-size="28" font-weight="700" fill="#FFFFFF">transform</text>
+    <text x="204" y="98" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#D8D2C5">当前 Transform</text>
+    <text x="28" y="158" font-family="Consolas, 'Courier New', monospace" font-size="28" font-weight="700" fill="#FFFFFF">gameObject</text>
+    <text x="204" y="158" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#D8D2C5">当前对象实例</text>
+    <text x="28" y="218" font-family="Consolas, 'Courier New', monospace" font-size="25" font-weight="700" fill="#FFFFFF">GetComponent&lt;T&gt;()</text>
+    <text x="28" y="258" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#D8D2C5">获取当前对象上的某种组件</text>
+  </g>
+  <g id="case-note" transform="translate(790 470)">
+    <rect x="0" y="0" width="430" height="132" rx="22" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <text x="24" y="40" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2F8F6A">大小写不是装饰</text>
+    <text x="24" y="78" font-family="Consolas, 'Courier New', monospace" font-size="23" fill="#1F2937">GameObject / Transform</text>
+    <text x="24" y="110" font-family="Consolas, 'Courier New', monospace" font-size="23" fill="#596273">gameObject / transform</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 语法基础 · MonoBehaviour</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">3</text>
+</svg>

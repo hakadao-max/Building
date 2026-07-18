@@ -1,0 +1,1 @@
+手工对齐在一个分辨率上看起来正确，换屏幕后往往失效。Layout Group、Anchor 和 Canvas Scaler 共同负责适配；Button States、TMP 与 Prefab 负责一致性。

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">《Baba Is You》：玩家直接改写游戏规则</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">文字不是说明，而是可推动、可重组的规则方块</text>
+  <g id="rule-board" transform="translate(70 156)" font-family="Consolas, 'Courier New', monospace">
+    <rect x="0" y="0" width="660" height="442" rx="28" fill="#1F2937"/>
+    <g font-size="32" font-weight="700" text-anchor="middle">
+      <rect x="48" y="54" width="160" height="72" rx="14" fill="#EAF0FA"/><text x="128" y="101" fill="#2457A6">BABA</text>
+      <rect x="240" y="54" width="120" height="72" rx="14" fill="#FFFFFF"/><text x="300" y="101" fill="#1F2937">IS</text>
+      <rect x="392" y="54" width="160" height="72" rx="14" fill="#E8F5F0"/><text x="472" y="101" fill="#2F8F6A">YOU</text>
+      <rect x="48" y="166" width="160" height="72" rx="14" fill="#FFF0D1"/><text x="128" y="213" fill="#8C5A00">WALL</text>
+      <rect x="240" y="166" width="120" height="72" rx="14" fill="#FFFFFF"/><text x="300" y="213" fill="#1F2937">IS</text>
+      <rect x="392" y="166" width="160" height="72" rx="14" fill="#F4F0E8"/><text x="472" y="213" fill="#D85C45">STOP</text>
+      <rect x="48" y="278" width="160" height="72" rx="14" fill="#E8F5F0"/><text x="128" y="325" fill="#2F8F6A">FLAG</text>
+      <rect x="240" y="278" width="120" height="72" rx="14" fill="#FFFFFF"/><text x="300" y="325" fill="#1F2937">IS</text>
+      <rect x="392" y="278" width="160" height="72" rx="14" fill="#FFF0D1"/><text x="472" y="325" fill="#8C5A00">WIN</text>
+    </g>
+    <path d="M570 202 C618 202 624 288 570 314" fill="none" stroke="#F2A93B" stroke-width="7" stroke-linecap="round"/>
+    <path d="M580 294 L568 316 L592 320" fill="none" stroke="#F2A93B" stroke-width="7" stroke-linejoin="round"/>
+    <text x="330" y="408" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#FFFFFF">推走 STOP，墙就不再阻挡</text>
+  </g>
+  <g id="rule-parser" transform="translate(770 156)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="440" height="442" rx="28" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <!-- icon: tabler-outline/text-recognition -->
+  <g transform="translate(28, 24) scale(2.25)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
+    <path d="M4 16v2a2 2 0 0 0 2 2h2" />
+    <path d="M16 4h2a2 2 0 0 1 2 2v2" />
+    <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+    <path d="M12 16v-7" />
+    <path d="M9 9h6" />
+  </g>
+    <text x="100" y="60" font-size="36" font-weight="700" fill="#1F2937">每回合解析</text>
+    <g font-size="24" fill="#596273">
+      <text x="30" y="124">1. 扫描横向与纵向文字</text>
+      <text x="30" y="176">2. 识别 名词 + IS + 属性</text>
+      <text x="30" y="228">3. 生成本回合规则集合</text>
+      <text x="30" y="280">4. 清除上一回合动态规则</text>
+      <text x="30" y="332">5. 应用新属性与对象转换</text>
+      <text x="30" y="384">6. 再判断移动、胜负与冲突</text>
+    </g>
+    <rect x="28" y="402" width="384" height="28" rx="10" fill="#EAF0FA"/>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">案例 · 动态规则解析与冲突顺序</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">12</text>
+  </g>
+</svg>

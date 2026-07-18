@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">一帧移动，其实是七个连续决策</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">输入、转向、贴地、跳跃、重力、移动与碰撞修正共同形成稳定角色</text>
+  </g>
+  <path id="snake-route" d="M132 190 H1012 C1100 190 1110 244 1110 310 C1110 390 1042 442 958 442 H386" fill="none" stroke="#D8D2C5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <g id="step-1" transform="translate(54 156)">
+    <circle cx="78" cy="34" r="34" fill="#2457A6"/>
+    <text x="78" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">1</text>
+    <rect x="0" y="78" width="248" height="134" rx="20" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <text x="20" y="116" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2457A6">读取输入</text>
+    <text x="20" y="151" font-family="Consolas, 'Courier New', monospace" font-size="20" fill="#1F2937">W A S D → Vector3</text>
+    <text x="20" y="184" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">Keyboard.current 可能为空</text>
+  </g>
+  <g id="step-2" transform="translate(328 156)">
+    <circle cx="78" cy="34" r="34" fill="#2457A6"/>
+    <text x="78" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">2</text>
+    <rect x="0" y="78" width="248" height="134" rx="20" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <text x="20" y="116" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2457A6">限制输入长度</text>
+    <text x="20" y="151" font-family="Consolas, 'Courier New', monospace" font-size="19" fill="#1F2937">ClampMagnitude(input, 1)</text>
+    <text x="20" y="184" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">避免斜向速度更快</text>
+  </g>
+  <g id="step-3" transform="translate(602 156)">
+    <circle cx="78" cy="34" r="34" fill="#F2A93B"/>
+    <text x="78" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">3</text>
+    <rect x="0" y="78" width="248" height="134" rx="20" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+    <text x="20" y="116" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#8C5A00">平滑转向</text>
+    <text x="20" y="151" font-family="Consolas, 'Courier New', monospace" font-size="19" fill="#1F2937">LookRotation + Slerp</text>
+    <text x="20" y="184" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">仅在输入不接近 0 时</text>
+  </g>
+  <g id="step-4" transform="translate(876 156)">
+    <circle cx="78" cy="34" r="34" fill="#55A68B"/>
+    <text x="78" y="43" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">4</text>
+    <rect x="0" y="78" width="248" height="134" rx="20" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <text x="20" y="116" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2F8F6A">稳定贴地</text>
+    <text x="20" y="151" font-family="Consolas, 'Courier New', monospace" font-size="19" fill="#1F2937">isGrounded ? -2f</text>
+    <text x="20" y="184" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">保留很小向下速度</text>
+  </g>
+  <g id="step-5" transform="translate(876 410)">
+    <circle cx="78" cy="32" r="34" fill="#F2A93B"/>
+    <text x="78" y="41" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">5</text>
+    <rect x="0" y="76" width="248" height="126" rx="20" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+    <!-- icon: tabler-outline/jump-rope -->
+  <g transform="translate(192, 88) scale(1.58333)" fill="none" stroke="#8C5A00" stroke-width="2">
+    <path d="M6 14v-6a3 3 0 1 1 6 0v8a3 3 0 0 0 6 0v-6" />
+    <path d="M16 5a2 2 0 0 1 2 -2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2a2 2 0 0 1 -2 -2l0 -3" />
+    <path d="M4 16a2 2 0 0 1 2 -2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2a2 2 0 0 1 -2 -2l0 -3" />
+  </g>
+    <text x="20" y="114" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#8C5A00">计算跳跃</text>
+    <text x="20" y="149" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#1F2937">sqrt(h × -2 × g)</text>
+    <text x="20" y="181" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">着地且空格刚按下</text>
+  </g>
+  <g id="step-6" transform="translate(602 410)">
+    <circle cx="78" cy="32" r="34" fill="#D85C45"/>
+    <text x="78" y="41" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">6</text>
+    <rect x="0" y="76" width="248" height="126" rx="20" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+    <!-- icon: tabler-outline/arrow-big-up -->
+  <g transform="translate(192, 88) scale(1.58333)" fill="none" stroke="#D85C45" stroke-width="2">
+    <path d="M9 20v-8h-3.586a1 1 0 0 1 -.707 -1.707l6.586 -6.586a1 1 0 0 1 1.414 0l6.586 6.586a1 1 0 0 1 -.707 1.707h-3.586v8a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1" />
+  </g>
+    <text x="20" y="114" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#D85C45">积分重力</text>
+    <text x="20" y="149" font-family="Consolas, 'Courier New', monospace" font-size="17" fill="#1F2937">vY += gravity × dt</text>
+    <text x="20" y="181" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">每帧更新竖直速度</text>
+  </g>
+  <g id="step-7" transform="translate(328 410)">
+    <circle cx="78" cy="32" r="34" fill="#2457A6"/>
+    <text x="78" y="41" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFFFF">7</text>
+    <rect x="0" y="76" width="248" height="126" rx="20" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <!-- icon: tabler-outline/arrows-move -->
+  <g transform="translate(192, 88) scale(1.58333)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M18 9l3 3l-3 3" />
+    <path d="M15 12h6" />
+    <path d="M6 9l-3 3l3 3" />
+    <path d="M3 12h6" />
+    <path d="M9 18l3 3l3 -3" />
+    <path d="M12 15v6" />
+    <path d="M15 6l-3 -3l-3 3" />
+    <path d="M12 3v6" />
+  </g>
+    <text x="20" y="114" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#2457A6">Move + 修正</text>
+    <text x="20" y="149" font-family="Consolas, 'Courier New', monospace" font-size="17" fill="#1F2937">Move(velocity × dt)</text>
+    <text x="20" y="181" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">撞到顶部 → vY 归零</text>
+  </g>
+  <g id="formula-note" transform="translate(54 510)">
+    <rect x="0" y="0" width="248" height="102" rx="20" fill="#1F2937"/>
+    <text x="124" y="38" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#F2A93B">horizontal + vertical</text>
+    <text x="124" y="72" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#FFFFFF">合成速度后只调用一次 Move</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 语法基础 · 完整移动算法</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">11</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">生命周期函数由 Unity 按时机调用</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">它们不是任意调用的方法，而是引擎约定好的事件入口</text>
+  </g>
+  <g id="lifecycle-chain" transform="translate(56 168)">
+    <g id="stage-awake">
+      <path d="M0 0 H164 L192 64 L164 128 H0 L28 64 Z" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <use data-icon="tabler-outline/player-play" x="73" y="18" width="42" height="42" fill="#2457A6" stroke-width="2"/>
+      <text x="96" y="88" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="26" font-weight="700" fill="#2457A6">Awake</text>
+      <text x="96" y="114" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#596273">实例加载</text>
+    </g>
+    <g id="stage-enable" transform="translate(188 0)">
+      <path d="M0 0 H164 L192 64 L164 128 H0 L28 64 Z" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <text x="96" y="62" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="25" font-weight="700" fill="#2F8F6A">OnEnable</text>
+      <text x="96" y="92" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#596273">每次启用</text>
+    </g>
+    <g id="stage-start" transform="translate(376 0)">
+      <path d="M0 0 H164 L192 64 L164 128 H0 L28 64 Z" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <text x="96" y="62" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="27" font-weight="700" fill="#8C5A00">Start</text>
+      <text x="96" y="92" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#596273">首次启用前</text>
+    </g>
+    <g id="stage-loop" transform="translate(564 0)">
+      <path d="M0 0 H206 L234 64 L206 128 H0 L28 64 Z" fill="#2457A6" stroke="#2457A6" stroke-width="3"/>
+      <use data-icon="tabler-outline/repeat" x="24" y="41" width="42" height="42" fill="#FFFFFF" stroke-width="2"/>
+      <text x="129" y="56" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="23" font-weight="700" fill="#FFFFFF">Update / Fixed</text>
+      <text x="129" y="85" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="23" font-weight="700" fill="#FFFFFF">/ LateUpdate</text>
+      <text x="129" y="112" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#FFFFFF">运行中反复</text>
+    </g>
+    <g id="stage-disable" transform="translate(794 0)">
+      <path d="M0 0 H164 L192 64 L164 128 H0 L28 64 Z" fill="#F4F0E8" stroke="#596273" stroke-width="3"/>
+      <text x="96" y="62" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">OnDisable</text>
+      <text x="96" y="92" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#596273">禁用时</text>
+    </g>
+    <g id="stage-destroy" transform="translate(982 0)">
+      <path d="M0 0 H164 L192 64 L164 128 H0 L28 64 Z" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+      <text x="96" y="62" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#D85C45">OnDestroy</text>
+      <text x="96" y="92" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#596273">实例销毁</text>
+    </g>
+  </g>
+  <g id="loop-detail" transform="translate(248 348)">
+    <rect x="0" y="0" width="784" height="182" rx="28" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <use data-icon="tabler-outline/clock" x="34" y="44" width="72" height="72" fill="#2457A6" stroke-width="2"/>
+    <text x="132" y="48" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#2457A6">运行期不是一个函数，而是三种节奏</text>
+    <text x="132" y="92" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">Update       输入与普通逻辑</text>
+    <text x="132" y="128" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">FixedUpdate  固定物理时间步</text>
+    <text x="132" y="164" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">LateUpdate   其他更新之后收尾</text>
+  </g>
+  <g id="reenable-note">
+    <path d="M1010 556 C1138 592 1158 384 1044 340" fill="none" stroke="#55A68B" stroke-width="5" stroke-linecap="round"/>
+    <path d="M1047 326 L1027 340 L1051 352" fill="none" stroke="#55A68B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1038" y="606" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" font-weight="700" fill="#2F8F6A">重新启用：OnEnable 再来一次</text>
+    <text x="310" y="581" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" font-weight="700" fill="#8C5A00">同一实例：Start 通常只执行一次</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 语法基础 · 生命周期</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">4</text>
+</svg>

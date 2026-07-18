@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">综合练习：搭一间可进入、可观察、可打包的房间</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">按顺序完成，每一步都能单独运行验证</text>
+  <g id="room-practice-flow" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <path d="M150 236 H1060 A90 90 0 0 1 1060 416 H220 A80 80 0 0 0 220 570 H1050" fill="none" stroke="#E9E3D8" stroke-width="28" stroke-linecap="round"/>
+    <path d="M150 236 H1060 A90 90 0 0 1 1060 416 H220 A80 80 0 0 0 220 570 H1050" fill="none" stroke="#2457A6" stroke-opacity="0.32" stroke-width="4" stroke-linecap="round"/>
+    <g>
+      <rect x="72" y="150" width="254" height="72" rx="18" fill="#FFFFFF" stroke="#2457A6" stroke-width="3"/>
+      <text x="199" y="181" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">建立层级</text>
+      <text x="199" y="210" text-anchor="middle" font-size="24" fill="#596273">RoomRoot</text>
+      <circle cx="150" cy="236" r="34" fill="#2457A6"/><text x="150" y="247" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">1</text>
+    </g>
+    <g>
+      <rect x="360" y="150" width="254" height="72" rx="18" fill="#FFFFFF" stroke="#55A68B" stroke-width="3"/>
+      <text x="487" y="181" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">搭墙与地面</text>
+      <text x="487" y="210" text-anchor="middle" font-size="24" fill="#596273">Box Collider</text>
+      <circle cx="487" cy="236" r="34" fill="#55A68B"/><text x="487" y="247" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">2</text>
+    </g>
+    <g>
+      <rect x="648" y="150" width="254" height="72" rx="18" fill="#FFFFFF" stroke="#F2A93B" stroke-width="3"/>
+      <text x="775" y="181" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">布置材质灯光</text>
+      <text x="775" y="210" text-anchor="middle" font-size="24" fill="#596273">Material + Light</text>
+      <circle cx="775" cy="236" r="34" fill="#F2A93B"/><text x="775" y="247" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">3</text>
+    </g>
+    <g>
+      <rect x="936" y="150" width="254" height="72" rx="18" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+      <text x="1063" y="181" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">加入可动物体</text>
+      <text x="1063" y="210" text-anchor="middle" font-size="24" fill="#596273">Rigidbody</text>
+      <circle cx="1063" cy="236" r="34" fill="#D85C45"/><text x="1063" y="247" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">4</text>
+    </g>
+    <g>
+      <rect x="708" y="436" width="254" height="72" rx="18" fill="#FFFFFF" stroke="#2457A6" stroke-width="3"/>
+      <text x="835" y="467" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">加入触发区</text>
+      <text x="835" y="496" text-anchor="middle" font-size="24" fill="#596273">门 / 提示 / 拾取</text>
+      <circle cx="835" cy="416" r="34" fill="#2457A6"/><text x="835" y="427" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">5</text>
+    </g>
+    <g>
+      <rect x="370" y="436" width="254" height="72" rx="18" fill="#FFFFFF" stroke="#55A68B" stroke-width="3"/>
+      <text x="497" y="467" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">放入角色</text>
+      <text x="497" y="496" text-anchor="middle" font-size="24" fill="#596273">PlayerRoot</text>
+      <circle cx="497" cy="416" r="34" fill="#55A68B"/><text x="497" y="427" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">6</text>
+    </g>
+    <g>
+      <rect x="72" y="436" width="254" height="72" rx="18" fill="#FFFFFF" stroke="#F2A93B" stroke-width="3"/>
+      <text x="199" y="467" text-anchor="middle" font-size="24" font-weight="700" fill="#1F2937">接入相机</text>
+      <text x="199" y="496" text-anchor="middle" font-size="24" fill="#596273">观察与小屏</text>
+      <circle cx="220" cy="416" r="34" fill="#F2A93B"/><text x="220" y="427" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">7</text>
+    </g>
+    <g>
+      <rect x="410" y="586" width="300" height="56" rx="18" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+      <text x="560" y="624" text-anchor="middle" font-size="24" font-weight="700" fill="#D85C45">逐项运行验证</text>
+      <circle cx="560" cy="570" r="34" fill="#D85C45"/><text x="560" y="581" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">8</text>
+    </g>
+    <g>
+      <rect x="900" y="586" width="300" height="56" rx="18" fill="#2457A6"/>
+      <text x="1050" y="624" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">保存场景并打包</text>
+      <circle cx="1050" cy="570" r="34" fill="#2457A6"/><text x="1050" y="581" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">9</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">综合练习 · 让知识在一个场景里闭环</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">12</text>
+  </g>
+</svg>

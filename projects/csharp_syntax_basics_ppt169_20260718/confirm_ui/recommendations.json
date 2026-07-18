@@ -1,0 +1,44 @@
+{
+  "stage": "stage3",
+  "lang": "zh",
+  "recommend": {
+    "image_usage": ["ai"],
+    "image_ai_path": "auto",
+    "generation_mode": "continuous"
+  },
+  "image_notes": {
+    "value": "封面用一个‘角色说明书变成游戏对象’的 AI 主视觉；正文以同一主题的少量手绘代码、角色、继承箭头和工具箱小插画贯穿，代码与知识点文字始终由可编辑 SVG 承载。"
+  },
+  "image_strategy": {
+    "selected": 0,
+    "candidates": [
+      {
+        "name": "方案 A｜课堂手绘",
+        "rendering": "sketch-notes",
+        "palette": "macaron",
+        "visual": "奶油纸张质感、黑色手绘线、轻微不规则轮廓与柔和粉彩填色",
+        "color": "纸白 #FFFDF6 约 65% + 开发者蓝 #2457A6 约 20% + 提示橙 #F2A93B 约 8% + 薄荷绿 #55A68B 少量辅助",
+        "mood": "亲切、清晰、有记忆点；像高质量少儿编程课的手绘讲义"
+      },
+      {
+        "name": "方案 B｜专业图解",
+        "rendering": "vector-illustration",
+        "palette": "warm-earth",
+        "visual": "干净扁平矢量、实色块、少阴影，用结构关系和角色道具表达抽象概念",
+        "color": "纸白 #FFFDF6 约 60% + 开发者蓝 #2457A6 约 25% + 提示橙 #F2A93B 约 10% + 薄荷绿 #55A68B 约 5%",
+        "mood": "稳健、现代、教学友好；像 Microsoft Learn 的视觉化教程"
+      },
+      {
+        "name": "方案 C｜纸艺游戏",
+        "rendering": "paper-cut",
+        "palette": "macaron",
+        "visual": "层叠剪纸、柔和纸边与轻微层间阴影，把类、对象和继承变成可触摸的游戏拼片",
+        "color": "纸白 #FFFDF6 约 55% + 开发者蓝 #2457A6 约 22% + 薄荷绿 #55A68B 约 13% + 提示橙 #F2A93B 约 10%",
+        "mood": "活泼、具象、游戏化；像科技馆的互动编程工作坊"
+      }
+    ]
+  },
+  "refine_spec": {
+    "value": false
+  }
+}

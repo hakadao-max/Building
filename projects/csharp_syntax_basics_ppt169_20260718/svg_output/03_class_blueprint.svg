@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="62" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#2457A6">类就是“对象说明书”</text>
+  <text x="66" y="128" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">它同时描述对象拥有什么数据，以及能够执行什么行为。</text>
+  <g id="class-blueprint">
+    <path d="M287 185 C444 174 633 181 792 174 L809 616 C626 628 448 620 284 630 Z" fill="#F4F0E8"/>
+    <path d="M305 200 C450 187 617 195 783 187 L794 602 C619 613 453 605 299 614 Z" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <path d="M451 187 h 204 a 24 24 0 0 1 24 24 v 32 h -252 v -32 a 24 24 0 0 1 24 -24 Z" fill="#2457A6"/>
+    <text x="553" y="225" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#FFFDF6">Character</text>
+    <text x="337" y="286" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">public class Character</text>
+    <text x="337" y="323" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">{</text>
+    <text x="369" y="360" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#2457A6">public string Name;</text>
+    <text x="369" y="397" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#2457A6">public int Health;</text>
+    <text x="369" y="438" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#55A68B">public void TakeDamage</text>
+    <text x="401" y="469" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#55A68B">(int damage)</text>
+    <text x="401" y="502" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">{ Health -= damage; }</text>
+    <text x="369" y="541" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#55A68B">public void PrintStatus()</text>
+    <text x="401" y="573" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">{ ... }</text>
+    <text x="337" y="600" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">}</text>
+  </g>
+  <g id="label-class">
+    <path d="M70 198 h 166 v 42 a 24 24 0 0 1 -24 24 H94 a 24 24 0 0 1 -24 -24 Z" fill="#F2A93B"/>
+    <text x="153" y="238" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">类</text>
+    <text x="72" y="306" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#1F2937">统一说明书</text>
+    <path d="M238 274 C263 265 278 251 299 231" fill="none" stroke="#F2A93B" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="label-fields">
+    <path d="M859 217 h 176 a 24 24 0 0 1 24 24 v 42 H835 v -42 a 24 24 0 0 1 24 -24 Z" fill="#2457A6"/>
+    <text x="947" y="258" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#FFFDF6">字段</text>
+    <text x="850" y="331" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#1F2937">对象自己的数据</text>
+    <text x="850" y="369" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#596273">Name · Health</text>
+    <path d="M838 346 C820 347 807 369 792 382" fill="none" stroke="#2457A6" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="label-methods">
+    <path d="M862 409 h 176 a 24 24 0 0 1 24 24 v 42 H838 v -42 a 24 24 0 0 1 24 -24 Z" fill="#55A68B"/>
+    <text x="950" y="450" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#FFFDF6">方法</text>
+    <text x="850" y="520" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" font-weight="700" fill="#1F2937">对象能做的事</text>
+    <text x="850" y="558" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#596273">TakeDamage() · PrintStatus()</text>
+    <path d="M838 486 C820 484 811 470 795 454" fill="none" stroke="#55A68B" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="spot-class-vector">
+    <path d="M1088 188 C1140 180 1190 187 1225 201 L1220 340 C1180 349 1136 343 1092 348 Z" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <path d="M1108 213 C1136 202 1170 205 1198 217 L1194 309 C1164 298 1138 299 1111 310 Z" fill="#FFFDF6" stroke="#2457A6" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M1121 232 C1142 226 1163 229 1182 235" fill="none" stroke="#F2A93B" stroke-width="3" stroke-linecap="round"/>
+    <use data-icon="tabler-outline/cube" x="1135" y="245" width="52" height="52" fill="#2457A6" stroke-width="2"/>
+    <path d="M1102 325 C1135 316 1181 317 1207 326" fill="none" stroke="#55A68B" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <path d="M58 667 C342 662 618 670 906 666 C1036 664 1110 669 1178 666" fill="none" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">C# 入门 · 类与对象</text>
+  </g>
+  <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">03</text>
+</svg>

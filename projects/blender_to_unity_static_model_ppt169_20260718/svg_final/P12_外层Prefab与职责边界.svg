@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">不要直接修改 FBX 内部对象</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">重导入会重建导入层级；游戏组件应放在稳定的外层 Prefab</text>
+  </g>
+  <g id="prefab-container" transform="translate(60 156)">
+    <rect x="0" y="0" width="748" height="452" rx="28" fill="#EAF0FA" stroke="#2457A6" stroke-width="3" stroke-dasharray="10 7"/>
+    <!-- icon: tabler-outline/package-export -->
+  <g transform="translate(28, 22) scale(2.16667)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M12 21l-8 -4.5v-9l8 -4.5l8 4.5v4.5" />
+    <path d="M12 12l8 -4.5" />
+    <path d="M12 12v9" />
+    <path d="M12 12l-8 -4.5" />
+    <path d="M15 18h7" />
+    <path d="M19 15l3 3l-3 3" />
+  </g>
+    <text x="96" y="58" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="34" font-weight="700" fill="#2457A6">ObjectRoot.prefab</text>
+    <g id="gameplay-module" transform="translate(30 96)">
+      <rect x="0" y="0" width="320" height="306" rx="22" fill="#FFFFFF" stroke="#2457A6" stroke-width="3"/>
+      <!-- icon: tabler-outline/hammer -->
+  <g transform="translate(24, 20) scale(2)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
+    <path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0" />
+  </g>
+      <text x="88" y="53" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#2457A6">游戏能力</text>
+      <text x="24" y="110" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">Collider</text>
+      <text x="24" y="154" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">Rigidbody</text>
+      <text x="24" y="198" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">Gameplay Scripts</text>
+      <text x="24" y="242" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">交互点 / 音效 / 特效</text>
+      <rect x="22" y="268" width="276" height="24" rx="12" fill="#EAF0FA"/>
+      <text x="160" y="286" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#2457A6">Unity 维护，重导入不丢失</text>
+    </g>
+    <path d="M360 248 H400" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round"/>
+    <path d="M386 234 L402 248 L386 262" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g id="model-module" transform="translate(398 96)">
+      <rect x="0" y="0" width="320" height="306" rx="22" fill="#FFF9E9" stroke="#F2A93B" stroke-width="3"/>
+      <!-- icon: tabler-outline/hierarchy-3 -->
+  <g transform="translate(24, 20) scale(2)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M10 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M6 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M10 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M18 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M2 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M14 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M5 17l2 -3" />
+    <path d="M9 10l2 -3" />
+    <path d="M13 7l2 3" />
+    <path d="M17 14l2 3" />
+    <path d="M15 14l-2 3" />
+    <path d="M9 14l2 3" />
+  </g>
+      <text x="88" y="53" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#8C5A00">Model</text>
+      <rect x="34" y="92" width="252" height="128" rx="20" fill="#FFFFFF" stroke="#F2A93B" stroke-width="3"/>
+      <!-- icon: tabler-outline/file-3d -->
+  <g transform="translate(56, 118) scale(3)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" />
+    <path d="M12 13.5l4 -1.5" />
+    <path d="M8 11.846l4 1.654v4.5l4 -1.846v-4.308l-4 -1.846l-4 1.846" />
+    <path d="M8 12v4.2l4 1.8" />
+  </g>
+      <text x="148" y="142" font-family="Consolas, 'Courier New', monospace" font-size="22" font-weight="700" fill="#1F2937">Imported FBX</text>
+      <text x="148" y="178" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#596273">Mesh / 子层级</text>
+      <text x="34" y="254" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="21" fill="#1F2937">可单独调整模型局部旋转</text>
+      <rect x="22" y="268" width="276" height="24" rx="12" fill="#FFF0D1"/>
+      <text x="160" y="286" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#8C5A00">Blender 重导入会更新这里</text>
+    </g>
+  </g>
+  <g id="blender-owner" transform="translate(842 166)">
+    <rect x="0" y="0" width="378" height="192" rx="24" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+    <!-- icon: tabler-outline/cube -->
+  <g transform="translate(24, 22) scale(2.08333)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M21 16.008v-8.018a1.98 1.98 0 0 0 -1 -1.717l-7 -4.008a2.016 2.016 0 0 0 -2 0l-7 4.008c-.619 .355 -1 1.01 -1 1.718v8.018c0 .709 .381 1.363 1 1.717l7 4.008a2.016 2.016 0 0 0 2 0l7 -4.008c.619 -.355 1 -1.01 1 -1.718" />
+    <path d="M12 22v-10" />
+    <path d="M12 12l8.73 -5.04" />
+    <path d="M3.27 6.96l8.73 5.04" />
+  </g>
+    <text x="92" y="55" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#8C5A00">Blender 负责</text>
+    <text x="26" y="104" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">Mesh · 层级 · 轴心 · UV</text>
+    <text x="26" y="144" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">尺寸 · 法线 · 修改器结果</text>
+    <text x="26" y="178" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="19" fill="#596273">输出稳定、可重现的 FBX</text>
+  </g>
+  <g id="unity-owner" transform="translate(842 382)">
+    <rect x="0" y="0" width="378" height="226" rx="24" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <!-- icon: tabler-outline/hammer -->
+  <g transform="translate(24, 22) scale(2.08333)" fill="none" stroke="#55A68B" stroke-width="2">
+    <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
+    <path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0" />
+  </g>
+    <text x="92" y="55" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#2F8F6A">Unity 负责</text>
+    <text x="26" y="104" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">材质映射 · Collider</text>
+    <text x="26" y="144" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">Rigidbody · 脚本 · Prefab</text>
+    <text x="26" y="184" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">场景测试与运行时行为</text>
+    <rect x="26" y="198" width="326" height="20" rx="10" fill="#FFFFFF"/>
+    <text x="189" y="213" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#2F8F6A">职责分离 = 重导入安全</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Blender → Unity · 外层 Prefab</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">12</text>
+</svg>

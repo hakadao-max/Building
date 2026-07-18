@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">尺寸、法线、UV 与运行时成本逐项检查</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">选中 Project 中的 FBX，在 Model 页签修改后点击 Apply</text>
+  </g>
+  <g id="model-check-list" transform="translate(60 154)">
+    <path d="M34 30 C28 160 40 350 34 452" fill="none" stroke="#D8D2C5" stroke-width="4" stroke-linecap="round"/>
+    <g id="model-check-1">
+      <circle cx="34" cy="30" r="25" fill="#2457A6"/>
+      <text x="34" y="38" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#FFFFFF">1</text>
+      <text x="80" y="24" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="28" font-weight="700" fill="#1F2937">Scale Factor = 1，Convert Units 开启</text>
+      <text x="80" y="54" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">实例 Scale 为 (1,1,1) 时尺寸应正确</text>
+    </g>
+    <g id="model-check-2" transform="translate(0 86)">
+      <circle cx="34" cy="30" r="25" fill="#2457A6"/>
+      <text x="34" y="38" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#FFFFFF">2</text>
+      <text x="80" y="24" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="28" font-weight="700" fill="#1F2937">检查朝向与 Bake Axis Conversion</text>
+      <text x="80" y="54" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">横躺、反向或异常根节点旋转都说明轴向需统一</text>
+    </g>
+    <g id="model-check-3" transform="translate(0 172)">
+      <circle cx="34" cy="30" r="25" fill="#55A68B"/>
+      <text x="34" y="38" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#FFFFFF">3</text>
+      <text x="80" y="24" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="28" font-weight="700" fill="#1F2937">Normals = Import，Tangents = MikkTSpace</text>
+      <text x="80" y="54" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">保留 Blender 法线；法线贴图资产不能把 Tangents 设为 None</text>
+    </g>
+    <g id="model-check-4" transform="translate(0 258)">
+      <circle cx="34" cy="30" r="25" fill="#F2A93B"/>
+      <text x="34" y="38" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#FFFFFF">4</text>
+      <text x="80" y="24" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="28" font-weight="700" fill="#1F2937">Read/Write 默认关闭，Compression 先低后高</text>
+      <text x="80" y="54" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">只有脚本需要读取 Mesh 时才开；确认外观后再压缩</text>
+    </g>
+    <g id="model-check-5" transform="translate(0 344)">
+      <circle cx="34" cy="30" r="25" fill="#D85C45"/>
+      <text x="34" y="38" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#FFFFFF">5</text>
+      <text x="80" y="24" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="28" font-weight="700" fill="#1F2937">Generate Colliders 只适合快速原型</text>
+      <text x="80" y="54" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">正式资源用外层 Prefab 的简单 Collider 或专用低模</text>
+    </g>
+    <g id="model-check-6" transform="translate(0 430)">
+      <circle cx="34" cy="30" r="25" fill="#55A68B"/>
+      <text x="34" y="38" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#FFFFFF">6</text>
+      <text x="80" y="24" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="28" font-weight="700" fill="#1F2937">按需 Generate Lightmap UVs</text>
+      <text x="80" y="54" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">静态烘焙模型无第二套 UV 时可开，但仍要查接缝和重叠</text>
+    </g>
+  </g>
+  <g id="inspector-card" transform="translate(886 168)">
+    <rect x="0" y="0" width="330" height="420" rx="24" fill="#1F2937"/>
+    <text x="24" y="42" font-family="Consolas, 'Courier New', monospace" font-size="22" fill="#F2A93B">FBX IMPORTER / MODEL</text>
+    <g id="inspector-preview">
+      <rect x="28" y="68" width="274" height="142" rx="18" fill="#F4F0E8"/>
+      <use data-icon="tabler-outline/file-3d" x="111" y="86" width="108" height="108" fill="#2457A6" stroke-width="2"/>
+    </g>
+    <g id="inspector-values" font-family="Consolas, 'Courier New', monospace" font-size="20">
+      <text x="30" y="252" fill="#D8D2C5">Scale Factor</text>
+      <text x="292" y="252" text-anchor="end" font-weight="700" fill="#55A68B">1</text>
+      <text x="30" y="292" fill="#D8D2C5">Normals</text>
+      <text x="292" y="292" text-anchor="end" font-weight="700" fill="#55A68B">Import</text>
+      <text x="30" y="332" fill="#D8D2C5">Tangents</text>
+      <text x="292" y="332" text-anchor="end" font-weight="700" fill="#55A68B">MikkTSpace</text>
+      <text x="30" y="372" fill="#D8D2C5">Read / Write</text>
+      <text x="292" y="372" text-anchor="end" font-weight="700" fill="#F2A93B">Off</text>
+    </g>
+    <rect x="72" y="388" width="186" height="40" rx="16" fill="#2457A6"/>
+    <text x="165" y="415" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">Apply</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Blender → Unity · Model Import Settings</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">9</text>
+</svg>

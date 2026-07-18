@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">导出最终 Mesh，但不要夹带无关数据</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">几何选项决定“导出后的形状”，骨架与动画决定“是否多带一套系统”</text>
+  </g>
+  <g id="card-normals" transform="translate(58 154)">
+    <rect x="0" y="0" width="370" height="204" rx="22" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <use data-icon="tabler-outline/sparkles" x="24" y="22" width="52" height="52" fill="#2457A6" stroke-width="2"/>
+    <text x="94" y="52" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#2457A6">平滑：仅法线</text>
+    <text x="24" y="102" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">Unity 可导入 Blender 的自定义法线</text>
+    <text x="24" y="138" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">保留已处理的平滑与硬边</text>
+    <rect x="22" y="166" width="326" height="24" rx="12" fill="#FFFFFF"/>
+    <text x="185" y="184" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="17" font-weight="700" fill="#2457A6">Unity Normals = Import</text>
+  </g>
+  <g id="card-modifiers" transform="translate(455 154)">
+    <rect x="0" y="0" width="370" height="204" rx="22" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <use data-icon="tabler-outline/layers-subtract" x="24" y="22" width="52" height="52" fill="#55A68B" stroke-width="2"/>
+    <text x="94" y="52" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#2F8F6A">应用修改器：开</text>
+    <text x="24" y="102" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">导出修改器计算后的最终 Mesh</text>
+    <text x="24" y="138" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">静态模型通常最符合预期</text>
+    <rect x="22" y="166" width="326" height="24" rx="12" fill="#FFFFFF"/>
+    <text x="185" y="184" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#2F8F6A">形态键资产需先验证兼容性</text>
+  </g>
+  <g id="card-topology" transform="translate(852 154)">
+    <rect x="0" y="0" width="370" height="204" rx="22" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+    <use data-icon="tabler-outline/triangles" x="24" y="22" width="52" height="52" fill="#F2A93B" stroke-width="2"/>
+    <text x="94" y="52" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#8C5A00">三角化：按管线</text>
+    <text x="24" y="102" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">普通静态模型可默认关闭</text>
+    <text x="24" y="138" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">重要法线烘焙资产统一策略</text>
+    <rect x="22" y="166" width="326" height="24" rx="12" fill="#FFFFFF"/>
+    <text x="185" y="184" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#8C5A00">同类资产不要混用不同规则</text>
+  </g>
+  <g id="card-tangent" transform="translate(58 382)">
+    <rect x="0" y="0" width="370" height="204" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <use data-icon="tabler-outline/arrows-move" x="24" y="22" width="52" height="52" fill="#2457A6" stroke-width="2"/>
+    <text x="94" y="52" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#2457A6">切线空间：默认关</text>
+    <text x="24" y="102" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">通常让 Unity 用 MikkTSpace 计算</text>
+    <text x="24" y="138" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">使用法线贴图时不可设 None</text>
+    <rect x="22" y="166" width="326" height="24" rx="12" fill="#EAF0FA"/>
+    <text x="185" y="184" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="17" font-weight="700" fill="#2457A6">Calculate Mikktspace</text>
+  </g>
+  <g id="card-unused" transform="translate(455 382)">
+    <rect x="0" y="0" width="370" height="204" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <use data-icon="tabler-outline/settings" x="24" y="22" width="52" height="52" fill="#596273" stroke-width="2"/>
+    <text x="94" y="52" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#596273">不需要就不导出</text>
+    <text x="24" y="102" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">细分曲面、松散边：关闭</text>
+    <text x="24" y="138" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">顶点色未使用时选择“无”</text>
+    <rect x="22" y="166" width="326" height="24" rx="12" fill="#F4F0E8"/>
+    <text x="185" y="184" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#596273">只提交运行时真正需要的数据</text>
+  </g>
+  <g id="card-static" transform="translate(852 382)">
+    <rect x="0" y="0" width="370" height="204" rx="22" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+    <use data-icon="tabler-outline/alert-triangle" x="24" y="22" width="52" height="52" fill="#D85C45" stroke-width="2"/>
+    <text x="94" y="52" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#D85C45">骨架与动画：关闭</text>
+    <text x="24" y="102" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">物体类型中不选骨架</text>
+    <text x="24" y="138" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">最下方“动画”取消勾选</text>
+    <rect x="22" y="166" width="326" height="24" rx="12" fill="#FFF0D1"/>
+    <text x="185" y="184" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#D85C45">避免无关 Clip 与 Action</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Blender → Unity · 几何数据</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">7</text>
+</svg>

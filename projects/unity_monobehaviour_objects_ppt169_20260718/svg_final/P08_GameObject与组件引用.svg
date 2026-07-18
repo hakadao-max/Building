@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">引用先连好，运行时只做必要查找</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">GameObject 管对象状态；Component 提供能力；引用应在初始化阶段建立并缓存</text>
+  </g>
+  <g id="gameobject-parent" transform="translate(58 154)">
+    <rect x="0" y="0" width="1164" height="420" rx="28" fill="#F4F0E8" stroke="#2457A6" stroke-width="3" stroke-dasharray="10 7"/>
+    <!-- icon: tabler-outline/cube -->
+  <g transform="translate(28, 22) scale(1.91667)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M21 16.008v-8.018a1.98 1.98 0 0 0 -1 -1.717l-7 -4.008a2.016 2.016 0 0 0 -2 0l-7 4.008c-.619 .355 -1 1.01 -1 1.718v8.018c0 .709 .381 1.363 1 1.717l7 4.008a2.016 2.016 0 0 0 2 0l7 -4.008c.619 -.355 1 -1.01 1 -1.718" />
+    <path d="M12 22v-10" />
+    <path d="M12 12l8.73 -5.04" />
+    <path d="M3.27 6.96l8.73 5.04" />
+  </g>
+    <text x="90" y="56" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="34" font-weight="700" fill="#2457A6">GameObject：对象身份 + 激活状态 + 组件容器</text>
+    <g id="status-card" transform="translate(28 92)">
+      <rect x="0" y="0" width="340" height="294" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <!-- icon: tabler-outline/player-play -->
+  <g transform="translate(24, 22) scale(1.91667)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M7 4v16l13 -8l-13 -8" />
+  </g>
+      <text x="88" y="56" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#2457A6">对象状态</text>
+      <text x="24" y="110" font-family="Consolas, 'Courier New', monospace" font-size="23" fill="#1F2937">name · tag · layer</text>
+      <text x="24" y="156" font-family="Consolas, 'Courier New', monospace" font-size="23" fill="#1F2937">SetActive(false)</text>
+      <rect x="22" y="186" width="296" height="82" rx="16" fill="#EAF0FA"/>
+      <text x="38" y="218" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#2457A6">activeSelf</text>
+      <text x="38" y="248" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">自身开关</text>
+      <text x="170" y="218" font-family="Consolas, 'Courier New', monospace" font-size="21" font-weight="700" fill="#2457A6">activeInHierarchy</text>
+      <text x="170" y="248" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">考虑父对象后的真实状态</text>
+    </g>
+    <g id="component-card" transform="translate(392 92)">
+      <rect x="0" y="0" width="340" height="294" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <!-- icon: tabler-outline/components -->
+  <g transform="translate(24, 22) scale(1.91667)" fill="none" stroke="#55A68B" stroke-width="2">
+    <path d="M3 12l3 3l3 -3l-3 -3l-3 3" />
+    <path d="M15 12l3 3l3 -3l-3 -3l-3 3" />
+    <path d="M9 6l3 3l3 -3l-3 -3l-3 3" />
+    <path d="M9 18l3 3l3 -3l-3 -3l-3 3" />
+  </g>
+      <text x="88" y="56" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#2F8F6A">获取组件</text>
+      <text x="24" y="112" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#1F2937">GetComponent&lt;T&gt;()</text>
+      <text x="24" y="151" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#1F2937">TryGetComponent(out T)</text>
+      <text x="24" y="190" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#1F2937">GetComponentInChildren&lt;T&gt;()</text>
+      <text x="24" y="229" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#1F2937">GetComponentInParent&lt;T&gt;()</text>
+      <rect x="22" y="250" width="296" height="28" rx="14" fill="#E8F5F0"/>
+      <text x="170" y="271" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" font-weight="700" fill="#2F8F6A">需要反复使用 → Awake 缓存</text>
+    </g>
+    <g id="reference-card" transform="translate(756 92)">
+      <rect x="0" y="0" width="380" height="294" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <!-- icon: tabler-outline/search -->
+  <g transform="translate(24, 22) scale(1.91667)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+    <path d="M21 21l-6 -6" />
+  </g>
+      <text x="88" y="56" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#8C5A00">引用策略</text>
+      <text x="24" y="110" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" font-weight="700" fill="#1F2937">优先 1：Inspector SerializeField</text>
+      <text x="24" y="151" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" font-weight="700" fill="#1F2937">优先 2：创建对象时传入引用</text>
+      <text x="24" y="192" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" font-weight="700" fill="#1F2937">必要时：初始化查找一次并缓存</text>
+      <rect x="22" y="224" width="336" height="54" rx="15" fill="#FFF0D1"/>
+      <text x="190" y="247" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="20" fill="#8C5A00">GameObject.Find(...)</text>
+      <text x="190" y="270" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" font-weight="700" fill="#D85C45">不要每帧按名称查找</text>
+    </g>
+  </g>
+  <g id="takeaway" transform="translate(218 592)">
+    <rect x="0" y="0" width="844" height="44" rx="18" fill="#2457A6"/>
+    <text x="422" y="30" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">稳定的引用关系，比运行时“到处找对象”更可靠、更易维护</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 语法基础 · GameObject</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">8</text>
+</svg>

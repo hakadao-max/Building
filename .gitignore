@@ -6,7 +6,6 @@ UnityEngine.TestRunner.csproj
 Building.sln
 .idea
 tmp
-projects
 output
 obj
 .skill-install-temp

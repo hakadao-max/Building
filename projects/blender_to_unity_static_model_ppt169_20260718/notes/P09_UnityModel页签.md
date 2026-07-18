@@ -1,0 +1,1 @@
+Unity 的 Model 页签负责尺寸、轴向、法线、切线、UV 与部分运行时成本设置。Scale Factor 应保持 1，Read/Write 默认关闭，自动碰撞体只适合原型，正式资源应使用外层 Prefab 的简单碰撞方案。

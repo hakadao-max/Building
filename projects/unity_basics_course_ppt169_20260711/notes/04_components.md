@@ -1,0 +1,1 @@
+以 Ball 为例。Transform 决定位置，SpriteRenderer 负责显示，Rigidbody2D 参与物理，Collider2D 检测碰撞，BallController 编排规则。Prefab 则保存这组配置以便复用。

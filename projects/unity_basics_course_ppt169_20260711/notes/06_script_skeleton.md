@@ -1,0 +1,1 @@
+先讲意图，再讲语法。using 导入 Unity API；类名与文件名一致；继承 MonoBehaviour 才能挂到对象上；生命周期方法由 Unity 调用。

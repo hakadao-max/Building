@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">创建对象容易，维护引用更重要</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">先获得稳定引用，再创建、使用并在合适时机销毁</text>
+  </g>
+  <g id="object-pipeline" transform="translate(58 176)">
+    <g id="stage-reference">
+      <circle cx="128" cy="42" r="40" fill="#2457A6"/>
+      <use data-icon="tabler-outline/search" x="102" y="16" width="52" height="52" fill="#FFFFFF" stroke-width="2"/>
+      <rect x="0" y="98" width="256" height="268" rx="22" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <text x="128" y="140" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#2457A6">1. 建立引用</text>
+      <text x="24" y="186" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• Inspector 直接连接</text>
+      <text x="24" y="222" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• Awake 查找组件</text>
+      <text x="24" y="258" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 必要时按 Tag 查找</text>
+      <rect x="22" y="300" width="212" height="42" rx="14" fill="#FFFFFF"/>
+      <text x="128" y="328" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="20" font-weight="700" fill="#2457A6">cached reference</text>
+    </g>
+    <path d="M266 232 H308" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round"/>
+    <path d="M294 218 L310 232 L294 246" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g id="stage-create" transform="translate(302 0)">
+      <circle cx="128" cy="42" r="40" fill="#F2A93B"/>
+      <use data-icon="tabler-outline/plus" x="102" y="16" width="52" height="52" fill="#FFFFFF" stroke-width="2"/>
+      <rect x="0" y="98" width="256" height="268" rx="22" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <text x="128" y="140" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#8C5A00">2. 创建能力</text>
+      <text x="24" y="186" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• Instantiate Prefab</text>
+      <text x="24" y="222" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 指定位置与旋转</text>
+      <text x="24" y="258" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• AddComponent 动态添加</text>
+      <rect x="22" y="300" width="212" height="42" rx="14" fill="#FFFFFF"/>
+      <text x="128" y="328" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="20" font-weight="700" fill="#8C5A00">runtime instance</text>
+    </g>
+    <path d="M568 232 H610" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round"/>
+    <path d="M596 218 L612 232 L596 246" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g id="stage-interact" transform="translate(604 0)">
+      <circle cx="128" cy="42" r="40" fill="#55A68B"/>
+      <use data-icon="tabler-outline/components" x="102" y="16" width="52" height="52" fill="#FFFFFF" stroke-width="2"/>
+      <rect x="0" y="98" width="256" height="268" rx="22" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <text x="128" y="140" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#2F8F6A">3. 运行交互</text>
+      <text x="24" y="186" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 调用组件方法</text>
+      <text x="24" y="222" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• CompareTag 判断身份</text>
+      <text x="24" y="258" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 更新状态与表现</text>
+      <rect x="22" y="300" width="212" height="42" rx="14" fill="#FFFFFF"/>
+      <text x="128" y="328" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="20" font-weight="700" fill="#2F8F6A">controlled behavior</text>
+    </g>
+    <path d="M870 232 H912" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round"/>
+    <path d="M898 218 L914 232 L898 246" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g id="stage-destroy" transform="translate(906 0)">
+      <circle cx="128" cy="42" r="40" fill="#D85C45"/>
+      <use data-icon="tabler-outline/trash" x="102" y="16" width="52" height="52" fill="#FFFFFF" stroke-width="2"/>
+      <rect x="0" y="98" width="256" height="268" rx="22" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+      <text x="128" y="140" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="34" font-weight="700" fill="#D85C45">4. 结束寿命</text>
+      <text x="24" y="186" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• Destroy(gameObject)</text>
+      <text x="24" y="222" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• 可延迟若干秒</text>
+      <text x="24" y="258" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="23" fill="#1F2937">• OnDestroy 清理资源</text>
+      <rect x="22" y="300" width="212" height="42" rx="14" fill="#FFF0D1"/>
+      <text x="128" y="328" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="20" font-weight="700" fill="#D85C45">reference invalid</text>
+    </g>
+  </g>
+  <g id="pipeline-note" transform="translate(210 576)">
+    <rect x="0" y="0" width="860" height="56" rx="18" fill="#1F2937"/>
+    <text x="430" y="36" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">固定配置尽量放 Inspector / Prefab；名称查找不要放进 Update</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 语法基础 · 对象生命周期</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">9</text>
+</svg>

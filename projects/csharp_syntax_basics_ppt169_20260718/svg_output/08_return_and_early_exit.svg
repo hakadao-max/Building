@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="62" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#2457A6"><tspan font-family="Consolas, 'Courier New', monospace">void</tspan>、返回值与提前结束</text>
+  <text x="66" y="128" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">返回类型决定是否交回结果；无效输入可以用 return 立刻止步。</text>
+  <g id="void-example">
+    <path d="M60 166 C228 154 422 162 584 171 L580 329 C416 340 227 335 62 326 Z" fill="#F4F0E8"/>
+    <path d="M84 191 C230 182 399 189 558 196 L555 311 C401 320 231 316 85 308 Z" fill="#FFFDF6" stroke="#2457A6" stroke-width="3"/>
+    <text x="108" y="233" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#2457A6">void</text>
+    <text x="217" y="233" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#1F2937">只执行行为</text>
+    <text x="108" y="276" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">void PrintStatus()</text>
+    <text x="108" y="304" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">不把结果交给调用者</text>
+  </g>
+  <g id="bool-example">
+    <path d="M624 166 C792 154 986 162 1218 171 L1214 329 C984 340 791 335 626 326 Z" fill="#F4F0E8"/>
+    <path d="M648 191 C794 182 1000 189 1192 196 L1189 311 C1003 320 793 316 649 308 Z" fill="#FFFDF6" stroke="#55A68B" stroke-width="3"/>
+    <text x="672" y="233" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#55A68B">bool</text>
+    <text x="780" y="233" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#1F2937">交回真假结果</text>
+    <text x="672" y="276" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">bool IsAlive()</text>
+    <text x="672" y="306" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#2F8F6A">{ return health &gt; 0; }</text>
+  </g>
+  <g id="heal-example">
+    <path d="M60 361 C318 347 850 355 1219 366 L1213 618 C849 631 316 625 62 614 Z" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="90" y="407" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#2457A6">参数校验：无效输入不再往下执行</text>
+    <path d="M89 428 C332 416 645 424 852 419" fill="none" stroke="#F2A93B" stroke-width="4" stroke-linecap="round"/>
+    <text x="92" y="470" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#2457A6">public void Heal(int amount)</text>
+    <text x="92" y="507" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">{</text>
+    <text x="126" y="544" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#D85C45">if (amount &lt;= 0) return;</text>
+    <text x="126" y="581" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#2F8F6A">health += amount;</text>
+    <text x="92" y="610" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">}</text>
+    <g id="early-return-callout">
+      <use data-icon="tabler-outline/arrow-back-up" x="794" y="462" width="78" height="78" fill="#D85C45" stroke-width="2"/>
+      <path d="M865 500 C925 477 998 480 1077 505" fill="none" stroke="#D85C45" stroke-width="4" stroke-linecap="round"/>
+      <text x="893" y="552" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#D85C45">提前 return</text>
+      <text x="893" y="589" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">保护后面的状态修改</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <path d="M58 667 C342 662 618 670 906 666 C1036 664 1110 669 1178 666" fill="none" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">C# 入门 · 方法与参数</text>
+  </g>
+  <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">08</text>
+</svg>

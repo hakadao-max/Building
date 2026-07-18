@@ -1,0 +1,1 @@
+Simple 适合普通图标，Sliced 适合可缩放的按钮和面板，Tiled 用于重复纹理，Filled 用于血条和冷却。纯装饰 Image 通常可以关闭 Raycast Target，避免透明图片挡住后面的控件。

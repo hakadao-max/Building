@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">只导出需要的对象，保持贴图独立可管理</text>
+    <text x="62" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">路径、分批与包括设置，决定 FBX 带走什么以及如何组织</text>
+  </g>
+  <g id="pillar-path" transform="translate(60 158)">
+    <rect x="0" y="0" width="360" height="420" rx="26" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+    <circle cx="180" cy="72" r="52" fill="#F2A93B"/>
+    <use data-icon="tabler-outline/folder" x="148" y="40" width="64" height="64" fill="#FFFFFF" stroke-width="2"/>
+    <text x="180" y="154" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#8C5A00">路径模式</text>
+    <text x="28" y="204" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="25" font-weight="700" fill="#1F2937">推荐：自动</text>
+    <text x="28" y="244" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">• 近处文件使用相对路径</text>
+    <text x="28" y="278" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">• Unity 中贴图独立管理</text>
+    <text x="28" y="324" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" font-weight="700" fill="#D85C45">避免：绝对 / 匹配</text>
+    <text x="28" y="358" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">换电脑或继承旧路径易失效</text>
+    <rect x="28" y="380" width="304" height="26" rx="13" fill="#FFFFFF"/>
+    <text x="180" y="399" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#8C5A00">复制可用于打包，但通常不嵌入贴图</text>
+  </g>
+  <g id="pillar-batch" transform="translate(460 158)">
+    <rect x="0" y="0" width="360" height="420" rx="26" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <circle cx="180" cy="72" r="52" fill="#2457A6"/>
+    <use data-icon="tabler-outline/files" x="148" y="40" width="64" height="64" fill="#FFFFFF" stroke-width="2"/>
+    <text x="180" y="154" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#2457A6">分批模式</text>
+    <text x="28" y="204" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="25" font-weight="700" fill="#1F2937">普通模型：关闭</text>
+    <text x="28" y="244" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">• 当前选择导出为一个 FBX</text>
+    <text x="28" y="278" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">• 零件可多选后一起导出</text>
+    <text x="28" y="324" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" font-weight="700" fill="#2457A6">何时才开启？</text>
+    <text x="28" y="358" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#596273">按场景 / Collection 批量生成</text>
+    <rect x="28" y="380" width="304" height="26" rx="13" fill="#FFFFFF"/>
+    <text x="180" y="399" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#2457A6">只有大量规范化资源才需要</text>
+  </g>
+  <g id="pillar-include" transform="translate(860 158)">
+    <rect x="0" y="0" width="360" height="420" rx="26" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <circle cx="180" cy="72" r="52" fill="#55A68B"/>
+    <use data-icon="tabler-outline/cube" x="148" y="40" width="64" height="64" fill="#FFFFFF" stroke-width="2"/>
+    <text x="180" y="154" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#2F8F6A">包括</text>
+    <text x="28" y="204" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="25" font-weight="700" fill="#1F2937">限制到：选定的物体</text>
+    <text x="28" y="244" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">• 网格：开启</text>
+    <text x="28" y="278" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">• 空物体：仅根节点 / 挂点</text>
+    <text x="28" y="312" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">• 相机 / 灯光 / 骨架：关闭</text>
+    <text x="28" y="346" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#1F2937">• 自定义属性：默认关闭</text>
+    <rect x="28" y="380" width="304" height="26" rx="13" fill="#FFFFFF"/>
+    <text x="180" y="399" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="17" font-weight="700" fill="#2F8F6A">先在 3D 视图选好对象</text>
+  </g>
+  <g id="selection-note" transform="translate(228 594)">
+    <rect x="0" y="0" width="824" height="42" rx="18" fill="#1F2937"/>
+    <text x="412" y="29" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">最稳妥的原则：视图里选什么，FBX 就只带走什么</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Blender → Unity · 文件与对象范围</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">5</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="toc">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="78" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">一张地图，串起 Unity 的基础工作流</text>
+  <path d="M60 102 C250 118 404 88 590 104" fill="none" stroke="#F2A93B" stroke-width="8" stroke-linecap="round"/>
+  <text x="62" y="146" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">从“组织场景”出发，到“交付可运行程序”结束</text>
+  <g font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g transform="translate(70 180)">
+      <circle cx="42" cy="50" r="40" fill="#2457A6"/>
+      <text x="42" y="61" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">01</text>
+      <rect x="100" y="0" width="1035" height="100" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <use data-icon="tabler-outline/hierarchy-3" x="126" y="26" width="48" height="48" fill="#2457A6" stroke-width="2"/>
+      <text x="198" y="45" font-size="32" font-weight="700" fill="#1F2937">场景与层级</text>
+      <text x="440" y="45" font-size="24" fill="#596273">Scene · GameObject · Component · Transform</text>
+      <text x="198" y="78" font-size="24" fill="#8A8F98">先理解对象如何被组织，再谈功能如何叠加</text>
+    </g>
+    <g transform="translate(70 295)">
+      <circle cx="42" cy="50" r="40" fill="#55A68B"/>
+      <text x="42" y="61" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">02</text>
+      <rect x="100" y="0" width="1035" height="100" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <use data-icon="tabler-outline/box" x="126" y="26" width="48" height="48" fill="#55A68B" stroke-width="2"/>
+      <text x="198" y="45" font-size="32" font-weight="700" fill="#1F2937">碰撞与物理</text>
+      <text x="440" y="45" font-size="24" fill="#596273">Collider · Rigidbody · Trigger</text>
+      <text x="198" y="78" font-size="24" fill="#8A8F98">明确“谁移动、谁阻挡、谁只负责检测”</text>
+    </g>
+    <g transform="translate(70 410)">
+      <circle cx="42" cy="50" r="40" fill="#F2A93B"/>
+      <text x="42" y="61" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">03</text>
+      <rect x="100" y="0" width="1035" height="100" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <use data-icon="tabler-outline/palette" x="126" y="26" width="48" height="48" fill="#F2A93B" stroke-width="2"/>
+      <text x="198" y="45" font-size="32" font-weight="700" fill="#1F2937">渲染与镜头</text>
+      <text x="440" y="45" font-size="24" fill="#596273">材质 · 灯光 · 相机 · RenderTexture</text>
+      <text x="198" y="78" font-size="24" fill="#8A8F98">让场景“看得见”，也让画面“送得到”</text>
+    </g>
+    <g transform="translate(70 525)">
+      <circle cx="42" cy="50" r="40" fill="#D85C45"/>
+      <text x="42" y="61" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">04</text>
+      <rect x="100" y="0" width="1035" height="100" rx="22" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <use data-icon="tabler-outline/package-export" x="126" y="26" width="48" height="48" fill="#D85C45" stroke-width="2"/>
+      <text x="198" y="45" font-size="32" font-weight="700" fill="#1F2937">复用与打包</text>
+      <text x="440" y="45" font-size="24" fill="#596273">Prefab · PlayerRoot · Build Profiles</text>
+      <text x="198" y="78" font-size="24" fill="#8A8F98">把可复用对象整理成稳定、可交付的工程</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 基础 · 学习路线</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">02</text>
+  </g>
+</svg>

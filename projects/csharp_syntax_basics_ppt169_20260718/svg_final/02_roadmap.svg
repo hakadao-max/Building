@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="toc">
+  <rect id="background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="62" y="82" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#2457A6">先看全图：五个概念怎样连起来</text>
+  <text x="66" y="122" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">从“说明书”出发，一路走到类型级共享。</text>
+  <path d="M82 360 C180 321 256 397 362 358 C467 319 554 398 652 355 C756 311 848 397 944 354 C1038 314 1122 338 1192 360" fill="none" stroke="#2457A6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1180 345 L1203 360 L1181 376" fill="none" stroke="#2457A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g id="item-01">
+    <circle cx="120" cy="349" r="35" fill="#2457A6"/>
+    <text x="120" y="360" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFDF6">01</text>
+    <!-- icon: tabler-outline/cube -->
+  <g transform="translate(74, 180) scale(2.16667)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M21 16.008v-8.018a1.98 1.98 0 0 0 -1 -1.717l-7 -4.008a2.016 2.016 0 0 0 -2 0l-7 4.008c-.619 .355 -1 1.01 -1 1.718v8.018c0 .709 .381 1.363 1 1.717l7 4.008a2.016 2.016 0 0 0 2 0l7 -4.008c.619 -.355 1 -1.01 1 -1.718" />
+    <path d="M12 22v-10" />
+    <path d="M12 12l8.73 -5.04" />
+    <path d="M3.27 6.96l8.73 5.04" />
+  </g>
+    <text x="70" y="270" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">类</text>
+    <text x="70" y="306" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">组织数据与行为</text>
+  </g>
+  <g id="item-02">
+    <circle cx="372" cy="358" r="35" fill="#F2A93B"/>
+    <text x="372" y="369" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">02</text>
+    <!-- icon: tabler-outline/box-multiple -->
+  <g transform="translate(325, 420) scale(2.33333)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M7 5a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2l0 -10" />
+    <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
+  </g>
+    <text x="320" y="515" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">对象</text>
+    <text x="320" y="551" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">实例数据彼此独立</text>
+  </g>
+  <g id="item-03">
+    <circle cx="632" cy="361" r="35" fill="#55A68B"/>
+    <text x="632" y="372" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFDF6">03</text>
+    <!-- icon: tabler-outline/shield -->
+  <g transform="translate(587, 180) scale(2.25)" fill="none" stroke="#55A68B" stroke-width="2">
+    <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" />
+  </g>
+    <text x="574" y="270" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">访问与继承</text>
+    <text x="574" y="306" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">控制边界，复用能力</text>
+  </g>
+  <g id="item-04">
+    <circle cx="900" cy="362" r="35" fill="#2457A6"/>
+    <text x="900" y="373" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFFDF6">04</text>
+    <!-- icon: tabler-outline/braces -->
+  <g transform="translate(854, 420) scale(2.25)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M7 4a2 2 0 0 0 -2 2v3a2 3 0 0 1 -2 3a2 3 0 0 1 2 3v3a2 2 0 0 0 2 2" />
+    <path d="M17 4a2 2 0 0 1 2 2v3a2 3 0 0 0 2 3a2 3 0 0 0 -2 3v3a2 2 0 0 1 -2 2" />
+  </g>
+    <text x="820" y="515" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">方法与参数</text>
+    <text x="820" y="551" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">命名行为，接收输入</text>
+  </g>
+  <g id="item-05">
+    <circle cx="1150" cy="349" r="35" fill="#F2A93B"/>
+    <text x="1150" y="360" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">05</text>
+    <!-- icon: tabler-outline/world-code -->
+  <g transform="translate(1104, 180) scale(2.25)" fill="none" stroke="#F2A93B" stroke-width="2">
+    <path d="M20.942 13.02a9 9 0 1 0 -9.47 7.964" />
+    <path d="M3.6 9h16.8" />
+    <path d="M3.6 15h9.9" />
+    <path d="M11.5 3a17 17 0 0 0 0 18" />
+    <path d="M12.5 3c2 3.206 2.837 6.913 2.508 10.537" />
+    <path d="M20 21l2 -2l-2 -2" />
+    <path d="M17 17l-2 2l2 2" />
+  </g>
+    <text x="1083" y="270" font-family="KaiTi, 'Trebuchet MS', serif" font-size="36" font-weight="700" fill="#1F2937">static</text>
+    <text x="1062" y="306" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">成员属于类型本身</text>
+  </g>
+  <path d="M846 614 C958 603 1071 613 1192 605" fill="none" stroke="#F2A93B" stroke-width="5" stroke-linecap="round"/>
+  <text x="1188" y="594" text-anchor="end" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#2457A6">目标：写出可理解、可复用的代码</text>
+  <g id="footer" data-pptx-role="footer">
+    <path d="M58 667 C342 662 618 670 906 666 C1036 664 1110 669 1178 666" fill="none" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">C# 入门 · 类与对象</text>
+  </g>
+  <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">02</text>
+</svg>

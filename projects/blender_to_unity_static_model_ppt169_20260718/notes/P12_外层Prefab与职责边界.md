@@ -1,0 +1,1 @@
+FBX 是可重新导入的模型资源，不适合直接承载游戏逻辑。外层 ObjectRoot Prefab 保存 Collider、Rigidbody 与脚本，内部 Model 节点只引用 Imported FBX，这样 Blender 更新模型时不会破坏 Unity 游戏配置。

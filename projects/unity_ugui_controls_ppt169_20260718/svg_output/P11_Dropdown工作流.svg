@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">Dropdown：从互斥列表中选择一项</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">现代项目优先 TMP_Dropdown，并明确索引映射</text>
+  <g id="dropdown-steps" transform="translate(54 166)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <line x1="128" y1="80" x2="1048" y2="80" stroke="#D8D2C5" stroke-width="8" stroke-linecap="round"/>
+    <g>
+      <circle cx="128" cy="80" r="46" fill="#2457A6"/><text x="128" y="92" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">1</text>
+      <rect x="28" y="152" width="200" height="250" rx="22" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <text x="128" y="200" text-anchor="middle" font-size="32" font-weight="700" fill="#2457A6">准备结构</text>
+      <text x="128" y="246" text-anchor="middle" font-size="24" fill="#596273">Caption</text><text x="128" y="282" text-anchor="middle" font-size="24" fill="#596273">Template</text><text x="128" y="318" text-anchor="middle" font-size="24" fill="#596273">Viewport</text><text x="128" y="354" text-anchor="middle" font-size="24" fill="#596273">Item</text>
+    </g>
+    <g>
+      <circle cx="358" cy="80" r="46" fill="#55A68B"/><text x="358" y="92" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">2</text>
+      <rect x="258" y="152" width="200" height="250" rx="22" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <text x="358" y="200" text-anchor="middle" font-size="32" font-weight="700" fill="#2F8F6A">添加选项</text>
+      <text x="358" y="252" text-anchor="middle" font-size="24" fill="#596273">低</text><text x="358" y="296" text-anchor="middle" font-size="24" fill="#596273">中</text><text x="358" y="340" text-anchor="middle" font-size="24" fill="#596273">高</text>
+    </g>
+    <g>
+      <circle cx="588" cy="80" r="46" fill="#F2A93B"/><text x="588" y="92" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">3</text>
+      <rect x="488" y="152" width="200" height="250" rx="22" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <text x="588" y="200" text-anchor="middle" font-size="32" font-weight="700" fill="#8C5A00">恢复初值</text>
+      <text x="588" y="252" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">SetValue</text>
+      <text x="588" y="286" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">WithoutNotify</text>
+      <text x="588" y="342" text-anchor="middle" font-size="24" fill="#596273">刷新显示</text>
+    </g>
+    <g>
+      <circle cx="818" cy="80" r="46" fill="#D85C45"/><text x="818" y="92" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">4</text>
+      <rect x="718" y="152" width="200" height="250" rx="22" fill="#F4F0E8" stroke="#D85C45" stroke-width="3"/>
+      <text x="818" y="200" text-anchor="middle" font-size="32" font-weight="700" fill="#D85C45">监听变化</text>
+      <text x="818" y="252" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">onValue</text>
+      <text x="818" y="286" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#1F2937">Changed</text>
+      <text x="818" y="342" text-anchor="middle" font-size="24" fill="#596273">Add / Remove</text>
+    </g>
+    <g>
+      <circle cx="1048" cy="80" r="46" fill="#596273"/><text x="1048" y="92" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF">5</text>
+      <rect x="948" y="152" width="200" height="250" rx="22" fill="#FFFFFF" stroke="#596273" stroke-width="3"/>
+      <text x="1048" y="200" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">应用映射</text>
+      <text x="1048" y="252" text-anchor="middle" font-size="24" fill="#596273">显示顺序</text>
+      <text x="1048" y="296" text-anchor="middle" font-size="24" fill="#596273">≠</text>
+      <text x="1048" y="340" text-anchor="middle" font-size="24" fill="#596273">内部等级</text>
+    </g>
+  </g>
+  <rect x="184" y="594" width="912" height="40" rx="14" fill="#EAF0FA"/>
+  <text x="640" y="622" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#2457A6">不要随意破坏 Template、Caption Text、Item Text 的引用关系</text>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">TMP_Dropdown · 初始化与索引映射</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">11</text>
+  </g>
+</svg>

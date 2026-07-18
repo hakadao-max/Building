@@ -1,0 +1,1 @@
+player 和 enemy 都由 Character 创建，但它们保存的是两套独立数据。调用 enemy.TakeDamage(10) 时，只有 enemy 的 Health 从 30 变成 20，player 仍然保持 100。这个例子帮助我们区分“同一种类型”和“同一个对象”。

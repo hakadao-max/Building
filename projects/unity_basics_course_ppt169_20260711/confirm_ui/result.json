@@ -1,0 +1,66 @@
+{
+  "canvas": "ppt169",
+  "audience": "Unity 初学者、从 Godot 转向 Unity 的学习者，以及进行基础脚本与 UGUI 入门教学的教师和培训者",
+  "content_divergence": "",
+  "mode": "instructional",
+  "visual_style": "soft-rounded",
+  "delivery_purpose": "presentation",
+  "page_count": "18",
+  "color": {
+    "name": "",
+    "palette": {
+      "background": "#F7F9FC",
+      "secondary_bg": "#EAF0FF",
+      "primary": "#3157D5",
+      "accent": "#7C4DFF",
+      "secondary_accent": "#22A6B3",
+      "body_text": "#172033"
+    }
+  },
+  "icons": "tabler-filled",
+  "typography": {
+    "name": "",
+    "heading": {
+      "cjk": "Microsoft YaHei",
+      "css": "'Segoe UI','Microsoft YaHei',sans-serif",
+      "latin": "Segoe UI",
+      "sample_cjk": "从脚本到交互：搭建第一个 Unity 原型",
+      "sample_latin": "Build Your First Unity Prototype"
+    },
+    "body": {
+      "cjk": "Microsoft YaHei",
+      "css": "'Segoe UI','Microsoft YaHei',sans-serif",
+      "latin": "Segoe UI",
+      "sample_cjk": "理解组件、生命周期、输入与 UGUI 事件。",
+      "sample_latin": "Understand components, lifecycle, input, and UGUI events."
+    },
+    "body_size": 32,
+    "sizes": {
+      "annotation": 24,
+      "subtitle": 42,
+      "title": 56
+    },
+    "body_size_unit": "px"
+  },
+  "formula_policy": "text-only",
+  "image_usage": [
+    "web",
+    "ai"
+  ],
+  "image_notes": "AI 图像仅用于封面、章节过渡和少量辅助插画；组件关系、生命周期、脚本流程与 UGUI 层级全部使用可编辑 SVG 图形和代码文本，不把关键教学信息烘焙进图片。",
+  "image_ai_path": "host-native",
+  "generation_mode": "continuous",
+  "refine_spec": false,
+  "image_strategy": {
+    "name": "自定义",
+    "rendering": "sketch-notes",
+    "palette": "macaron",
+    "visual": "手绘笔记",
+    "color": "使用上方已选色彩方案；图像调色只控制用色比例和行为。",
+    "mood": "手动选择渲染风格和图像调色，也可以使用自定义描述。",
+    "custom": ""
+  },
+  "stage": "final",
+  "status": "confirmed",
+  "confirmed_at": "2026-07-11T15:02:08"
+}

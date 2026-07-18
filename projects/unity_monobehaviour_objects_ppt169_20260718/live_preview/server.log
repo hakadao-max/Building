@@ -1,0 +1,9 @@
+[22:57:42] [INFO] svg_editor: running at http://127.0.0.1:5050 (live preview (auto-startup))
+[22:57:42] [INFO] svg_editor: project: H:\Project\Building\projects\unity_monobehaviour_objects_ppt169_20260718
+[22:57:42] [INFO] svg_editor: svg_output: H:\Project\Building\projects\unity_monobehaviour_objects_ppt169_20260718\svg_output (0 slides)
+[22:57:42] [INFO] svg_editor: idle timeout: 7200s (0 = disabled)
+ * Serving Flask app 'server'
+ * Debug mode: off
+[22:57:42] [INFO] svg_editor: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5050
+[22:57:42] [INFO] svg_editor: [33mPress CTRL+C to quit[0m

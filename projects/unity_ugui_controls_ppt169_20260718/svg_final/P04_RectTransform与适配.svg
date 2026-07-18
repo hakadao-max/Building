@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">RectTransform：适配的关键是“相对关系”</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">别先写死坐标，先把 Anchor 与 Pivot 放对</text>
+  <g id="rect-transform-demo" transform="translate(70 158)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="610" height="440" rx="28" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="28" y="54" font-size="36" font-weight="700" fill="#2457A6">父矩形与 UI 元素</text>
+    <rect x="72" y="94" width="466" height="286" rx="18" fill="#EAF0FA" stroke="#2457A6" stroke-width="3" stroke-dasharray="12 8"/>
+    <line x1="305" y1="94" x2="305" y2="380" stroke="#D8D2C5" stroke-width="3" stroke-dasharray="8 8"/>
+    <line x1="72" y1="237" x2="538" y2="237" stroke="#D8D2C5" stroke-width="3" stroke-dasharray="8 8"/>
+    <circle cx="305" cy="237" r="14" fill="#F2A93B"/>
+    <text x="324" y="229" font-size="24" fill="#8C5A00">Anchor</text>
+    <rect x="376" y="128" width="124" height="92" rx="16" fill="#55A68B"/>
+    <circle cx="438" cy="174" r="10" fill="#FFFFFF"/>
+    <text x="382" y="258" font-size="24" fill="#2F8F6A">Pivot</text>
+    <path d="M354 245 C378 224 408 201 430 182" fill="none" stroke="#55A68B" stroke-width="4" stroke-linecap="round"/>
+    <text x="305" y="418" text-anchor="middle" font-size="24" fill="#596273">Anchored Position 是相对 Anchor 的偏移</text>
+  </g>
+  <g id="scaler-card" transform="translate(720 158)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <rect x="0" y="0" width="490" height="440" rx="28" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <!-- icon: tabler-outline/transform -->
+  <g transform="translate(28, 20) scale(2)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M3 6a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+    <path d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3" />
+    <path d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3" />
+    <path d="M15 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  </g>
+    <text x="96" y="56" font-size="36" font-weight="700" fill="#1F2937">Canvas Scaler</text>
+    <rect x="28" y="92" width="434" height="70" rx="18" fill="#EAF0FA"/>
+    <text x="48" y="123" font-size="24" fill="#596273">UI Scale Mode</text>
+    <text x="442" y="145" text-anchor="end" font-size="24" font-weight="700" fill="#2457A6">Scale With Screen Size</text>
+    <rect x="28" y="184" width="434" height="70" rx="18" fill="#E8F5F0"/>
+    <text x="48" y="215" font-size="24" fill="#596273">Reference Resolution</text>
+    <text x="442" y="237" text-anchor="end" font-size="24" font-weight="700" fill="#2F8F6A">1920 × 1080</text>
+    <rect x="28" y="276" width="434" height="122" rx="18" fill="#FFF0D1"/>
+    <text x="48" y="312" font-size="24" fill="#596273">Match</text>
+    <line x1="76" y1="352" x2="414" y2="352" stroke="#D8D2C5" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="245" cy="352" r="18" fill="#F2A93B"/>
+    <text x="76" y="388" font-size="24" fill="#8C5A00">宽 0</text>
+    <text x="414" y="388" text-anchor="end" font-size="24" fill="#8C5A00">高 1</text>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">RectTransform · Anchor / Pivot / Scaler</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">04</text>
+  </g>
+</svg>

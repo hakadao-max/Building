@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <g id="title-block">
+    <text x="60" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">普通静态模型，先锁定这组核心值</text>
+    <text x="62" y="122" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#596273">文件 &gt; 导出 &gt; FBX (.fbx)</text>
+  </g>
+  <g id="preset-scope" transform="translate(60 154)">
+    <rect x="0" y="0" width="560" height="214" rx="24" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+    <rect x="162" y="0" width="236" height="48" rx="20" fill="#F2A93B"/>
+    <text x="280" y="33" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#FFFFFF">导出范围</text>
+    <use data-icon="tabler-outline/cube" x="26" y="70" width="54" height="54" fill="#F2A93B" stroke-width="2"/>
+    <text x="102" y="90" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">路径模式：自动</text>
+    <text x="102" y="126" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">分批模式：关闭</text>
+    <text x="102" y="162" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">限制到：选定的物体</text>
+    <text x="102" y="198" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">物体类型：网格；按需空物体</text>
+  </g>
+  <g id="preset-transform" transform="translate(660 154)">
+    <rect x="0" y="0" width="560" height="214" rx="24" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+    <rect x="162" y="0" width="236" height="48" rx="20" fill="#2457A6"/>
+    <text x="280" y="33" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#FFFFFF">变换</text>
+    <use data-icon="tabler-outline/transform" x="26" y="70" width="54" height="54" fill="#2457A6" stroke-width="2"/>
+    <text x="102" y="90" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">Scale 1.00 · 全部局部</text>
+    <text x="102" y="126" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">Forward -Z · Up Y</text>
+    <text x="102" y="162" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">应用单位：开启</text>
+    <text x="102" y="198" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">空间变换开；应用变换关</text>
+  </g>
+  <g id="preset-geometry" transform="translate(60 398)">
+    <rect x="0" y="0" width="560" height="214" rx="24" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+    <rect x="162" y="0" width="236" height="48" rx="20" fill="#55A68B"/>
+    <text x="280" y="33" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#FFFFFF">几何数据</text>
+    <use data-icon="tabler-outline/triangles" x="26" y="70" width="54" height="54" fill="#55A68B" stroke-width="2"/>
+    <text x="102" y="90" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">平滑：仅法线</text>
+    <text x="102" y="126" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">应用修改器：开启</text>
+    <text x="102" y="162" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">细分、松散边：关闭</text>
+    <text x="102" y="198" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">三角化 / 切线按项目统一</text>
+  </g>
+  <g id="preset-animation" transform="translate(660 398)">
+    <rect x="0" y="0" width="560" height="214" rx="24" fill="#FFFFFF" stroke="#D85C45" stroke-width="3"/>
+    <rect x="162" y="0" width="236" height="48" rx="20" fill="#D85C45"/>
+    <text x="280" y="33" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="30" font-weight="700" fill="#FFFFFF">静态模型禁用项</text>
+    <use data-icon="tabler-outline/alert-triangle" x="26" y="70" width="54" height="54" fill="#D85C45" stroke-width="2"/>
+    <text x="102" y="90" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">骨架：不选择</text>
+    <text x="102" y="126" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">动画：关闭</text>
+    <text x="102" y="162" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#1F2937">自定义属性：关闭</text>
+    <text x="102" y="198" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#596273">避免无关 Action 与关键帧进入 FBX</text>
+  </g>
+  <line id="footer-line" x1="58" y1="667" x2="1222" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+  <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Blender → Unity · 静态模型导出预设</text>
+  <text id="page-number" data-pptx-role="page-number" x="1220" y="700" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#8A8F98">4</text>
+</svg>

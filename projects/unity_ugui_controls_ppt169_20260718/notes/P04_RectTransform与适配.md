@@ -1,0 +1,1 @@
+RectTransform 用 Anchor 描述相对父矩形的位置关系，用 Pivot 描述旋转、缩放与位置参考点。Canvas Scaler 再根据基准分辨率和 Match 值，让同一套布局适配不同屏幕比例。

@@ -1,0 +1,1 @@
+静态模型在 Rig 页签使用 None，并关闭 Import Animation。如果 Unity 仍然出现动画 Clip，不要只在 Unity 中隐藏它，应回到 Blender 关闭导出动画并重新生成 FBX。

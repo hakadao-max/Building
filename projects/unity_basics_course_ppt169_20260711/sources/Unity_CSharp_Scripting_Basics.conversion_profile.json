@@ -1,0 +1,28 @@
+{
+  "schema": "ppt-master.source_to_md.profile.v1",
+  "converter": "pdf_to_md.py",
+  "conversion_type": "pdf",
+  "source": {
+    "path": "Unity_CSharp_Scripting_Basics.pdf",
+    "name": "Unity_CSharp_Scripting_Basics.pdf",
+    "suffix": ".pdf",
+    "kind": "file",
+    "exists": true,
+    "size_bytes": 208623
+  },
+  "outputs": {
+    "markdown": "Unity_CSharp_Scripting_Basics.md",
+    "asset_dir": "",
+    "image_manifest": "",
+    "image_count": 0
+  },
+  "markdown": {
+    "line_count": 341,
+    "char_count": 5321,
+    "heading_count": 23,
+    "table_count": 1,
+    "image_ref_count": 0,
+    "link_count": 0
+  },
+  "warnings": []
+}

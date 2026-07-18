@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">先让玩家想试，再让玩家立刻知道“成功了”</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">可感知性吸引第一次操作，即时反馈建立继续尝试的信心</text>
+  <g id="feedback-pillars" transform="translate(80 160)" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g>
+      <rect x="0" y="0" width="530" height="438" rx="30" fill="#FFFFFF" stroke="#2457A6" stroke-width="4"/>
+      <rect x="0" y="0" width="530" height="88" rx="30" fill="#2457A6"/>
+      <!-- icon: tabler-outline/eye -->
+  <g transform="translate(28, 20) scale(2)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+  </g>
+      <text x="96" y="58" font-size="36" font-weight="700" fill="#FFFFFF">让玩家一眼想试</text>
+      <text x="30" y="144" font-size="24" fill="#596273">· 会动的东西</text>
+      <text x="30" y="190" font-size="24" fill="#596273">· 与周围不同的材质</text>
+      <text x="30" y="236" font-size="24" fill="#596273">· 奇怪声音与不一致的影子</text>
+      <text x="30" y="282" font-size="24" fill="#596273">· 少量、明确的高亮</text>
+      <rect x="30" y="322" width="470" height="80" rx="18" fill="#EAF0FA"/>
+      <text x="265" y="355" text-anchor="middle" font-size="24" fill="#2457A6">提示的目标</text>
+      <text x="265" y="388" text-anchor="middle" font-size="32" font-weight="700" fill="#2457A6">“过去看看”</text>
+    </g>
+    <g transform="translate(590 0)">
+      <rect x="0" y="0" width="530" height="438" rx="30" fill="#FFFFFF" stroke="#55A68B" stroke-width="4"/>
+      <rect x="0" y="0" width="530" height="88" rx="30" fill="#55A68B"/>
+      <!-- icon: tabler-outline/pointer -->
+  <g transform="translate(28, 20) scale(2)" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <path d="M7.904 17.563a1.2 1.2 0 0 0 2.228 .308l2.09 -3.093l4.907 4.907a1.067 1.067 0 0 0 1.509 0l1.047 -1.047a1.067 1.067 0 0 0 0 -1.509l-4.907 -4.907l3.113 -2.09a1.2 1.2 0 0 0 -.309 -2.228l-13.582 -3.904l3.904 13.563" />
+  </g>
+      <text x="96" y="58" font-size="36" font-weight="700" fill="#FFFFFF">操作瞬间必须回应</text>
+      <text x="30" y="144" font-size="24" fill="#596273">· 门把手先压下</text>
+      <text x="30" y="190" font-size="24" fill="#596273">· 锁舌与机械声立刻出现</text>
+      <text x="30" y="236" font-size="24" fill="#596273">· 物体轻微震动或变色</text>
+      <text x="30" y="282" font-size="24" fill="#596273">· 完整动作可以随后慢慢完成</text>
+      <rect x="30" y="322" width="470" height="80" rx="18" fill="#E8F5F0"/>
+      <text x="265" y="355" text-anchor="middle" font-size="24" fill="#2F8F6A">反馈的目标</text>
+      <text x="265" y="388" text-anchor="middle" font-size="32" font-weight="700" fill="#2F8F6A">“我刚才做对了”</text>
+    </g>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">吸引力 · 可感知性与即时反馈</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">03</text>
+  </g>
+</svg>

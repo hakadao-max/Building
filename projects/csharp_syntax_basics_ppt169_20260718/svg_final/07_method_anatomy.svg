@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="62" y="84" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#2457A6">一个方法由哪些部分组成</text>
+  <text x="66" y="128" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">名称、输入、处理和输出，被包装成一次可重复调用的行为。</text>
+  <g id="method-parent-container">
+    <path d="M58 160 C311 148 884 154 1219 166 L1213 618 C871 630 302 625 62 614 Z" fill="#FFF9E9" stroke="#2457A6" stroke-width="3" stroke-dasharray="10 8"/>
+    <text x="82" y="194" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" font-weight="700" fill="#2457A6">METHOD · 一次完整行为</text>
+    <path d="M82 212 C293 201 730 207 1128 214 L1125 306 C755 318 307 313 84 302 Z" fill="#F4F0E8"/>
+    <!-- icon: tabler-outline/braces -->
+  <g transform="translate(101, 225) scale(2.33333)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M7 4a2 2 0 0 0 -2 2v3a2 3 0 0 1 -2 3a2 3 0 0 1 2 3v3a2 2 0 0 0 2 2" />
+    <path d="M17 4a2 2 0 0 1 2 2v3a2 3 0 0 0 2 3a2 3 0 0 0 -2 3v3a2 2 0 0 1 -2 2" />
+  </g>
+    <text x="181" y="266" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#2457A6">public</text>
+    <text x="326" y="266" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#F2A93B">int</text>
+    <text x="402" y="266" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#1F2937">Add</text>
+    <text x="482" y="266" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#55A68B">(int a, int b)</text>
+    <text x="720" y="266" font-family="Consolas, 'Courier New', monospace" font-size="32" font-weight="700" fill="#1F2937">{ return a + b; }</text>
+    <path d="M181 279 C233 276 281 282 306 277" fill="none" stroke="#2457A6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M326 279 C350 276 374 282 388 277" fill="none" stroke="#F2A93B" stroke-width="4" stroke-linecap="round"/>
+    <path d="M402 279 C433 276 462 282 470 277" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
+    <path d="M482 279 C569 274 650 282 705 276" fill="none" stroke="#55A68B" stroke-width="4" stroke-linecap="round"/>
+    <path d="M720 279 C865 273 1008 282 1104 276" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="module-access">
+    <path d="M92 337 C203 329 313 335 405 342 L401 431 C298 439 196 436 92 428 Z" fill="#F4F0E8"/>
+    <path d="M160 337 h 178 a 22 22 0 0 1 22 22 v 24 H138 v -24 a 22 22 0 0 1 22 -22 Z" fill="#2457A6"/>
+    <text x="249" y="371" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#FFFDF6">访问修饰符</text>
+    <text x="115" y="414" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">决定谁能调用</text>
+  </g>
+  <g id="module-return-type">
+    <path d="M432 337 C543 329 653 335 745 342 L741 431 C638 439 536 436 432 428 Z" fill="#F4F0E8"/>
+    <path d="M500 337 h 178 a 22 22 0 0 1 22 22 v 24 H478 v -24 a 22 22 0 0 1 22 -22 Z" fill="#F2A93B"/>
+    <text x="589" y="371" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#1F2937">返回类型</text>
+    <text x="455" y="414" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">说明结果是什么类型</text>
+  </g>
+  <g id="module-name">
+    <path d="M772 337 C883 329 993 335 1085 342 L1081 431 C978 439 876 436 772 428 Z" fill="#F4F0E8"/>
+    <path d="M840 337 h 178 a 22 22 0 0 1 22 22 v 24 H818 v -24 a 22 22 0 0 1 22 -22 Z" fill="#55A68B"/>
+    <text x="929" y="371" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#FFFDF6">方法名</text>
+    <text x="795" y="414" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">给行为一个可读名字</text>
+  </g>
+  <g id="module-parameters">
+    <path d="M194 463 C332 453 489 459 615 468 L611 573 C469 582 327 578 194 570 Z" fill="#F4F0E8"/>
+    <path d="M303 463 h 202 a 22 22 0 0 1 22 22 v 28 H281 v -28 a 22 22 0 0 1 22 -22 Z" fill="#2457A6"/>
+    <text x="404" y="499" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#FFFDF6">参数列表</text>
+    <text x="219" y="550" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#596273">int a, int b · 调用者交来的输入</text>
+  </g>
+  <g id="module-body">
+    <path d="M648 463 C786 453 943 459 1069 468 L1065 573 C923 582 781 578 648 570 Z" fill="#F4F0E8"/>
+    <path d="M757 463 h 202 a 22 22 0 0 1 22 22 v 28 H735 v -28 a 22 22 0 0 1 22 -22 Z" fill="#55A68B"/>
+    <text x="858" y="499" text-anchor="middle" font-family="KaiTi, 'Trebuchet MS', serif" font-size="32" font-weight="700" fill="#FFFDF6">方法体</text>
+    <text x="673" y="550" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#596273">return a + b; · 执行并交还结果</text>
+  </g>
+  <g id="spot-method-vector">
+    <path d="M1118 330 C1162 323 1199 331 1225 344 L1220 506 C1191 516 1154 511 1122 518 Z" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <!-- icon: tabler-outline/braces -->
+  <g transform="translate(1132, 358) scale(3.25)" fill="none" stroke="#2457A6" stroke-width="2">
+    <path d="M7 4a2 2 0 0 0 -2 2v3a2 3 0 0 1 -2 3a2 3 0 0 1 2 3v3a2 2 0 0 0 2 2" />
+    <path d="M17 4a2 2 0 0 1 2 2v3a2 3 0 0 0 2 3a2 3 0 0 0 -2 3v3a2 2 0 0 1 -2 2" />
+  </g>
+    <circle cx="1150" cy="464" r="16" fill="#55A68B" stroke="#1A1A1A" stroke-width="3"/>
+    <circle cx="1192" cy="464" r="16" fill="#F2A93B" stroke="#1A1A1A" stroke-width="3"/>
+    <path d="M1167 464 L1175 464" fill="none" stroke="#2457A6" stroke-width="5" stroke-linecap="round"/>
+    <path d="M1169 449 L1184 464 L1169 479" fill="none" stroke="#2457A6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="footer" data-pptx-role="footer">
+    <path d="M58 667 C342 662 618 670 906 666 C1036 664 1110 669 1178 666" fill="none" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">C# 入门 · 方法与参数</text>
+  </g>
+  <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">07</text>
+</svg>

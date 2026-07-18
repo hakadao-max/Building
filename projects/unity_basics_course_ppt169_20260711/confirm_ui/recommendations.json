@@ -1,0 +1,44 @@
+{
+  "stage": "stage3",
+  "lang": "zh",
+  "recommend": {
+    "image_usage": ["ai"],
+    "image_ai_path": "host-native",
+    "generation_mode": "continuous"
+  },
+  "image_notes": {
+    "value": "AI 图像仅用于封面、章节过渡和少量辅助插画；组件关系、生命周期、脚本流程与 UGUI 层级全部使用可编辑 SVG 图形和代码文本，不把关键教学信息烘焙进图片。"
+  },
+  "image_strategy": {
+    "selected": 0,
+    "candidates": [
+      {
+        "name": "方案 A｜现代课程插画（推荐）",
+        "rendering": "flat",
+        "palette": "macaron",
+        "visual": "圆润几何块、清晰对象轮廓、少量层次和柔和阴影",
+        "color": "浅灰白 #F7F9FC 约 65% + 教学蓝 #3157D5 约 25% + 紫色 #7C4DFF 与青色 #22A6B3 少量强调",
+        "mood": "友好、现代、易理解；像高质量在线编程课程的章节插画"
+      },
+      {
+        "name": "方案 B｜手绘知识笔记",
+        "rendering": "sketch-notes",
+        "palette": "macaron",
+        "visual": "手绘线条、便签式图形、轻松的课堂草图与箭头",
+        "color": "浅灰白 #F7F9FC 为纸面主场 + 蓝 #3157D5 建立结构 + 紫 #7C4DFF 与青 #22A6B3 做局部提示",
+        "mood": "亲切、启发式、有课堂参与感；像优秀讲师的可视化板书"
+      },
+      {
+        "name": "方案 C｜技术蓝图插画",
+        "rendering": "blueprint",
+        "palette": "cool-corporate",
+        "visual": "精确线框、组件节点、标注引线和轻度工程网格",
+        "color": "浅灰白 #F7F9FC 作为主体背景 + 蓝 #3157D5 主导结构 + 紫 #7C4DFF 与青 #22A6B3 标注关键连接",
+        "mood": "理性、系统化、技术感强；像游戏系统架构蓝图"
+      }
+    ]
+  },
+  "refine_spec": {
+    "value": false
+  }
+}

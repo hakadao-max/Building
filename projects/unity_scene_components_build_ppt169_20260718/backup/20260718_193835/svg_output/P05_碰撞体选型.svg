@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <text x="60" y="76" font-family="KaiTi, 'Trebuchet MS', serif" font-size="56" font-weight="700" fill="#1F2937">Collider 选型：先选简单形状，再考虑精确贴合</text>
+  <text x="62" y="124" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" fill="#596273">碰撞体定义物理边界；它可以和可见模型完全不同</text>
+  <g id="collider-grid" font-family="'Microsoft YaHei', Arial, sans-serif">
+    <g transform="translate(60 160)">
+      <rect x="0" y="0" width="356" height="194" rx="24" fill="#FFFFFF" stroke="#2457A6" stroke-width="3"/>
+      <use data-icon="tabler-outline/box" x="24" y="24" width="62" height="62" fill="#2457A6" stroke-width="2"/>
+      <text x="110" y="54" font-size="32" font-weight="700" fill="#1F2937">Box Collider</text>
+      <text x="24" y="110" font-size="24" fill="#596273">墙体 · 地面 · 箱子</text>
+      <text x="24" y="150" font-size="24" fill="#2F8F6A">性能优先，首选</text>
+    </g>
+    <g transform="translate(462 160)">
+      <rect x="0" y="0" width="356" height="194" rx="24" fill="#FFFFFF" stroke="#55A68B" stroke-width="3"/>
+      <use data-icon="tabler-outline/circle" x="24" y="24" width="62" height="62" fill="#55A68B" stroke-width="2"/>
+      <text x="110" y="54" font-size="32" font-weight="700" fill="#1F2937">Sphere Collider</text>
+      <text x="24" y="110" font-size="24" fill="#596273">球体 · 范围检测</text>
+      <text x="24" y="150" font-size="24" fill="#2F8F6A">旋转稳定，计算轻</text>
+    </g>
+    <g transform="translate(864 160)">
+      <rect x="0" y="0" width="356" height="194" rx="24" fill="#FFFFFF" stroke="#F2A93B" stroke-width="3"/>
+      <use data-icon="tabler-outline/capsule" x="24" y="24" width="62" height="62" fill="#F2A93B" stroke-width="2"/>
+      <text x="110" y="54" font-size="32" font-weight="700" fill="#1F2937">Capsule Collider</text>
+      <text x="24" y="110" font-size="24" fill="#596273">角色 · 柱状物体</text>
+      <text x="24" y="150" font-size="24" fill="#8C5A00">转角不易卡住</text>
+    </g>
+    <g transform="translate(160 390)">
+      <rect x="0" y="0" width="438" height="198" rx="24" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+      <use data-icon="tabler-outline/cube" x="24" y="24" width="62" height="62" fill="#596273" stroke-width="2"/>
+      <text x="110" y="54" font-size="32" font-weight="700" fill="#1F2937">Mesh Collider</text>
+      <text x="24" y="110" font-size="24" fill="#596273">复杂静态模型 · 不规则地形</text>
+      <text x="24" y="150" font-size="24" fill="#D85C45">开销较大，谨慎用于动态物体</text>
+    </g>
+    <g transform="translate(682 390)">
+      <rect x="0" y="0" width="438" height="198" rx="24" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <use data-icon="tabler-outline/checklist" x="24" y="24" width="62" height="62" fill="#F2A93B" stroke-width="2"/>
+      <text x="110" y="54" font-size="32" font-weight="700" fill="#1F2937">选型顺序</text>
+      <text x="24" y="110" font-size="24" fill="#1F2937">① 盒 → ② 球 / 胶囊</text>
+      <text x="24" y="150" font-size="24" fill="#1F2937">③ 组合体 → ④ 网格</text>
+    </g>
+  </g>
+  <path d="M610 320 C628 340 646 340 664 320" fill="none" stroke="#F2A93B" stroke-width="7" stroke-linecap="round"/>
+  <g id="footer" data-pptx-role="footer">
+    <line x1="58" y1="667" x2="1178" y2="667" stroke="#D8D2C5" stroke-width="2"/>
+    <text x="60" y="700" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Collider · 物理边界选型</text>
+    <text id="slide-number" data-pptx-role="page-number" x="1218" y="700" text-anchor="end" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">05</text>
+  </g>
+</svg>

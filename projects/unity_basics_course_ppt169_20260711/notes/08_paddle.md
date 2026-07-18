@@ -1,0 +1,1 @@
+移动公式只有三部分：方向、速度、时间。Time.deltaTime 抵消帧率差异，Mathf.Clamp 防止 Paddle 离开场地。逐行运行并观察 pos.y 的变化。

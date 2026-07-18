@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="cover">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFDF6"/>
+  <path d="M0 585 C220 520 360 680 610 612 C840 550 1010 610 1280 520 L1280 720 L0 720 Z" fill="#F4F0E8"/>
+  <path d="M70 116 C230 91 345 101 482 92" fill="none" stroke="#F2A93B" stroke-width="10" stroke-linecap="round"/>
+  <text x="66" y="244" font-family="KaiTi, 'Trebuchet MS', serif" font-size="92" font-weight="700" fill="#1F2937">Unity 基础</text>
+  <text x="70" y="310" font-family="KaiTi, 'Trebuchet MS', serif" font-size="42" font-weight="700" fill="#2457A6">场景、组件、物理、渲染与打包</text>
+  <text x="72" y="378" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="32" fill="#596273">把编辑器里的层级结构，变成可以运行的游戏</text>
+  <g id="scene-to-build" transform="translate(770 82)">
+    <rect x="0" y="0" width="425" height="470" rx="28" fill="#FFF9E9" stroke="#D8D2C5" stroke-width="3"/>
+    <text x="32" y="52" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#8A8F98">SCENE → BUILD</text>
+    <g stroke="#2457A6" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="213" y1="112" x2="213" y2="158"/>
+      <line x1="86" y1="158" x2="340" y2="158"/>
+      <line x1="86" y1="158" x2="86" y2="195"/>
+      <line x1="213" y1="158" x2="213" y2="195"/>
+      <line x1="340" y1="158" x2="340" y2="195"/>
+    </g>
+    <rect x="135" y="70" width="156" height="48" rx="14" fill="#2457A6"/>
+    <text x="213" y="103" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">Scene</text>
+    <g font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle">
+      <rect x="24" y="195" width="124" height="68" rx="16" fill="#EAF0FA" stroke="#2457A6" stroke-width="3"/>
+      <text x="86" y="238" fill="#2457A6">环境</text>
+      <rect x="151" y="195" width="124" height="68" rx="16" fill="#E8F5F0" stroke="#55A68B" stroke-width="3"/>
+      <text x="213" y="238" fill="#2F8F6A">玩家</text>
+      <rect x="278" y="195" width="124" height="68" rx="16" fill="#FFF0D1" stroke="#F2A93B" stroke-width="3"/>
+      <text x="340" y="238" fill="#8C5A00">相机</text>
+    </g>
+    <path d="M213 286 C213 322 213 337 213 365" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round"/>
+    <path d="M198 349 L213 367 L228 349" fill="none" stroke="#596273" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="104" y="382" width="218" height="58" rx="18" fill="#F2A93B"/>
+    <use data-icon="tabler-outline/package-export" x="124" y="395" width="32" height="32" fill="#FFFFFF" stroke-width="2"/>
+    <text x="221" y="420" text-anchor="middle" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">Windows Build</text>
+  </g>
+  <g id="cover-formula" transform="translate(70 500)">
+    <rect x="0" y="0" width="610" height="82" rx="20" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="3"/>
+    <use data-icon="tabler-outline/cube" x="24" y="21" width="40" height="40" fill="#2457A6" stroke-width="2"/>
+    <text x="84" y="52" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#1F2937">GameObject + Component + Transform</text>
+  </g>
+  <text x="72" y="674" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#8A8F98">Unity 基础课程 · 第 03 单元</text>
+</svg>

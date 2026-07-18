@@ -1,0 +1,1 @@
+Overlay 直接覆盖在游戏画面上，最适合菜单和 HUD；World Space 是 3D 世界中的真实平面，适合头顶血条和场景面板。选择 World Space 时，尺寸、朝向、Event Camera 和遮挡都需要额外检查。
