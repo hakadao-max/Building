@@ -7,7 +7,8 @@
 - `SimplePlayerController`：只处理组件初始化、模式进入/退出、控制权限、出生点与传送等关键生命周期。
 - `PlayerLocomotion`：处理移动输入、行走/奔跑速度、重力和 `CharacterController.Move`。
 - `PlayerFlashlight`：处理手电筒参数、输入和随当前视角重新挂接。
-- `PlayerInteractionHintInput`：处理 R 键并请求交互范围提示。
+- `PlayerInteractionHintInput`：处理 R 键并调用玩家范围变色扫描。
+- `PlayerRangeColorScanner`：玩家身上的公共范围检测组件，按指定半径和 LayerMask 扫描交互物并触发临时变色。
 - `PlayerFirstPersonView`：保存模式 1 按键，自行处理第一人称相机、鼠标视角和移动 Tick。
 - `PlayerThirdPersonView`：保存模式 2 按键，自行处理第三人称相机、移动 Tick、模型和动画。
 - `PlayerFixedRouteRoamView`：处理按固定曲线自动漫游、路线预览和运行时路径播放。
@@ -27,6 +28,8 @@
 
 固定视角在 `PlayerFixedCameraView` 上配置。给 `固定视角点` 添加多个条目，每个条目指定一个视角 Transform 和图标；运行后按 `4` 会立即把左上角提示更新为模式 4，并在屏幕底部显示图标栏。点击后进入对应固定视角。默认选中视角后保持图标栏显示并保留鼠标操作，此时按住鼠标右键拖动可在配置范围内小幅转动相机，左键仍用于选择 UI；勾选“选择后隐藏面板”后，面板收起且鼠标锁定，可直接转动视角。固定视角不会移动玩家，只会移动玩家相机。
 
+从模式 3 打开固定视角图标栏时，固定路线漫游会暂停，避免等待选择期间路线继续推进并带动玩家相机；关闭图标栏且未选择固定视角时，漫游会从暂停位置继续。
+
 小地图传送在 `PlayerMinimapTeleportView` 上配置。`小地图图片` 是显示在屏幕上的地图，`地图世界中心` 和 `地图世界尺寸` 决定图片坐标到世界 XZ 坐标的映射。运行后按 `5` 打开小地图，点击图片后会把玩家传送到对应世界位置，并按 `贴地检测层` 尝试修正到地面。
 
 详情查看在 `PlayerDetailInspectView` 上配置。第一人称下按 `6` 开关详情查看，屏幕中央会出现或隐藏十字标；切换到其他视角时会自动关闭，其他视角按 `6` 无响应。十字标射线在 `检测距离` 内命中带 `WorldDescriptionUI` 的物体时，会通过 `UIManager` 从 `UIRoot/WorldCanvas/TipUI` 复制显示实例并应用该物体的标题和说明。场景物体上的 `WorldDescriptionUI` 默认勾选 `仅详情查看时显示`，平时不会自动弹出。
@@ -35,7 +38,7 @@
 
 透视拾取 E 键由 `PlayerPerspectivePickupView` 保存，R 高亮键由 `PlayerInteractionHintInput` 保存。`SimplePlayerController` 不保存功能输入。普通交互物的按键配置在 `InteractableArea`，有效范围由同对象上的 `SphereCollider` 决定；调整球形触发器的半径即可调整进入和离开交互范围的位置。
 
-按 R 显示提示时，每个 `InteractableArea` 分别使用自己的“提示显示距离”和“提示持续时间”。`WorldDescriptionUI` 也保存自己的同名提示配置，因此不同物体可以使用不同范围和时长。交互物是否参与物理射线仍由物体自身的 Layer 和 Collider 决定。
+按 R 显示提示时，`PlayerRangeColorScanner` 使用玩家身上的“检测半径”“检测层级”“提示颜色”和“提示持续时间”，通过 `OverlapSphereNonAlloc` 扫描 Collider，再对命中的 `InteractableArea` 去重并变色。`WorldDescriptionUI` 仍保存自己的提示配置。
 
 `SimplePlayerController` Inspector 只保留起始视角和启动光标策略。模式按键位于对应 View；移动参数位于 `PlayerLocomotion`；手电筒参数位于 `PlayerFlashlight`；R 键位于 `PlayerInteractionHintInput`。缺少的组件会在生命周期初始化时自动补齐。
 
@@ -49,7 +52,7 @@
 
 ### 普通交互提示
 
-`InteractableArea` 通过 `OnTriggerEnter/Exit` 维护范围状态。玩家进入后，触发器直接把“提示文本”显示到 `UIRoot/Canvas/InteractionPromptPanel`；停留期间触发器自己读取“交互按键”并发送配置的交互消息；退出后隐藏提示。多个区域重叠时由最近进入的区域取得焦点，退出该区域后会切换到仍覆盖玩家的区域。普通触发交互仅在第一、第三人称启用。
+`InteractableArea` 通过 `OnTriggerEnter/Exit` 记录玩家引用、范围布尔值和玩家 Collider 重叠数。玩家进入后显示提示；范围状态有效期间在 `Update` 读取“交互按键”；最后一个玩家 Collider 退出后清除状态并隐藏提示。组件不再维护 `ActiveAreas`、全局焦点字典或最近区域查找。普通触发交互仅在第一、第三人称启用。
 
 模式提示、交互提示、详情十字标、固定视角按钮和 EventSystem 都必须预置在 `UIRoot/Canvas` 或场景中。玩家代码不会运行时创建任何 UI 层级。世界说明牌统一通过 `UIManager` 复制 `UIRoot/WorldCanvas/TipUI` 下预制的 TMP 模板。
 

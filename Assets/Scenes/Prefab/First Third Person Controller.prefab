@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 100011}
   - component: {fileID: 100012}
   - component: {fileID: 100013}
+  - component: {fileID: 100014}
   m_Layer: 0
   m_Name: First Third Person Controller
   m_TagString: Player
@@ -281,3 +282,21 @@ MonoBehaviour:
   m_EditorClassIdentifier:
   activationKey: 55
   interactKey: 101
+--- !u!114 &100014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6af9ee422a42f6a5f47df7f5033d59, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  scanRadius: 8
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hintColor: {r: 0, g: 1, b: 0, a: 1}
+  hintDuration: 3

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1661288675623128639}
   - component: {fileID: 3524878656045693685}
   - component: {fileID: 2822481359385601652}
-  - component: {fileID: 8649713034406866390}
   - component: {fileID: 305485167894276841}
+  - component: {fileID: 6541693585528200479}
   m_Layer: 0
   m_Name: Trashbin
   m_TagString: Untagged
@@ -115,28 +115,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.98720646, z: 0.65}
   m_Center: {x: 0.00000008940697, y: 0.48668492, z: 0.0926325}
---- !u!114 &8649713034406866390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3164374701436443424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b7a8e8b5ce84f6fa2ad7e8ea42a0e9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: "\u5783\u573E\u6876"
-  description: "\u8FD9\u91CC\u53EF\u4EE5\u4E22\u5783\u573E"
-  worldOffset: {x: 0, y: 2, z: 0}
-  faceCamera: 1
-  rotateOnlyYAxis: 1
-  onlyShowInDetailInspect: 0
-  hintTarget: {fileID: 0}
-  hintColor: {r: 0, g: 1, b: 0, a: 1}
-  hintRevealDistance: 8
-  hintDuration: 3
 --- !u!135 &305485167894276841
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -152,12 +130,34 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 4.22
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6541693585528200479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164374701436443424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7a8e8b5ce84f6fa2ad7e8ea42a0e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldDescriptionUI
+  title: "\u573A\u666F\u5143\u7D20"
+  description: "\u5783\u573E\u6876"
+  worldOffset: {x: 0, y: 2, z: 0}
+  faceCamera: 1
+  rotateOnlyYAxis: 0
+  onlyShowInDetailInspect: 1
+  hintTarget: {fileID: 0}
+  hintColor: {r: 0, g: 1, b: 0, a: 1}
+  hintRevealDistance: 8
+  hintDuration: 3
 --- !u!1 &4248529517264904525
 GameObject:
   m_ObjectHideFlags: 0

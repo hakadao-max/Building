@@ -39,8 +39,8 @@
 5. `SimplePatrolAgent` 默认开启 `定时贴地`，按 `贴地检测间隔` 从角色上方向下射线检测 `地面检测层`，忽略自身子物体碰撞体后把角色 Y 修正到命中的地面点加 `贴地高度偏移`。
 6. `SimplePatrolAgent` 启用时注册到静态 `ActiveAgents` 列表；默认开启 `启用相遇交流` 和 `交流后反向离开`，每帧按 `交流检测半径` 和 `交流最大高度差` 查找其他可交流 NPC，进入交流后双方暂停路线、播放 idle、可选互相看向，`交流时长` 结束后反转 `moveDirectionSign` 并重设目标点：移动中会先返回上一个路点，停点中会选择反方向的下一个路点；`交流冷却时间` 和 `再次交流分离距离` 会防止双方未分开时重复交流。
 7. `SimplePatrolAgent` 默认从子节点查找 `Animator`，移动和停留时分别尝试播放 `walk` 与 `idle1`，不同 prefab 可在 Inspector 修改状态名或关闭自动动画。
-8. 玩家按 `E` 时，`SimplePlayerController` 用 `Physics.OverlapSphere` 找最近 `InteractableArea` 并调用 `Interact`。
-9. 玩家按 `R` 时，`SimplePlayerController` 扫描 `显示交互提示半径` 内的 `InteractableArea` 和当前未显示的 `WorldDescriptionUI` 并调用 `ShowHint`。
+8. `InteractableArea` 通过 Trigger 进入/退出事件保存范围状态，只在状态有效时于 `Update` 轮询 E 并调用 `Interact`；不维护全局区域集合。
+9. 玩家按 `R` 时，`PlayerInteractionHintInput` 调用 `PlayerRangeColorScanner`，以玩家为球心按配置的半径和 LayerMask 执行物理扫描，并让命中的交互物临时变色。
 10. `InteractableArea.Interact` 向目标广播 `ObjectClicked`，目标可以是自身、父物体或 Inspector 指定对象。
 11. `SettingsPanelController` 运行时加载 `Assets/Resources/UI/SettingsPanel.prefab`，绑定其中名为 `Return Spawn Button` 的按钮，并在场景缺少 uGUI `EventSystem` 时自动创建；打开面板时锁住所有 `SimplePlayerController` 输入并释放鼠标；点击按钮后调用 `TeleportTo` 或 `ReturnToSpawn`。
 12. `WorldDescriptionUI.Awake` 自动创建世界空间 Canvas；`LateUpdate` 更新位置、距离显示和朝向。

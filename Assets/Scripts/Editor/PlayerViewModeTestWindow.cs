@@ -69,6 +69,7 @@ public sealed class PlayerViewModeTestWindow : EditorWindow
         PlayerPerspectivePickupView perspectivePickupView = EnsureComponent<PlayerPerspectivePickupView>(controllerObject);
         PlayerLocomotion locomotion = EnsureComponent<PlayerLocomotion>(controllerObject);
         PlayerFlashlight flashlight = EnsureComponent<PlayerFlashlight>(controllerObject);
+        PlayerRangeColorScanner rangeColorScanner = EnsureComponent<PlayerRangeColorScanner>(controllerObject);
         PlayerInteractionHintInput hintInput = EnsureComponent<PlayerInteractionHintInput>(controllerObject);
 
         EditorUtility.SetDirty(controller);
@@ -81,6 +82,7 @@ public sealed class PlayerViewModeTestWindow : EditorWindow
         EditorUtility.SetDirty(perspectivePickupView);
         EditorUtility.SetDirty(locomotion);
         EditorUtility.SetDirty(flashlight);
+        EditorUtility.SetDirty(rangeColorScanner);
         EditorUtility.SetDirty(hintInput);
         EditorSceneManager.MarkSceneDirty(controllerObject.scene);
 

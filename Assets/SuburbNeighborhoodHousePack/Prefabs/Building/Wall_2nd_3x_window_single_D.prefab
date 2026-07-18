@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426904349780711020}
-  - component: {fileID: -4898598830028667069}
   - component: {fileID: 3621862408562186697}
   - component: {fileID: 1560365201270795523}
   - component: {fileID: 172845718816616842}
@@ -38,29 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4898598830028667069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055948504956914902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1920c326c54c46bdba951557dffb3f98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placed: 1
-  category: Walls 2nd
-  prefab: Wall_2nd_3x_window_single_D
-  additionals:
-  - Window_blocker_curtains
-  - Window_blocker_blinds
-  additionalsBtns: []
-  additionalsPos:
-  - {x: -1.5, y: 1.8, z: -0.15}
-  additionalsRot:
-  - {x: 0, y: 0, z: 0}
 --- !u!33 &3621862408562186697
 MeshFilter:
   m_ObjectHideFlags: 0

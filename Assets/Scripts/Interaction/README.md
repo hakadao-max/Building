@@ -8,6 +8,8 @@
 
 - `InteractableObj`：所有交互行为的抽象基类；交互脚本继承它并重写 `ObjectClicked()`。
 - `InteractableArea`：与交互脚本挂在同一个游戏物体上，玩家按键后直接调用该物体的 `InteractableObj.ObjectClicked()`，不使用消息广播。
+- `InteractableArea` 不维护全局实例集合。`OnTriggerEnter/Exit` 只记录玩家是否仍在范围内以及玩家 Collider 重叠数，`Update` 根据该状态轮询交互输入。
+- R 键变色由玩家身上的 `PlayerRangeColorScanner` 负责。它按“检测半径”和“检测层级”执行物理范围扫描，只处理命中的 `InteractableArea`，不遍历全场景交互物。
 - `PrefabSwapInteractable`：继承 `InteractableObj`，配置替换目标父物体、界面实例、可选预制体和预览相机参数。
 - 每个“可选预制体”可单独填写“配置名称”，该名称会显示在选择按钮上；留空时使用 Prefab 资源名。
 - 组件会复用同物体的 `InteractableArea`，交互范围由同物体的 `SphereCollider` 调整。
@@ -22,6 +24,7 @@
 ## 验证
 
 - 靠近交互物体，确认出现“按 E 交互”。
+- 在玩家的 `PlayerRangeColorScanner` 配置“检测层级”，按 R 确认范围内该层级上的交互物及其子级 Renderer 变色。
 - 按 `E` 确认玩家输入锁定且鼠标释放。
 - 确认相机切到预览机位物体的位置和旋转，移动或旋转该物体时相机同步跟随。
 - 确认按钮显示配置名称，点击后正确替换并标准化子物体变换。

@@ -74,9 +74,14 @@ public sealed class TemporaryColorHint : MonoBehaviour
         rendererStates.Clear();
         graphicStates.Clear();
 
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-        if (meshRenderer != null && meshRenderer.enabled && meshRenderer.gameObject.activeInHierarchy)
+        MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer meshRenderer in meshRenderers)
         {
+            if (!meshRenderer.enabled || !meshRenderer.gameObject.activeInHierarchy)
+            {
+                continue;
+            }
+
             Material[] materials = meshRenderer.materials;
             for (int i = 0; i < materials.Length; i++)
             {

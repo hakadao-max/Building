@@ -7,7 +7,8 @@
 - `SimplePlayerController`：只负责组件初始化、模式进入/退出、控制权限、出生点和传送；Inspector 只保留起始模式与启动光标策略。
 - `PlayerLocomotion`：公共移动、奔跑和重力实现，由第一/第三人称 View 调用。
 - `PlayerFlashlight`：手电筒输入、参数与视角挂点切换。
-- `PlayerInteractionHintInput`：R 键输入与 `InteractableArea` 提示请求。
+- `PlayerInteractionHintInput`：R 键输入，并调用玩家身上的范围变色扫描。
+- `PlayerRangeColorScanner`：公共物理范围扫描；配置半径、LayerMask、颜色和持续时间，使用 `OverlapSphereNonAlloc` 命中并去重 `InteractableArea`。
 - `PlayerFirstPersonView`：第一人称相机 rig、鼠标 yaw/pitch、第一人称移动方向。
 - `PlayerThirdPersonView`：第三人称相机 rig、模型显示隐藏、第三人称移动方向和动画同步；动画参数与视角/模型参数用 Header 分区，`Animator` 直接从生成出的模型实例中查找。
 - `PlayerFixedRouteRoamView`：Catmull-Rom 曲线漫游、世界坐标控制点预览、按曲线采样长度和 `漫游速度` 推进的运行时路径播放；`首尾相连` 控制曲线是否闭合，`循环播放` 只控制到终点后的播放行为。
@@ -40,8 +41,9 @@
 9. 离开 `PerspectivePickup` 时自动释放当前物体；每次模式变化或详情查看开关时刷新 `PlayerModeDisplay`。
 10. 漫游结束时，如果 `结束后回到第一人称` 为 true，控制器切回 `PlayerViewMode.FirstPerson`。
 11. 所有玩家和设置面板按键都通过 `RuntimeInput` 读取，避免项目只启用 Input System 时触发 `UnityEngine.Input` 异常。
-12. `InteractableArea.OnTriggerEnter/Exit` 维护范围内玩家；进入时取得提示焦点并打开 `InteractionPromptPanel`，停留期间由交互区自身读取 E 并调用交互方法，退出时隐藏或把焦点交给仍覆盖玩家的其他区域。玩家的多个 Collider 使用重叠计数，避免单个 Collider 退出就提前关闭。
-13. `PlayerInteractionHintInput` 读取 R 并请求 `InteractableArea` 显示提示；Trigger 范围内的 `WorldDescriptionUI` 直接读取同一玩家能力组件暴露的按键，不做全场景查找。
+12. 固定视角选择面板打开时，`SimplePlayerController.TickFixedRouteRoamView` 不推进模式 3；关闭面板未选择视角时继续漫游，选择固定视角后按正常生命周期退出模式 3。
+13. `InteractableArea.OnTriggerEnter/Exit` 保存玩家引用、范围状态与 Collider 重叠数；进入时打开 `InteractionPromptPanel`，范围有效期间在 `Update` 读取 E，最后一个 Collider 退出时隐藏提示并清空状态。不存在静态区域集合或焦点切换。
+14. `PlayerInteractionHintInput` 读取 R 并调用 `PlayerRangeColorScanner`；扫描器以玩家为球心，按指定 LayerMask 执行 `OverlapSphereNonAlloc`，命中交互物后触发临时变色。Trigger 范围内的 `WorldDescriptionUI` 继续读取同一玩家能力组件暴露的按键。
 
 ## 扩展点
 
@@ -51,6 +53,6 @@
 - 需要改变地图点击到世界坐标的映射时，优先扩展 `PlayerMinimapTeleportView`；需要改变图片生成方式时，扩展 `MinimapGeneratorWindow`。
 - 需要扩展详情查看命中规则或屏幕 UI 时，优先扩展 `PlayerDetailInspectView`；需要改变说明牌内容或布局时，扩展 `WorldDescriptionUI`。
 - 需要严格防止透视拾取物体穿模时，把中心射线升级为依据模型包围体的 SphereCast 或多点检测。
-- 调整普通交互范围时修改 `InteractableArea` 的 `SphereCollider`；调整 R 键提示范围或时长时修改对应交互物/世界说明组件，不要把参数加回玩家控制器。
+- 调整普通交互范围时修改 `InteractableArea` 的 `SphereCollider`；调整交互物 R 键变色的范围、层级、颜色或时长时修改玩家的 `PlayerRangeColorScanner`。`WorldDescriptionUI` 继续使用自身提示参数。
 - 固定路线编辑器只依赖 UnityEditor `Handles`，没有 Odin 依赖。
 - 玩家 UI 和 EventSystem 必须预置；不要在玩家运行时代码中恢复 Canvas、TMP、Image、Button、十字标或 EventSystem 创建逻辑。

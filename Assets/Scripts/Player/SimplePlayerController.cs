@@ -167,6 +167,11 @@ public sealed class SimplePlayerController : MonoBehaviour
 
     public void TickFixedRouteRoamView(PlayerFixedRouteRoamView view)
     {
+        if (IsViewInputBlocked)
+        {
+            return;
+        }
+
         if (view == null || view.Tick(ref yaw, ref pitch, lockCursorOnStart))
         {
             yaw = transform.eulerAngles.y;
@@ -410,8 +415,9 @@ public sealed class SimplePlayerController : MonoBehaviour
         perspectivePickupView.Bind(this);
         flashlight = GetOrAddComponent<PlayerFlashlight>();
         flashlight.Initialize(this);
+        PlayerRangeColorScanner rangeColorScanner = GetOrAddComponent<PlayerRangeColorScanner>();
         PlayerInteractionHintInput interactionHintInput = GetOrAddComponent<PlayerInteractionHintInput>();
-        interactionHintInput.Bind(this);
+        interactionHintInput.Bind(this, rangeColorScanner);
     }
 
     private T GetOrAddComponent<T>() where T : Component

@@ -9,6 +9,7 @@ public sealed class PlayerInteractionHintInput : MonoBehaviour
     public KeyCode RevealKey => revealKey;
 
     private SimplePlayerController controller;
+    private PlayerRangeColorScanner colorScanner;
 
     private void Update()
     {
@@ -20,9 +21,10 @@ public sealed class PlayerInteractionHintInput : MonoBehaviour
         }
     }
 
-    public void Bind(SimplePlayerController owner)
+    public void Bind(SimplePlayerController owner, PlayerRangeColorScanner scanner)
     {
         controller = owner;
+        colorScanner = scanner;
     }
 
     public void TickInput()
@@ -32,12 +34,6 @@ public sealed class PlayerInteractionHintInput : MonoBehaviour
             return;
         }
 
-        foreach (InteractableArea area in InteractableArea.ActiveInstances)
-        {
-            if (area != null)
-            {
-                area.TryShowHint(transform.position);
-            }
-        }
+        colorScanner?.ScanAndShowColorHints();
     }
 }
