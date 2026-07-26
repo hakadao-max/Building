@@ -2,110 +2,121 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Suburb {
-
-public class SimpleOpenClose : InteractableObj
+namespace Suburb
 {
-    private Animator myAnimator;
-    private Animator additionalAnimator;
-    public bool objectOpen;
-    public bool objectOpenAdditional;
-    public GameObject animateAdditional;
-    private bool hasAdditional = false;
-    float myNormalizedTime;
-
-
-    // Open or close animator state in start depending on selection.
-    // Additional object with animator. For example another door when double doors. 
-    void Start()
+    public class SimpleOpenClose : InteractableObj
     {
-       
-        // If there is no animator in the gameobject itself, get the parent animator.
-        myAnimator = GetComponent<Animator>();
-        if (myAnimator == null)
-        {
-            myAnimator = GetComponentInParent<Animator>();
-        }
-        
+        private Animator myAnimator;
+        private Animator additionalAnimator;
+        public bool objectOpen;
+        public bool objectOpenAdditional;
+        public GameObject animateAdditional;
+        private bool hasAdditional = false;
+        float myNormalizedTime;
 
-        if (objectOpen == true)
+
+        // Open or close animator state in start depending on selection.
+        // Additional object with animator. For example another door when double doors. 
+        void Start()
         {
-            myAnimator.Play("Open", 0, 1.0f);
-        }
-        if (animateAdditional != null)
-            if (animateAdditional.GetComponent<SimpleOpenClose>())
+            // If there is no animator in the gameobject itself, get the parent animator.
+            myAnimator = GetComponent<Animator>();
+            if (myAnimator == null)
             {
-                additionalAnimator = animateAdditional.GetComponent<Animator>();
-                hasAdditional = true;
-                objectOpenAdditional = animateAdditional.GetComponent<SimpleOpenClose>().objectOpen;
+                myAnimator = GetComponentInParent<Animator>();
             }
-        else
+
+
+            if (objectOpen == true)
             {
-                hasAdditional = false;
+                myAnimator.Play("Open", 0, 1.0f);
             }
-    }
 
-    // Player clicks object. Method called from SimplePlayerUse script.
+            if (animateAdditional != null)
+                if (animateAdditional.GetComponent<SimpleOpenClose>())
+                {
+                    additionalAnimator = animateAdditional.GetComponent<Animator>();
+                    hasAdditional = true;
+                    objectOpenAdditional = animateAdditional.GetComponent<SimpleOpenClose>().objectOpen;
+                }
+                else
+                {
+                    hasAdditional = false;
+                }
+        }
 
-    public override void ObjectClicked()
-    {
-
-        myNormalizedTime = myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-
-        if (hasAdditional == false)
+        public void Open()
         {
-            if (myNormalizedTime >= 1.0)
+            if (!objectOpen == true)
+            {
+                myAnimator.CrossFade("Open", 0.667f);
+                objectOpen = true;
+            }
+        }
+
+        public void Close()
+        {
+            if (objectOpen == true)
+            {
+                myAnimator.CrossFade("Close", 0.667f);
+                objectOpen = false;
+            }
+        }
+
+        // Player clicks object. Method called from SimplePlayerUse script.
+
+        public override void ObjectClicked()
+        {
+            myNormalizedTime = myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+
+            if (hasAdditional == false)
+            {
+                if (myNormalizedTime >= 1.0)
+                {
+                    if (objectOpen == true)
+                    {
+                        myAnimator.Play("Close", 0, 0.0f);
+                        objectOpen = false;
+                    }
+
+                    else
+                    {
+                        myAnimator.Play("Open", 0, 0.0f);
+                        objectOpen = true;
+                    }
+                }
+            }
+
+            if (hasAdditional == true && myNormalizedTime >= 1.0)
             {
                 if (objectOpen == true)
                 {
                     myAnimator.Play("Close", 0, 0.0f);
                     objectOpen = false;
+                    animateAdditional.GetComponent<SimpleOpenClose>().objectOpenAdditional = false;
+
+                    if (objectOpenAdditional == true)
+                    {
+                        additionalAnimator.Play("Close", 0, 0.0f);
+                        objectOpenAdditional = false;
+                        animateAdditional.GetComponent<SimpleOpenClose>().objectOpen = false;
+                    }
                 }
 
                 else
                 {
                     myAnimator.Play("Open", 0, 0.0f);
                     objectOpen = true;
+                    animateAdditional.GetComponent<SimpleOpenClose>().objectOpenAdditional = true;
+
+                    if (objectOpenAdditional == false)
+                    {
+                        additionalAnimator.Play("Open", 0, 0.0f);
+                        objectOpenAdditional = true;
+                        animateAdditional.GetComponent<SimpleOpenClose>().objectOpen = true;
+                    }
                 }
             }
         }
-
-        if (hasAdditional == true && myNormalizedTime >= 1.0)
-        {
-            if (objectOpen == true)
-            {
-                myAnimator.Play("Close", 0, 0.0f);
-                objectOpen = false;
-                animateAdditional.GetComponent<SimpleOpenClose>().objectOpenAdditional = false;
-
-                if (objectOpenAdditional == true)
-                {
-                    additionalAnimator.Play("Close", 0, 0.0f);
-                    objectOpenAdditional = false;
-                    animateAdditional.GetComponent<SimpleOpenClose>().objectOpen = false;
-                }
-
-            }
-
-            else
-            {
-                myAnimator.Play("Open", 0, 0.0f);
-                objectOpen = true;
-                animateAdditional.GetComponent<SimpleOpenClose>().objectOpenAdditional = true;
-
-                if (objectOpenAdditional == false)
-                {
-                    additionalAnimator.Play("Open", 0, 0.0f);
-                    objectOpenAdditional = true;
-                    animateAdditional.GetComponent<SimpleOpenClose>().objectOpen = true;
-
-                }
-
-            }
-
-        }
-
     }
-
-}
 }

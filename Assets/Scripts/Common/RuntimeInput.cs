@@ -129,6 +129,12 @@ public static class RuntimeInput
 #endif
     }
 
+    public static Vector3 GetMoveDir()
+    {
+        Vector2 axes = RuntimeInput.GetMoveAxesRaw();
+        return Vector3.ClampMagnitude(new Vector3(axes.x, 0f, axes.y), 1f);
+    }
+
     public static Vector2 GetMoveAxesRaw()
     {
 #if ENABLE_INPUT_SYSTEM
@@ -229,6 +235,9 @@ public static class RuntimeInput
                 return true;
             case KeyCode.R:
                 key = Key.R;
+                return true;
+            case KeyCode.Q:
+                key = Key.Q;
                 return true;
             case KeyCode.S:
                 key = Key.S;
