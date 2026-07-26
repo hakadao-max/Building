@@ -4,17 +4,36 @@ namespace Test.Interact
 {
     public class MTSuperliminalObj : MTBaseInteractObj
     {
-        public float maxDistance = 10;
+        [LabelText("最大检测距离")]
+        [Min(0.01f)]
+        public float maxDistance = 10f;
+
+        [LabelText("首次检测缩放")]
+        [Min(0.001f)]
+        [SerializeField] private float initialDetectionScale = 0.1f;
+
+        [LabelText("缩放迭代次数")]
+        [Min(1)]
+        [SerializeField] private int scaleIterationCount = 6;
+
+        [LabelText("缩放收敛误差")]
+        [Min(0f)]
+        [SerializeField] private float scaleTolerance = 0.01f;
 
         private float originDistance;
         private float originScale;
+        private Vector3 originLocalScale;
         private Vector3 targetScale;
 
         protected override void OnBeginInteract(Vector3 oriPos, Collider targetCollider)
         {
             base.OnBeginInteract(oriPos, targetCollider);
-            originDistance = Vector3.Distance(oriPos, transform.position);
+            originDistance = Mathf.Max(
+                Vector3.Distance(oriPos, transform.position),
+                0.0001f
+            );
             originScale = transform.localScale.x;
+            originLocalScale = transform.localScale;
             targetScale = transform.localScale;
             targetRigidbody.detectCollisions = false;
         }
@@ -28,123 +47,92 @@ namespace Test.Interact
         protected override void OnTick(Vector3 oriPos, Vector3 lookRotation)
         {
             tte(oriPos, lookRotation);
-            return;
-            var resolvedPosition = targetRigidbody.position;
-            var originPos = resolvedPosition;
-            var oriScale = transform.localScale;
-            transform.localScale = Vector3.one * 0.1f;
-            targetRigidbody.position = oriPos;
-            Physics.SyncTransforms();
-            if (targetRigidbody.SweepTest(
-                    lookRotation,
-                    out RaycastHit hit,
-                    maxDistance,
-                    QueryTriggerInteraction.Ignore))
+        }
+
+        private void tte(Vector3 oriPos, Vector3 lookRotation)
+        {
+            Vector3 direction = lookRotation.normalized;
+            float probeScale = Mathf.Max(initialDetectionScale, 0.001f);
+            float resolvedDistance = SweepAtScale(
+                oriPos,
+                direction,
+                probeScale
+            );
+            float calculatedScale = CalculateScale(resolvedDistance);
+
+            for (int i = 1; i < scaleIterationCount; i++)
             {
-                float allowedDistance = Mathf.Max(0f, hit.distance - skinWidth);
-                Vector3 allowedMovement = lookRotation * allowedDistance;
-                resolvedPosition = oriPos + allowedMovement;
-            }
-            else
-            {
-                resolvedPosition = oriPos + lookRotation * maxDistance;
+                if (calculatedScale < probeScale)
+                {
+                    // 结果缩小，说明物体需要更近，直接使用更小值继续检测。
+                    probeScale = calculatedScale;
+                }
+                else
+                {
+                    // 结果变大，说明可能还能更远，取本次区间中值逐步放大。
+                    probeScale = (probeScale + calculatedScale) * 0.5f;
+                }
+
+                probeScale = Mathf.Max(probeScale, 0.001f);
+                resolvedDistance = SweepAtScale(
+                    oriPos,
+                    direction,
+                    probeScale
+                );
+                calculatedScale = CalculateScale(resolvedDistance);
+
+                if (Mathf.Abs(calculatedScale - probeScale) <= scaleTolerance)
+                {
+                    break;
+                }
             }
 
-            //targetRigidbody.position = originPos;
-            // var resolvedPosition = GetResolvedPosition(targetPos);
-            float curDistance = Vector3.Distance(oriPos, resolvedPosition);
-            float s = curDistance / originDistance;
-            targetScale = Vector3.one * s;
-            transform.localScale = targetScale;
-            Physics.SyncTransforms();
-            if (targetRigidbody.SweepTest(
-                    lookRotation,
-                    out hit,
-                    maxDistance,
-                    QueryTriggerInteraction.Ignore))
-            {
-                float allowedDistance = Mathf.Max(0f, hit.distance - skinWidth);
-                Vector3 allowedMovement = lookRotation * allowedDistance;
-                resolvedPosition = oriPos + allowedMovement;
-            }
-            else
-            {
-                resolvedPosition = oriPos + lookRotation * maxDistance;
-            }
+            Vector3 resolvedPosition =
+                oriPos + direction * resolvedDistance;
 
-
-            curDistance = Vector3.Distance(oriPos, resolvedPosition);
-            s = curDistance / originDistance;
-            targetScale = Vector3.one * s;
+            targetScale = GetLocalScale(calculatedScale);
             targetRigidbody.position = resolvedPosition;
             transform.position = resolvedPosition;
             transform.localScale = targetScale;
         }
 
-        private void tte(Vector3 oriPos, Vector3 lookRotation)
+        private float SweepAtScale(
+            Vector3 origin,
+            Vector3 direction,
+            float probeScale)
         {
-            Vector3 resolvedPosition;
-            var lstScale = Vector3.one * 0.1f;
-            transform.localScale = lstScale;
-            targetRigidbody.position = oriPos;
-            transform.position = oriPos;
+            transform.position = origin;
+            transform.localScale = GetLocalScale(probeScale);
             Physics.SyncTransforms();
-            float lastAllowedDistance;
+
             if (targetRigidbody.SweepTest(
-                    lookRotation,
+                    direction,
                     out RaycastHit hit,
                     maxDistance,
                     QueryTriggerInteraction.Ignore))
             {
-                lastAllowedDistance = Mathf.Max(0f, hit.distance - skinWidth);
-                Vector3 allowedMovement = lookRotation * lastAllowedDistance;
-                resolvedPosition = oriPos + allowedMovement;
+                return Mathf.Max(0f, hit.distance - skinWidth);
             }
-            else
+
+            return maxDistance;
+        }
+
+        private float CalculateScale(float distance)
+        {
+            return Mathf.Max(
+                originScale * distance / originDistance,
+                0.001f
+            );
+        }
+
+        private Vector3 GetLocalScale(float xScale)
+        {
+            if (Mathf.Abs(originScale) < 0.0001f)
             {
-                lastAllowedDistance = maxDistance;
-                resolvedPosition = oriPos + lookRotation * maxDistance;
+                return Vector3.one * xScale;
             }
 
-            float curDistance;
-            float s;
-            for (int i = 0; i < 4; i++)
-            {
-                float curAllowedDistance = maxDistance;
-                curDistance = Vector3.Distance(oriPos, resolvedPosition);
-                s = curDistance / originDistance;
-                lstScale = (lstScale +  Vector3.one * s) * 0.5f ;
-                transform.localScale = lstScale;
-                Physics.SyncTransforms();
-                if (targetRigidbody.SweepTest(
-                        lookRotation,
-                        out hit,
-                        maxDistance,
-                        QueryTriggerInteraction.Ignore))
-                {
-                    curAllowedDistance = Mathf.Max(0f, hit.distance - skinWidth);
-                    Vector3 allowedMovement = lookRotation * curAllowedDistance;
-                    resolvedPosition = oriPos + allowedMovement;
-                }
-                else
-                {
-                    resolvedPosition = oriPos + lookRotation * maxDistance;
-                }
-
-                if (Mathf.Abs(s - lstScale.x) < 0.1f)
-                {
-                    break;
-                }
-                lastAllowedDistance = curAllowedDistance;
-            }
-
-
-            curDistance = Vector3.Distance(oriPos, resolvedPosition);
-            s = curDistance / originDistance;
-            targetScale = Vector3.one * s;
-            targetRigidbody.position = resolvedPosition;
-            transform.position = resolvedPosition;
-            transform.localScale = targetScale;
+            return originLocalScale * (xScale / originScale);
         }
     }
 }
