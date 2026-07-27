@@ -5,8 +5,7 @@ namespace Test.Interact
     [RequireComponent(typeof(Rigidbody))]
     public class MTBaseInteractObj : MonoBehaviour
     {
-        [LabelText("漂浮距离")]
-        public float floatDistance = 2f;
+        private float startDistance = 2f;
 
         [LabelText("碰撞间隙")]
         [Min(0.001f)]
@@ -19,6 +18,8 @@ namespace Test.Interact
         protected Collider[] ownedColliders;
 
         protected Collider holderCollider;
+
+        public float StartDistance => startDistance;
         
         private void Awake()
         {
@@ -31,9 +32,9 @@ namespace Test.Interact
         }
 
 
-        public void BeginInteract(Collider targetCollider, Vector3 oriPos, Vector3 targetPos)
+        public void BeginInteract(Collider targetCollider, Vector3 oriPos)
         {
-            transform.position = targetPos;
+            startDistance = Vector3.Distance(transform.position, oriPos);
             holderCollider = targetCollider;
             targetRigidbody.isKinematic = true;
             SetColliderIgnored(true);
@@ -128,7 +129,7 @@ namespace Test.Interact
 
         protected virtual void OnTick(Vector3 oriPos, Vector3 lookRotation)
         {
-            transform.position = oriPos + lookRotation * floatDistance;
+            transform.position = oriPos + lookRotation * startDistance;
         }
     }
 }

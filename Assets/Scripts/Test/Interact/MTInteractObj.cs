@@ -7,7 +7,7 @@ namespace Test.Interact
     {
         protected override void OnTick(Vector3 oriPos, Vector3 lookRotation)
         {
-            var resolvedPosition = GetResolvedPosition(oriPos + lookRotation * floatDistance);
+            var resolvedPosition = GetResolvedPosition(oriPos + lookRotation * StartDistance);
             transform.position = resolvedPosition;
         }
 

@@ -53,6 +53,7 @@ namespace Test.Interact
         {
             Vector3 direction = lookRotation.normalized;
             float probeScale = Mathf.Max(initialDetectionScale, 0.001f);
+            float confirmedMinScale = 0.001f;
             float resolvedDistance = SweepAtScale(
                 oriPos,
                 direction,
@@ -62,15 +63,29 @@ namespace Test.Interact
 
             for (int i = 1; i < scaleIterationCount; i++)
             {
-                if (calculatedScale < probeScale)
+                if (Mathf.Abs(calculatedScale - probeScale) <= scaleTolerance)
                 {
-                    // 结果缩小，说明物体需要更近，直接使用更小值继续检测。
-                    probeScale = calculatedScale;
+                    break;
+                }
+
+                if (calculatedScale > probeScale)
+                {
+                    // 当前尺寸能够完成扫描，它就是一个已经确认可用的下界。
+                    confirmedMinScale = Mathf.Max(
+                        confirmedMinScale,
+                        probeScale
+                    );
+
+                    // 结果变大时，在已确认下界与计算值之间继续向上逼近。
+                    probeScale =
+                        (confirmedMinScale + calculatedScale) * 0.5f;
                 }
                 else
                 {
-                    // 结果变大，说明可能还能更远，取本次区间中值逐步放大。
-                    probeScale = (probeScale + calculatedScale) * 0.5f;
+                    // 当前尺寸过大时，不直接跳到计算值，而是在已确认下界
+                    // 与当前探测尺寸之间折半，避免结果突然缩得过小。
+                    probeScale =
+                        (confirmedMinScale + probeScale) * 0.5f;
                 }
 
                 probeScale = Mathf.Max(probeScale, 0.001f);
@@ -80,17 +95,16 @@ namespace Test.Interact
                     probeScale
                 );
                 calculatedScale = CalculateScale(resolvedDistance);
-
-                if (Mathf.Abs(calculatedScale - probeScale) <= scaleTolerance)
-                {
-                    break;
-                }
             }
+
+            resolvedDistance =
+                confirmedMinScale * originDistance /
+                Mathf.Max(Mathf.Abs(originScale), 0.0001f);
 
             Vector3 resolvedPosition =
                 oriPos + direction * resolvedDistance;
 
-            targetScale = GetLocalScale(calculatedScale);
+            targetScale = GetLocalScale(confirmedMinScale);
             targetRigidbody.position = resolvedPosition;
             transform.position = resolvedPosition;
             transform.localScale = targetScale;

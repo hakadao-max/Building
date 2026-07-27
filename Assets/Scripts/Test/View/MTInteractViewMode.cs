@@ -21,7 +21,7 @@ namespace Test
             0f
         );
         
-        private Vector3 targetPos => oriPos + LookRotation * Vector3.forward * currentObj.floatDistance;
+        private Vector3 targetPos => oriPos + LookRotation * Vector3.forward * currentObj.StartDistance;
         
         private MTBaseInteractObj currentObj;
         public override void Tick()
@@ -57,7 +57,7 @@ namespace Test
                     currentObj = hit.transform.GetComponent<MTBaseInteractObj>();
                     if (currentObj != null)
                     {
-                        currentObj.BeginInteract(playerManager.Collider,oriPos, targetPos);
+                        currentObj.BeginInteract(playerManager.Collider,oriPos);
                     }
                 }
             }
